@@ -32,7 +32,7 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- Visual settings for layout/cosmetic options
 
 - Hints and spoiler log integration
-	- Import your spoiler log to automatically populate settings, layout, etc.
+	- Import your [spoiler log](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#spoiler-log-integration) to automatically populate settings, layout, etc.
 	- 2 hint systems ([see below](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#hints))
 	- Hints are saved with your save file
 
@@ -46,7 +46,31 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- The Go Mode graphic appears when you have everything needed to defeat Ganondorf
 	- Click on it to make it disappear
 	- If you click on it and want it back, head to General Settings to re-enable it 
-	
+
+## Spoiler Log integration
+
+You can import your spoiler log .json file directly into the tracker to import settings and utilize the hint system. To import a spoiler log, put it in the ```SpoilerLog``` folder found in the following locations:
+
+Windows: ```.\Pixie's TPR Tracker\Pixie's TPR Tracker_Data\SpoilerLog```  
+Mac: ```.\Pixie's TPR Tracker\Content\SpoilerLog```
+  
+> Note: To find the folder on Mac, right click the app icon and select "Show Package Contents"
+  
+The SpoilerLog folder is created the first time you run the app, so if you update and can't see it, make sure you run the app first. If you're having issues with the folder creation, you can create the folder manually as long as it's titled **SpoilerLog** and is in the correct file path.
+
+### Import settings
+
+- Autofill settings: automatically populates settings in the General and Seed tabs
+- Generate Item Layout: automatically generates an item layout based on your settings. This includes required dungeons
+- Autofill Required Dungeons: automatically sets your required dungeons in the item layout
+- Autofill Starting Items: automatically marks your starting inventory items
+- Remove Excluded Checks: automatically marks excluded checks as completed. This does not affect rupee count
+- Reset Tracker on Import: Resets the tracker before importing. This does not include a settings reset
+
+### Saving and deleting your spoiler log
+
+Your spoiler log and generated hints are saved along with everything else in your save file. Deleting or moving the original .json file will not affect the tracker as an internal copy of your spoiler log is made on import. Click "Dump Spoiler Log" to delete this internal copy along with your hints and go back to the import screen.
+
 ## Hints
 
 ### Spirit of Light hints
