@@ -33,14 +33,14 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 
 - Hints and spoiler log integration
 	- Import your spoiler log to automatically populate settings, layout, etc.
-	- 2 hint systems (see below)
+	- 2 hint systems ([see below](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#hints))
 	- Hints are saved with your save file
 
 - Check marking
 	- Checks can be right clicked to mark them as a **junk item** (orange) or a **key item** (blue)
 	- This is purely cosmetic
 	- This can be useful for marking checks you can see but can't yet obtain (e.g. bugs you can see but can't get without a clawshot, shop items you can't afford yet, checks you got hints for, etc.)
-	- This is useful in **Rupee Mode** (see below) to mark junk items that you don't obtain (e.g. seeing a blue rupee that you don't want to waste time grabbing) as it visually marks it off but doesn't affect your rupee count
+	- This is useful in **Rupee Mode** ([see below](https://github.com/AudioPixie/TPRTracker?tab=readme-ov-file#fanadis-palace-and-rupee-mode)) to mark junk items that you don't obtain (e.g. seeing a blue rupee that you don't want to waste time grabbing) as it visually marks it off but doesn't affect your rupee count
 
 - Automatic Go Mode
 	- The Go Mode graphic appears when you have everything needed to defeat Ganondorf
