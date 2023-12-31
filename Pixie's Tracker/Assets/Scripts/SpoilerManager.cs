@@ -943,6 +943,7 @@ public class SpoilerManager : MonoBehaviour
             if (AutoExcludedChecks.isOn)
             {
                 int rupees = 0;
+                barrenCheckCount.Clear();
 
                 foreach (string exCheck in spoilerLog.settings.excludedChecks)
                 {
@@ -986,6 +987,31 @@ public class SpoilerManager : MonoBehaviour
                                 }
                                 breaker = true;
                                 break;
+                            }
+                        }
+                    }
+                }
+
+                // removes barren dungeon checks
+                if (spoilerLog.settings.barrenDungeons == true)
+                {
+                    foreach (string dungeonName in allDungeons)
+                    {
+                        if (CheckForDungeon(dungeonName) == false)
+                        {
+                            foreach (Transform dungeonContainer in Viewport.transform)
+                            {
+                                if (dungeonContainer.name.StartsWith(dungeonName))
+                                {
+                                    foreach (Transform check in dungeonContainer.transform)
+                                    {
+                                        if (check.GetComponent<Toggle>().isOn == true)
+                                        {
+                                            check.GetComponent<Toggle>().isOn = false;
+                                            rupees += check.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
