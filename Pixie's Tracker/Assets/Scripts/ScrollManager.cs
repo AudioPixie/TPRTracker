@@ -55,5 +55,35 @@ public class ScrollManager : MonoBehaviour
         Header.text = newDungeonName;
     }
 
+    public void ClearDungeon()
+    {
+        int tempRupees = 0;
+        GameObject dungeonContainer = ScrollBox.GetComponent<ScrollRect>().content.gameObject;
+
+        foreach (Transform child in ScrollBox.GetComponent<ScrollRect>().content)
+        {
+            if (child.GetComponent<Toggle>().isOn == true)
+            {
+                child.GetComponent<Toggle>().isOn = false;
+                tempRupees += child.GetComponent<ListChecksBehaviour>().rupeesWorth;
+            }
+        }
+
+        if (dungeonContainer.GetComponent<TwinBehaviour>().hasTwin == true) // clears poes if dungeon has poes
+        {
+            GameObject twin = dungeonContainer.GetComponent<TwinBehaviour>().Twin;
+
+            foreach (Transform child in twin.transform){
+                if (child.GetComponent<Toggle>().isOn == true)
+                {
+                    child.GetComponent<Toggle>().isOn = false;
+                    tempRupees += child.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                }
+            }
+        }
+
+        GameManager.Instance.walletCount -= tempRupees;
+        GameManager.Instance.HintRefresh();
+    }
 
 }
