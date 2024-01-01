@@ -98,6 +98,7 @@ public class SaveManager : MonoBehaviour
             foreach (Transform child2 in child1)
             {
                 PlayerPrefs.SetInt(child2.name, child2.GetComponent<Toggle>().isOn ? 1 : 0);
+                PlayerPrefs.SetInt(child2.name + "_mark", child2.GetComponent<ChecksBehaviour>().checkImportance);
             }
         }
 
@@ -107,6 +108,7 @@ public class SaveManager : MonoBehaviour
             foreach (Transform child2 in child1)
             {
                 PlayerPrefs.SetInt(child2.name, child2.GetComponent<Toggle>().isOn ? 1 : 0);
+                PlayerPrefs.SetInt(child2.name + "_mark", child2.GetComponent<ListChecksBehaviour>().checkImportance);
             }
         }
 
@@ -197,6 +199,7 @@ public class SaveManager : MonoBehaviour
             foreach (Transform child2 in child1)
             {
                 child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name) != 0;
+                child2.GetComponent<ChecksBehaviour>().checkImportance = PlayerPrefs.GetInt(child2.name + "_mark");
             }
         }
 
@@ -206,6 +209,7 @@ public class SaveManager : MonoBehaviour
             foreach (Transform child2 in child1)
             {
                 child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name) != 0;
+                child2.GetComponent<ListChecksBehaviour>().checkImportance = PlayerPrefs.GetInt(child2.name + "_mark");
             }
         }
 
