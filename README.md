@@ -38,7 +38,7 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 
 - Check marking
 	- Checks can be right clicked to mark them as a **junk item** (orange) or a **key item** (blue)
-	- This is purely cosmetic
+	- This is purely cosmetic and included in your save file
 	- This can be useful for marking checks you can see but can't yet obtain (e.g. bugs you can see but can't get without a clawshot, shop items you can't afford yet, checks you got hints for, etc.)
 	- This is useful in **Rupee Mode** ([see below](https://github.com/AudioPixie/TPRTracker?tab=readme-ov-file#fanadis-palace-and-rupee-mode)) to mark junk items that you don't obtain (e.g. seeing a blue rupee that you don't want to waste time grabbing) as it visually marks it off but doesn't affect your rupee count
 
@@ -46,6 +46,11 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- The Go Mode graphic appears when you have everything needed to defeat Ganondorf
 	- Click on it to make it disappear
 	- If you click on it and want it back, head to General Settings to re-enable it 
+
+- Dungeon Clearing
+	- A dungeon or area (e.g. Kakariko Village) can be cleared (all checks marked as completed) from the pop-out menu on the right side of the check list box
+	- This clears both regular and poe checks for the respective dungeon/area
+	- This does not affect rupee count
 
 ## Spoiler Log integration
 
@@ -60,12 +65,12 @@ The SpoilerLog folder is created the first time you run the app, so if you updat
 
 ### Import settings
 
-- Autofill settings: automatically populates settings in the General and Seed tabs
-- Generate Item Layout: automatically generates an item layout based on your settings. This includes required dungeons
-- Autofill Required Dungeons: automatically sets your required dungeons in the item layout
-- Autofill Starting Items: automatically marks your starting inventory items
-- Remove Excluded Checks: automatically marks excluded checks as completed. This does not affect rupee count
-- Reset Tracker on Import: Resets the tracker before importing. This does not include a settings reset
+- Autofill settings: automatically populates settings in the General and Seed tabs.
+- Generate Item Layout: automatically generates an item layout based on your settings. This includes required dungeons.
+- Autofill Required Dungeons: automatically sets your required dungeons in the item layout.
+- Autofill Starting Items: automatically marks your starting inventory items.
+- Remove Barren Checks: automatically marks excluded checks as completed and clears unrequired dungeons if "Unrequired Dungeons are Barren" is checked. This does not affect rupee count.
+- Reset Tracker on Import: Resets the tracker before importing. This does not include a settings reset.
 
 ### Saving and deleting your spoiler log
 
