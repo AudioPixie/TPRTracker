@@ -658,6 +658,7 @@ public class SpoilerManager : MonoBehaviour
     public Toggle WalletIncrease;
     public Toggle OpenDoorofTime;
     public Toggle UnlockMapRegions;
+    public Toggle GlitchedLogic;
 
     [Header("For Auto Item Layout")]
     public GameObject ShowDungeons;
@@ -894,6 +895,9 @@ public class SpoilerManager : MonoBehaviour
 
                 if (spoilerLog.settings.openMap == true)
                     UnlockMapRegions.isOn = true;
+
+                if (spoilerLog.settings.logicRules == "Glitched" || spoilerLog.settings.logicRules == "No_Logic")
+                    GlitchedLogic.isOn = true;
 
                 GameManager.Instance.Refresh();
             }

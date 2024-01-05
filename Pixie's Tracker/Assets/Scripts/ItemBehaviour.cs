@@ -55,7 +55,7 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
 
     public void ItemOpacity()
     {
-        if (currentItemCount == 0 && (nameCount != "WalletCount")) // && not wallet - to do
+        if (currentItemCount == 0 && (nameCount != "Wallet")) // && not wallet - to do
         {
             buttonImage.color = faded;
             buttonText.text = "";

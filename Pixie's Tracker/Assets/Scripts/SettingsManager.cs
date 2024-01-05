@@ -193,4 +193,9 @@ public class SettingsManager : MonoBehaviour
     {
         LogicManager.Instance.SettingsStatus["IgnoreScentLogic"] = isOn;
     }
+
+    public void SetGlitchedLogic(bool isOn)
+    {
+        LogicManager.Instance.SettingsStatus["GlitchedLogic"] = isOn;
+    }
 }
