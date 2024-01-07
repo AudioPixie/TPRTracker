@@ -348,8 +348,7 @@ public class LogicManager : MonoBehaviour
     public bool CanFreeAllMonkeys()
     {
         return CanBreakMonkeyCage()
-            && (Has("Lantern") //|| (SettingsStatus["SmallKeysKeysy"] && (Has("Bombs") || Has("IronBoots")))
-            )
+            && (Has("Lantern") || Has("Bombs") || Has("IronBoots")) //?
             && CanBurnWebs()
             && Has("Boomerang")
             && CanDefeatBokoblin()
@@ -462,8 +461,9 @@ public class LogicManager : MonoBehaviour
     public bool CanAccessZorasDomain()
     {
         return LanayruTwilightCleared()
-            && (Has("ShadowCrystal")
-                || (CanSmash() && CanAccessLanayruField()));
+            && CanAccessLanayruField()
+            && (CanSmash()
+                || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")));
     }
 
     public bool CanAccessSnowpeakSummit()
@@ -489,7 +489,10 @@ public class LogicManager : MonoBehaviour
 
     public bool CanAccessCastleTown()
     {
-        return CanAccessLanayruField();
+        return CanAccessLanayruField()
+            && (CanSmash() 
+            || (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"])
+            || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")));
     }
 
     public bool CanAccessFaronField()
@@ -615,7 +618,10 @@ public class LogicManager : MonoBehaviour
 
     public bool CanAccessSR()
     {
-        return CanAccessSnowpeakSummit();
+        return CanAccessSnowpeakSummit()
+        && (!SettingsStatus["BonksDoDamage"]
+            || (SettingsStatus["BonksDoDamage"]
+                && (!SettingsStatus["DamageOHKO"] || CanUseBottledFairy())));;
     }
 
     public bool CanCompleteSR()
@@ -1459,15 +1465,14 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonSpringGoldenWolf()
     {
-        return CanCompletePrologue() && CanClearForest() && Has("ShadowCrystal");
+        return Has("ShadowCrystal") && CanAccessDeathMountain();
     }
 
     // Faron Woods
 
     public bool CoroBottle()
     {
-        return CanCompletePrologue()
-            && CanCompletePrologue();
+        return CanCompletePrologue();
     }
 
     public bool FaronMistCaveLanternChest()
@@ -1485,28 +1490,24 @@ public class LogicManager : MonoBehaviour
     public bool FaronMistNorthChest()
     {
         return CanCompletePrologue()
-            && Has("Lantern")
-            && CanCompletePrologue();
+            && Has("Lantern");
     }
 
     public bool FaronMistSouthChest()
     {
         return CanCompletePrologue()
-            && Has("Lantern")
-            && CanCompletePrologue();
+            && Has("Lantern");
     }
 
     public bool FaronMistStumpChest()
     {
         return CanCompletePrologue()
-            && Has("Lantern")
-            && CanCompletePrologue();
+            && Has("Lantern");
     }
 
     public bool FaronWoodsGoldenWolf()
     {
-        return CanCompletePrologue()
-            && (Has("ShadowCrystal") || Has("Lantern"));
+        return CanAccessNorthFaron();
     }
 
     public bool FaronWoodsOwlStatueChest()
@@ -1563,7 +1564,7 @@ public class LogicManager : MonoBehaviour
         return CanCompletePrologue()
             && Has("ShadowCrystal")
             && Has("DominionRod")
-            && (Has("Sword", 3)
+            && ((CanDefeatSkullKid() && Has("Sword", 3))
                 || SettingsStatus["ToTOpen"]
                 || SettingsStatus["ToTOpenGrove"]);
     }
@@ -2349,7 +2350,10 @@ public class LogicManager : MonoBehaviour
     public bool SnowpeakIcySummitPoe()
     {
         return CanAccessSnowpeakSummit()
-            && Has("ShadowCrystal");
+            && Has("ShadowCrystal")
+            && (!SettingsStatus["BonksDoDamage"]
+            || (SettingsStatus["BonksDoDamage"]
+                && (!SettingsStatus["DamageOHKO"] || CanUseBottledFairy())));;
     }
 
     // Hidden Village
@@ -2528,7 +2532,11 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonShield()
     {
-        return CanCompletePrologue() && Has("ShadowCrystal");
+        return (CanCompletePrologue() && !FaronTwilightCleared())
+        || (FaronTwilightCleared() && Has("ShadowCrystal"))
+        && (!SettingsStatus["BonksDoDamage"]
+            || (SettingsStatus["BonksDoDamage"]
+                && (!SettingsStatus["DamageOHKO"] || CanUseBottledFairies())));
     }
 
     public bool OrdonSword()
