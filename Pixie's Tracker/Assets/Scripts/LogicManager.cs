@@ -14,92 +14,92 @@ public class LogicManager : MonoBehaviour
     public Dictionary<string, int> ItemCounts = new()
     {
 
-        {"FishCount", 0 }, //2
-        {"SlingCount", 0 },
-        {"LanternCount", 0 },
-        {"RangCount", 0 },
-        {"BootsCount", 0 },
-        {"BowCount", 0 }, //3
-        {"BombCount", 0 }, //3
-        {"WBombCount", 0 },
-        {"BombExCount", 0 },
-        {"HawkCount", 0 },
-        {"ClawCount", 0 }, //2
-        {"SpinCount", 0 },
-        {"BCCount", 0 },
-        {"RodCount", 0 }, //2
-        {"AuruCount", 0 },
-        {"AsheiCount", 0 },
-        {"BottleCount", 0 }, //4
-        {"CrystalCount", 0 },
-        {"SkillCount", 0 }, //7
-        {"FetchCount", 0 }, //4
-        {"HorseCount", 0 },
-        {"SkybookCount", 0 }, //7
-        {"WalletCount", 0 }, //3
-        {"BugCount", 0 }, //24
-        {"PoeCount", 0 }, //60
-        {"SwordCount", 0 }, //4
-        {"ShieldCount", 0 }, //2
-        {"TunicCount", 0 },
-        {"ZoraCount", 0 },
-        {"MagicCount", 0 },
-        {"HeartPCount", 0 }, //45
-        {"HeartCCount", 0 }, //8
-        {"FSCount", 0 }, //3
-        {"MSCount", 0 }, //3
+        {"FishingRod", 0 }, //2
+        {"Slingshot", 0 },
+        {"Lantern", 0 },
+        {"Boomerang", 0 },
+        {"IronBoots", 0 },
+        {"Bow", 0 }, //3
+        {"Bombs", 0 }, //3
+        {"WaterBombs", 0 },
+        {"GiantBombs", 0 },
+        {"Hawkeye", 0 },
+        {"Clawshot", 0 }, //2
+        {"Spinner", 0 },
+        {"B&C", 0 },
+        {"DominionRod", 0 }, //2
+        {"AurusMemo", 0 },
+        {"AsheisSketch", 0 },
+        {"Bottle", 0 }, //4
+        {"ShadowCrystal", 0 },
+        {"HiddenSkill", 0 }, //7
+        {"FetchQuest", 0 }, //4
+        {"HorseCall", 0 },
+        {"Skybook", 0 }, //7
+        {"Wallet", 0 }, //3
+        {"GoldenBug", 0 }, //24
+        {"PoeSoul", 0 }, //60
+        {"Sword", 0 }, //4
+        {"Shield", 0 }, //2
+        {"Tunic", 0 },
+        {"ZoraArmor", 0 },
+        {"MagicArmor", 0 },
+        {"HeartPiece", 0 }, //45
+        {"HeartContainer", 0 }, //8
+        {"FusedShadow", 0 }, //3
+        {"MirrorShard", 0 }, //3
 
-        {"YouthSCount", 0 },
-        {"IliaSCount", 0 },
-        {"PoeSCount", 0 },
-        {"ReekSCount", 0 },
-        {"MedicineSCount", 0 },
+        {"YouthScent", 0 },
+        {"IliaScent", 0 },
+        {"PoeScent", 0 },
+        {"ReekfishScent", 0 },
+        {"MedicineScent", 0 },
 
-        {"FaronTCount", 0 },
-        {"EldinTCount", 0 },
-        {"LanayruTCount", 0 },
+        {"FaronVessel", 0 },
+        {"EldinVessel", 0 },
+        {"LanayruVessel", 0 },
 
-        {"Boss1Count", 0 },
-        {"Boss2Count", 0 },
-        {"Boss3Count", 0 },
-        {"Boss4Count", 0 },
-        {"Boss5Count", 0 },
-        {"Boss6Count", 0 },
-        {"Boss7Count", 0 },
-        {"Boss8Count", 0 },
+        {"Boss1", 0 },
+        {"Boss2", 0 },
+        {"Boss3", 0 },
+        {"Boss4", 0 },
+        {"Boss5", 0 },
+        {"Boss6", 0 },
+        {"Boss7", 0 },
+        {"Boss8", 0 },
 
-        {"GateKeyCount", 0 },
-        {"FaronKeyCount", 0 },
-        {"DesertKeyCount", 0 },
+        {"GateKeys", 0 },
+        {"FaronKeys", 0 },
+        {"DesertKeys", 0 },
 
-        {"FTKeyCount", 0 }, //4
-        {"FTBossKeyCount", 0 },
+        {"FTSmallKey", 0 }, //4
+        {"FTBigKey", 0 },
 
-        {"GMKeyCount", 0 }, //3
-        {"GMBossKeyCount", 0 }, //3
+        {"GMSmallKey", 0 }, //3
+        {"GMBigKey", 0 }, //3
 
-        {"LTKeyCount", 0 }, //3
-        {"LTBossKeyCount", 0 },
+        {"LTSmallKey", 0 }, //3
+        {"LTBigKey", 0 },
 
-        {"AGKeyCount", 0 }, //5
-        {"AGBossKeyCount", 0 },
+        {"AGSmallKey", 0 }, //5
+        {"AGBigKey", 0 },
 
-        {"SRKeyCount", 0 }, //4
-        {"SRBossKeyCount", 0 },
-        {"PumpkinCount", 0 },
-        {"CheeseCount", 0 },
+        {"SRSmallKey", 0 }, //4
+        {"SRBigKey", 0 },
+        {"Pumpkin", 0 },
+        {"Cheese", 0 },
 
-        {"ToTKeyCount", 0 }, //3
-        {"ToTBossKeyCount", 0 },
+        {"ToTSmallKey", 0 }, //3
+        {"ToTBigKey", 0 },
 
-        {"CitSKeyCount", 0 }, //1
-        {"CitSBossKeyCount", 0 },
+        {"CitSSmallKey", 0 }, //1
+        {"CitSBigKey", 0 },
 
-        {"PoTKeyCount", 0 }, //7
-        {"PoTBossKeyCount", 0 },
+        {"PoTSmallKey", 0 }, //7
+        {"PoTBigKey", 0 },
 
-        {"HCKeyCount", 0 }, //3
-        {"HCBossKeyCount", 0 }
+        {"HCSmallKey", 0 }, //3
+        {"HCBigKey", 0 }
 
     };
 
@@ -141,6 +141,19 @@ public class LogicManager : MonoBehaviour
         {"WalletIncrease", false },
         {"OpenDoorOfTime", false },
         {"UnlockMapRegions", false },
+        {"BonksDoDamage", false },
+
+        {"SmallKeysVanilla", true },
+        {"SmallKeysOwnDungeon", false },
+        {"SmallKeysAnyDungeon", false },
+        {"SmallKeysKeysanity", false },
+        {"SmallKeysKeysy", false },
+
+        {"DamageVanilla", true },
+        {"DamageDouble", false },
+        {"DamageTriple", false },
+        {"DamageQuadruple", false },
+        {"DamageOHKO", false },
 
         {"IgnoreKeyLogic", false },
         {"IgnoreWalletLogic", false },
@@ -224,101 +237,101 @@ public class LogicManager : MonoBehaviour
 
     public bool CanDamage()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("BombCount")
-            || Has("BootsCount")
-            || Has("CrystalCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("Bombs")
+            || Has("IronBoots")
+            || Has("ShadowCrystal")
+            || Has("Spinner");
     }
 
     public bool CanSmash()
     {
-        return Has("BCCount") || Has("BombCount");
+        return Has("B&C") || Has("Bombs");
     }
 
     public bool CanBurnWebs()
     {
-        return Has("LanternCount") || Has("BCCount") || Has("BombCount");
+        return Has("Lantern") || Has("B&C") || Has("Bombs");
     }
 
     public bool CanRange()
     {
-        return Has("BowCount")
-            || Has("SlingCount")
-            || Has("RangCount")
-            || Has("BCCount")
-            || Has("ClawCount");
+        return Has("Bow")
+            || Has("Slingshot")
+            || Has("Boomerang")
+            || Has("B&C")
+            || Has("Clawshot");
     }
 
     public bool CanLaunchBombs()
     {
-        return (Has("BowCount") || Has("RangCount")) && Has("BombCount");
+        return (Has("Bow") || Has("Boomerang")) && Has("Bombs");
     }
 
     public bool CanBombArrow()
     {
-        return Has("BowCount") && Has("BombCount");
+        return Has("Bow") && Has("Bombs");
     }
 
     public bool CanCutHangingWeb()
     {
-        return Has("ClawCount")
-            || Has("RangCount")
-            || Has("BCCount")
-            || (Has("BowCount") && CanGetArrows());
+        return Has("Clawshot")
+            || Has("Boomerang")
+            || Has("B&C")
+            || (Has("Bow") && CanGetArrows());
     }
 
     public bool CanKnockDownHCPainting()
     {
-        return Has("BowCount") || (Has("SwordCount") && Has("SkillCount", 6));
+        return Has("Bow") || (Has("Sword") && Has("HiddenSkill", 6));
     }
 
     public bool CanUseWBombs()
     {
-        return Has("WBombCount") || SettingsStatus["IgnoreWaterBombLogic"];
+        return Has("WaterBombs") || SettingsStatus["IgnoreWaterBombLogic"];
     }
 
     public bool CanGetArrows()
     {
-        return CanLeaveForest() || (CanCompletePrologue() && Has("CrystalCount"));
+        return CanLeaveForest() || (CanCompletePrologue() && Has("ShadowCrystal"));
     }
 
     public bool CanBreakMonkeyCage()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BootsCount")
-            || Has("BombCount")
-            || Has("ClawCount")
-            || Has("CrystalCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("IronBoots")
+            || Has("Bombs")
+            || Has("Clawshot")
+            || Has("ShadowCrystal")
+            || Has("Spinner");
     }
 
     public bool CanFreeAllMonkeys()
     {
         return CanBreakMonkeyCage()
-            && (Has("LanternCount") || Has("BombCount") || Has("BootsCount"))
+            && (Has("Lantern") || Has("Bombs") || Has("IronBoots"))
             && CanBurnWebs()
-            && Has("RangCount")
+            && Has("Boomerang")
             && CanDefeatBokoblin()
-            && (Has("FTKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("FTSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool CanPressMinesSwitch()
     {
-        return Has("BootsCount");
+        return Has("IronBoots");
     }
 
     public bool CanKnockDownHangingBaba()
     {
-        return Has("BowCount") || Has("RangCount") || Has("ClawCount");
+        return Has("Bow") || Has("Boomerang") || Has("Clawshot");
     }
 
     public bool CanBreakWoodenDoor()
     {
-        return Has("CrystalCount") || Has("SwordCount") || CanSmash();
+        return Has("ShadowCrystal") || Has("Sword") || CanSmash();
     }
 
 /* ------------------------------
@@ -329,19 +342,19 @@ public class LogicManager : MonoBehaviour
 
     public bool CanCompletePrologue()
     {
-        return (Has("SwordCount") && Has("SlingCount") && Has("FaronKeyCount"))
+        return (Has("Sword") && Has("Slingshot") && Has("FaronKeys"))
             || SettingsStatus["SkipPrologue"];
     }
 
     public bool HasCompletedPrologue()
     {
-        return (Has("SwordCount") && Has("SlingCount"))
+        return (Has("Sword") && Has("Slingshot"))
             || SettingsStatus["SkipPrologue"];
     }
 
     public bool CanLeaveForest()
     {
-        return (Has("Boss1Count") || SettingsStatus["FaronEscape"]) && CanCompletePrologue();
+        return (Has("Boss1") || SettingsStatus["FaronEscape"]) && CanCompletePrologue();
     }
 
     public bool CanCompleteMDH()
@@ -351,27 +364,27 @@ public class LogicManager : MonoBehaviour
 
     public bool HasSetMDHFlag()
     {
-        return Has("Boss3Count") || SettingsStatus["SkipMDH"];
+        return Has("Boss3") || SettingsStatus["SkipMDH"];
     }
 
     public bool FaronTwilightCleared()
     {
-        return Has("FaronTCount") || SettingsStatus["SkipFaronTwilight"];
+        return Has("FaronVessel") || SettingsStatus["SkipFaronTwilight"];
     }
 
     public bool EldinTwilightCleared()
     {
-        return Has("EldinTCount") || SettingsStatus["SkipEldinTwilight"];
+        return Has("EldinVessel") || SettingsStatus["SkipEldinTwilight"];
     }
 
     public bool LanayruTwilightCleared()
     {
-        return Has("LanayruTCount") || SettingsStatus["SkipLanayruTwilight"];
+        return Has("LanayruVessel") || SettingsStatus["SkipLanayruTwilight"];
     }
 
     public bool CanAccessNorthFaron()
     {
-        return FaronTwilightCleared() && (Has("LanternCount") || Has("CrystalCount"));
+        return FaronTwilightCleared() && (Has("Lantern") || Has("ShadowCrystal"));
     }
 
     public bool CanAccessKakGorge()
@@ -387,48 +400,48 @@ public class LogicManager : MonoBehaviour
     public bool CanAccessDeathMountain()
     {
         return EldinTwilightCleared()
-            && ((CanAccessKakVillage() && Has("BootsCount"))
-            || (SettingsStatus["UnlockMapRegions"] && Has("CrystalCount")));
+            && ((CanAccessKakVillage() && Has("IronBoots"))
+            || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")));
     }
 
     public bool CanAccessLakeHylia()
     {
         return LanayruTwilightCleared()
             && CanAccessLanayruField()
-            && (CanSmash() || Has("GateKeyCount") || (SettingsStatus["UnlockMapRegions"] && Has("CrystalCount")));
+            && (CanSmash() || Has("GateKeys") || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")));
     }
 
     public bool CanAccessDesert()
     {
-        return CanAccessLakeHylia() && Has("AuruCount") && Has("CrystalCount");
+        return CanAccessLakeHylia() && Has("AurusMemo") && Has("ShadowCrystal");
     }
 
     public bool CanAccessZorasDomain()
     {
         return LanayruTwilightCleared()
-            && (Has("CrystalCount")
+            && (Has("ShadowCrystal")
                 || (CanSmash() && CanAccessLanayruField()));
     }
 
     public bool CanAccessSnowpeakSummit()
     {
         return (CanAccessZorasDomain()
-            && (Has("ReekSCount")
-                || (SettingsStatus["IgnoreScentLogic"] && Has("FishCount", 2))
+            && (Has("ReekfishScent")
+                || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
                 || SettingsStatus["EarlySnowpeak"])
-            && Has("CrystalCount"))
-            || (SettingsStatus["UnlockMapRegions"] && Has("CrystalCount"));
+            && Has("ShadowCrystal"))
+            || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal"));
     }
 
     public bool CanAccessGrove()
     {
-        return (CanAccessNorthFaron() && HasSetMDHFlag() && Has("CrystalCount"))
-            || ((SettingsStatus["ToTOpenGrove"] || SettingsStatus["ToTOpen"]) && Has("CrystalCount"));
+        return (CanAccessNorthFaron() && HasSetMDHFlag() && Has("ShadowCrystal"))
+            || ((SettingsStatus["ToTOpenGrove"] || SettingsStatus["ToTOpen"]) && Has("ShadowCrystal"));
     }
 
     public bool CanAccessMirrorChamber()
     {
-        return Has("Boss4Count");
+        return Has("Boss4");
     }
 
     public bool CanAccessCastleTown()
@@ -438,12 +451,12 @@ public class LogicManager : MonoBehaviour
 
     public bool CanAccessFaronField()
     {
-        return FaronTwilightCleared() && (CanLeaveForest() || (Has("CrystalCount") && EldinTwilightCleared()));
+        return FaronTwilightCleared() && (CanLeaveForest() || (Has("ShadowCrystal") && EldinTwilightCleared()));
     }
 
     public bool CanAccessEldinField()
     {
-        return EldinTwilightCleared() && (CanAccessFaronField() || Has("CrystalCount"));
+        return EldinTwilightCleared() && (CanAccessFaronField() || Has("ShadowCrystal"));
     }
 
     public bool CanAccessLanayruField()
@@ -451,27 +464,27 @@ public class LogicManager : MonoBehaviour
         return LanayruTwilightCleared()
             && CanLeaveForest()
             && ((CanSmash() && CanAccessEldinField())
-                || Has("GateKeyCount")
-                || Has("CrystalCount"));
+                || Has("GateKeys")
+                || Has("ShadowCrystal"));
     }
 
     public bool CanAccessLanayru()
     {
         return CanLeaveForest()
-            && (CanSmash() || Has("GateKeyCount") || (SettingsStatus["UnlockMapRegions"] && Has("CrystalCount")))
-            && ((Has("SwordCount") && Has("SlingCount")) || SettingsStatus["SkipPrologue"]);
+            && (CanSmash() || Has("GateKeys") || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")))
+            && ((Has("Sword") && Has("Slingshot")) || SettingsStatus["SkipPrologue"]);
     }
 
     public bool GoMode()
     {
         return CanAccessHC()
-            && ((Has("HCKeyCount", 2) && Has("HCBossKeyCount")) || SettingsStatus["IgnoreKeyLogic"])
+            && ((Has("HCSmallKey", 2) && Has("HCBigKey")) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting())
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting())
             && CanDefeatGanondorf();
     }
 
@@ -489,15 +502,15 @@ public class LogicManager : MonoBehaviour
     public bool CanCompleteFT()
     {
         return CanBreakMonkeyCage()
-            && Has("RangCount")
-            && (Has("FTBossKeyCount") || SettingsStatus["IgnoreKeyLogic"])
-            && (CanFreeAllMonkeys() || Has("ClawCount"))
+            && Has("Boomerang")
+            && (Has("FTBigKey") || SettingsStatus["IgnoreKeyLogic"])
+            && (CanFreeAllMonkeys() || Has("Clawshot"))
             && CanDefeatDiababa();
     }
 
     public bool CanAccessGM()
     {
-        return Has("BootsCount")
+        return Has("IronBoots")
             && CanDefeatGoron()
             && CanAccessDeathMountain();
     }
@@ -505,10 +518,10 @@ public class LogicManager : MonoBehaviour
     public bool CanCompleteGM()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && ((Has("GMKeyCount", 3) && Has("GMBossKey", 3)) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && ((Has("GMSmallKey", 3) && Has("GMBossKey", 3)) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatBulblin()
             && CanDefeatFyrus();
     }
@@ -516,11 +529,11 @@ public class LogicManager : MonoBehaviour
     public bool CanAccessLT()
     {
         return CanAccessLakeHylia()
-            && Has("ZoraCount")
+            && Has("ZoraArmor")
             && (SettingsStatus["EarlyLakebed"]
-                || (Has("BootsCount")
-                    && (Has("WBombCount")
-                        || (Has("BombCount")
+                || (Has("IronBoots")
+                    && (Has("WaterBombs")
+                        || (Has("Bombs")
                             && SettingsStatus["IgnoreWaterBombLogic"]))));
     }
 
@@ -528,28 +541,28 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && ((Has("LTKeyCount", 3) && Has("LTBossKeyCount")) || SettingsStatus["IgnoreKeyLogic"])
+            && ((Has("LTSmallKey", 3) && Has("LTBigKey")) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatMorpheel();
     }
 
     public bool CanAccessAG()
     {
         return CanAccessDesert()
-            && ((Has("DesertKeyCount") && CanDefeatKingBulblinDesert())
+            && ((Has("DesertKeys") && CanDefeatKingBulblinDesert())
                 || SettingsStatus["EarlyArbiters"]);
     }
 
     public bool CanCompleteAG()
     {
-        return Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount")
-            && ((Has("AGKeyCount", 5) && Has("AGBossKeyCount")) || SettingsStatus["IgnoreKeyLogic"])
+        return Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner")
+            && ((Has("AGSmallKey", 5) && Has("AGBigKey")) || SettingsStatus["IgnoreKeyLogic"])
             && ((CanAccessLanayru()
-                && Has("AuruCount")
+                && Has("AurusMemo")
                 && CanDefeatKingBulblinDesert()
-                && Has("DesertKeyCount"))
+                && Has("DesertKeys"))
                     || SettingsStatus["EarlyArbiters"]);
 
     }
@@ -562,71 +575,71 @@ public class LogicManager : MonoBehaviour
     public bool CanCompleteSR()
     {
         return CanAccessSR()
-            && ((Has("SRKeyCount", 4) && Has("SRBossKeyCount")) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CheeseCount")
-            && Has("BCCount")
-            && Has("BombCount")
+            && ((Has("SRSmallKey", 4) && Has("SRBigKey")) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Cheese")
+            && Has("B&C")
+            && Has("Bombs")
             && CanDefeatBlizzeta();
     }
 
     public bool CanAccessToT()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
-            && (CanDefeatShadowBeast() && Has("SwordCount", 3) || SettingsStatus["ToTOpen"]);
+            && Has("ShadowCrystal")
+            && (CanDefeatShadowBeast() && Has("Sword", 3) || SettingsStatus["ToTOpen"]);
     }
 
     public bool CanCompleteToT()
     {
         return CanAccessToT()
-            && Has("RodCount")
-            && Has("BowCount")
-            && Has("SpinCount")
-            && ((Has("ToTKeyCount", 3) && Has("ToTBossKeyCount")) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("DominionRod")
+            && Has("Bow")
+            && Has("Spinner")
+            && ((Has("ToTSmallKey", 3) && Has("ToTBigKey")) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatArmogohma();
     }
 
     public bool CanAccessCitS()
     {
         return CanAccessLanayru()
-            && Has("ClawCount")
-            && (Has("SkybookCount", 7) || SettingsStatus["EarlyCitS"]);
+            && Has("Clawshot")
+            && (Has("Skybook", 7) || SettingsStatus["EarlyCitS"]);
     }
 
     public bool CanCompleteCitS()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
-            && Has("CrystalCount")
-            && Has("BootsCount")
-            && (Has("CitSBossKeyCount") || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot", 2)
+            && Has("ShadowCrystal")
+            && Has("IronBoots")
+            && (Has("CitSBigKey") || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatArgorok();
     }
 
     public bool CanAccessPoT()
     {
         return CanAccessMirrorChamber()
-            && ((SettingsStatus["PoTVanilla"] && Has("Boss7Count"))
-                || (SettingsStatus["PoTFusedShadows"] && Has("FSCount", 3))
-                || (SettingsStatus["PoTMirrorShards"] && Has("MSCount", 3))
+            && ((SettingsStatus["PoTVanilla"] && Has("Boss7"))
+                || (SettingsStatus["PoTFusedShadows"] && Has("FusedShadow", 3))
+                || (SettingsStatus["PoTMirrorShards"] && Has("MirrorShard", 3))
                 || SettingsStatus["PoTOpen"]);
     }
 
     public bool CanCompletePoT()
     {
         return CanAccessPoT()
-            && Has("SwordCount", 4)
-            && Has("CrystalCount")
-            && ((Has("PoTKeyCount", 7) && Has("PoTBossKeyCount")) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Sword", 4)
+            && Has("ShadowCrystal")
+            && ((Has("PoTSmallKey", 7) && Has("PoTBigKey")) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatZant();
     }
 
     public bool CanAccessHC()
     {
         return CanAccessCastleTown()
-            && ((SettingsStatus["HCVanilla"] && Has("Boss8Count"))
-                || (SettingsStatus["HCFusedShadows"] && Has("FSCount", 3))
-                || (SettingsStatus["HCMirrorShards"] && Has("MSCount", 3))
+            && ((SettingsStatus["HCVanilla"] && Has("Boss8"))
+                || (SettingsStatus["HCFusedShadows"] && Has("FusedShadow", 3))
+                || (SettingsStatus["HCMirrorShards"] && Has("MirrorShard", 3))
                 || (SettingsStatus["HCAllDungeons"] && HasCompletedAllDungeons())
                 || SettingsStatus["HCOpen"]);
     }
@@ -645,14 +658,14 @@ public class LogicManager : MonoBehaviour
 
     public bool HasCompletedAllDungeons()
     {
-        return Has("Boss1Count")
-            && Has("Boss2Count")
-            && Has("Boss3Count")
-            && Has("Boss4Count")
-            && Has("Boss5Count")
-            && Has("Boss6Count")
-            && Has("Boss7Count")
-            && Has("Boss8Count");
+        return Has("Boss1")
+            && Has("Boss2")
+            && Has("Boss3")
+            && Has("Boss4")
+            && Has("Boss5")
+            && Has("Boss6")
+            && Has("Boss7")
+            && Has("Boss8");
     }
 
 /* ------------------------------
@@ -663,477 +676,477 @@ public class LogicManager : MonoBehaviour
 
     public bool CanDefeatAeralfos()
     {
-        return Has("ClawCount") && (Has("SwordCount") || Has("BCCount") || Has("CrystalCount"));
+        return Has("Clawshot") && (Has("Sword") || Has("B&C") || Has("ShadowCrystal"));
     }
 
     public bool CanDefeatArmos()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("ClawCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Clawshot")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBabaSerpent()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBabyGohma()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("SlingCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("Slingshot")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBari()
     {
-        return CanUseWBombs() || Has("ClawCount");
+        return CanUseWBombs() || Has("Clawshot");
     }
 
     public bool CanDefeatBeamos()
     {
-        return Has("BCCount") || Has("BowCount") || Has("BombCount");
+        return Has("B&C") || Has("Bow") || Has("Bombs");
     }
 
     public bool CanDefeatBigBaba()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || (Has("BowCount") && CanGetArrows())
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || (Has("Bow") && CanGetArrows())
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatChu()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("ClawCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Clawshot")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBokoblin()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("CrystalCount")
-            || Has("SlingCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("ShadowCrystal")
+            || Has("Slingshot")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBokoblinRed()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || (Has("BowCount") && CanGetArrows())
-            || Has("CrystalCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || (Has("Bow") && CanGetArrows())
+            || Has("ShadowCrystal")
+            || Has("Bombs");
     }
 
     public bool CanDefeatBombfish()
     {
-        return Has("BootsCount")
-            && (Has("SwordCount") || Has("ClawCount")
-                || (Has("ShieldCount") && Has("SkillCount", 2)));
+        return Has("IronBoots")
+            && (Has("Sword") || Has("Clawshot")
+                || (Has("Shield") && Has("HiddenSkill", 2)));
     }
 
     public bool CanDefeatBombling()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || (Has("BowCount") && CanGetArrows())
-            || Has("CrystalCount")
-            || Has("ClawCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || (Has("Bow") && CanGetArrows())
+            || Has("ShadowCrystal")
+            || Has("Clawshot")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBomskit()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("CrystalCount")
-            || Has("BowCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("ShadowCrystal")
+            || Has("Bow")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBubble()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("CrystalCount")
-            || Has("BowCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("ShadowCrystal")
+            || Has("Bow")
+            || Has("Spinner");
     }
 
     public bool CanDefeatBulblin()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("CrystalCount")
-            || Has("BowCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("ShadowCrystal")
+            || Has("Bow")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatChilfos()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatChuWorm()
     {
-        return (Has("SwordCount")
-            || Has("BowCount")
-            || Has("SpinCount")
-            || Has("CrystalCount")
-            || Has("SpinCount"))
-                && (Has("BombCount") || Has("ClawCount"));
+        return (Has("Sword")
+            || Has("Bow")
+            || Has("Spinner")
+            || Has("ShadowCrystal")
+            || Has("Spinner"))
+                && (Has("Bombs") || Has("Clawshot"));
     }
 
     public bool CanDefeatDarknut()
     {
-        return Has("SwordCount");
+        return Has("Sword");
     }
 
     public bool CanDefeatDekuBaba()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("SpinCount")
-            || (Has("SkillCount", 2) && Has("ShieldCount"))
-            || Has("SlingCount")
-            || Has("ClawCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("Spinner")
+            || (Has("HiddenSkill", 2) && Has("Shield"))
+            || Has("Slingshot")
+            || Has("Clawshot")
+            || Has("Bombs");
     }
 
     public bool CanDefeatDekuLike()
     {
-        return Has("BombCount");
+        return Has("Bombs");
     }
 
     public bool CanDefeatDodongo()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatDinalfos()
     {
-        return Has("SwordCount") || Has("BCCount") || Has("CrystalCount");
+        return Has("Sword") || Has("B&C") || Has("ShadowCrystal");
     }
 
     public bool CanDefeatFireBubble()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner");
     }
 
     public bool CanDefeatFireKeese()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SlingCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Slingshot")
+            || Has("Spinner");
     }
 
     public bool CanDefeatFireToadpoli()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || (Has("SkillCount", 2) && Has("ShieldCount"));
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || (Has("HiddenSkill", 2) && Has("Shield"));
     }
 
     public bool CanDefeatFreezard()
     {
-        return Has("BCCount");
+        return Has("B&C");
     }
 
     public bool CanDefeatGoron()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || (Has("SkillCount", 2) && Has("ShieldCount"))
-            || Has("SlingCount")
-            || Has("ClawCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || (Has("HiddenSkill", 2) && Has("Shield"))
+            || Has("Slingshot")
+            || Has("Clawshot")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatGhoulRat()
     {
-        return Has("CrystalCount");
+        return Has("ShadowCrystal");
     }
 
     public bool CanDefeatGuay()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SlingCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Slingshot");
     }
 
     public bool CanDefeatHelmasaur()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatHelmasaurus()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatIceBubble()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner");
     }
 
     public bool CanDefeatIceKeese()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SlingCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Slingshot")
+            || Has("Spinner");
     }
 
     public bool CanDefeatPoe()
     {
-        return Has("CrystalCount");
+        return Has("ShadowCrystal");
     }
 
     public bool CanDefeatKargorok()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner");
     }
 
     public bool CanDefeatKeese()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SlingCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Slingshot")
+            || Has("Spinner");
     }
 
     public bool CanDefeatLeever()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatLizalfos()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs");
     }
 
     public bool CanDefeatMiniFreezard()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatMoldorm()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatPoisonMite()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("LanternCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Lantern")
+            || Has("Spinner");
     }
 
     public bool CanDefeatPuppet()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner");
     }
 
     public bool CanDefeatRat()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount")
-            || Has("SpinCount")
-            || Has("SlingCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs")
+            || Has("Spinner")
+            || Has("Slingshot");
     }
 
     public bool CanDefeatRedeadKnight()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs");
     }
 
     public bool CanDefeatShadowBeast()
     {
-        return Has("SwordCount") || (Has("CrystalCount") && CanCompleteMDH());
+        return Has("Sword") || (Has("ShadowCrystal") && CanCompleteMDH());
     }
 
     public bool CanDefeatShadowBulblin()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatShadowDekuBaba()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("BombCount")
-            || Has("SpinCount")
-            || Has("SlingCount")
-            || Has("ClawCount")
-            || (Has("SkillCount", 2) && Has("ShieldCount"));
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("Bombs")
+            || Has("Spinner")
+            || Has("Slingshot")
+            || Has("Clawshot")
+            || (Has("HiddenSkill", 2) && Has("Shield"));
     }
 
     public bool CanDefeatShadowInsect()
     {
-        return Has("CrystalCount");
+        return Has("ShadowCrystal");
     }
 
     public bool CanDefeatShadowKargorok()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatShadowKeese()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("SlingCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Slingshot");
     }
 
     public bool CanDefeatShadowVermin()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatShellBlade()
     {
-        return ((Has("WBombCount") || (Has("BombCount") && SettingsStatus["IgnoreWaterBombLogic"])))
-            || (Has("SwordCount") && Has("BootsCount"));
+        return ((Has("WaterBombs") || (Has("Bombs") && SettingsStatus["IgnoreWaterBombLogic"])))
+            || (Has("Sword") && Has("IronBoots"));
     }
 
     public bool CanDefeatSkullfish()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner");
     }
 
     public bool CanDefeatSkulltula()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatStalfos()
@@ -1143,239 +1156,239 @@ public class LogicManager : MonoBehaviour
 
     public bool CanDefeatStalhound()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatStalchild()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatTektite()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatTileWorm()
     {
-        return (Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount"))
-                && Has("RangCount");
+        return (Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs"))
+                && Has("Boomerang");
     }
 
     public bool CanDefeatToado()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner");
     }
 
     public bool CanDefeatToadpoli()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || (Has("SkillCount", 2) && Has("ShieldCount"));
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || (Has("HiddenSkill", 2) && Has("Shield"));
     }
 
     public bool CanDefeatTorchSlug()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs");
     }
 
     public bool CanDefeatWalltula()
     {
-        return Has("BCCount")
-            || (Has("BowCount") && CanGetArrows())
-            || Has("SlingCount")
-            || Has("RangCount")
-            || Has("ClawCount");
+        return Has("B&C")
+            || (Has("Bow") && CanGetArrows())
+            || Has("Slingshot")
+            || Has("Boomerang")
+            || Has("Clawshot");
     }
 
     public bool CanDefeatWhiteWolfos()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatYoungGohma()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("SpinCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Spinner")
+            || Has("Bombs");
     }
 
     public bool CanDefeatZantHead()
     {
-        return Has("SwordCount") || Has("CrystalCount");
+        return Has("Sword") || Has("ShadowCrystal");
     }
 
     public bool CanDefeatOok()
     {
-        return Has("SwordCount")
-            || (Has("BowCount") && CanGetArrows())
-            || Has("BCCount")
-            || Has("CrystalCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || (Has("Bow") && CanGetArrows())
+            || Has("B&C")
+            || Has("ShadowCrystal")
+            || Has("Bombs");
     }
 
     public bool CanDefeatDangoro()
     {
-        return Has("BootsCount")
-            && (Has("SwordCount") || Has("CrystalCount") || Has("BCCount"));
+        return Has("IronBoots")
+            && (Has("Sword") || Has("ShadowCrystal") || Has("B&C"));
     }
 
     public bool CanDefeatCarrierKargorok()
     {
-        return Has("CrystalCount");
+        return Has("ShadowCrystal");
     }
 
     public bool CanDefeatTwilitBloat()
     {
-        return Has("CrystalCount");
+        return Has("ShadowCrystal");
     }
 
     public bool CanDefeatDekuToad()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs");
     }
 
     public bool CanDefeatSkullKid()
     {
-        return Has("BowCount");
+        return Has("Bow");
     }
 
     public bool CanDefeatKingBulblinBridge()
     {
-        return Has("BowCount");
+        return Has("Bow");
     }
 
     public bool CanDefeatKingBulblinDesert()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount", 3)
-            || Has("CrystalCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow", 3)
+            || Has("ShadowCrystal");
     }
 
     public bool CanDefeatKingBulblinCastle()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount", 3)
-            || Has("CrystalCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow", 3)
+            || Has("ShadowCrystal");
     }
 
     public bool CanDefeatDeathSword()
     {
-        return Has("CrystalCount")
-            && (Has("SwordCount") || Has("BCCount"))
-            && (Has("RangCount") || Has("BowCount") || Has("ClawCount"));
+        return Has("ShadowCrystal")
+            && (Has("Sword") || Has("B&C"))
+            && (Has("Boomerang") || Has("Bow") || Has("Clawshot"));
     }
 
     public bool CanDefeatDarkhammer()
     {
-        return Has("SwordCount")
-            || Has("BCCount")
-            || Has("BowCount")
-            || Has("CrystalCount")
-            || Has("BombCount");
+        return Has("Sword")
+            || Has("B&C")
+            || Has("Bow")
+            || Has("ShadowCrystal")
+            || Has("Bombs");
     }
 
     public bool CanDefeatPhantomZant()
     {
-        return Has("SwordCount") || Has("CrystalCount");
+        return Has("Sword") || Has("ShadowCrystal");
     }
 
     public bool CanDefeatDiababa()
     {
         return CanLaunchBombs()
-            || (Has("RangCount")
-                && (Has("SwordCount")
-                    || Has("BCCount")
-                    || Has("CrystalCount")
-                    || Has("BombCount")));
+            || (Has("Boomerang")
+                && (Has("Sword")
+                    || Has("B&C")
+                    || Has("ShadowCrystal")
+                    || Has("Bombs")));
     }
 
     public bool CanDefeatFyrus()
     {
-        return Has("BowCount") || Has("BootsCount") || Has("SwordCount");
+        return Has("Bow") || Has("IronBoots") || Has("Sword");
     }
 
     public bool CanDefeatMorpheel()
     {
-        return Has("ZoraCount") && Has("BootsCount") && Has("SwordCount") && Has("ClawCount");
+        return Has("ZoraArmor") && Has("IronBoots") && Has("Sword") && Has("Clawshot");
     }
 
     public bool CanDefeatStallord()
     {
-        return Has("SpinCount") && Has("SwordCount");
+        return Has("Spinner") && Has("Sword");
     }
 
     public bool CanDefeatBlizzeta()
     {
-        return Has("BCCount");
+        return Has("B&C");
     }
 
     public bool CanDefeatArmogohma()
     {
-        return Has("BowCount") && Has("RodCount");
+        return Has("Bow") && Has("DominionRod");
     }
 
     public bool CanDefeatArgorok()
     {
-        return Has("ClawCount", 2) && Has("SwordCount", 2) && Has("BootsCount");
+        return Has("Clawshot", 2) && Has("Sword", 2) && Has("IronBoots");
     }
 
     public bool CanDefeatZant()
     {
-        return Has("SwordCount", 3)
-            && Has("RangCount")
-            && Has("ClawCount")
-            && Has("BCCount")
-            && Has("BootsCount")
-            && Has("ZoraCount");
+        return Has("Sword", 3)
+            && Has("Boomerang")
+            && Has("Clawshot")
+            && Has("B&C")
+            && Has("IronBoots")
+            && Has("ZoraArmor");
     }
 
     public bool CanDefeatGanondorf()
     {
-        return Has("SwordCount", 3) && Has("CrystalCount") && Has("SkillCount");
+        return Has("Sword", 3) && Has("ShadowCrystal") && Has("HiddenSkill");
     }
 
 /* ------------------------------
@@ -1388,7 +1401,7 @@ public class LogicManager : MonoBehaviour
    
     public bool OrdonRanchGrottoLanternChest()
     {
-        return Has("CrystalCount") && Has("LanternCount");
+        return Has("ShadowCrystal") && Has("Lantern");
     }
 
     public bool HerdingGoatsReward()
@@ -1398,7 +1411,7 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonSpringGoldenWolf()
     {
-        return CanCompletePrologue() && CanLeaveForest() && Has("CrystalCount");
+        return CanCompletePrologue() && CanLeaveForest() && Has("ShadowCrystal");
     }
 
     // Faron Woods
@@ -1412,63 +1425,63 @@ public class LogicManager : MonoBehaviour
     public bool FaronMistCaveLanternChest()
     {
         return HasCompletedPrologue()
-            && Has("LanternCount");
+            && Has("Lantern");
     }
 
     public bool FaronMistCaveOpenChest()
     {
         return HasCompletedPrologue()
-            && Has("LanternCount");
+            && Has("Lantern");
     }
 
     public bool FaronMistNorthChest()
     {
         return HasCompletedPrologue()
-            && Has("LanternCount")
+            && Has("Lantern")
             && CanCompletePrologue();
     }
 
     public bool FaronMistSouthChest()
     {
         return HasCompletedPrologue()
-            && Has("LanternCount")
+            && Has("Lantern")
             && CanCompletePrologue();
     }
 
     public bool FaronMistStumpChest()
     {
         return HasCompletedPrologue()
-            && Has("LanternCount")
+            && Has("Lantern")
             && CanCompletePrologue();
     }
 
     public bool FaronWoodsGoldenWolf()
     {
         return CanCompletePrologue()
-            && (Has("CrystalCount") || Has("LanternCount"));
+            && (Has("ShadowCrystal") || Has("Lantern"));
     }
 
     public bool FaronWoodsOwlStatueChest()
     {
         return HasCompletedPrologue()
             && CanSmash()
-            && Has("RodCount", 2)
+            && Has("DominionRod", 2)
             && CanLeaveForest()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool FaronWoodsOwlStatueSkyCharacter()
     {
         return HasCompletedPrologue()
             && CanSmash()
-            && Has("RodCount", 2)
+            && Has("DominionRod", 2)
             && CanLeaveForest();
     }
 
     public bool NorthFaronWoodsDekuBabaChest()
     {
         return CanCompletePrologue()
-            && (Has("CrystalCount") || Has("LanternCount"));
+            && (Has("ShadowCrystal") || Has("Lantern"));
     }
 
     public bool SouthFaronCaveChest()
@@ -1481,14 +1494,14 @@ public class LogicManager : MonoBehaviour
     public bool LostWoodsLanternChest()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
-            && Has("LanternCount");
+            && Has("ShadowCrystal")
+            && Has("Lantern");
     }
 
     public bool SacredGroveBabaSerpentGrottoChest()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && CanSmash()
             && CanDefeatBabaSerpent()
             && CanKnockDownHangingBaba()
@@ -1500,9 +1513,9 @@ public class LogicManager : MonoBehaviour
     public bool SacredGrovePastOwlStatueChest()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
-            && Has("RodCount")
-            && (Has("SwordCount", 3)
+            && Has("ShadowCrystal")
+            && Has("DominionRod")
+            && (Has("Sword", 3)
                 || SettingsStatus["ToTOpen"]
                 || SettingsStatus["ToTOpenGrove"]);
     }
@@ -1510,8 +1523,8 @@ public class LogicManager : MonoBehaviour
     public bool SacredGroveSpinnerChest()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
-            && Has("SpinCount")
+            && Has("ShadowCrystal")
+            && Has("Spinner")
             && (CanDefeatSkullKid()
                 || SettingsStatus["ToTOpen"]
                 || SettingsStatus["ToTOpenGrove"]);
@@ -1522,40 +1535,40 @@ public class LogicManager : MonoBehaviour
     public bool FaronFieldBridgeChest()
     {
         return CanLeaveForest()
-            && Has("ClawCount")
-            && ((Has("SwordCount") && Has("SlingCount"))
+            && Has("Clawshot")
+            && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
     }
 
     public bool FaronFieldCornerGrottoLeftChest()
     {
         return CanLeaveForest()
-            && Has("CrystalCount")
-            && ((Has("SwordCount") && Has("SlingCount"))
+            && Has("ShadowCrystal")
+            && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
     }
 
     public bool FaronFieldCornerGrottoRearChest()
     {
         return CanLeaveForest()
-            && Has("CrystalCount")
-            && ((Has("SwordCount") && Has("SlingCount"))
+            && Has("ShadowCrystal")
+            && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
     }
 
     public bool FaronFieldCornerGrottoRightChest()
     {
         return CanLeaveForest()
-            && Has("CrystalCount")
-            && ((Has("SwordCount") && Has("SlingCount"))
+            && Has("ShadowCrystal")
+            && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
     }
 
     public bool FaronFieldTreeHeartPiece()
     {
         return CanLeaveForest()
-            && (Has("RangCount") || Has("ClawCount"))
-            && ((Has("SwordCount") && Has("SlingCount"))
+            && (Has("Boomerang") || Has("Clawshot"))
+            && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
     }
 
@@ -1563,23 +1576,23 @@ public class LogicManager : MonoBehaviour
 
     public bool KakarikoGorgeDoubleClawshotChest()
     {
-        return CanAccessKakGorge() && Has("ClawCount", 2);
+        return CanAccessKakGorge() && Has("Clawshot", 2);
     }
 
     public bool KakarikoGorgeOwlStatueChest()
     {
-        return CanAccessKakGorge() && Has("RodCount", 2);
+        return CanAccessKakGorge() && Has("DominionRod", 2);
     }
 
     public bool KakarikoGorgeOwlStatueSkyCharacter()
     {
-        return CanAccessKakGorge() && Has("RodCount", 2);
+        return CanAccessKakGorge() && Has("DominionRod", 2);
     }
 
     public bool KakarikoGorgeSpireHeartPiece()
     {
         return CanAccessKakGorge()
-            && (Has("RangCount") || Has("ClawCount"));
+            && (Has("Boomerang") || Has("Clawshot"));
     }
 
     // Death Mountain
@@ -1587,19 +1600,19 @@ public class LogicManager : MonoBehaviour
     public bool DeathMountainAlcoveChest()
     {
         return CanAccessDeathMountain()
-            && Has("ClawCount");
+            && Has("Clawshot");
     }
 
     // Eldin Field
 
     public bool BridgeofEldinOwlStatueChest()
     {
-        return CanAccessEldinField() && Has("RodCount", 2);
+        return CanAccessEldinField() && Has("DominionRod", 2);
     }
 
     public bool BridgeofEldinOwlStatueSkyCharacter()
     {
-        return CanAccessEldinField() && Has("RodCount", 2);
+        return CanAccessEldinField() && Has("DominionRod", 2);
     }
 
     public bool EldinFieldBombRockChest()
@@ -1610,51 +1623,51 @@ public class LogicManager : MonoBehaviour
     public bool EldinFieldBomskitGrottoLanternChest()
     {
         return CanAccessEldinField()
-            && Has("CrystalCount")
-            && Has("LanternCount");
+            && Has("ShadowCrystal")
+            && Has("Lantern");
     }
 
     public bool EldinFieldBomskitGrottoLeftChest()
     {
         return CanAccessEldinField()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool EldinFieldStalfosGrottoLeftSmallChest()
     {
         return CanAccessEldinField()
-            && Has("SpinCount")
-            && Has("CrystalCount")
-            && (CanSmash() || Has("GateKeyCount"));
+            && Has("Spinner")
+            && Has("ShadowCrystal")
+            && (CanSmash() || Has("GateKeys"));
     }
 
     public bool EldinFieldStalfosGrottoRightSmallChest()
     {
         return CanAccessEldinField()
-            && Has("SpinCount")
-            && Has("CrystalCount")
-            && (CanSmash() || Has("GateKeyCount"));
+            && Has("Spinner")
+            && Has("ShadowCrystal")
+            && (CanSmash() || Has("GateKeys"));
     }
 
     public bool EldinFieldStalfosGrottoStalfosChest()
     {
         return CanAccessEldinField()
-            && Has("SpinCount")
-            && Has("CrystalCount")
+            && Has("Spinner")
+            && Has("ShadowCrystal")
             && CanDefeatStalfos()
-            && (CanSmash() || Has("GateKeyCount"));
+            && (CanSmash() || Has("GateKeys"));
     }
 
     public bool EldinFieldWaterBombFishGrottoChest()
     {
-        return CanAccessEldinField() && Has("CrystalCount");
+        return CanAccessEldinField() && Has("ShadowCrystal");
     }
 
     public bool GoronSpringwaterRush()
     {
         return CanAccessEldinField()
             && CanAccessKakVillage()
-            && (CanSmash() || Has("GateKeyCount"));
+            && (CanSmash() || Has("GateKeys"));
     }
 
     // Lanayru Field
@@ -1662,51 +1675,51 @@ public class LogicManager : MonoBehaviour
     public bool LanayruFieldBehindGateUnderwaterChest()
     {
         return CanAccessLanayruField()
-            && Has("BootsCount");
+            && Has("IronBoots");
     }
 
     public bool LanayruFieldSkulltulaGrottoChest()
     {
         return CanAccessLanayruField()
-            && Has("CrystalCount")
-            && Has("LanternCount");
+            && Has("ShadowCrystal")
+            && Has("Lantern");
     }
 
     public bool LanayruFieldSpinnerTrackChest()
     {
         return CanAccessLanayruField()
             && CanSmash()
-            && Has("SpinCount");
+            && Has("Spinner");
     }
 
     public bool LanayruIceBlockPuzzleCaveChest()
     {
-        return CanAccessLanayruField() && Has("BCCount");
+        return CanAccessLanayruField() && Has("B&C");
     }
 
     // West Hyrule Field
 
     public bool HyruleFieldAmphitheaterOwlStatueChest()
     {
-        return CanAccessLanayru() && Has("RodCount", 2);
+        return CanAccessLanayru() && Has("DominionRod", 2);
     }
 
     public bool HyruleFieldAmphitheaterOwlStatueSkyCharacter()
     {
-        return CanAccessLanayru() && Has("RodCount", 2);
+        return CanAccessLanayru() && Has("DominionRod", 2);
     }
 
     public bool WestHyruleFieldGoldenWolf()
     {
         return CanAccessLanayru()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool WestHyruleFieldHelmasaurGrottoChest()
     {
         return CanAccessLanayru()
-            && Has("ClawCount")
-            && Has("CrystalCount");
+            && Has("Clawshot")
+            && Has("ShadowCrystal");
     }
 
     // North Castle Town
@@ -1714,48 +1727,48 @@ public class LogicManager : MonoBehaviour
     public bool NorthCastleTownGoldenWolf()
     {
         return CanAccessCastleTown()
-            && Has("FetchCount", 3)
-            && Has("CrystalCount");
+            && Has("FetchQuest", 3)
+            && Has("ShadowCrystal");
     }
 
     // Outside South Castle Town
 
     public bool OutsideSouthCastleTownDoubleClawshotChasmChest()
     {
-        return CanAccessCastleTown() && Has("ClawCount", 2);
+        return CanAccessCastleTown() && Has("Clawshot", 2);
     }
 
     public bool OutsideSouthCastleTownFountainChest()
     {
         return CanAccessCastleTown()
-            && Has("ClawCount")
-            && Has("SpinCount");
+            && Has("Clawshot")
+            && Has("Spinner");
     }
 
     public bool OutsideSouthCastleTownGoldenWolf()
     {
         return CanAccessCastleTown()
             && CanCompletePrologue()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool OutsideSouthCastleTownTektiteGrottoChest()
     {
-        return CanAccessCastleTown() && Has("CrystalCount");
+        return CanAccessCastleTown() && Has("ShadowCrystal");
     }
 
     public bool OutsideSouthCastleTownTightropeChest()
     {
         return CanAccessCastleTown()
-            && Has("CrystalCount")
-            && Has("ClawCount");
+            && Has("ShadowCrystal")
+            && Has("Clawshot");
     }
 
     public bool WoodenStatue()
     {
         return CanAccessCastleTown()
-            && Has("FetchCount", 2)
-            && (Has("MedicineSCount") || SettingsStatus["IgnoreScentLogic"]);
+            && Has("FetchQuest", 2)
+            && (Has("MedicineScent") || SettingsStatus["IgnoreScentLogic"]);
     }
 
     // Lake Hylia
@@ -1768,19 +1781,19 @@ public class LogicManager : MonoBehaviour
     public bool LakeHyliaShellBladeGrottoChest()
     {
         return CanAccessLakeHylia()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && CanDefeatShellBlade();
     }
 
     public bool LakeHyliaUnderwaterChest()
     {
-        return CanAccessLakeHylia() && Has("BootsCount");
+        return CanAccessLakeHylia() && Has("IronBoots");
     }
 
     public bool LakeHyliaWaterToadpoliGrottoChest()
     {
         return CanAccessLakeHylia()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && CanDefeatToadpoli();
     }
 
@@ -1797,7 +1810,7 @@ public class LogicManager : MonoBehaviour
     public bool PlummFruitBalloonMinigame()
     {
         return (CanAccessLakeHylia() || CanAccessZorasDomain())
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool FlightByFowl()
@@ -1811,41 +1824,41 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessLanayru()
             && CanLaunchBombs()
-            && Has("ClawCount")
-            && Has("CrystalCount");
+            && Has("Clawshot")
+            && Has("ShadowCrystal");
     }
 
     public bool LakeHyliaBridgeCliffChest()
     {
         return CanAccessLanayru()
             && CanLaunchBombs()
-            && Has("ClawCount");
+            && Has("Clawshot");
     }
 
     public bool LakeHyliaBridgeOwlStatueChest()
     {
         return CanAccessLanayru()
-            && Has("ClawCount")
-            && Has("RodCount", 2);
+            && Has("Clawshot")
+            && Has("DominionRod", 2);
     }
 
     public bool LakeHyliaBridgeOwlStatueSkyCharacter()
     {
         return CanAccessLanayru()
-            && Has("ClawCount")
-            && Has("RodCount", 2);
+            && Has("Clawshot")
+            && Has("DominionRod", 2);
     }
 
     public bool LakeHyliaBridgeVinesChest()
     {
-        return CanAccessLanayru() && Has("ClawCount");
+        return CanAccessLanayru() && Has("Clawshot");
     }
 
     // Upper Zora's River
 
     public bool FishingHoleBottle()
     {
-        return CanAccessZorasDomain() && Has("FishCount");
+        return CanAccessZorasDomain() && Has("FishingRod");
     }
 
     public bool FishingHoleHeartPiece()
@@ -1857,23 +1870,23 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessZorasDomain()
             && CanSmash()
-            && Has("SwordCount")
-            && Has("BowCount");
+            && Has("Sword")
+            && Has("Bow");
     }
 
     public bool IzaRagingRapidsMinigame()
     {
         return CanAccessZorasDomain()
             && CanSmash()
-            && Has("SwordCount")
-            && Has("BowCount");
+            && Has("Sword")
+            && Has("Bow");
     }
 
     // Zora's Domain
 
     public bool ZorasDomainChestBehindWaterfall()
     {
-        return CanAccessZorasDomain() && Has("CrystalCount");
+        return CanAccessZorasDomain() && Has("ShadowCrystal");
     }
 
     public bool ZorasDomainChestByMotherandChildIsles()
@@ -1883,21 +1896,21 @@ public class LogicManager : MonoBehaviour
 
     public bool ZorasDomainExtinguishAllTorchesChest()
     {
-        return CanAccessZorasDomain() && Has("RangCount") && Has("BootsCount");
+        return CanAccessZorasDomain() && Has("Boomerang") && Has("IronBoots");
     }
 
     public bool ZorasDomainLightAllTorchesChest()
     {
-        return CanAccessZorasDomain() && Has("LanternCount") && Has("BootsCount");
+        return CanAccessZorasDomain() && Has("Lantern") && Has("IronBoots");
     }
 
     public bool ZorasDomainUnderwaterGoron()
     {
         return CanAccessZorasDomain()
-            && Has("BootsCount")
-            && Has("ZoraCount")
-            && (Has("WBombCount")
-            || (Has("BombCount") && SettingsStatus["IgnoreWaterBombLogic"]));
+            && Has("IronBoots")
+            && Has("ZoraArmor")
+            && (Has("WaterBombs")
+            || (Has("Bombs") && SettingsStatus["IgnoreWaterBombLogic"]));
     }
 
     // Gerudo Desert
@@ -1926,7 +1939,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessDesert()
             && CanDefeatBulblin()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && CanAccessLanayru();
     }
 
@@ -1952,26 +1965,26 @@ public class LogicManager : MonoBehaviour
 
     public bool GerudoDesertOwlStatueChest()
     {
-        return CanAccessDesert() && Has("RodCount", 2);
+        return CanAccessDesert() && Has("DominionRod", 2);
     }
 
     public bool GerudoDesertOwlStatueSkyCharacter()
     {
-        return CanAccessDesert() && Has("RodCount", 2);
+        return CanAccessDesert() && Has("DominionRod", 2);
     }
 
     public bool GerudoDesertPeahatLedgeChest()
     {
-        return CanAccessDesert() && Has("ClawCount");
+        return CanAccessDesert() && Has("Clawshot");
     }
 
     public bool GerudoDesertRockGrottoLanternChest()
     {
         return CanAccessDesert()
-            && Has("CrystalCount")
-            && Has("ClawCount")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
             && CanSmash()
-            && Has("LanternCount");
+            && Has("Lantern");
     }
 
     public bool GerudoDesertSouthChestBehindWoodenGates()
@@ -1981,12 +1994,12 @@ public class LogicManager : MonoBehaviour
 
     public bool GerudoDesertSkulltulaGrottoChest()
     {
-        return CanAccessDesert() && Has("CrystalCount");
+        return CanAccessDesert() && Has("ShadowCrystal");
     }
 
     public bool GerudoDesertWestCanyonChest()
     {
-        return CanAccessDesert() && Has("ClawCount");
+        return CanAccessDesert() && Has("Clawshot");
     }
 
     // Snowpeak
@@ -2000,17 +2013,17 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessSnowpeakSummit()
             && CanDefeatShadowBeast()
-            && Has("Boss5Count");
+            && Has("Boss5");
     }
 
     public bool SnowpeakCaveIceLanternChest()
     {
-        return CanAccessSnowpeakSummit() && Has("BCCount") && Has("LanternCount");
+        return CanAccessSnowpeakSummit() && Has("B&C") && Has("Lantern");
     }
 
     public bool SnowpeakFreezardGrottoChest()
     {
-        return CanAccessSnowpeakSummit() && Has("BCCount");
+        return CanAccessSnowpeakSummit() && Has("B&C");
     }
 
     // Hidden Village
@@ -2018,23 +2031,23 @@ public class LogicManager : MonoBehaviour
     public bool CatsHideandSeekMinigame()
     {
         return CanAccessLanayruField()
-            && Has("FetchCount", 4)
-            && Has("BowCount");
+            && Has("FetchQuest", 4)
+            && Has("Bow");
     }
 
     public bool IliaCharm()
     {
         return CanAccessLanayruField()
-            && Has("FetchCount", 3)
-            && Has("BowCount");
+            && Has("FetchQuest", 3)
+            && Has("Bow");
     }
 
     public bool SkybookFromImpaz()
     {
         return CanAccessLanayruField()
-            && Has("FetchCount", 3)
-            && Has("BowCount")
-            && Has("RodCount");
+            && Has("FetchQuest", 3)
+            && Has("Bow")
+            && Has("DominionRod");
     }
 
 /* ------------------------------
@@ -2047,20 +2060,20 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronMistPoe()
     {
-        return CanCompletePrologue() && Has("CrystalCount");
+        return CanCompletePrologue() && Has("ShadowCrystal");
     }
 
     // Lost Woods
 
     public bool LostWoodsWaterfallPoe()
     {
-        return CanCompletePrologue() && Has("CrystalCount");
+        return CanCompletePrologue() && Has("ShadowCrystal");
     }
 
     public bool LostWoodsBoulderPoe()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && CanSmash()
             && (CanDefeatSkullKid()
                 || SettingsStatus["ToTOpen"]
@@ -2072,7 +2085,7 @@ public class LogicManager : MonoBehaviour
     public bool SacredGroveMasterSwordPoe()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && (CanDefeatSkullKid()
                 || SettingsStatus["ToTOpen"]
                 || SettingsStatus["ToTOpenGrove"]);
@@ -2081,9 +2094,9 @@ public class LogicManager : MonoBehaviour
     public bool SacredGroveTempleofTimeOwlStatuePoe()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
-            && Has("RodCount")
-            && (Has("SwordCount", 3)
+            && Has("ShadowCrystal")
+            && Has("DominionRod")
+            && (Has("Sword", 3)
                 || SettingsStatus["ToTOpen"]
                 || SettingsStatus["ToTOpenGrove"]);
     }
@@ -2094,7 +2107,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanLeaveForest()
             && CanCompleteMDH()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Kakariko Gorge
@@ -2103,15 +2116,15 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessKakGorge()
             && CanCompleteMDH()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Death Mountain
 
     public bool DeathMountainTrailPoe()
     {
-        return Has("Boss2Count")
-            && Has("CrystalCount");
+        return Has("Boss2")
+            && Has("ShadowCrystal");
     }
 
     // Lanayru Field
@@ -2120,17 +2133,17 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessLanayru()
             && CanCompleteMDH()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool LanayruFieldPoeGrottoLeftPoe()
     {
-        return CanAccessLanayru() && Has("CrystalCount");
+        return CanAccessLanayru() && Has("ShadowCrystal");
     }
 
     public bool LanayruFieldPoeGrottoRightPoe()
     {
-        return CanAccessLanayru() && Has("CrystalCount");
+        return CanAccessLanayru() && Has("ShadowCrystal");
     }
 
     // West Hyrule Field
@@ -2138,7 +2151,7 @@ public class LogicManager : MonoBehaviour
     public bool HyruleFieldAmphitheaterPoe()
     {
         return CanAccessLanayru()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Outside South Castle Town
@@ -2146,7 +2159,7 @@ public class LogicManager : MonoBehaviour
     public bool OutsideSouthCastleTownPoe()
     {
         return CanAccessLanayru()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Outside East Castle Town
@@ -2154,34 +2167,34 @@ public class LogicManager : MonoBehaviour
     public bool EastCastleTownBridgePoe()
     {
         return CanAccessLanayru()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Lake Hylia
 
     public bool LakeHyliaAlcovePoe()
     {
-        return CanAccessLakeHylia() && Has("CrystalCount");
+        return CanAccessLakeHylia() && Has("ShadowCrystal");
     }
 
     public bool LakeHyliaTowerPoe()
     {
-        return CanAccessLakeHylia() && Has("CrystalCount");
+        return CanAccessLakeHylia() && Has("ShadowCrystal");
     }
 
     public bool LakeHyliaDockPoe()
     {
-        return CanAccessLakeHylia() && Has("CrystalCount");
+        return CanAccessLakeHylia() && Has("ShadowCrystal");
     }
 
     public bool FlightByFowlLedgePoe()
     {
-        return CanAccessLakeHylia() && Has("CrystalCount");
+        return CanAccessLakeHylia() && Has("ShadowCrystal");
     }
 
     public bool IsleofRichesPoe()
     {
-        return CanAccessLakeHylia() && Has("CrystalCount");
+        return CanAccessLakeHylia() && Has("ShadowCrystal");
     }
 
     // Lake Hylia Bridge
@@ -2189,9 +2202,9 @@ public class LogicManager : MonoBehaviour
     public bool LakeHyliaBridgeCliffPoe()
     {
         return CanAccessLanayru()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && CanLaunchBombs()
-            && Has("ClawCount");
+            && Has("Clawshot");
     }
 
     // Upper Zora's River
@@ -2199,7 +2212,7 @@ public class LogicManager : MonoBehaviour
     public bool UpperZorasRiverPoe()
     {
         return CanAccessZorasDomain()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Zora's Domain
@@ -2207,13 +2220,13 @@ public class LogicManager : MonoBehaviour
     public bool ZorasDomainWaterfallPoe()
     {
         return CanAccessZorasDomain()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool ZorasDomainMotherandChildIslePoe()
     {
         return CanAccessZorasDomain()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Gerudo Desert
@@ -2221,41 +2234,41 @@ public class LogicManager : MonoBehaviour
     public bool GerudoDesertNorthPeahatPoe()
     {
         return CanAccessDesert()
-            && Has("ClawCount")
-            && Has("CrystalCount");
+            && Has("Clawshot")
+            && Has("ShadowCrystal");
     }
 
     public bool GerudoDesertEastPoe()
     {
-        return CanAccessDesert() && Has("CrystalCount");
+        return CanAccessDesert() && Has("ShadowCrystal");
     }
 
     public bool GerudoDesertPoeAboveCaveofOrdeals()
     {
         return CanAccessDesert()
-            && Has("ClawCount")
-            && Has("CrystalCount");
+            && Has("Clawshot")
+            && Has("ShadowCrystal");
     }
 
     public bool GerudoDesertRockGrottoFirstPoe()
     {
         return CanAccessDesert()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanSmash()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool GerudoDesertRockGrottoSecondPoe()
     {
         return CanAccessDesert()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanSmash()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool OutsideBulblinCampPoe()
     {
-        return CanAccessDesert() && Has("CrystalCount");
+        return CanAccessDesert() && Has("ShadowCrystal");
     }
 
     // Snowpeak
@@ -2263,43 +2276,43 @@ public class LogicManager : MonoBehaviour
     public bool SnowpeakAboveFreezardGrottoPoe()
     {
         return CanAccessSnowpeakSummit()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool SnowpeakBlizzardPoe()
     {
         return CanAccessSnowpeakSummit()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool SnowpeakPoeAmongTrees()
     {
         return CanAccessSnowpeakSummit()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool SnowpeakCaveIcePoe()
     {
         return CanAccessSnowpeakSummit()
-            && Has("BCCount")
-            && Has("CrystalCount");
+            && Has("B&C")
+            && Has("ShadowCrystal");
     }
 
     public bool SnowpeakIcySummitPoe()
     {
         return CanAccessSnowpeakSummit()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     // Hidden Village
 
     public bool HiddenVillagePoe()
     {
-        return Has("FetchCount", 4)
-            && Has("ClawCount")
-            && Has("BowCount")
-            && Has("RodCount")
-            && Has("CrystalCount");
+        return Has("FetchQuest", 4)
+            && Has("Clawshot")
+            && Has("Bow")
+            && Has("DominionRod")
+            && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -2310,7 +2323,7 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldFemaleBeetle()
     {
-        return CanAccessFaronField() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessFaronField() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool FaronFieldMaleBeetle()
@@ -2350,37 +2363,37 @@ public class LogicManager : MonoBehaviour
 
     public bool BridgeofEldinFemalePhasmid()
     {
-        return CanAccessEldinField() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessEldinField() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool BridgeofEldinMalePhasmid()
     {
-        return CanAccessEldinField() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessEldinField() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool LakeHyliaBridgeFemaleMantis()
     {
-        return CanAccessLanayru() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessLanayru() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool LakeHyliaBridgeMaleMantis()
     {
-        return CanAccessLanayru() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessLanayru() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool LanayruFieldFemaleStagBeetle()
     {
-        return CanAccessLanayru() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessLanayru() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool LanayruFieldMaleStagBeetle()
     {
-        return CanAccessLanayru() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessLanayru() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool WestHyruleFieldFemaleButterfly()
     {
-        return CanAccessLanayru() && (Has("RangCount") || Has("ClawCount"));
+        return CanAccessLanayru() && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool WestHyruleFieldMaleButterfly()
@@ -2401,17 +2414,17 @@ public class LogicManager : MonoBehaviour
     public bool SacredGroveMaleSnail()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && (CanDefeatSkullKid() || SettingsStatus["ToTOpen"] || SettingsStatus["ToTOpenGrove"])
-            && (Has("RangCount") || Has("ClawCount"));
+            && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool SacredGroveFemaleSnail()
     {
         return CanCompletePrologue()
-            && Has("CrystalCount")
-            && (Has("SwordCount", 3) || SettingsStatus["ToTOpen"] || SettingsStatus["ToTOpenGrove"])
-            && (Has("RangCount") || Has("ClawCount"));
+            && Has("ShadowCrystal")
+            && (Has("Sword", 3) || SettingsStatus["ToTOpen"] || SettingsStatus["ToTOpenGrove"])
+            && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool GerudoDesertFemaleDayfly()
@@ -2442,12 +2455,12 @@ public class LogicManager : MonoBehaviour
 
     public bool WoodenSwordChest()
     {
-        return Has("FishCount") || SettingsStatus["SkipPrologue"];
+        return Has("FishingRod") || SettingsStatus["SkipPrologue"];
     }
 
     public bool LinksBasementChest()
     {
-        return Has("LanternCount");
+        return Has("Lantern");
     }
 
     public bool UliCradleDelivery()
@@ -2457,7 +2470,7 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonCatRescue()
     {
-        return Has("FishCount");
+        return Has("FishingRod");
     }
 
     public bool SeraShopSlingshot()
@@ -2467,7 +2480,7 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonShield()
     {
-        return CanCompletePrologue() && Has("CrystalCount");
+        return CanCompletePrologue() && Has("ShadowCrystal");
     }
 
     public bool OrdonSword()
@@ -2498,19 +2511,19 @@ public class LogicManager : MonoBehaviour
 
     public bool EldinSpringUnderwaterChest()
     {
-        return CanAccessKakVillage() && CanSmash() && Has("BootsCount");
+        return CanAccessKakVillage() && CanSmash() && Has("IronBoots");
     }
 
     public bool KakarikoVillageBombRockSpireHeartPiece()
     {
         return CanAccessKakVillage()
             && CanLaunchBombs()
-            && (Has("RangCount") || Has("ClawCount"));
+            && (Has("Boomerang") || Has("Clawshot"));
     }
 
     public bool KakarikoGraveyardLanternChest()
     {
-        return CanAccessKakVillage() && Has("LanternCount");
+        return CanAccessKakVillage() && Has("Lantern");
     }
 
     public bool KakarikoWatchtowerChest()
@@ -2525,7 +2538,7 @@ public class LogicManager : MonoBehaviour
 
     public bool TaloSharpshooting()
     {
-        return CanAccessKakVillage() && Has("BowCount") && Has("Boss2Count");
+        return CanAccessKakVillage() && Has("Bow") && Has("Boss2");
     }
 
     public bool KakarikoVillageMaloMartHylianShield()
@@ -2535,54 +2548,54 @@ public class LogicManager : MonoBehaviour
 
     public bool KakarikoVillageMaloMartHawkeye()
     {
-        return CanAccessKakVillage() && Has("BowCount") && Has("Boss2Count");
+        return CanAccessKakVillage() && Has("Bow") && Has("Boss2");
     }
 
     public bool RutelasBlessing()
     {
-        return CanAccessKakVillage() && Has("GateKeyCount");
+        return CanAccessKakVillage() && Has("GateKeys");
     }
 
     public bool GiftFromRalis()
     {
-        return CanAccessKakVillage() && Has("GateKeyCount") && Has("AsheiCount");
+        return CanAccessKakVillage() && Has("GateKeys") && Has("AsheisSketch");
     }
 
     public bool KakarikoGraveyardGoldenWolf()
     {
-        return CanAccessKakVillage() && CanAccessLanayru() && Has("CrystalCount");
+        return CanAccessKakVillage() && CanAccessLanayru() && Has("ShadowCrystal");
     }
 
     public bool RenadosLetter()
     {
-        return CanAccessKakVillage() && Has("Boss6Count");
+        return CanAccessKakVillage() && Has("Boss6");
     }
 
     public bool IliaMemoryReward()
     {
-        return CanAccessKakVillage() && Has("FetchCount", 4);
+        return CanAccessKakVillage() && Has("FetchQuest", 4);
     }
 
     // Poes
 
     public bool KakarikoVillageBombShopPoe()
     {
-        return CanAccessKakVillage() && Has("CrystalCount");
+        return CanAccessKakVillage() && Has("ShadowCrystal");
     }
 
     public bool KakarikoVillageWatchtowerPoe()
     {
-        return CanAccessKakVillage() && Has("CrystalCount");
+        return CanAccessKakVillage() && Has("ShadowCrystal");
     }
 
     public bool KakarikoGraveyardOpenPoe()
     {
-        return CanAccessKakVillage() && Has("CrystalCount");
+        return CanAccessKakVillage() && Has("ShadowCrystal");
     }
 
     public bool KakarikoGraveyardGravePoe()
     {
-        return CanAccessKakVillage() && Has("CrystalCount");
+        return CanAccessKakVillage() && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -2606,14 +2619,14 @@ public class LogicManager : MonoBehaviour
         return CanAccessKakGorge()
             && CanSmash()
             && CanBurnWebs()
-            && Has("LanternCount");
+            && Has("Lantern");
     }
 
     // Poes
 
     public bool EldinLanternCavePoe()
     {
-        return CanAccessKakGorge() && CanSmash() && Has("CrystalCount");
+        return CanAccessKakGorge() && CanSmash() && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -2624,20 +2637,20 @@ public class LogicManager : MonoBehaviour
 
     public bool EldinStockcaveUpperChest()
     {
-        return CanAccessEldinField() && Has("ClawCount") && Has("BootsCount");
+        return CanAccessEldinField() && Has("Clawshot") && Has("IronBoots");
     }
 
     public bool EldinStockcaveLanternChest()
     {
         return CanAccessEldinField()
-            && Has("ClawCount")
-            && Has("BootsCount")
-            && Has("LanternCount");
+            && Has("Clawshot")
+            && Has("IronBoots")
+            && Has("Lantern");
     }
 
     public bool EldinStockcaveLowestChest()
     {
-        return CanAccessEldinField() && Has("ClawCount") && Has("BootsCount");
+        return CanAccessEldinField() && Has("Clawshot") && Has("IronBoots");
     }
 
 /* ------------------------------
@@ -2649,105 +2662,105 @@ public class LogicManager : MonoBehaviour
     public bool LakeLanternCaveFirstChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveSecondChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveThirdChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveFourthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveFifthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveSixthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveSeventhChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveEighthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveNinthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveTenthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveEleventhChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveTwelfthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveThirteenthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveFourteenthChest()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash();
     }
 
     public bool LakeLanternCaveEndLanternChest()
     {
         return CanAccessLakeHylia()
-            && Has("LanternCount")
+            && Has("Lantern")
             && CanSmash();
     }
 
@@ -2756,25 +2769,25 @@ public class LogicManager : MonoBehaviour
     public bool LakeLanternCaveFirstPoe()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool LakeLanternCaveSecondPoe()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool LakeLanternCaveFinalPoe()
     {
         return CanAccessLakeHylia()
-            && (Has("LanternCount") || SettingsStatus["IgnoreLanternLogic"])
+            && (Has("Lantern") || SettingsStatus["IgnoreLanternLogic"])
             && CanSmash()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -2785,37 +2798,37 @@ public class LogicManager : MonoBehaviour
 
     public bool LanayruSpringUnderwaterLeftChest()
     {
-        return CanAccessLakeHylia() && Has("BootsCount");
+        return CanAccessLakeHylia() && Has("IronBoots");
     }
 
     public bool LanayruSpringUnderwaterRightChest()
     {
-        return CanAccessLakeHylia() && Has("BootsCount");
+        return CanAccessLakeHylia() && Has("IronBoots");
     }
 
     public bool LanayruSpringBackRoomLeftChest()
     {
-        return CanAccessLakeHylia() && Has("ClawCount");
+        return CanAccessLakeHylia() && Has("Clawshot");
     }
 
     public bool LanayruSpringBackRoomRightChest()
     {
-        return CanAccessLakeHylia() && Has("ClawCount");
+        return CanAccessLakeHylia() && Has("Clawshot");
     }
 
     public bool LanayruSpringBackRoomLanternChest()
     {
-        return CanAccessLakeHylia() && Has("ClawCount") && Has("LanternCount");
+        return CanAccessLakeHylia() && Has("Clawshot") && Has("Lantern");
     }
 
     public bool LanayruSpringWestDoubleClawshotChest()
     {
-        return CanAccessLakeHylia() && Has("ClawCount", 2);
+        return CanAccessLakeHylia() && Has("Clawshot", 2);
     }
 
     public bool LanayruSpringEastDoubleClawshotChest()
     {
-        return CanAccessLakeHylia() && Has("ClawCount", 2);
+        return CanAccessLakeHylia() && Has("Clawshot", 2);
     }
 
 /* ------------------------------
@@ -2826,128 +2839,128 @@ public class LogicManager : MonoBehaviour
 
     public bool AgithaFemaleAntReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 1);
+        return CanAccessCastleTown() && Has("GoldenBug", 1);
     }
 
     public bool AgithaFemaleBeetleReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 2);
+        return CanAccessCastleTown() && Has("GoldenBug", 2);
     }
 
     public bool AgithaFemaleButterflyReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 3);
+        return CanAccessCastleTown() && Has("GoldenBug", 3);
     }
 
     public bool AgithaFemaleDayflyReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 4);
+        return CanAccessCastleTown() && Has("GoldenBug", 4);
     }
 
     public bool AgithaFemaleDragonflyReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 5);
+        return CanAccessCastleTown() && Has("GoldenBug", 5);
     }
 
     public bool AgithaFemaleGrasshopperReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 6);
+        return CanAccessCastleTown() && Has("GoldenBug", 6);
     }
 
     public bool AgithaFemaleLadybugReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 7);
+        return CanAccessCastleTown() && Has("GoldenBug", 7);
     }
 
     public bool AgithaFemaleMantisReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 8);
+        return CanAccessCastleTown() && Has("GoldenBug", 8);
     }
 
     public bool AgithaFemalePhasmidReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 9);
+        return CanAccessCastleTown() && Has("GoldenBug", 9);
     }
 
     public bool AgithaFemalePillBugReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 10);
+        return CanAccessCastleTown() && Has("GoldenBug", 10);
     }
 
     public bool AgithaFemaleSnailReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 11);
+        return CanAccessCastleTown() && Has("GoldenBug", 11);
     }
 
     public bool AgithaFemaleStagBeetleReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 12);
+        return CanAccessCastleTown() && Has("GoldenBug", 12);
     }
 
     public bool AgithaMaleAntReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 13);
+        return CanAccessCastleTown() && Has("GoldenBug", 13);
     }
 
     public bool AgithaMaleBeetleReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 14);
+        return CanAccessCastleTown() && Has("GoldenBug", 14);
     }
 
     public bool AgithaMaleButterflyReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 15);
+        return CanAccessCastleTown() && Has("GoldenBug", 15);
     }
 
     public bool AgithaMaleDayflyReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 16);
+        return CanAccessCastleTown() && Has("GoldenBug", 16);
     }
 
     public bool AgithaMaleDragonflyReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 17);
+        return CanAccessCastleTown() && Has("GoldenBug", 17);
     }
 
     public bool AgithaMaleGrasshopperReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 18);
+        return CanAccessCastleTown() && Has("GoldenBug", 18);
     }
 
     public bool AgithaMaleLadybugReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 19);
+        return CanAccessCastleTown() && Has("GoldenBug", 19);
     }
 
     public bool AgithaMaleMantisReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 20);
+        return CanAccessCastleTown() && Has("GoldenBug", 20);
     }
 
     public bool AgithaMalePhasmidReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 21);
+        return CanAccessCastleTown() && Has("GoldenBug", 21);
     }
 
     public bool AgithaMalePillBugReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 22);
+        return CanAccessCastleTown() && Has("GoldenBug", 22);
     }
 
     public bool AgithaMaleSnailReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 23);
+        return CanAccessCastleTown() && Has("GoldenBug", 23);
     }
 
     public bool AgithaMaleStagBeetleReward()
     {
-        return CanAccessCastleTown() && Has("BugCount", 24);
+        return CanAccessCastleTown() && Has("GoldenBug", 24);
     }
 
     public bool CastleTownMaloMartMagicArmor()
     {
         return CanAccessCastleTown()
-            && (Has("WalletCount", 1)
+            && (Has("Wallet", 1)
                 || SettingsStatus["WalletIncrease"]
                 || SettingsStatus["IgnoreWalletLogic"]);
     }
@@ -2959,39 +2972,39 @@ public class LogicManager : MonoBehaviour
 
     public bool STARPrize1()
     {
-        return CanAccessCastleTown() && Has("ClawCount");
+        return CanAccessCastleTown() && Has("Clawshot");
     }
 
     public bool STARPrize2()
     {
-        return CanAccessCastleTown() && Has("ClawCount", 2);
+        return CanAccessCastleTown() && Has("Clawshot", 2);
     }
 
     public bool Jovani20PoeSoulReward()
     {
-        return CanAccessCastleTown() && Has("PoeCount", 20);
+        return CanAccessCastleTown() && Has("PoeSoul", 20);
     }
 
     public bool Jovani60PoeSoulReward()
     {
-        return CanAccessCastleTown() && Has("PoeCount", 60);
+        return CanAccessCastleTown() && Has("PoeSoul", 60);
     }
 
     public bool TelmaInvoice()
     {
-        return CanAccessCastleTown() && Has("FetchCount", 1);
+        return CanAccessCastleTown() && Has("FetchQuest", 1);
     }
 
     public bool DoctorsOfficeBalconyChest()
     {
-        return CanAccessCastleTown() && Has("FetchCount", 2);
+        return CanAccessCastleTown() && Has("FetchQuest", 2);
     }
 
     // Poes
 
     public bool JovaniHousePoe()
     {
-        return CanAccessCastleTown() && Has("CrystalCount");
+        return CanAccessCastleTown() && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -3024,8 +3037,8 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessDesert()
             && CanDefeatBulblin()
-            && Has("LanternCount")
-            && ((CanDefeatKingBulblinDesert() && Has("DesertKeyCount"))
+            && Has("Lantern")
+            && ((CanDefeatKingBulblinDesert() && Has("DesertKeys"))
                 || SettingsStatus["EarlyArbiters"]);
     }
 
@@ -3034,16 +3047,16 @@ public class LogicManager : MonoBehaviour
     public bool BulblinCampPoe()
     {
         return CanAccessDesert()
-            && Has("CrystalCount")
-            && ((CanDefeatKingBulblinDesert() && Has("DesertKeyCount"))
+            && Has("ShadowCrystal")
+            && ((CanDefeatKingBulblinDesert() && Has("DesertKeys"))
                 || SettingsStatus["EarlyArbiters"]);
     }
 
     public bool OutsideArbitersGroundsPoe()
     {
         return CanAccessDesert()
-            && Has("CrystalCount")
-            && ((CanDefeatKingBulblinDesert() && Has("DesertKeyCount"))
+            && Has("ShadowCrystal")
+            && ((CanDefeatKingBulblinDesert() && Has("DesertKeys"))
                 || SettingsStatus["EarlyArbiters"]);
     }
 
@@ -3056,11 +3069,11 @@ public class LogicManager : MonoBehaviour
     public bool CaveofOrdealsGreatFairyReward()
     {
         return CanAccessDesert()
-            && Has("SpinCount")
-            && Has("CrystalCount")
-            && Has("RodCount", 2)
-            && Has("ClawCount", 2)
-            && Has("BCCount")
+            && Has("Spinner")
+            && Has("ShadowCrystal")
+            && Has("DominionRod", 2)
+            && Has("Clawshot", 2)
+            && Has("B&C")
             && CanDefeatDarknut();
     }
 
@@ -3068,26 +3081,26 @@ public class LogicManager : MonoBehaviour
 
     public bool CaveofOrdealsFloor17Poe()
     {
-        return CanAccessDesert() && Has("SpinCount") && Has("CrystalCount");
+        return CanAccessDesert() && Has("Spinner") && Has("ShadowCrystal");
     }
 
     public bool CaveofOrdealsFloor33Poe()
     {
         return CanAccessDesert()
-            && Has("SpinCount")
-            && Has("CrystalCount")
-            && Has("RodCount", 2)
-            && Has("BCCount");
+            && Has("Spinner")
+            && Has("ShadowCrystal")
+            && Has("DominionRod", 2)
+            && Has("B&C");
     }
 
     public bool CaveofOrdealsFloor44Poe()
     {
         return CanAccessDesert()
-            && Has("SpinCount")
-            && Has("CrystalCount")
-            && Has("RodCount", 2)
-            && Has("BCCount")
-            && Has("ClawCount", 2);
+            && Has("Spinner")
+            && Has("ShadowCrystal")
+            && Has("DominionRod", 2)
+            && Has("B&C")
+            && Has("Clawshot", 2);
     }
 
 /* ------------------------------
@@ -3110,7 +3123,7 @@ public class LogicManager : MonoBehaviour
     public bool ForestTempleCentralChestBehindStairs()
     {
         return CanAccessFT()
-            && Has("RangCount")
+            && Has("Boomerang")
             && CanDefeatWalltula()
             && CanDefeatBokoblin()
             && CanBreakMonkeyCage();
@@ -3122,7 +3135,7 @@ public class LogicManager : MonoBehaviour
             && CanDefeatBokoblin()
             && CanDefeatWalltula()
             && CanBreakMonkeyCage()
-            && Has("LanternCount");
+            && Has("Lantern");
     }
 
     public bool ForestTempleWindlessBridgeChest()
@@ -3139,16 +3152,16 @@ public class LogicManager : MonoBehaviour
             && CanDefeatWalltula()
             && CanDefeatBokoblin()
             && CanBreakMonkeyCage()
-            && (Has("FTKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("FTSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool ForestTempleTotemPoleChest()
     {
         return CanAccessFT()
             && CanBurnWebs()
-            && (Has("FTKeyCount", 2)
+            && (Has("FTSmallKey", 2)
                 || SettingsStatus["IgnoreKeyLogic"]
-                || Has("ClawCount"))
+                || Has("Clawshot"))
             && CanDefeatWalltula()
             && CanDefeatBokoblin()
             && CanBreakMonkeyCage();
@@ -3158,20 +3171,20 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessFT()
             && CanBurnWebs()
-            && (((Has("FTKeyCount", 2)
+            && (((Has("FTSmallKey", 2)
                         || SettingsStatus["IgnoreKeyLogic"])
                     && CanDefeatBokoblin())
-                || Has("ClawCount"));
+                || Has("Clawshot"));
     }
 
     public bool ForestTempleWestDekuLikeChest()
     {
         return CanAccessFT()
             && CanBurnWebs()
-            && (((Has("FTKeyCount", 2)
+            && (((Has("FTSmallKey", 2)
                         || SettingsStatus["IgnoreKeyLogic"])
                     && CanDefeatBokoblin())
-                || Has("ClawCount"));
+                || Has("Clawshot"));
     }
 
     public bool ForestTempleBigBabaKey()
@@ -3182,9 +3195,9 @@ public class LogicManager : MonoBehaviour
             && CanDefeatWalltula()
             && CanBreakMonkeyCage()
             && CanDefeatBokoblin()
-            && (Has("FTKeyCount", 2)
+            && (Has("FTSmallKey", 2)
                 || SettingsStatus["IgnoreKeyLogic"]
-                || Has("ClawCount"));
+                || Has("Clawshot"));
     }
 
     public bool ForestTempleGaleBoomerang()
@@ -3194,23 +3207,23 @@ public class LogicManager : MonoBehaviour
             && CanDefeatBokoblin()
             && CanBreakMonkeyCage()
             && CanDefeatOok()
-            && ((Has("LanternCount")
-                && (Has("FTKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"]))
-                || (Has("RangCount")
+            && ((Has("Lantern")
+                && (Has("FTSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"]))
+                || (Has("Boomerang")
                     && CanBurnWebs()
-                    && (Has("FTKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"]
-                        || Has("ClawCount"))));
+                    && (Has("FTSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"]
+                        || Has("Clawshot"))));
     }
 
     public bool ForestTempleWestTileWormChestBehindStairs()
     {
         return CanAccessFT()
             && CanBurnWebs()
-            && Has("RangCount")
-            && (((Has("FTKeyCount", 4)
+            && Has("Boomerang")
+            && (((Has("FTSmallKey", 4)
                         || SettingsStatus["IgnoreKeyLogic"])
                     && CanDefeatBokoblin())
-                || Has("ClawCount"));
+                || Has("Clawshot"));
     }
 
     public bool ForestTempleCentralChestHangingFromWeb()
@@ -3228,7 +3241,7 @@ public class LogicManager : MonoBehaviour
             && CanDefeatBokoblin()
             && CanDefeatWalltula()
             && CanBreakMonkeyCage()
-            && Has("RangCount");
+            && Has("Boomerang");
     }
 
     public bool ForestTempleEastWaterCaveChest()
@@ -3245,7 +3258,7 @@ public class LogicManager : MonoBehaviour
             && CanDefeatBokoblin()
             && CanDefeatWalltula()
             && CanBreakMonkeyCage()
-            && Has("RangCount");
+            && Has("Boomerang");
     }
 
     public bool ForestTempleEastTileWormChest()
@@ -3254,8 +3267,8 @@ public class LogicManager : MonoBehaviour
             && CanDefeatBokoblin()
             && CanDefeatWalltula()
             && CanBreakMonkeyCage()
-            && Has("RangCount")
-            && (Has("FTKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("Boomerang")
+            && (Has("FTSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool ForestTempleDiababaHeartContainer()
@@ -3264,10 +3277,10 @@ public class LogicManager : MonoBehaviour
             && CanDefeatBokoblin()
             && CanDefeatWalltula()
             && CanBreakMonkeyCage()
-            && Has("RangCount")
-            && (Has("FTBossKeyCount") || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Boomerang")
+            && (Has("FTBigKey") || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDiababa()
-            && (CanFreeAllMonkeys() || Has("ClawCount"));
+            && (CanFreeAllMonkeys() || Has("Clawshot"));
     }
 
     public bool ForestTempleDungeonReward()
@@ -3276,10 +3289,10 @@ public class LogicManager : MonoBehaviour
             && CanDefeatBokoblin()
             && CanDefeatWalltula()
             && CanBreakMonkeyCage()
-            && Has("RangCount")
-            && (Has("FTBossKeyCount") || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Boomerang")
+            && (Has("FTBigKey") || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDiababa()
-            && (CanFreeAllMonkeys() || Has("ClawCount"));
+            && (CanFreeAllMonkeys() || Has("Clawshot"));
     }
 
 /* ------------------------------
@@ -3291,200 +3304,200 @@ public class LogicManager : MonoBehaviour
     public bool GoronMinesEntranceChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor();
     }
 
     public bool GoronMinesMainMagnetRoomBottomChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor();
     }
 
     public bool GoronMinesGorAmatoChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesGorAmatoKeyShard()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesGorAmatoSmallChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesMagnetMazeChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesCrystalSwitchRoomUnderwaterChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesCrystalSwitchRoomSmallChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesAfterCrystalSwitchRoomMagnetWallChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesOutsideBeamosChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && (Has("BowCount") || Has("SwordCount"));
+            && (Has("GMSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("Bow") || Has("Sword"));
     }
 
     public bool GoronMinesGorEbizoKeyShard()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && (Has("BowCount") || Has("SwordCount"));
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("Bow") || Has("Sword"));
     }
 
     public bool GoronMinesGorEbizoChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && (Has("BowCount") || Has("SwordCount"));
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("Bow") || Has("Sword"));
     }
 
     public bool GoronMinesChestBeforeDangoro()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool GoronMinesDangoroChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDangoro();
     }
 
     public bool GoronMinesBeamosRoomChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDangoro()
-            && Has("BowCount");
+            && Has("Bow");
     }
 
     public bool GoronMinesGorLiggsKeyShard()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDangoro()
-            && Has("BowCount");
+            && Has("Bow");
     }
 
     public bool GoronMinesGorLiggsChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDangoro()
-            && Has("BowCount");
+            && Has("Bow");
     }
 
     public bool GoronMinesMainMagnetRoomTopChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("GMSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDangoro()
-            && Has("BowCount");
+            && Has("Bow");
     }
 
     public bool GoronMinesOutsideClawshotChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && (Has("BowCount") || Has("SwordCount"))
-            && Has("ClawCount");
+            && (Has("GMSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("Bow") || Has("Sword"))
+            && Has("Clawshot");
     }
 
     public bool GoronMinesOutsideUnderwaterChest()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && (Has("GMKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && ((Has("BowCount")
-                    && (Has("WBombCount")
-                        || (SettingsStatus["IgnoreWaterBombLogic"] && Has("BombCount"))))
-                || Has("SwordCount"));
+            && (Has("GMSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && ((Has("Bow")
+                    && (Has("WaterBombs")
+                        || (SettingsStatus["IgnoreWaterBombLogic"] && Has("Bombs"))))
+                || Has("Sword"));
     }
 
     public bool GoronMinesFyrusHeartContainer()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && ((Has("GMKeyCount", 3) && Has("GMBossKeyCount", 3))
+            && ((Has("GMSmallKey", 3) && Has("GMBigKey", 3))
                 || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatBulblin()
-            && Has("BowCount")
+            && Has("Bow")
             && CanDefeatFyrus();
     }
 
     public bool GoronMinesDungeonReward()
     {
         return CanAccessGM()
-            && Has("BootsCount")
+            && Has("IronBoots")
             && CanBreakWoodenDoor()
-            && ((Has("GMKeyCount", 3) && Has("GMBossKeyCount", 3))
+            && ((Has("GMSmallKey", 3) && Has("GMBigKey", 3))
                 || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatBulblin()
-            && Has("BowCount")
+            && Has("Bow")
             && CanDefeatFyrus();
     }
 
@@ -3532,175 +3545,175 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("LTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool LakebedTempleEastSecondFloorSoutheastChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("LTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool LakebedTempleEastWaterSupplySmallChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots");
     }
 
     public bool LakebedTempleBeforeDekuToadAlcoveChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool LakebedTempleBeforeDekuToadUnderwaterLeftChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots");
     }
 
     public bool LakebedTempleBeforeDekuToadUnderwaterRightChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots");
     }
 
     public bool LakebedTempleDekuToadChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount")
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots")
             && CanDefeatDekuToad()
-            && (Has("WBombCount")
-                || (Has("BombCount") && SettingsStatus["IgnoreWaterBombLogic"]));
+            && (Has("WaterBombs")
+                || (Has("Bombs") && SettingsStatus["IgnoreWaterBombLogic"]));
     }
 
     public bool LakebedTempleChandelierChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && Has("ClawCount");
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleCentralRoomSpireChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots");
     }
 
     public bool LakebedTempleEastWaterSupplyClawshotChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount")
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots")
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleWestLowerSmallChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleWestWaterSupplySmallChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount")
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots")
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleWestWaterSupplyChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount")
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots")
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleWestSecondFloorSouthwestUnderwaterChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount")
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots")
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleWestSecondFloorCentralSmallChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleWestSecondFloorNortheastChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleWestSecondFloorSoutheastChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleBigKeyChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount")
-            && Has("ClawCount")
-            && (Has("WBombCount")
-                || (Has("BombCount") && SettingsStatus["IgnoreWaterBombLogic"]));
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots")
+            && Has("Clawshot")
+            && (Has("WaterBombs")
+                || (Has("Bombs") && SettingsStatus["IgnoreWaterBombLogic"]));
     }
 
     public bool LakebedTempleUnderwaterMazeSmallChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleEastLowerWaterwheelBridgeChest()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (Has("LTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount");
+            && (Has("LTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleMorpheelHeartContainer()
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && ((Has("LTKeyCount", 3) && Has("LTBossKeyCount"))
+            && ((Has("LTSmallKey", 3) && Has("LTBigKey"))
                 || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatMorpheel();
     }
 
@@ -3708,9 +3721,9 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && ((Has("LTKeyCount", 3) && Has("LTBossKeyCount"))
+            && ((Has("LTSmallKey", 3) && Has("LTBigKey"))
                 || SettingsStatus["IgnoreKeyLogic"])
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatMorpheel();
     }
 
@@ -3728,165 +3741,165 @@ public class LogicManager : MonoBehaviour
     public bool ArbitersGroundsTorchRoomWestChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount");
+            && (Has("AGSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern");
     }
 
     public bool ArbitersGroundsTorchRoomEastChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount");
+            && (Has("AGSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern");
     }
 
     public bool ArbitersGroundsEastLowerTurnableRedeadChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount");
+            && (Has("AGSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal");
     }
 
     public bool ArbitersGroundsEastUpperTurnableChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount");
+            && (Has("AGSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern");
     }
 
     public bool ArbitersGroundsEastUpperTurnableRedeadChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount");
+            && (Has("AGSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern");
     }
 
     public bool ArbitersGroundsGhoulRatRoomChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("AGSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatBubble();
     }
 
     public bool ArbitersGroundsWestSmallChestBehindBlock()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount");
+            && (Has("AGSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern");
     }
 
     public bool ArbitersGroundsWestChandelierChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount");
+            && (Has("AGSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal");
     }
 
     public bool ArbitersGroundsWestStalfosWestChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount");
+            && (Has("AGSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal");
     }
 
     public bool ArbitersGroundsWestStalfosNortheastChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount");
+            && (Has("AGSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal");
     }
 
     public bool ArbitersGroundsNorthTurningRoomChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount");
+            && (Has("AGSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot");
     }
 
     public bool ArbitersGroundsDeathSwordChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
+            && (Has("AGSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
             && CanSmash();
     }
 
     public bool ArbitersGroundsSpinnerRoomFirstSmallChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount");
+            && (Has("AGSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomSecondSmallChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount");
+            && (Has("AGSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomLowerCentralSmallChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount");
+            && (Has("AGSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomStalfosAlcoveChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount");
+            && (Has("AGSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomLowerNorthChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount");
+            && (Has("AGSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner");
     }
 
     public bool ArbitersGroundsBigKeyChest()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount")
+            && (Has("AGSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner")
             && CanSmash();
     }
 
     public bool ArbitersGroundsStallordHeartContainer()
     {
         return CanAccessAG()
-            && ((Has("AGKeyCount", 4) && Has("AGBossKeyCount")) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount")
-            && Has("SpinCount")
+            && ((Has("AGSmallKey", 4) && Has("AGBigKey")) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot")
+            && Has("Spinner")
             && CanDefeatStallord();
     }
 
@@ -3895,34 +3908,34 @@ public class LogicManager : MonoBehaviour
     public bool ArbitersGroundsTorchRoomPoe()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount");
+            && (Has("AGSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal");
     }
 
     public bool ArbitersGroundsEastTurningRoomPoe()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("LanternCount")
-            && Has("CrystalCount")
-            && Has("ClawCount");
+            && (Has("AGSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Lantern")
+            && Has("ShadowCrystal")
+            && Has("Clawshot");
     }
 
     public bool ArbitersGroundsHiddenWallPoe()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("AGSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatRedeadKnight()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool ArbitersGroundsWestPoe()
     {
         return CanAccessAG()
-            && (Has("AGKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("AGSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"])
             && CanSmash()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -3933,12 +3946,12 @@ public class LogicManager : MonoBehaviour
 
     public bool SnowpeakRuinsLobbyEastArmorChest()
     {
-        return CanAccessSR() && Has("BCCount");
+        return CanAccessSR() && Has("B&C");
     }
 
     public bool SnowpeakRuinsLobbyWestArmorChest()
     {
-        return CanAccessSR() && Has("BCCount");
+        return CanAccessSR() && Has("B&C");
     }
 
     public bool SnowpeakRuinsMansionMap()
@@ -3948,58 +3961,58 @@ public class LogicManager : MonoBehaviour
 
     public bool SnowpeakRuinsEastCourtyardBuriedChest()
     {
-        return CanAccessSR() && Has("CrystalCount");
+        return CanAccessSR() && Has("ShadowCrystal");
     }
 
     public bool SnowpeakRuinsEastCourtyardChest()
     {
-        return CanAccessSR() && Has("CrystalCount") && Has("BCCount");
+        return CanAccessSR() && Has("ShadowCrystal") && Has("B&C");
     }
 
     public bool SnowpeakRuinsOrdonPumpkinChest()
     {
         return CanAccessSR()
-            && (Has("CrystalCount") || Has("BCCount"))
-            && (Has("SRKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("ShadowCrystal") || Has("B&C"))
+            && (Has("SRSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsWestCourtyardBuriedChest()
     {
         return CanAccessSR()
-            && Has("CrystalCount")
-            && (Has("BCCount")
-                || Has("PumpkinCount")
-                || (Has("CheeseCount") && Has("SRKeyCount", 2))
+            && Has("ShadowCrystal")
+            && (Has("B&C")
+                || Has("Pumpkin")
+                || (Has("Cheese") && Has("SRSmallKey", 2))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsWoodenBeamCentralChest()
     {
         return CanAccessSR()
-            && (Has("BCCount")
-                || (Has("BombCount")
-                    && (Has("PumpkinCount")
-                        || (Has("CheeseCount") && Has("SRKeyCount", 2))
+            && (Has("B&C")
+                || (Has("Bombs")
+                    && (Has("Pumpkin")
+                        || (Has("Cheese") && Has("SRSmallKey", 2))
                         || SettingsStatus["IgnoreKeyLogic"])));
     }
 
     public bool SnowpeakRuinsWoodenBeamNorthwestChest()
     {
         return CanAccessSR()
-            && (Has("BCCount")
-                || (Has("BombCount")
-                    && (Has("PumpkinCount")
-                        || (Has("CheeseCount") && Has("SRKeyCount", 2))
+            && (Has("B&C")
+                || (Has("Bombs")
+                    && (Has("Pumpkin")
+                        || (Has("Cheese") && Has("SRSmallKey", 2))
                         || SettingsStatus["IgnoreKeyLogic"])));
     }
 
     public bool SnowpeakRuinsCourtyardCentralChest()
     {
         return CanAccessSR()
-            && Has("CrystalCount")
-            && ((Has("PumpkinCount") && Has("SRKeyCount", 2))
+            && Has("ShadowCrystal")
+            && ((Has("Pumpkin") && Has("SRSmallKey", 2))
                 || SettingsStatus["IgnoreKeyLogic"]
-                || (Has("BCCount") && CanDefeatDarkhammer()));
+                || (Has("B&C") && CanDefeatDarkhammer()));
 
     }
 
@@ -4007,11 +4020,11 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessSR()
             && CanDefeatDarkhammer()
-            && (Has("BCCount")
-                || (Has("BombCount")
-                    && ((Has("PumpkinCount")
-                        && (Has("CheeseCount")
-                            || Has("SRKeyCount", 2)))
+            && (Has("B&C")
+                || (Has("Bombs")
+                    && ((Has("Pumpkin")
+                        && (Has("Cheese")
+                            || Has("SRSmallKey", 2)))
                         || SettingsStatus["IgnoreKeyLogic"])));
     }
 
@@ -4019,80 +4032,80 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessSR()
             && CanDefeatDarkhammer()
-            && Has("BCCount");
+            && Has("B&C");
     }
 
     public bool SnowpeakRuinsBrokenFloorChest()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && (Has("CheeseCount") || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("B&C")
+            && (Has("Cheese") || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsWoodenBeamChandelierChest()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && (Has("CheeseCount") || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("B&C")
+            && (Has("Cheese") || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsLobbyChandelierChest()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && ((Has("CheeseCount") && Has("SRKeyCount", 3))
+            && Has("B&C")
+            && ((Has("Cheese") && Has("SRSmallKey", 3))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsNortheastChandelierChest()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && Has("ClawCount")
-            && ((Has("CheeseCount") && Has("SRKeyCount", 3))
+            && Has("B&C")
+            && Has("Clawshot")
+            && ((Has("Cheese") && Has("SRSmallKey", 3))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsWestCannonRoomCentralChest()
     {
         return CanAccessSR()
-            && Has("BCCount");
+            && Has("B&C");
     }
 
     public bool SnowpeakRuinsWestCannonRoomCornerChest()
     {
         return CanAccessSR()
-            && (Has("BCCount")
-                || (Has("BombCount")
-                    && (Has("PumpkinCount")
-                        || (Has("CheeseCount") && Has("SRKeyCount", 2))
+            && (Has("B&C")
+                || (Has("Bombs")
+                    && (Has("Pumpkin")
+                        || (Has("Cheese") && Has("SRSmallKey", 2))
                         || SettingsStatus["IgnoreKeyLogic"])));
     }
 
     public bool SnowpeakRuinsChapelChest()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && Has("BombCount")
-            && ((Has("CheeseCount") && Has("SRKeyCount", 4))
+            && Has("B&C")
+            && Has("Bombs")
+            && ((Has("Cheese") && Has("SRSmallKey", 4))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsBlizzetaHeartContainer()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && Has("BombCount")
-            && ((Has("CheeseCount") && Has("SRKeyCount", 4) && Has("SRBossKeyCount"))
+            && Has("B&C")
+            && Has("Bombs")
+            && ((Has("Cheese") && Has("SRSmallKey", 4) && Has("SRBigKey"))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool SnowpeakRuinsDungeonReward()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && Has("BombCount")
-            && ((Has("CheeseCount") && Has("SRKeyCount", 4) && Has("SRBossKeyCount"))
+            && Has("B&C")
+            && Has("Bombs")
+            && ((Has("Cheese") && Has("SRSmallKey", 4) && Has("SRBigKey"))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
@@ -4100,20 +4113,20 @@ public class LogicManager : MonoBehaviour
 
     public bool SnowpeakRuinsLobbyPoe()
     {
-        return CanAccessSR() && Has("CrystalCount");
+        return CanAccessSR() && Has("ShadowCrystal");
     }
 
     public bool SnowpeakRuinsLobbyArmorPoe()
     {
-        return CanAccessSR() && Has("CrystalCount") && Has("BCCount");
+        return CanAccessSR() && Has("ShadowCrystal") && Has("B&C");
     }
 
     public bool SnowpeakRuinsIceRoomPoe()
     {
         return CanAccessSR()
-            && Has("BCCount")
-            && Has("CrystalCount")
-            && ((Has("CheeseCount") && Has("SRKeyCount", 3))
+            && Has("B&C")
+            && Has("ShadowCrystal")
+            && ((Has("Cheese") && Has("SRSmallKey", 3))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
@@ -4125,14 +4138,14 @@ public class LogicManager : MonoBehaviour
 
     public bool TempleofTimeLobbyLanternChest()
     {
-        return CanAccessToT() && Has("LanternCount");
+        return CanAccessToT() && Has("Lantern");
     }
 
     public bool TempleofTimeFirstStaircaseGohmaGateChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanRange()
             && CanDefeatLizalfos()
             && CanDefeatArmos();
@@ -4142,13 +4155,13 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessToT()
             && CanRange()
-            && (Has("ToTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool TempleofTimeFirstStaircaseArmosChest()
     {
         return CanAccessToT()
-            && (Has("ToTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanRange()
             && CanDefeatLizalfos()
             && CanDefeatArmos();
@@ -4157,8 +4170,8 @@ public class LogicManager : MonoBehaviour
     public bool TempleofTimeArmosAntechamberEastChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanRange()
             && CanDefeatLizalfos()
             && CanDefeatArmos();
@@ -4167,8 +4180,8 @@ public class LogicManager : MonoBehaviour
     public bool TempleofTimeArmosAntechamberNorthChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanRange()
             && CanDefeatLizalfos();
     }
@@ -4176,45 +4189,45 @@ public class LogicManager : MonoBehaviour
     public bool TempleofTimeMovingWallBeamosRoomChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos();
     }
 
     public bool TempleofTimeScalesGohmaChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos();
     }
 
     public bool TempleofTimeGilloutineChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos();
     }
 
     public bool TempleofTimeChestBeforeDarknut()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos();
     }
 
     public bool TempleofTimeDarknutChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos()
             && CanDefeatDarknut();
     }
@@ -4222,71 +4235,71 @@ public class LogicManager : MonoBehaviour
     public bool TempleofTimeScalesUpperChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos();
     }
 
     public bool TempleofTimeFloorSwitchPuzzleRoomUpperChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos()
-            && Has("ClawCount");
+            && Has("Clawshot");
     }
 
     public bool TempleofTimeBigKeyChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos()
-            && Has("ClawCount");
+            && Has("Clawshot");
     }
 
     public bool TempleofTimeMovingWallDinalfosRoomChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos()
-            && Has("RodCount")
+            && Has("DominionRod")
             && CanDefeatDinalfos();
     }
 
     public bool TempleofTimeArmosAntechamberStatueChest()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanRange()
             && CanDefeatLizalfos()
             && CanDefeatArmos()
-            && Has("RodCount");
+            && Has("DominionRod");
     }
 
     public bool TempleofTimeArmogohmaHeartContainer()
     {
         return CanAccessToT()
-            && ((Has("SpinCount")
-                && (Has("ToTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"]))
+            && ((Has("Spinner")
+                && (Has("ToTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"]))
                     || SettingsStatus["OpenDoorOfTime"])
-            && (Has("ToTBossKeyCount") || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("ToTBigKey") || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatArmogohma();
     }
 
     public bool TempleofTimeDungeonReward()
     {
         return CanAccessToT()
-            && ((Has("SpinCount")
-                && (Has("ToTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"]))
+            && ((Has("Spinner")
+                && (Has("ToTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"]))
                     || SettingsStatus["OpenDoorOfTime"])
-            && (Has("ToTBossKeyCount") || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("ToTBigKey") || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatArmogohma();
     }
 
@@ -4295,20 +4308,20 @@ public class LogicManager : MonoBehaviour
     public bool TempleofTimePoeBehindGate()
     {
         return CanAccessToT()
-            && Has("CrystalCount")
-            && Has("RodCount")
-            && (Has("ToTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("ShadowCrystal")
+            && Has("DominionRod")
+            && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool TempleofTimePoeAboveScales()
     {
         return CanAccessToT()
-            && Has("SpinCount")
-            && (Has("ToTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BowCount")
+            && Has("Spinner")
+            && (Has("ToTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Bow")
             && CanDefeatLizalfos()
-            && Has("CrystalCount")
-            && Has("ClawCount");
+            && Has("ShadowCrystal")
+            && Has("Clawshot");
     }
 
 /* ------------------------------
@@ -4319,41 +4332,41 @@ public class LogicManager : MonoBehaviour
 
     public bool CityinTheSkyUnderwaterEastChest()
     {
-        return CanAccessCitS() && Has("BootsCount");
+        return CanAccessCitS() && Has("IronBoots");
     }
 
     public bool CityinTheSkyUnderwaterWestChest()
     {
-        return CanAccessCitS() && Has("BootsCount");
+        return CanAccessCitS() && Has("IronBoots");
     }
 
     public bool CityinTheSkyWestWingFirstChest()
     {
-        return CanAccessCitS() && Has("ClawCount");
+        return CanAccessCitS() && Has("Clawshot");
     }
 
     public bool CityinTheSkyEastFirstWingChestAfterFans()
     {
         return CanAccessCitS()
-            && Has("ClawCount")
-            && Has("SpinCount")
-            && (Has("CitSKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("Clawshot")
+            && Has("Spinner")
+            && (Has("CitSSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool CityinTheSkyEastTileWormSmallChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount")
-            && Has("SpinCount")
-            && (Has("CitSKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("Clawshot")
+            && Has("Spinner")
+            && (Has("CitSSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool CityinTheSkyEastWingAfterDinalfosLedgeChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount")
-            && Has("SpinCount")
-            && (Has("CitSKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot")
+            && Has("Spinner")
+            && (Has("CitSSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatTileWorm()
             && CanDefeatDinalfos();
     }
@@ -4361,9 +4374,9 @@ public class LogicManager : MonoBehaviour
     public bool CityinTheSkyEastWingAfterDinalfosAlcoveChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount")
-            && Has("SpinCount")
-            && (Has("CitSKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot")
+            && Has("Spinner")
+            && (Has("CitSSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatTileWorm()
             && CanDefeatDinalfos();
     }
@@ -4371,136 +4384,136 @@ public class LogicManager : MonoBehaviour
     public bool CityinTheSkyAeralfosChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount")
-            && Has("SpinCount")
-            && (Has("CitSKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("BootsCount")
-            && Has("RangCount")
+            && Has("Clawshot")
+            && Has("Spinner")
+            && (Has("CitSSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("IronBoots")
+            && Has("Boomerang")
             && CanDefeatAeralfos();
     }
 
     public bool CityinTheSkyEastWingLowerLevelChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
-            && Has("SpinCount")
-            && (Has("CitSKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot", 2)
+            && Has("Spinner")
+            && (Has("CitSSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatTileWorm()
             && CanDefeatDinalfos();
     }
 
     public bool CityinTheSkyWestWingBabaBalconyChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2);
+        return CanAccessCitS() && Has("Clawshot", 2);
     }
 
     public bool CityinTheSkyWestWingNarrowLedgeChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2);
+        return CanAccessCitS() && Has("Clawshot", 2);
     }
 
     public bool CityinTheSkyWestWingTileWormChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2);
+        return CanAccessCitS() && Has("Clawshot", 2);
     }
 
     public bool CityinTheSkyBabaTowerTopSmallChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2) && CanDefeatBigBaba();
+        return CanAccessCitS() && Has("Clawshot", 2) && CanDefeatBigBaba();
     }
 
     public bool CityinTheSkyBabaTowerNarrowLedgeChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2) && CanDefeatBigBaba();
+        return CanAccessCitS() && Has("Clawshot", 2) && CanDefeatBigBaba();
     }
 
     public bool CityinTheSkyBabaTowerAlcoveChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2) && CanDefeatBigBaba();
+        return CanAccessCitS() && Has("Clawshot", 2) && CanDefeatBigBaba();
     }
 
     public bool CityinTheSkyWestGardenCornerChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2) && CanDefeatBigBaba();
+        return CanAccessCitS() && Has("Clawshot", 2) && CanDefeatBigBaba();
     }
 
     public bool CityinTheSkyWestGardenLoneIslandChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2) && CanDefeatBigBaba();
+        return CanAccessCitS() && Has("Clawshot", 2) && CanDefeatBigBaba();
     }
 
     public bool CityinTheSkyWestGardenLowerChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2) && CanDefeatBigBaba();
+        return CanAccessCitS() && Has("Clawshot", 2) && CanDefeatBigBaba();
     }
 
     public bool CityinTheSkyWestGardenLedgeChest()
     {
-        return CanAccessCitS() && Has("ClawCount", 2) && CanDefeatBigBaba();
+        return CanAccessCitS() && Has("Clawshot", 2) && CanDefeatBigBaba();
     }
 
     public bool CityinTheSkyCentralOutsideLedgeChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatBigBaba()
-            && Has("BootsCount")
-            && Has("CrystalCount");
+            && Has("IronBoots")
+            && Has("ShadowCrystal");
     }
 
     public bool CityinTheSkyCentralOutsidePoeIslandChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatBigBaba()
-            && Has("BootsCount")
-            && Has("CrystalCount");
+            && Has("IronBoots")
+            && Has("ShadowCrystal");
     }
 
     public bool CityinTheSkyBigKeyChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatBigBaba()
-            && Has("BootsCount")
-            && Has("CrystalCount");
+            && Has("IronBoots")
+            && Has("ShadowCrystal");
     }
 
     public bool CityinTheSkyChestBelowBigKeyChest()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatBigBaba()
-            && Has("BootsCount");
+            && Has("IronBoots");
     }
 
     public bool CityinTheSkyChestBehindNorthFan()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatBigBaba()
-            && Has("BootsCount")
-            && Has("CrystalCount");
+            && Has("IronBoots")
+            && Has("ShadowCrystal");
     }
 
     public bool CityinTheSkyArgorokHeartContainer()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatArgorok()
-            && Has("BootsCount")
-            && Has("CrystalCount")
-            && (Has("CitSBossKeyCount") || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("IronBoots")
+            && Has("ShadowCrystal")
+            && (Has("CitSBigKey") || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool CityinTheSkyDungeonReward()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatArgorok()
-            && Has("BootsCount")
-            && Has("CrystalCount")
-            && (Has("CitSBossKeyCount") || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("IronBoots")
+            && Has("ShadowCrystal")
+            && (Has("CitSBigKey") || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     // Poes
@@ -4508,18 +4521,18 @@ public class LogicManager : MonoBehaviour
     public bool CityinTheSkyGardenIslandPoe()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatBigBaba()
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
     public bool CityinTheSkyPoeAboveCentralFan()
     {
         return CanAccessCitS()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatBigBaba()
-            && Has("BootsCount")
-            && Has("CrystalCount");
+            && Has("IronBoots")
+            && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -4535,162 +4548,162 @@ public class LogicManager : MonoBehaviour
 
     public bool PalaceofTwilightWestWingChestBehindWallofDarkness()
     {
-        return CanAccessPoT() && Has("SwordCount", 4) && Has("ClawCount");
+        return CanAccessPoT() && Has("Sword", 4) && Has("Clawshot");
     }
 
     public bool PalaceofTwilightWestWingSecondRoomCentralChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("PoTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool PalaceofTwilightWestWingSecondRoomLowerSouthChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("PoTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool PalaceofTwilightWestWingSecondRoomSoutheastChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && (Has("PoTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool PalaceofTwilightEastWingFirstRoomZantHeadChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && (Has("PoTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightEastWingFirstRoomNorthSmallChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 2) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && (Has("PoTSmallKey", 2) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightEastWingSecondRoomNortheastChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && (Has("PoTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightEastWingSecondRoomNorthwestChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && (Has("PoTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightEastWingSecondRoomSouthwestChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && (Has("PoTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightEastWingSecondRoomSoutheastChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && (Has("PoTSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightEastWingFirstRoomEastAlcove()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && Has("CrystalCount")
-            && (Has("PoTKeyCount", 4)
-                || (Has("PoTKeyCount", 2) && Has("SwordCount", 4))
+            && Has("ShadowCrystal")
+            && (Has("PoTSmallKey", 4)
+                || (Has("PoTSmallKey", 2) && Has("Sword", 4))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool PalaceofTwilightEastWingFirstRoomWestAlcove()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && Has("CrystalCount")
-            && (Has("PoTKeyCount", 4)
-                || (Has("PoTKeyCount", 2) && Has("SwordCount", 4))
+            && Has("ShadowCrystal")
+            && (Has("PoTSmallKey", 4)
+                || (Has("PoTSmallKey", 2) && Has("Sword", 4))
                 || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool PalaceofTwilightCollectBothSols()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
+            && Has("Clawshot")
             && CanDefeatPhantomZant()
-            && (Has("PoTKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && (Has("PoTSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightCentralFirstRoomChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
-            && Has("SwordCount", 4)
-            && (Has("PoTKeyCount", 4) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && Has("Clawshot")
+            && Has("Sword", 4)
+            && (Has("PoTSmallKey", 4) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightBigKeyChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount", 2)
-            && Has("SwordCount", 4)
-            && (Has("PoTKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && Has("Clawshot", 2)
+            && Has("Sword", 4)
+            && (Has("PoTSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightCentralOutdoorChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
-            && Has("SwordCount", 4)
-            && (Has("PoTKeyCount", 5) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && Has("Clawshot")
+            && Has("Sword", 4)
+            && (Has("PoTSmallKey", 5) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightCentralTowerChest()
     {
         return CanAccessPoT()
-            && Has("ClawCount")
-            && Has("SwordCount", 4)
-            && (Has("PoTKeyCount", 6) || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && Has("Clawshot")
+            && Has("Sword", 4)
+            && (Has("PoTSmallKey", 6) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("ShadowCrystal");
     }
 
     public bool PalaceofTwilightZantHeartContainer()
     {
         return CanAccessPoT()
             && CanDefeatZant()
-            && Has("SwordCount", 4)
-            && ((Has("PoTKeyCount", 4) && Has("PoTBossKeyCount"))
+            && Has("Sword", 4)
+            && ((Has("PoTSmallKey", 4) && Has("PoTBigKey"))
                 || SettingsStatus["IgnoreKeyLogic"])
-            && Has("CrystalCount");
+            && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -4701,36 +4714,36 @@ public class LogicManager : MonoBehaviour
 
     public bool HyruleCastleGraveyardGraveSwitchRoomRightChest()
     {
-        return CanAccessHC() && Has("CrystalCount") && CanSmash();
+        return CanAccessHC() && Has("ShadowCrystal") && CanSmash();
     }
 
     public bool HyruleCastleGraveyardGraveSwitchRoomFrontLeftChest()
     {
-        return CanAccessHC() && Has("CrystalCount") && CanSmash();
+        return CanAccessHC() && Has("ShadowCrystal") && CanSmash();
     }
 
     public bool HyruleCastleGraveyardGraveSwitchRoomBackLeftChest()
     {
-        return CanAccessHC() && Has("CrystalCount") && CanSmash();
+        return CanAccessHC() && Has("ShadowCrystal") && CanSmash();
     }
 
     public bool HyruleCastleGraveyardOwlStatueChest()
     {
         return CanAccessHC()
-            && Has("CrystalCount")
+            && Has("ShadowCrystal")
             && CanSmash()
-            && Has("LanternCount")
-            && Has("RodCount", 2);
+            && Has("Lantern")
+            && Has("DominionRod", 2);
     }
 
     public bool HyruleCastleEastWingBoomerangPuzzleChest()
     {
-        return CanAccessHC() && Has("RangCount");
+        return CanAccessHC() && Has("Boomerang");
     }
 
     public bool HyruleCastleEastWingBalconyChest()
     {
-        return CanAccessHC() && Has("RangCount");
+        return CanAccessHC() && Has("Boomerang");
     }
 
     public bool HyruleCastleWestCourtyardNorthSmallChest()
@@ -4752,219 +4765,219 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessHC()
             && CanDefeatLizalfos()
-            && Has("ClawCount")
-            && (Has("HCKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"]);
+            && Has("Clawshot")
+            && (Has("HCSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
     public bool HyruleCastleLanternStaircaseChest()
     {
         return CanAccessHC()
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
-            && (Has("HCKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot", 2)
+            && (Has("HCSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatDarknut()
-            && Has("RangCount");
+            && Has("Boomerang");
     }
 
     public bool HyruleCastleMainHallSouthwestChest()
     {
         return CanAccessHC()
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
-            && (Has("HCKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot", 2)
+            && (Has("HCSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanKnockDownHCPainting()
-            && Has("RangCount")
-            && Has("LanternCount");
+            && Has("Boomerang")
+            && Has("Lantern");
     }
 
     public bool HyruleCastleMainHallNorthwestChest()
     {
         return CanAccessHC()
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
-            && (Has("HCKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && Has("Clawshot", 2)
+            && (Has("HCSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanKnockDownHCPainting()
-            && Has("RangCount")
-            && Has("LanternCount");
+            && Has("Boomerang")
+            && Has("Lantern");
     }
 
     public bool HyruleCastleSoutheastBalconyTowerChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
+            && Has("Boomerang")
             && CanDefeatAeralfos()
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleBigKeyChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 1) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomFirstChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomSecondChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomThirdChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomFourthChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomFifthChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomFirstSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomSecondSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomThirdSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomFourthSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomFifthSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomSixthSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomSeventhSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
     public bool HyruleCastleTreasureRoomEighthSmallChest()
     {
         return CanAccessHC()
-            && (Has("HCKeyCount", 3) || SettingsStatus["IgnoreKeyLogic"])
+            && (Has("HCSmallKey", 3) || SettingsStatus["IgnoreKeyLogic"])
             && CanDefeatLizalfos()
-            && Has("ClawCount", 2)
+            && Has("Clawshot", 2)
             && CanDefeatDarknut()
-            && Has("RangCount")
-            && Has("SpinCount")
-            && ((Has("LanternCount") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
+            && Has("Boomerang")
+            && Has("Spinner")
+            && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting());
     }
 
 }

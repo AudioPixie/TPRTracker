@@ -33,6 +33,9 @@ public class ResetBehaviour : MonoBehaviour
     public GameObject LoadPage;
     public GameObject HintPage;
 
+    [Header("Go Mode")]
+    public GameObject GoModeIcon;
+
     // determines "yes" behaviour
     public void SetInput(string input)
     {
@@ -124,6 +127,8 @@ public class ResetBehaviour : MonoBehaviour
                 }
             }
 
+            GoModeIcon.SetActive(false);
+            GameManager.Instance.ReactivateGoMode();
             GameManager.Instance.walletCount = 0;
         }
 

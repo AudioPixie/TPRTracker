@@ -169,6 +169,51 @@ public class SettingsManager : MonoBehaviour
         LogicManager.Instance.SettingsStatus["UnlockMapRegions"] = isOn;
     }
 
+    public void SetBonksDoDamage(bool isOn)
+    {
+        LogicManager.Instance.SettingsStatus["BonksDoDamage"] = isOn;
+    }
+
+    public void SetSmallKeys(int index)
+    {
+        LogicManager.Instance.SettingsStatus["SmallKeysVanilla"] = false;
+        LogicManager.Instance.SettingsStatus["SmallKeysOwnDungeon"] = false;
+        LogicManager.Instance.SettingsStatus["SmallKeysAnyDungeon"] = false;
+        LogicManager.Instance.SettingsStatus["SmallKeysKeysanity"] = false;
+        LogicManager.Instance.SettingsStatus["SmallKeysKeysy"] = false;
+
+        if (index == 0)
+            LogicManager.Instance.SettingsStatus["SmallKeysVanilla"] = true;
+        else if (index == 1)
+            LogicManager.Instance.SettingsStatus["SmallKeysOwnDungeon"] = true;
+        else if (index == 2)
+            LogicManager.Instance.SettingsStatus["SmallKeysAnyDungeon"] = true;
+        else if (index == 3)
+            LogicManager.Instance.SettingsStatus["SmallKeysKeysanity"] = true;
+        else
+            LogicManager.Instance.SettingsStatus["SmallKeysKeysy"] = true;
+    }
+
+    public void SetDamageMultiplier(int index)
+    {
+        LogicManager.Instance.SettingsStatus["DamageVanilla"] = false;
+        LogicManager.Instance.SettingsStatus["DamageDouble"] = false;
+        LogicManager.Instance.SettingsStatus["DamageTriple"] = false;
+        LogicManager.Instance.SettingsStatus["DamageQuadruple"] = false;
+        LogicManager.Instance.SettingsStatus["DamageOHKO"] = false;
+
+        if (index == 0)
+            LogicManager.Instance.SettingsStatus["DamageVanilla"] = true;
+        else if (index == 1)
+            LogicManager.Instance.SettingsStatus["DamageDouble"] = true;
+        else if (index == 2)
+            LogicManager.Instance.SettingsStatus["DamageTriple"] = true;
+        else if (index == 3)
+            LogicManager.Instance.SettingsStatus["DamageQuadruple"] = true;
+        else
+            LogicManager.Instance.SettingsStatus["DamageOHKO"] = true;
+    }
+
     public void SetIgnoreKey(bool isOn)
     {
         LogicManager.Instance.SettingsStatus["IgnoreKeyLogic"] = isOn;

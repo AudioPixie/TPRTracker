@@ -36,9 +36,13 @@ public class Settings
     public bool shuffleGoldenBugs;
     public bool shuffleSkyCharacters;
     public bool shuffleNpcItems;
-    public bool shufflePoes;
+    public string shufflePoes;
     public bool shuffleShopItems;
     public bool shuffleHiddenSkills;
+    public string itemScarcity;
+    public string damageMagnification;
+    public string bonksDoDamage;
+    public string shuffleRewards;
     public string smallKeySettings;
     public string bigKeySettings;
     public string mapAndCompassSettings;
@@ -658,11 +662,15 @@ public class SpoilerManager : MonoBehaviour
     public Toggle WalletIncrease;
     public Toggle OpenDoorofTime;
     public Toggle UnlockMapRegions;
+    public Toggle BonksDoDamage;
+    public TMP_Dropdown SmallKeys;
+    public TMP_Dropdown DamageMultiplier;
 
     [Header("For Auto Item Layout")]
     public GameObject ShowDungeons;
     public Button PresetMedium;
     public Toggle FixedHeight;
+    public Slider ItemColumns;
     public Toggle ShowBugs;
     public Toggle ShowPoes;
     public Toggle ShowFusedShadows;
@@ -673,8 +681,10 @@ public class SpoilerManager : MonoBehaviour
 
     [Header("For Auto Starting Items")]
     public GameObject ShieldButton;
+    public GameObject MagicArmorButton;
     public GameObject ZoraArmorButton;
     public GameObject ShadowCrystalButton;
+    public GameObject HawkeyeButton;
     public GameObject SwordButton;
     public GameObject BoomerangButton;
     public GameObject SpinnerButton;
@@ -686,14 +696,17 @@ public class SpoilerManager : MonoBehaviour
     public GameObject LanternButton;
     public GameObject FishingRodButton;
     public GameObject SlingshotButton;
+    public GameObject GiantBombBagButton;
     public GameObject BombBagButton;
     public GameObject BottleButton;
     public GameObject HorseCallButton;
     public GameObject AuruButton;
     public GameObject AsheiButton;
+    public GameObject HiddenSkillButton;
     public GameObject SkyBookButton;
     public GameObject GateKeysButton;
     public GameObject BulblinCampKeyButton;
+    public GameObject ForestKeyButton;
 
     private void Awake()
     {
@@ -895,6 +908,27 @@ public class SpoilerManager : MonoBehaviour
                 if (spoilerLog.settings.openMap == true)
                     UnlockMapRegions.isOn = true;
 
+                if (spoilerLog.settings.bonksDoDamage == "True")
+                    BonksDoDamage.isOn = true;
+
+                if (spoilerLog.settings.smallKeySettings == "Own_Dungeon")
+                    SmallKeys.value = 1;
+                else if (spoilerLog.settings.smallKeySettings == "Any_Dungeon")
+                    SmallKeys.value = 2;
+                else if (spoilerLog.settings.smallKeySettings == "Anywhere")
+                    SmallKeys.value = 3;
+                else if (spoilerLog.settings.smallKeySettings == "Keysy")
+                   SmallKeys.value = 4;
+
+                if (spoilerLog.settings.damageMagnification == "Double")
+                    DamageMultiplier.value = 1;
+                else if (spoilerLog.settings.damageMagnification == "Triple")
+                    DamageMultiplier.value = 2;
+                else if (spoilerLog.settings.damageMagnification == "Quadruple")
+                    DamageMultiplier.value = 3;
+                else if (spoilerLog.settings.damageMagnification == "OHKO")
+                    DamageMultiplier.value = 4;
+
                 GameManager.Instance.Refresh();
             }
 
@@ -903,12 +937,15 @@ public class SpoilerManager : MonoBehaviour
                 PresetMedium.onClick.Invoke();
 
                 if (spoilerLog.requiredDungeons.Length > 4)
+                {
                     FixedHeight.isOn = true;
+                    ItemColumns.value = 7;
+                }
 
                 if (spoilerLog.settings.shuffleNpcItems == false)
                     ShowBugs.isOn = false;
 
-                if (spoilerLog.settings.shufflePoes == false)
+                if (spoilerLog.settings.shufflePoes == "Vanilla")
                     ShowPoes.isOn = false;
 
                 ShowFusedShadows.isOn = false;
@@ -1031,6 +1068,12 @@ public class SpoilerManager : MonoBehaviour
                         continue;
                     }
 
+                    if (item == "Magic_Armor")//new
+                    {
+                        MagicArmorButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        continue;
+                    }
+
                     if (item == "Zora_Armor")
                     {
                         ZoraArmorButton.GetComponent<ItemBehaviour>().ItemIncrement();
@@ -1040,6 +1083,12 @@ public class SpoilerManager : MonoBehaviour
                     if (item == "Shadow_Crystal")
                     {
                         ShadowCrystalButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        continue;
+                    }
+
+                    if (item == "Hawkeye")//new
+                    {
+                        HawkeyeButton.GetComponent<ItemBehaviour>().ItemIncrement();
                         continue;
                     }
 
@@ -1109,6 +1158,12 @@ public class SpoilerManager : MonoBehaviour
                         continue;
                     }
 
+                    if (item == "Giant_Bomb_Bag")//new
+                    {
+                        GiantBombBagButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        continue;
+                    }
+
                     if (item == "Filled_Bomb_Bag")
                     {
                         BombBagButton.GetComponent<ItemBehaviour>().ItemIncrement();
@@ -1139,6 +1194,12 @@ public class SpoilerManager : MonoBehaviour
                         continue;
                     }
 
+                    if (item == "Progressive_Hidden_Skill")//new
+                    {
+                        HiddenSkillButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        continue;
+                    }
+
                     if (item == "Progressive_Sky_Book")
                     {
                         SkyBookButton.GetComponent<ItemBehaviour>().ItemIncrement();
@@ -1152,8 +1213,11 @@ public class SpoilerManager : MonoBehaviour
                     }
                 }
 
-                if (EarlyArbiters.isOn == true)
+                if (spoilerLog.settings.skipArbitersEntrance == true)
                     BulblinCampKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+
+                if (spoilerLog.settings.smallKeySettings == "Keysy")
+                    GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrement();
             }
 
             loadPage.SetActive(false);
