@@ -256,13 +256,38 @@ public class LogicManager : MonoBehaviour
         return Has("Lantern") || Has("B&C") || Has("Bombs");
     }
 
-    public bool CanRange()
+    public bool HasRangedItem()
     {
         return Has("Bow")
             || Has("Slingshot")
             || Has("Boomerang")
             || Has("B&C")
             || Has("Clawshot");
+    }
+
+    public bool HasShield()
+    {
+        return Has("Shield", 2)
+            || CanAccessKakVillage()
+            || CanAccessCastleTown()
+            || (CanAccessDeathMountain() && CanDefeatGoron());
+    }
+
+    public bool CanUseBottledFairy()
+    {
+        return Has("Bottle") && CanAccessLakeHylia();
+    }
+
+    public bool CanUseBottledFairies()
+    {
+        return Has("Bottle", 2) && CanAccessLakeHylia();
+    }
+
+    public bool CanUseOilBottle()
+    {
+        return true;
+        // should be lantern and coro bottle
+        // don't have bottles separated so this can't be used rn
     }
 
     public bool CanLaunchBombs()
@@ -283,19 +308,29 @@ public class LogicManager : MonoBehaviour
             || (Has("Bow") && CanGetArrows());
     }
 
+    public int GetPlayerHealth()
+    {
+        double playerHealth = 3.0;
+
+        playerHealth += ItemCounts["HeartPiece"];
+        playerHealth += ItemCounts["HeartContainer"];
+
+        return (int)playerHealth;
+    }
+
     public bool CanKnockDownHCPainting()
     {
-        return Has("Bow") || (Has("Sword") && Has("HiddenSkill", 6));
+        return Has("Bow");
     }
 
     public bool CanUseWBombs()
     {
-        return Has("WaterBombs") || SettingsStatus["IgnoreWaterBombLogic"];
+        return Has("WaterBombs") || (Has("Bombs") && SettingsStatus["IgnoreWaterBombLogic"]);
     }
 
     public bool CanGetArrows()
     {
-        return CanLeaveForest() || (CanCompletePrologue() && Has("ShadowCrystal"));
+        return CanClearForest() || CanAccessLostWoods();
     }
 
     public bool CanBreakMonkeyCage()
@@ -306,13 +341,15 @@ public class LogicManager : MonoBehaviour
             || Has("Bombs")
             || Has("Clawshot")
             || Has("ShadowCrystal")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (Has("Bow") && CanGetArrows());
     }
 
     public bool CanFreeAllMonkeys()
     {
         return CanBreakMonkeyCage()
-            && (Has("Lantern") || Has("Bombs") || Has("IronBoots"))
+            && (Has("Lantern") //|| (SettingsStatus["SmallKeysKeysy"] && (Has("Bombs") || Has("IronBoots")))
+            )
             && CanBurnWebs()
             && Has("Boomerang")
             && CanDefeatBokoblin()
@@ -326,7 +363,7 @@ public class LogicManager : MonoBehaviour
 
     public bool CanKnockDownHangingBaba()
     {
-        return Has("Bow") || Has("Boomerang") || Has("Clawshot");
+        return Has("Bow") || Has("Boomerang") || Has("Clawshot") || Has("Slingshot");
     }
 
     public bool CanBreakWoodenDoor()
@@ -342,17 +379,11 @@ public class LogicManager : MonoBehaviour
 
     public bool CanCompletePrologue()
     {
-        return (Has("Sword") && Has("Slingshot") && Has("FaronKeys"))
+        return (Has("Sword") && Has("Slingshot") && (Has("FaronKeys") || SettingsStatus["SmallKeysKeysy"]))
             || SettingsStatus["SkipPrologue"];
     }
 
-    public bool HasCompletedPrologue()
-    {
-        return (Has("Sword") && Has("Slingshot"))
-            || SettingsStatus["SkipPrologue"];
-    }
-
-    public bool CanLeaveForest()
+    public bool CanClearForest()
     {
         return (Has("Boss1") || SettingsStatus["FaronEscape"]) && CanCompletePrologue();
     }
@@ -382,12 +413,22 @@ public class LogicManager : MonoBehaviour
         return Has("LanayruVessel") || SettingsStatus["SkipLanayruTwilight"];
     }
 
+    public bool CanCompleteEldinTwilight()
+    {
+        return SettingsStatus["SkipEldinTwilight"] || (CanCompletePrologue() && CanClearForest());
+    }
+
     public bool CanAccessNorthFaron()
     {
         return FaronTwilightCleared() && (Has("Lantern") || Has("ShadowCrystal"));
     }
 
-    public bool CanAccessKakGorge()
+    public bool CanAccessLostWoods()
+    {
+        return CanCompletePrologue() && Has("ShadowCrystal");
+    }
+
+    public bool CanAccessKakGorge() // moved all of these to kak village
     {
         return EldinTwilightCleared() && (CanAccessFaronField() || CanAccessKakVillage());
     }
@@ -408,7 +449,9 @@ public class LogicManager : MonoBehaviour
     {
         return LanayruTwilightCleared()
             && CanAccessLanayruField()
-            && (CanSmash() || Has("GateKeys") || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")));
+            && (CanSmash() 
+            || (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"])
+            || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")));
     }
 
     public bool CanAccessDesert()
@@ -451,7 +494,7 @@ public class LogicManager : MonoBehaviour
 
     public bool CanAccessFaronField()
     {
-        return FaronTwilightCleared() && (CanLeaveForest() || (Has("ShadowCrystal") && EldinTwilightCleared()));
+        return FaronTwilightCleared() && (CanClearForest() || (Has("ShadowCrystal") && EldinTwilightCleared()));
     }
 
     public bool CanAccessEldinField()
@@ -462,16 +505,18 @@ public class LogicManager : MonoBehaviour
     public bool CanAccessLanayruField()
     {
         return LanayruTwilightCleared()
-            && CanLeaveForest()
+            && CanClearForest()
             && ((CanSmash() && CanAccessEldinField())
-                || Has("GateKeys")
+                || (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"])
                 || Has("ShadowCrystal"));
     }
 
     public bool CanAccessLanayru()
     {
-        return CanLeaveForest()
-            && (CanSmash() || Has("GateKeys") || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")))
+        return CanClearForest()
+            && (CanSmash() 
+                || (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"])
+                || (SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal")))
             && ((Has("Sword") && Has("Slingshot")) || SettingsStatus["SkipPrologue"]);
     }
 
@@ -548,7 +593,7 @@ public class LogicManager : MonoBehaviour
     public bool CanAccessAG()
     {
         return CanAccessDesert()
-            && ((Has("DesertKeys") && CanDefeatKingBulblinDesert())
+            && (((Has("DesertKeys") || SettingsStatus["SmallKeysKeysy"])&& CanDefeatKingBulblinDesert())
                 || SettingsStatus["EarlyArbiters"]);
     }
 
@@ -562,8 +607,9 @@ public class LogicManager : MonoBehaviour
             && ((CanAccessLanayru()
                 && Has("AurusMemo")
                 && CanDefeatKingBulblinDesert()
-                && Has("DesertKeys"))
-                    || SettingsStatus["EarlyArbiters"]);
+                && (Has("DesertKeys") || SettingsStatus["SmallKeysKeysy"]))
+                    || SettingsStatus["EarlyArbiters"])
+                    ;
 
     }
 
@@ -1413,46 +1459,46 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonSpringGoldenWolf()
     {
-        return CanCompletePrologue() && CanLeaveForest() && Has("ShadowCrystal");
+        return CanCompletePrologue() && CanClearForest() && Has("ShadowCrystal");
     }
 
     // Faron Woods
 
     public bool CoroBottle()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && CanCompletePrologue();
     }
 
     public bool FaronMistCaveLanternChest()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && Has("Lantern");
     }
 
     public bool FaronMistCaveOpenChest()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && Has("Lantern");
     }
 
     public bool FaronMistNorthChest()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && Has("Lantern")
             && CanCompletePrologue();
     }
 
     public bool FaronMistSouthChest()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && Has("Lantern")
             && CanCompletePrologue();
     }
 
     public bool FaronMistStumpChest()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && Has("Lantern")
             && CanCompletePrologue();
     }
@@ -1465,19 +1511,19 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronWoodsOwlStatueChest()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && CanSmash()
             && Has("DominionRod", 2)
-            && CanLeaveForest()
+            && CanClearForest()
             && Has("ShadowCrystal");
     }
 
     public bool FaronWoodsOwlStatueSkyCharacter()
     {
-        return HasCompletedPrologue()
+        return CanCompletePrologue()
             && CanSmash()
             && Has("DominionRod", 2)
-            && CanLeaveForest();
+            && CanClearForest();
     }
 
     public bool NorthFaronWoodsDekuBabaChest()
@@ -1488,7 +1534,7 @@ public class LogicManager : MonoBehaviour
 
     public bool SouthFaronCaveChest()
     {
-        return HasCompletedPrologue();
+        return CanCompletePrologue();
     }
 
     // Lost Woods/Sacred Grove
@@ -1536,7 +1582,7 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldBridgeChest()
     {
-        return CanLeaveForest()
+        return CanClearForest()
             && Has("Clawshot")
             && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
@@ -1544,7 +1590,7 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldCornerGrottoLeftChest()
     {
-        return CanLeaveForest()
+        return CanClearForest()
             && Has("ShadowCrystal")
             && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
@@ -1552,7 +1598,7 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldCornerGrottoRearChest()
     {
-        return CanLeaveForest()
+        return CanClearForest()
             && Has("ShadowCrystal")
             && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
@@ -1560,7 +1606,7 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldCornerGrottoRightChest()
     {
-        return CanLeaveForest()
+        return CanClearForest()
             && Has("ShadowCrystal")
             && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
@@ -1568,7 +1614,7 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldTreeHeartPiece()
     {
-        return CanLeaveForest()
+        return CanClearForest()
             && (Has("Boomerang") || Has("Clawshot"))
             && ((Has("Sword") && Has("Slingshot"))
                 || SettingsStatus["SkipPrologue"]);
@@ -1578,22 +1624,22 @@ public class LogicManager : MonoBehaviour
 
     public bool KakarikoGorgeDoubleClawshotChest()
     {
-        return CanAccessKakGorge() && Has("Clawshot", 2);
+        return CanAccessKakVillage() && Has("Clawshot", 2);
     }
 
     public bool KakarikoGorgeOwlStatueChest()
     {
-        return CanAccessKakGorge() && Has("DominionRod", 2);
+        return CanAccessKakVillage() && Has("DominionRod", 2);
     }
 
     public bool KakarikoGorgeOwlStatueSkyCharacter()
     {
-        return CanAccessKakGorge() && Has("DominionRod", 2);
+        return CanAccessKakVillage() && Has("DominionRod", 2);
     }
 
     public bool KakarikoGorgeSpireHeartPiece()
     {
-        return CanAccessKakGorge()
+        return CanAccessKakVillage()
             && (Has("Boomerang") || Has("Clawshot"));
     }
 
@@ -1640,7 +1686,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessEldinField()
             && Has("Spinner")
             && Has("ShadowCrystal")
-            && (CanSmash() || Has("GateKeys"));
+            && (CanSmash() || Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]);
     }
 
     public bool EldinFieldStalfosGrottoRightSmallChest()
@@ -1648,7 +1694,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessEldinField()
             && Has("Spinner")
             && Has("ShadowCrystal")
-            && (CanSmash() || Has("GateKeys"));
+            && (CanSmash() || Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]);
     }
 
     public bool EldinFieldStalfosGrottoStalfosChest()
@@ -1657,7 +1703,7 @@ public class LogicManager : MonoBehaviour
             && Has("Spinner")
             && Has("ShadowCrystal")
             && CanDefeatStalfos()
-            && (CanSmash() || Has("GateKeys"));
+            && (CanSmash() || Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]);
     }
 
     public bool EldinFieldWaterBombFishGrottoChest()
@@ -1669,7 +1715,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessEldinField()
             && CanAccessKakVillage()
-            && (CanSmash() || Has("GateKeys"));
+            && (CanSmash() || Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]);
     }
 
     // Lanayru Field
@@ -2107,7 +2153,7 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldPoe()
     {
-        return CanLeaveForest()
+        return CanClearForest()
             && CanCompleteMDH()
             && Has("ShadowCrystal");
     }
@@ -2116,7 +2162,7 @@ public class LogicManager : MonoBehaviour
 
     public bool KakarikoGorgePoe()
     {
-        return CanAccessKakGorge()
+        return CanAccessKakVillage()
             && CanCompleteMDH()
             && Has("ShadowCrystal");
     }
@@ -2335,12 +2381,12 @@ public class LogicManager : MonoBehaviour
 
     public bool KakarikoGorgeFemalePillBug()
     {
-        return CanAccessKakGorge();
+        return CanAccessKakVillage();
     }
 
     public bool KakarikoGorgeMalePillBug()
     {
-        return CanAccessKakGorge();
+        return CanAccessKakVillage();
     }
 
     public bool KakarikoVillageFemaleAnt()
@@ -2555,12 +2601,14 @@ public class LogicManager : MonoBehaviour
 
     public bool RutelasBlessing()
     {
-        return CanAccessKakVillage() && Has("GateKeys");
+        return CanAccessKakVillage() && (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]);
     }
 
     public bool GiftFromRalis()
     {
-        return CanAccessKakVillage() && Has("GateKeys") && Has("AsheisSketch");
+        return CanAccessKakVillage() 
+            && (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"])
+            && Has("AsheisSketch");
     }
 
     public bool KakarikoGraveyardGoldenWolf()
@@ -2608,17 +2656,17 @@ public class LogicManager : MonoBehaviour
 
     public bool EldinLanternCaveFirstChest()
     {
-        return CanAccessKakGorge() && CanSmash() && CanBurnWebs();
+        return CanAccessKakVillage() && CanSmash() && CanBurnWebs();
     }
 
     public bool EldinLanternCaveSecondChest()
     {
-        return CanAccessKakGorge() && CanSmash() && CanBurnWebs();
+        return CanAccessKakVillage() && CanSmash() && CanBurnWebs();
     }
 
     public bool EldinLanternCaveLanternChest()
     {
-        return CanAccessKakGorge()
+        return CanAccessKakVillage()
             && CanSmash()
             && CanBurnWebs()
             && Has("Lantern");
@@ -2628,7 +2676,7 @@ public class LogicManager : MonoBehaviour
 
     public bool EldinLanternCavePoe()
     {
-        return CanAccessKakGorge() && CanSmash() && Has("ShadowCrystal");
+        return CanAccessKakVillage() && CanSmash() && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -3040,7 +3088,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessDesert()
             && CanDefeatBulblin()
             && Has("Lantern")
-            && ((CanDefeatKingBulblinDesert() && Has("DesertKeys"))
+            && ((CanDefeatKingBulblinDesert() && (Has("DesertKeys") || SettingsStatus["SmallKeysKeysy"]))
                 || SettingsStatus["EarlyArbiters"]);
     }
 
@@ -3050,7 +3098,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessDesert()
             && Has("ShadowCrystal")
-            && ((CanDefeatKingBulblinDesert() && Has("DesertKeys"))
+            && ((CanDefeatKingBulblinDesert() && (Has("DesertKeys") || SettingsStatus["SmallKeysKeysy"]))
                 || SettingsStatus["EarlyArbiters"]);
     }
 
@@ -3058,7 +3106,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessDesert()
             && Has("ShadowCrystal")
-            && ((CanDefeatKingBulblinDesert() && Has("DesertKeys"))
+            && ((CanDefeatKingBulblinDesert() && (Has("DesertKeys") || SettingsStatus["SmallKeysKeysy"]))
                 || SettingsStatus["EarlyArbiters"]);
     }
 
@@ -4148,7 +4196,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessToT()
             && Has("Spinner")
             && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && CanRange()
+            && HasRangedItem()
             && CanDefeatLizalfos()
             && CanDefeatArmos();
     }
@@ -4156,7 +4204,7 @@ public class LogicManager : MonoBehaviour
     public bool TempleofTimeFirstStaircaseWindowChest()
     {
         return CanAccessToT()
-            && CanRange()
+            && HasRangedItem()
             && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"]);
     }
 
@@ -4164,7 +4212,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessToT()
             && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && CanRange()
+            && HasRangedItem()
             && CanDefeatLizalfos()
             && CanDefeatArmos();
     }
@@ -4174,7 +4222,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessToT()
             && Has("Spinner")
             && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && CanRange()
+            && HasRangedItem()
             && CanDefeatLizalfos()
             && CanDefeatArmos();
     }
@@ -4184,7 +4232,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessToT()
             && Has("Spinner")
             && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && CanRange()
+            && HasRangedItem()
             && CanDefeatLizalfos();
     }
 
@@ -4279,7 +4327,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessToT()
             && Has("Spinner")
             && (Has("ToTSmallKey", 1) || SettingsStatus["IgnoreKeyLogic"])
-            && CanRange()
+            && HasRangedItem()
             && CanDefeatLizalfos()
             && CanDefeatArmos()
             && Has("DominionRod");
