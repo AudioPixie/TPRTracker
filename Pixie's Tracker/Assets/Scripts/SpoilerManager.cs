@@ -644,7 +644,6 @@ public class SpoilerManager : MonoBehaviour
     public Toggle AutoReset;
 
     [Header("Settings Toggles/Dropdowns")]
-    public Toggle IgnoreKey;
     public TMP_Dropdown HyruleCastleRequirements;
     public TMP_Dropdown PalaceOfTwilightRequirements;
     public TMP_Dropdown FaronWoodsLogic;
@@ -663,7 +662,9 @@ public class SpoilerManager : MonoBehaviour
     public Toggle OpenDoorofTime;
     public Toggle UnlockMapRegions;
     public Toggle BonksDoDamage;
+    public Toggle TransformAnywhere;
     public TMP_Dropdown SmallKeys;
+    public TMP_Dropdown BigKeys;
     public TMP_Dropdown DamageMultiplier;
 
     [Header("For Auto Item Layout")]
@@ -840,9 +841,6 @@ public class SpoilerManager : MonoBehaviour
                 ButtonYesReset.GetComponent<ResetBehaviour>().SetInput("Settings");
                 ButtonYesReset.GetComponent<ResetBehaviour>().OnClick();
 
-                if (spoilerLog.settings.smallKeySettings == "Keysy" && spoilerLog.settings.bigKeySettings == "Keysy")
-                    IgnoreKey.isOn = true;
-
                 if (spoilerLog.settings.castleRequirements == "All_Dungeons")
                     HyruleCastleRequirements.value = 1;
                 else if (spoilerLog.settings.castleRequirements == "Mirror_Shards")
@@ -911,6 +909,9 @@ public class SpoilerManager : MonoBehaviour
                 if (spoilerLog.settings.bonksDoDamage == "True")
                     BonksDoDamage.isOn = true;
 
+                if (spoilerLog.settings.transformAnywhere == true)
+                    TransformAnywhere.isOn = true;
+
                 if (spoilerLog.settings.smallKeySettings == "Own_Dungeon")
                     SmallKeys.value = 1;
                 else if (spoilerLog.settings.smallKeySettings == "Any_Dungeon")
@@ -918,7 +919,16 @@ public class SpoilerManager : MonoBehaviour
                 else if (spoilerLog.settings.smallKeySettings == "Anywhere")
                     SmallKeys.value = 3;
                 else if (spoilerLog.settings.smallKeySettings == "Keysy")
-                   SmallKeys.value = 4;
+                    SmallKeys.value = 4;
+
+                if (spoilerLog.settings.bigKeySettings == "Own_Dungeon")
+                    BigKeys.value = 1;
+                else if (spoilerLog.settings.bigKeySettings == "Any_Dungeon")
+                    BigKeys.value = 2;
+                else if (spoilerLog.settings.bigKeySettings == "Anywhere")
+                    BigKeys.value = 3;
+                else if (spoilerLog.settings.bigKeySettings == "Keysy")
+                    BigKeys.value = 4;
 
                 if (spoilerLog.settings.damageMagnification == "Double")
                     DamageMultiplier.value = 1;

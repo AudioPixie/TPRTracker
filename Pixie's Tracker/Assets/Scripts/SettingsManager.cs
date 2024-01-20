@@ -174,6 +174,11 @@ public class SettingsManager : MonoBehaviour
         LogicManager.Instance.SettingsStatus["BonksDoDamage"] = isOn;
     }
 
+    public void SetTransformAnywhere(bool isOn)
+    {
+        LogicManager.Instance.SettingsStatus["TransformAnywhere"] = isOn;
+    }
+
     public void SetSmallKeys(int index)
     {
         LogicManager.Instance.SettingsStatus["SmallKeysVanilla"] = false;
@@ -194,6 +199,26 @@ public class SettingsManager : MonoBehaviour
             LogicManager.Instance.SettingsStatus["SmallKeysKeysy"] = true;
     }
 
+    public void SetBigKeys(int index)
+    {
+        LogicManager.Instance.SettingsStatus["BigKeysVanilla"] = false;
+        LogicManager.Instance.SettingsStatus["BigKeysOwnDungeon"] = false;
+        LogicManager.Instance.SettingsStatus["BigKeysAnyDungeon"] = false;
+        LogicManager.Instance.SettingsStatus["BigKeysKeysanity"] = false;
+        LogicManager.Instance.SettingsStatus["BigKeysKeysy"] = false;
+
+        if (index == 0)
+            LogicManager.Instance.SettingsStatus["BigKeysVanilla"] = true;
+        else if (index == 1)
+            LogicManager.Instance.SettingsStatus["BigKeysOwnDungeon"] = true;
+        else if (index == 2)
+            LogicManager.Instance.SettingsStatus["BigKeysAnyDungeon"] = true;
+        else if (index == 3)
+            LogicManager.Instance.SettingsStatus["BigKeysKeysanity"] = true;
+        else
+            LogicManager.Instance.SettingsStatus["BigKeysKeysy"] = true;
+    }
+
     public void SetDamageMultiplier(int index)
     {
         LogicManager.Instance.SettingsStatus["DamageVanilla"] = false;
@@ -212,11 +237,6 @@ public class SettingsManager : MonoBehaviour
             LogicManager.Instance.SettingsStatus["DamageQuadruple"] = true;
         else
             LogicManager.Instance.SettingsStatus["DamageOHKO"] = true;
-    }
-
-    public void SetIgnoreKey(bool isOn)
-    {
-        LogicManager.Instance.SettingsStatus["IgnoreKeyLogic"] = isOn;
     }
 
     public void SetIgnoreWallet(bool isOn)
