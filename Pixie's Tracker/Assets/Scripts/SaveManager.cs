@@ -155,7 +155,6 @@ public class SaveManager : MonoBehaviour
         foreach (Transform child1 in RegularItemsContainer.transform)
         {
             Transform child2 = child1.GetChild(1);
-
             child2.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child1.name);
             child2.GetComponent<ItemBehaviour>().ItemRefresh();
         }

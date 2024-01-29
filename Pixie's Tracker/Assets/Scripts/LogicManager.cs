@@ -1478,7 +1478,8 @@ public class LogicManager : MonoBehaviour
     public bool FaronMistCaveOpenChest()
     {
         return ((Has("Sword") && Has("Slingshot")) || SettingsStatus["SkipPrologue"])
-            && (CanBurnWebs() || Has("ShadowCrystal") || SettingsStatus["SkipPrologue"]);
+            && (CanBurnWebs() || Has("ShadowCrystal") || SettingsStatus["SkipPrologue"])
+            && Has("Lantern");
     }
 
     public bool FaronMistNorthChest()
