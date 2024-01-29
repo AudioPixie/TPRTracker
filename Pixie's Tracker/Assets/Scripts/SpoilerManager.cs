@@ -2134,8 +2134,8 @@ public class SpoilerManager : MonoBehaviour
         string locationNameFormatted9 = locationNameFormatted8.Replace("Motherand", "Mother and");
         string locationNameFormatted10 = locationNameFormatted9.Replace("Balland", "Ball and");
         string locationNameFormatted11 = locationNameFormatted10.Replace("Hideand", "Hide and");
-        string locationNameFormatted12 = locationNameFormatted11.Replace("Prize1", "Prize 1");
-        string locationNameFormatted13 = locationNameFormatted12.Replace("Prize2", "Prize 2");
+        string locationNameFormatted12 = locationNameFormatted11.Replace("S T A R Prize1", "STAR Prize 1");
+        string locationNameFormatted13 = locationNameFormatted12.Replace("S T A R Prize2", "STAR Prize 2");
 
         return locationNameFormatted13;
     }
