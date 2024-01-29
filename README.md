@@ -110,6 +110,8 @@ Agitha is completely removed from Fanadi's hints as it would require the user to
 
 Assuming you aren't in Go Mode (or checked off something you shouldn't have...), there should always be a key item you're looking for, so if Fanadi can't find it **it's very likely that Agitha has it**. 
 
+Alternatively, if unrequired dungeons are **not** barren, you could be looking for a key for an unrequired dungeon as only required keys are in the hint pool.
+
 ### Key Items
 
 Both Spirit of Light hints and Fanadi's tier 2 and 3 hints are generated from a list of **key items**. When a hint is generated, that item is removed from the list. Items in your starting inventory are excluded from this list and your settings are taken into account:
@@ -156,7 +158,7 @@ Junk items for the 5 rupee tier are quite restricted, so don't worry about there
 
 Feedback, testing, ideas, and development contributions are extremely welcome and are more than appreciated! Feel free to hit me up in the [TPR Discord](https://discord.gg/tprandomizer) if you want to chat about the tracker. Feel free to take a look at the [issues page](https://github.com/AudioPixie/TPRTracker/issues) for current bugs, future ideas, and what is currently being worked on. As of now these are the mains things I'm focusing on:
 
-- Getting the logic rock-solid and keeping up-to-date with randomizer releases
+- Keeping up-to-date with randomizer releases
 - Getting glitched logic implemented
 - Bug fixes for critical issues
 
