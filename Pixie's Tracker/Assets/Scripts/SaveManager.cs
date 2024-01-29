@@ -21,6 +21,11 @@ public class SaveManager : MonoBehaviour
     public GameObject SeedBG;
     public GameObject VisualBG;
 
+    [Header("Tabs")]
+    public Toggle MainTab;
+    public Toggle PoesTab;
+    public Toggle BugsTab;
+
     private static SaveManager instance;
 
     public static SaveManager Instance
@@ -147,6 +152,11 @@ public class SaveManager : MonoBehaviour
 
         // Spoiler Log
         SpoilerManager.Instance.SaveSpoilerLog();
+
+        // Tabs
+        PlayerPrefs.SetInt("MainTab", MainTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("PoesTab", PoesTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("BugsTab", BugsTab.isOn ? 1 : 0);
     }
 
     public void LoadData()
@@ -251,6 +261,11 @@ public class SaveManager : MonoBehaviour
         {
             SpoilerManager.Instance.LoadSavedSpoilerLog(PlayerPrefs.GetString("currentSpoilerLog"));
         }
+
+        // Tabs
+        MainTab.isOn = PlayerPrefs.GetInt("MainTab") != 0;
+        PoesTab.isOn = PlayerPrefs.GetInt("PoesTab") != 0;
+        BugsTab.isOn = PlayerPrefs.GetInt("BugsTab") != 0;
 
         GameManager.Instance.Refresh();
 

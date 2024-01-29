@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SettingsBehaviour : MonoBehaviour
 {
     public GameObject ScrollBox;
+    public GameObject Viewport;
     private Toggle toggle;
     private RectTransform CurrentDungeon;
     private GameObject NewDungeon;
@@ -15,6 +16,7 @@ public class SettingsBehaviour : MonoBehaviour
         toggle = GetComponent<Toggle>();
         toggle.onValueChanged.AddListener(OnToggleValueChanged);
         ScrollBox = GameObject.Find("ScrollBox");
+        Viewport = GameObject.Find("Viewport");
 
         if (gameObject.name == "Main")
         {
@@ -28,19 +30,34 @@ public class SettingsBehaviour : MonoBehaviour
 
     public void OnToggleValueChanged(bool isOn)
     {
-        if (isOn && ((gameObject.name == "Main") || (gameObject.name == "Poes"))) // switches between main and poe dungeon check lists
+        if (gameObject.name == "Main")
         {
-            CurrentDungeon = ScrollBox.GetComponent<ScrollRect>().content;
-            if (CurrentDungeon.GetComponent<TwinBehaviour>().Twin != null &&
-                ((gameObject.name == "Main" && CurrentDungeon.GetComponent<TwinBehaviour>().isPoe_twin == true)
-                ||
-                (gameObject.name == "Poes" && CurrentDungeon.GetComponent<TwinBehaviour>().isPoe_twin == false)))
+            foreach (Transform child1 in Viewport.transform)
             {
-                NewDungeon = CurrentDungeon.GetComponent<TwinBehaviour>().Twin;
-                ScrollManager.Instance.ChangeDungeon(NewDungeon.GetComponent<RectTransform>(), NewDungeon.GetComponent<TwinBehaviour>().twinHeaderName);
+                foreach (Transform child2 in child1.transform)
+                {
+                    if (child2.GetComponent<ListChecksBehaviour>().isPoe == false)
+                    {
+                        child2.gameObject.SetActive(isOn);
+                    }
+                }
             }
         }
 
+        if (gameObject.name == "Poes")
+        {
+            foreach (Transform child1 in Viewport.transform)
+            {
+                foreach (Transform child2 in child1.transform)
+                {
+                    if (child2.GetComponent<ListChecksBehaviour>().isPoe == true)
+                    {
+                        child2.gameObject.SetActive(isOn);
+                    }
+                }
+            }
+        }
+        
         GameManager.Instance.Refresh();
     }
 }

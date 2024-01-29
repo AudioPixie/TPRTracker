@@ -667,6 +667,11 @@ public class SpoilerManager : MonoBehaviour
     public TMP_Dropdown BigKeys;
     public TMP_Dropdown DamageMultiplier;
 
+    [Header("For Auto Tabs")]
+    public Toggle MainTab;
+    public Toggle PoesTab;
+    public Toggle BugsTab;
+
     [Header("For Auto Item Layout")]
     public GameObject ShowDungeons;
     public Button PresetMedium;
@@ -938,6 +943,18 @@ public class SpoilerManager : MonoBehaviour
                     DamageMultiplier.value = 3;
                 else if (spoilerLog.settings.damageMagnification == "OHKO")
                     DamageMultiplier.value = 4;
+
+                MainTab.isOn = true;
+
+                if (spoilerLog.settings.shufflePoes == "Vanilla")
+                    PoesTab.isOn = false;
+                else
+                    PoesTab.isOn = true;
+
+                if (spoilerLog.settings.shuffleGoldenBugs == false)
+                    BugsTab.isOn = false;
+                else
+                    BugsTab.isOn = true;
 
                 GameManager.Instance.Refresh();
             }
@@ -1327,6 +1344,8 @@ public class SpoilerManager : MonoBehaviour
         }
 
         currentFanadiIndex = PlayerPrefs.GetInt("currentFanadiIndex");
+        if (FanadiGeneratedHints.Count > 0)
+            FanadiText.text = FanadiGeneratedHints[currentFanadiIndex];
 
         ArrowInteractivity();
         IndexCounterUpdate();

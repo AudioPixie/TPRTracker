@@ -137,14 +137,14 @@ public class GameManager : MonoBehaviour
 
         foreach (Transform child in LayerTabs.transform)
         {
-            child.GetComponent<SettingsBehaviour>().SettingsInitialize();
+            if (child.GetComponent<SettingsBehaviour>() != null)
+                child.GetComponent<SettingsBehaviour>().SettingsInitialize();
         }
 
         ScrollManager.Instance.ScrollInitialize();
 
         // Sets Ordon as default dungeon
         GameObject.Find("OrdonVillage").GetComponent<DungeonBehaviour>().OnDungeonClick();
-        GameObject.Find("PoeDungeons").SetActive(false);
 
         OverlayInfo.SetActive(true); // boot up page
 

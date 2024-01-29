@@ -26,12 +26,6 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void DungeonInitialize()
     {
         DungeonCounter = GetComponentInChildren<TMP_Text>();
-        totalDCheckCount = 0;
-
-        foreach (Transform child in DungeonContainer.transform)
-        {
-            totalDCheckCount += 1;
-        }
 
         scrollRect = GameObject.Find("ScrollBox").GetComponent<ScrollRect>();
         OnDungeonClick();
@@ -42,11 +36,19 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         availableDCheckCount = 0;
         completedDCheckCount = 0;
+        totalDCheckCount = 0;
+
+        foreach (Transform child in DungeonContainer.transform)
+        {
+            if (child.gameObject.activeSelf == true)
+                totalDCheckCount += 1;
+        }
 
         foreach (Transform child in DungeonContainer.transform)
         {
             if (child.GetComponent<ListChecksBehaviour>().checkAvailibility == true
-                && child.GetComponent<ListChecksBehaviour>().checkCompletion == false)
+                && child.GetComponent<ListChecksBehaviour>().checkCompletion == false
+                && child.gameObject.activeSelf == true)
             {
                 availableDCheckCount += 1;
             }
@@ -63,7 +65,8 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         foreach (Transform child in DungeonContainer.transform)
         {
-            if (child.GetComponent<ListChecksBehaviour>().checkCompletion == true)
+            if (child.GetComponent<ListChecksBehaviour>().checkCompletion == true
+                && child.gameObject.activeSelf == true)
             {
                 completedDCheckCount += 1;
             }
@@ -80,24 +83,13 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 ScrollManager.Instance.Header.color = new Color(0.7f, 0.7f, 0.7f, 1);
         }
 
-        // green/purple - all remaining are available
+        // green - all remaining are available
         else if (availableDCheckCount == (totalDCheckCount - completedDCheckCount))
         {
-            if (isPoe == false)
-            {
-                GetComponent<Image>().color = GameManager.Instance.OverworldColor;
+            GetComponent<Image>().color = GameManager.Instance.OverworldColor;
 
-                if (DungeonContainer.activeInHierarchy == true)
-                    ScrollManager.Instance.Header.color = GameManager.Instance.OverworldColor;
-            }
-
-            else
-            {
-                GetComponent<Image>().color = GameManager.Instance.PoeColor;
-
-                if (DungeonContainer.activeInHierarchy == true)
-                    ScrollManager.Instance.Header.color = GameManager.Instance.PoeColor;
-            }
+            if (DungeonContainer.activeInHierarchy == true)
+                ScrollManager.Instance.Header.color = GameManager.Instance.OverworldColor;
         }
 
         // red - none remaining available

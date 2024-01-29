@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3233292750369939532}
   - component: {fileID: 3233292750369939533}
   - component: {fileID: 3233292750369939522}
-  - component: {fileID: 1033000001833721633}
   m_Layer: 5
   m_Name: DungeonContainer
   m_TagString: Untagged
@@ -119,19 +118,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
---- !u!114 &1033000001833721633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3233292750369939520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28515d8e405f64fc89e740b82662cd1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasTwin: 0
-  Twin: {fileID: 0}
-  twinHeaderName: 
-  isPoe_twin: 0
