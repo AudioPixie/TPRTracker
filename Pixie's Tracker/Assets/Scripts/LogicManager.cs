@@ -3628,14 +3628,14 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessLT()
             && CanLaunchBombs()
-            && (CanDefeatDekuToad() 
+            && ((CanDefeatDekuToad() 
                 && (Has("LTSmallKey", 2) || SettingsStatus["SmallKeysKeysy"])
                 && Has("ZoraArmor") 
                 && Has("IronBoots") 
                 && CanUseWBombs() 
                 && Has("Clawshot")) 
             || ((Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]) 
-                && (CanLaunchBombs() || (Has("Clawshot") && CanSmash())));
+                && (CanLaunchBombs() || (Has("Clawshot") && CanSmash()))));
     }
 
     public bool LakebedTempleBeforeDekuToadUnderwaterLeftChest()
