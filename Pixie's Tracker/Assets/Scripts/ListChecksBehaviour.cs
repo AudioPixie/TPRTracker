@@ -10,6 +10,7 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
     public GameObject DungeonBox; // linked dungeon box on map
     [SerializeField]
     public bool isPoe;
+    public bool isDungeon;
     public int rupeesWorth; // for hint rupee mode
 
     [Header("Info")]

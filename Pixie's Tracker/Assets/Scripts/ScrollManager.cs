@@ -25,6 +25,8 @@ public class ScrollManager : MonoBehaviour
 
     public RectTransform CurrentDungeon;
     public GameObject ScrollBox;
+    public GameObject PoeChecks;
+    public GameObject Viewport;
     public TMP_Text Header;
 
     private void Awake()
@@ -65,6 +67,59 @@ public class ScrollManager : MonoBehaviour
             {
                 child.GetComponent<Toggle>().isOn = false;
                 tempRupees += child.GetComponent<ListChecksBehaviour>().rupeesWorth;
+            }
+        }
+
+        GameManager.Instance.walletCount -= tempRupees;
+        GameManager.Instance.HintRefresh();
+    }
+
+    public void ClearOverworldPoes()
+    {
+        int tempRupees = 0;
+
+        foreach (Transform child in PoeChecks.transform)
+        {
+            if (child.GetComponent<Toggle>().isOn == true)
+            {
+                child.GetComponent<Toggle>().isOn = false;
+                tempRupees += child.GetComponent<ChecksBehaviour>().rupeesWorth;
+            }
+        }
+
+        foreach (Transform child1 in Viewport.transform)
+        {
+            foreach (Transform child2 in child1.transform)
+            {
+                if (child2.GetComponent<Toggle>().isOn == true
+                    && child2.GetComponent<ListChecksBehaviour>().isPoe == true
+                    && child2.GetComponent<ListChecksBehaviour>().isDungeon == false)
+                {
+                    child2.GetComponent<Toggle>().isOn = false;
+                    tempRupees += child2.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                }
+            }
+        }
+
+        GameManager.Instance.walletCount -= tempRupees;
+        GameManager.Instance.HintRefresh();
+    }
+
+        public void ClearDungeonPoes()
+    {
+        int tempRupees = 0;
+
+        foreach (Transform child1 in Viewport.transform)
+        {
+            foreach (Transform child2 in child1.transform)
+            {
+                if (child2.GetComponent<Toggle>().isOn == true
+                    && child2.GetComponent<ListChecksBehaviour>().isPoe == true
+                    && child2.GetComponent<ListChecksBehaviour>().isDungeon == true)
+                {
+                    child2.GetComponent<Toggle>().isOn = false;
+                    tempRupees += child2.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                }
             }
         }
 
