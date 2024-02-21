@@ -47,9 +47,10 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- Click on it to make it disappear
 	- If you click on it and want it back, head to General Settings to re-enable it 
 
-- Dungeon Clearing
+- Check Clearing
 	- A dungeon or area (e.g. Kakariko Village) can be cleared (all checks marked as completed) from the pop-out menu on the right side of the check list box
 	- This clears both regular and poe checks for the respective dungeon/area
+ 	- All poes can be cleared in the same menu (overworld or dungeon separately)
 	- This does not affect rupee count
 
 ## Spoiler Log integration
