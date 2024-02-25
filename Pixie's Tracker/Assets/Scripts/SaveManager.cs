@@ -257,10 +257,7 @@ public class SaveManager : MonoBehaviour
         TextManager.Instance.SetWalletText();
 
         // Spoiler Log
-        if (PlayerPrefs.HasKey("currentSpoilerLog"))
-        {
-            SpoilerManager.Instance.LoadSavedSpoilerLog(PlayerPrefs.GetString("currentSpoilerLog"));
-        }
+        SpoilerManager.Instance.LoadSavedSpoilerLog(PlayerPrefs.GetString("currentSpoilerLog"));
 
         // Tabs
         MainTab.isOn = PlayerPrefs.GetInt("MainTab") != 0;

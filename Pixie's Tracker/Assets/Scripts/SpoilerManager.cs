@@ -644,6 +644,7 @@ public class SpoilerManager : MonoBehaviour
     public Toggle AutoReset;
 
     [Header("Settings Toggles/Dropdowns")]
+    public Toggle GlitchedLogic;
     public TMP_Dropdown HyruleCastleRequirements;
     public TMP_Dropdown PalaceOfTwilightRequirements;
     public TMP_Dropdown FaronWoodsLogic;
@@ -845,6 +846,9 @@ public class SpoilerManager : MonoBehaviour
             {
                 ButtonYesReset.GetComponent<ResetBehaviour>().SetInput("Settings");
                 ButtonYesReset.GetComponent<ResetBehaviour>().OnClick();
+
+                if (spoilerLog.settings.logicRules == "Glitched")
+                    GlitchedLogic.isOn = true;
 
                 if (spoilerLog.settings.castleRequirements == "All_Dungeons")
                     HyruleCastleRequirements.value = 1;
@@ -1340,7 +1344,7 @@ public class SpoilerManager : MonoBehaviour
 
         if (FanadiGeneratedHints.Count == 0)
         {
-            FanadiText.text = "Fortunes, prophecies, divination.You want it? It's yours my friend! As long as you have enough <color=#00ff00>rupees...</color>";
+            FanadiText.text = "Fortunes, prophecies, divination. You want it? It's yours my friend! As long as you have enough <color=#00ff00>rupees...</color>";
         }
 
         currentFanadiIndex = PlayerPrefs.GetInt("currentFanadiIndex");
@@ -1353,8 +1357,16 @@ public class SpoilerManager : MonoBehaviour
         GameManager.Instance.HintRefresh();
         GameManager.Instance.Refresh();
 
-        loadPage.SetActive(false);
-        hintPage.SetActive(true);
+        if (spoilerLog.playthroughName == "")
+        {
+            loadPage.SetActive(true);
+            hintPage.SetActive(false);
+        }
+        else
+        {            
+            loadPage.SetActive(false);
+            hintPage.SetActive(true);
+        }
     }
 
     public void PopulateCheckContents()

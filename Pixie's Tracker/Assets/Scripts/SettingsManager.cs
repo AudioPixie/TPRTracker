@@ -36,6 +36,11 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void SetGlitchedLogic(bool isOn)
+    {
+        LogicManager.Instance.SettingsStatus["GlitchedLogic"] = isOn;
+    }
+
     public void SetHCRequirements(int index)
     {
         LogicManager.Instance.SettingsStatus["HCVanilla"] = false;

@@ -111,6 +111,8 @@ public class LogicManager : MonoBehaviour
 
     public Dictionary<string, bool> SettingsStatus = new()
     {
+        {"GlitchedLogic", false },
+
         {"FaronEscape", true },
         {"SkipPrologue", false },
         {"SkipMDH", false },
