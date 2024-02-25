@@ -680,13 +680,14 @@ public class LogicManager : MonoBehaviour
 
     public bool CanAccessHC()
     {
-        return CanAccessCastleTown()
-            && CanCompleteMDH()
-            && ((SettingsStatus["HCVanilla"] && Has("Boss8"))
-                || (SettingsStatus["HCFusedShadows"] && Has("FusedShadow", 3))
-                || (SettingsStatus["HCMirrorShards"] && Has("MirrorShard", 3))
-                || (SettingsStatus["HCAllDungeons"] && HasCompletedAllDungeons())
-                || SettingsStatus["HCOpen"]);
+        return CanAccessCastleTown() 
+            && (SettingsStatus["HCOpen"] 
+            || (SettingsStatus["HCVanilla"] && Has("Boss8")) 
+            || (SettingsStatus["HCFusedShadows"] && Has("FusedShadow", 3)) 
+            || (SettingsStatus["HCMirrorShards"] && Has("MirrorShard", 3)) 
+            || ((SettingsStatus["HCAllDungeons"] 
+                && HasCompletedAllDungeons()) 
+                && CanCompleteMDH()));
     }
 
     public bool CanCompleteAllDungeons()
