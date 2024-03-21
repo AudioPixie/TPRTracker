@@ -249,20 +249,46 @@ public class LogicManager : MonoBehaviour
         return Has("Sword")
             || Has("B&C")
             || Has("Bow")
-            || Has("Bombs")
+            || HasBombs()
             || Has("IronBoots")
             || Has("ShadowCrystal")
             || Has("Spinner");
     }
 
+    public bool HasBombs()
+    {
+        return (
+            Has("Bombs")
+            && (
+                CanAccessKakariko()
+                || (
+                    CanAccessEldinField() && Has("ShadowCrystal") && Has("FishingRod")
+                )
+                || CanAccessCitS()
+            )
+        );
+    }
+
+    public bool HasWaterBombs()
+    {
+        return 
+            Has("Bombs") && (Has("WaterBombs") || SettingsStatus["IgnoreWaterBombLogic"])
+            && (
+                CanAccessKakariko()
+                || (
+                    CanAccessEldinField() && Has("ShadowCrystal") && Has("FishingRod")
+                )
+            );
+    }
+
     public bool CanSmash()
     {
-        return Has("B&C") || Has("Bombs");
+        return Has("B&C") || HasBombs();
     }
 
     public bool CanBurnWebs()
     {
-        return Has("Lantern") || Has("B&C") || Has("Bombs");
+        return Has("Lantern") || Has("B&C") || HasBombs();
     }
 
     public bool HasRangedItem()
@@ -301,12 +327,12 @@ public class LogicManager : MonoBehaviour
 
     public bool CanLaunchBombs()
     {
-        return (Has("Bow") || Has("Boomerang")) && Has("Bombs");
+        return (Has("Bow") || Has("Boomerang")) && HasBombs();
     }
 
     public bool CanBombArrow()
     {
-        return Has("Bow") && Has("Bombs");
+        return Has("Bow") && HasBombs();
     }
 
     public bool CanCutHangingWeb()
@@ -321,7 +347,7 @@ public class LogicManager : MonoBehaviour
     {
         double playerHealth = 3.0;
 
-        playerHealth += ItemCounts["HeartPiece"];
+        playerHealth += ItemCounts["HeartPiece"] * 0.2;
         playerHealth += ItemCounts["HeartContainer"];
 
         return (int)playerHealth;
@@ -329,12 +355,20 @@ public class LogicManager : MonoBehaviour
 
     public bool CanKnockDownHCPainting()
     {
-        return Has("Bow");
-    }
-
-    public bool CanUseWBombs()
-    {
-        return Has("WaterBombs") || (Has("Bombs") && SettingsStatus["IgnoreWaterBombLogic"]);
+        return (
+            Has("Bow")
+            || (
+                CanDoNicheStuff()
+                && (
+                    HasBombs()
+                    || (Has("Sword") && Has("HiddenSkill", 6))
+                )
+            )
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && ((Has("Sword") && CanDoMoonBoots()) || CanDoBSMoonBoots())
+            )
+        );
     }
 
     public bool CanGetArrows()
@@ -347,17 +381,18 @@ public class LogicManager : MonoBehaviour
         return Has("Sword")
             || Has("B&C")
             || Has("IronBoots")
-            || Has("Bombs")
+            || HasBombs()
             || Has("Clawshot")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || (Has("Bow") && CanGetArrows());
+            || (Has("Bow") && CanGetArrows())
+            || (CanDoNicheStuff() && Has("HiddenSkill", 2));
     }
 
     public bool CanFreeAllMonkeys()
     {
         return CanBreakMonkeyCage()
-            && (Has("Lantern") || Has("Bombs") || Has("IronBoots")) //?
+            && (Has("Lantern") || HasBombs() || Has("IronBoots")) //?
             && CanBurnWebs()
             && Has("Boomerang")
             && CanDefeatBokoblin()
@@ -366,7 +401,7 @@ public class LogicManager : MonoBehaviour
 
     public bool CanPressMinesSwitch()
     {
-        return Has("IronBoots");
+        return Has("IronBoots") || (CanDoNicheStuff() && Has("B&C"));
     }
 
     public bool CanKnockDownHangingBaba()
@@ -376,7 +411,212 @@ public class LogicManager : MonoBehaviour
 
     public bool CanBreakWoodenDoor()
     {
-        return Has("ShadowCrystal") || Has("Sword") || CanSmash();
+        return Has("ShadowCrystal") || Has("Sword") || CanSmash() || CanUseBacksliceAsSword();
+    }
+
+// Glitched Functions
+
+    public bool HasSwordorBS()
+    {
+        return Has("Sword") || Has("HiddenSkill", 3);
+    }
+
+    public bool HasBottle()
+    {
+        return Has("Bottle") && Has("Lantern");
+    }
+
+    public bool HasBottles()
+    {
+        return Has("Bottle", 2) && Has("Lantern");
+    }
+
+    public bool HasHeavyMod()
+    {
+        return Has("IronBoots") || Has("MagicArmor");
+    }
+
+    public bool HasCutsceneItem()
+    {
+        return Has("Skybook") || HasBottle() || Has("HorseCall");
+    }
+
+    public bool CanDoLJA()
+    {
+        return Has("Sword") && Has("Boomerang");
+    }
+
+    public bool CanDoJSLJA()
+    {
+        return Has("Sword") && Has("Boomerang") && Has("HiddenSkill", 6);
+    }
+
+    public bool CanDoMapGlitch()
+    {
+        return Has("ShadowCrystal") && CanAccessKakariko();
+    }
+
+    public bool CanDoStorage()
+    {
+        return CanDoMapGlitch() && HasOneHandedItem();
+    }
+
+    public bool HasOneHandedItem()
+    {
+        return Has("Sword")
+            || HasBottle()
+            || Has("Boomerang")
+            || Has("Clawshot")
+            || Has("Lantern")
+            || Has("Bow")
+            || Has("Slingshot")
+            || Has("DominionRod");
+    }
+
+    public bool CanDoNicheStuff()
+    {
+        return SettingsStatus["GlitchedLogic"];
+    }
+
+    public bool CanUseBacksliceAsSword()
+    {
+        return CanDoNicheStuff() && Has("HiddenSkill", 3);
+    }
+
+    public bool CanDoAirRefill()
+    {
+        return HasWaterBombs()
+            && (Has("Sword") || Has("Clawshot"))
+            && (
+                Has("MagicArmor")
+                || (Has("IronBoots") && (GetItemWheelSlotCount() >= 3))
+            );
+    }
+
+    public int GetItemWheelSlotCount()
+    {
+        int count = 0;
+
+        if (Has("Clawshot"))
+            count++;
+        if (Has("DominionRod"))
+            count++;
+        if (Has("B&C"))
+            count++;
+        if (Has("Spinner"))
+            count++;
+        if (Has("Bow"))
+            count++;
+        if (Has("IronBoots"))
+            count++;
+        if (Has("Boomerang"))
+            count++;
+        if (Has("Lantern"))
+            count++;
+        if (Has("Slingshot"))
+            count++;
+        if (Has("FishingRod"))
+            count++;
+        if (Has("Hawkeye"))
+            count++;
+        if (Has("Bombs"))
+            count++;
+        if (Has("Bombs", 2))
+            count++;
+        if (Has("Bombs", 3))
+            count++;
+        if (Has("Bottle"))
+            count++;
+        if (Has("Bottle", 2))
+            count++;
+        if (Has("Bottle", 3))
+            count++;
+        if (Has("Bottle", 4))
+            count++;
+        if (Has("AurusMemo"))
+            count++;
+        if (Has("FetchQuest"))
+            count++;
+        if (Has("HorseCall"))
+            count++;
+
+        return count;
+    }
+
+    public bool CanDoMoonBoots()
+    {
+        return Has("Sword")
+            && (
+                Has("MagicArmor")
+                || (Has("IronBoots") && GetItemWheelSlotCount() >= 3)
+            );
+    }
+
+    public bool CanDoJSMoonBoots()
+    {
+        return CanDoMoonBoots() && Has("HiddenSkill", 6);
+    }
+
+    public bool CanDoBSMoonBoots()
+    {
+        return Has("HiddenSkill", 3) && Has("MagicArmor");
+    }
+
+    public bool CanDoEBMoonBoots()
+    {
+        return CanDoMoonBoots() && Has("HiddenSkill") && Has("Sword");
+    }
+
+    public bool CanDoFlyGlitch()
+    {
+        return Has("FishingRod") && HasHeavyMod();
+    }
+
+    public bool CanDoHiddenVillageGlitched()
+    {
+        return Has("Bow")
+            || Has("B&C")
+            || (
+                Has("Slingshot")
+                && (
+                    Has("ShadowCrystal")
+                    || Has("Sword")
+                    || HasBombs()
+                    || Has("IronBoots")
+                    || Has("Spinner")
+                )
+            );
+    }
+
+    public bool CanDoFTWindlessBridgeRoom()
+    {
+        return HasBombs() || CanDoBSMoonBoots() || CanDoJSMoonBoots();
+    }
+
+    public bool CanClearForestGlitched()
+    {
+        return CanCompletePrologue()
+            && (
+                SettingsStatus["FaronEscape"]
+                || CanCompleteFT()
+                || CanDoLJA()
+                || CanDoMapGlitch()
+            );
+    }
+
+    public bool CanCompleteEldinTwilightGlitched()
+    {
+        return SettingsStatus["SkipEldinTwilight"] || CanClearForestGlitched();
+    }
+
+    public bool CanSkipKeyToDekuToad()
+    {
+        return SettingsStatus["SmallKeysKeysy"]
+            || Has("HiddenSkill", 3)
+            || CanDoBSMoonBoots()
+            || CanDoJSMoonBoots()
+            || CanDoLJA()
+            || (HasBombs() && (HasHeavyMod() || Has("HiddenSkill", 6)));
     }
 
 /* ------------------------------
@@ -569,10 +809,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessLakeHylia()
             && Has("ZoraArmor")
             && (SettingsStatus["EarlyLakebed"]
-                || (Has("IronBoots")
-                    && (Has("WaterBombs")
-                        || (Has("Bombs")
-                            && SettingsStatus["IgnoreWaterBombLogic"]))));
+                || (Has("IronBoots") && HasWaterBombs()));
     }
 
     public bool CanCompleteLT()
@@ -622,7 +859,7 @@ public class LogicManager : MonoBehaviour
             && (Has("SRBigKey") || SettingsStatus["BigKeysKeysy"])
             && Has("Cheese")
             && Has("B&C")
-            && Has("Bombs")
+            && HasBombs()
             && CanDefeatBlizzeta();
     }
 
@@ -724,7 +961,11 @@ public class LogicManager : MonoBehaviour
 
     public bool CanDefeatAeralfos()
     {
-        return Has("Clawshot") && (Has("Sword") || Has("B&C") || Has("ShadowCrystal"));
+        return Has("Clawshot") 
+            && (Has("Sword") 
+                || Has("B&C") 
+                || Has("ShadowCrystal")
+                || (CanDoNicheStuff() && Has("IronBoots")));
     }
 
     public bool CanDefeatArmos()
@@ -734,8 +975,10 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Clawshot")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBabaSerpent()
@@ -744,8 +987,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBabyGohma()
@@ -755,18 +1000,20 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("Clawshot")
             || Has("Slingshot")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBari()
     {
-        return CanUseWBombs() || Has("Clawshot");
+        return HasWaterBombs() || Has("Clawshot");
     }
 
     public bool CanDefeatBeamos()
     {
-        return Has("B&C") || Has("Bow") || Has("Bombs");
+        return Has("B&C") || Has("Bow") || HasBombs();
     }
 
     public bool CanDefeatBigBaba()
@@ -775,8 +1022,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || (Has("Bow") && CanGetArrows())
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatChu()
@@ -785,9 +1034,11 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
+            || HasBombs()
             || Has("Clawshot")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBokoblin()
@@ -797,8 +1048,10 @@ public class LogicManager : MonoBehaviour
             || (Has("Bow") && CanGetArrows())
             || Has("ShadowCrystal")
             || Has("Slingshot")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBokoblinRed()
@@ -807,12 +1060,13 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || (Has("Bow") && CanGetArrows())
             || Has("ShadowCrystal")
-            || Has("Bombs");
+            || HasBombs()
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBombfish()
     {
-        return Has("IronBoots")
+        return (Has("IronBoots") || (SettingsStatus["GlitchedLogic"] && Has("MagicArmor")))
             && (Has("Sword") || Has("Clawshot")
                 || (Has("Shield") && Has("HiddenSkill", 2)));
     }
@@ -824,7 +1078,8 @@ public class LogicManager : MonoBehaviour
             || (Has("Bow") && CanGetArrows())
             || Has("ShadowCrystal")
             || Has("Clawshot")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatBomskit()
@@ -833,8 +1088,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("ShadowCrystal")
             || Has("Bow")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBubble()
@@ -843,7 +1100,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("ShadowCrystal")
             || Has("Bow")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatBulblin()
@@ -852,8 +1111,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("ShadowCrystal")
             || Has("Bow")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatChilfos()
@@ -861,8 +1122,10 @@ public class LogicManager : MonoBehaviour
         return Has("Sword")
             || Has("B&C")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatChuWorm()
@@ -871,8 +1134,10 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("B&C")
             || Has("ShadowCrystal")
-            || Has("Spinner"))
-                && (Has("Bombs") || Has("Clawshot"));
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword())
+                && (HasBombs() || Has("Clawshot"));
     }
 
     public bool CanDefeatDarknut()
@@ -886,15 +1151,17 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("Spinner")
-            || (Has("HiddenSkill", 2)) // no shield??
+            || Has("HiddenSkill", 2) // no shield??
             || Has("Slingshot")
             || Has("Clawshot")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatDekuLike()
     {
-        return Has("Bombs");
+        return HasBombs();
     }
 
     public bool CanDefeatDodongo()
@@ -903,8 +1170,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatDinalfos()
@@ -918,7 +1187,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatFireKeese()
@@ -928,7 +1199,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Slingshot")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatFireToadpoli()
@@ -952,8 +1225,10 @@ public class LogicManager : MonoBehaviour
             || (Has("HiddenSkill", 2) && Has("Shield"))
             || Has("Slingshot")
             || Has("Clawshot")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatGhoulRat()
@@ -967,7 +1242,8 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Slingshot");
+            || Has("Slingshot")
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatHelmasaur()
@@ -976,8 +1252,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatHelmasaurus()
@@ -986,8 +1264,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatIceBubble()
@@ -996,7 +1276,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatIceKeese()
@@ -1006,7 +1288,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Slingshot")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatPoe()
@@ -1020,7 +1304,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatKeese()
@@ -1030,7 +1316,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Slingshot")
-            || Has("Spinner"); // was this supposed to be clawshot?
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword(); // was this supposed to be clawshot?
     }
 
     public bool CanDefeatLeever()
@@ -1039,8 +1327,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatLizalfos()
@@ -1049,7 +1338,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatMiniFreezard()
@@ -1058,8 +1349,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatMoldorm()
@@ -1068,8 +1361,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatPoisonMite()
@@ -1088,8 +1382,10 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
-            || Has("Spinner");
+            || HasBombs()
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatRat()
@@ -1098,9 +1394,11 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs")
+            || HasBombs()
             || Has("Spinner")
-            || Has("Slingshot");
+            || Has("Slingshot")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatRedeadKnight()
@@ -1109,7 +1407,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatShadowBeast()
@@ -1124,7 +1424,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatShadowDekuBaba()
@@ -1132,11 +1434,13 @@ public class LogicManager : MonoBehaviour
         return Has("Sword")
             || Has("B&C")
             || Has("Bow")
-            || Has("Bombs")
+            || HasBombs()
             || Has("Spinner")
             || Has("Slingshot")
             || Has("Clawshot")
-            || Has("HiddenSkill", 2); // shield??
+            || Has("HiddenSkill", 2)
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword(); // shield??
     }
 
     public bool CanDefeatShadowInsect()
@@ -1151,7 +1455,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatShadowKeese()
@@ -1161,7 +1467,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Slingshot");
+            || Has("Slingshot")
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatShadowVermin()
@@ -1171,13 +1479,17 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatShellBlade()
     {
-        return (Has("WaterBombs") || (Has("Bombs") && SettingsStatus["IgnoreWaterBombLogic"]))
-            || (Has("Sword") && Has("IronBoots"));
+        return HasWaterBombs() 
+            || (Has("Sword") 
+                && (Has("IronBoots") 
+                    || (CanDoNicheStuff() && Has("MagicArmor"))));
     }
 
     public bool CanDefeatSkullfish()
@@ -1186,7 +1498,8 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Spinner");
+            || Has("Spinner")
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatSkulltula()
@@ -1196,7 +1509,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatStalfos()
@@ -1211,7 +1526,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatStalchild()
@@ -1221,7 +1538,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatTektite()
@@ -1231,7 +1550,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatTileWorm()
@@ -1241,7 +1562,9 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs"))
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword())
                 && Has("Boomerang");
     }
 
@@ -1268,7 +1591,7 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs");
+            || HasBombs();
     }
 
     public bool CanDefeatWalltula()
@@ -1287,7 +1610,8 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatYoungGohma()
@@ -1297,12 +1621,13 @@ public class LogicManager : MonoBehaviour
             || Has("Bow")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatZantHead()
     {
-        return Has("Sword") || Has("ShadowCrystal");
+        return Has("Sword") || Has("ShadowCrystal") || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatOok()
@@ -1311,13 +1636,18 @@ public class LogicManager : MonoBehaviour
             || (Has("Bow") && CanGetArrows())
             || Has("B&C")
             || Has("ShadowCrystal")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatDangoro()
     {
-        return Has("IronBoots")
-            && (Has("Sword") || Has("ShadowCrystal") || CanBombArrow());
+        return (Has("Sword")
+            || Has("ShadowCrystal")
+            || (CanDoNicheStuff() && Has("B&C")
+                || (Has("Bow") && HasBombs())))
+            && Has("IronBoots");
     }
 
     public bool CanDefeatCarrierKargorok()
@@ -1336,7 +1666,9 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"))
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatSkullKid()
@@ -1354,7 +1686,8 @@ public class LogicManager : MonoBehaviour
         return Has("Sword")
             || Has("B&C")
             || Has("Bow", 3)
-            || Has("ShadowCrystal");
+            || Has("ShadowCrystal")
+            || CanUseBacksliceAsSword();
     }
 
     public bool CanDefeatKingBulblinCastle()
@@ -1378,7 +1711,8 @@ public class LogicManager : MonoBehaviour
             || Has("B&C")
             || Has("Bow")
             || Has("ShadowCrystal")
-            || Has("Bombs");
+            || HasBombs()
+            || (CanDoNicheStuff() && Has("IronBoots"));
     }
 
     public bool CanDefeatPhantomZant()
@@ -1393,7 +1727,8 @@ public class LogicManager : MonoBehaviour
                 && (Has("Sword")
                     || Has("B&C")
                     || Has("ShadowCrystal")
-                    || Has("Bombs")));
+                    || HasBombs()
+                    || (CanDoNicheStuff() && Has("IronBoots"))));
     }
 
     public bool CanDefeatFyrus()
@@ -1423,17 +1758,27 @@ public class LogicManager : MonoBehaviour
 
     public bool CanDefeatArgorok()
     {
-        return Has("Clawshot", 2) && Has("Sword", 2) && Has("IronBoots");
+        return Has("Clawshot", 2) 
+            && Has("Sword", 2) 
+            && (Has("IronBoots") || (CanDoNicheStuff() && Has("MagicArmor")));
     }
 
     public bool CanDefeatZant()
     {
         return Has("Sword", 3)
-            && Has("Boomerang")
-            && Has("Clawshot")
-            && Has("B&C")
-            && Has("IronBoots")
-            && Has("ZoraArmor");
+            && (
+                Has("Boomerang")
+                && Has("Clawshot")
+                && Has("B&C")
+                && (Has("IronBoots") || (CanDoNicheStuff() && Has("MagicArmor")))
+                && (
+                    Has("ZoraArmor")
+                    || (
+                        SettingsStatus["GlitchedLogic"]
+                        && CanDoAirRefill()
+                    )
+                )
+            );
     }
 
     public bool CanDefeatGanondorf()
@@ -1939,7 +2284,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessZorasDomain()
             && Has("IronBoots")
             && Has("ZoraArmor")
-            && CanUseWBombs();
+            && HasWaterBombs();
     }
 
     // Gerudo Desert
@@ -3535,9 +3880,7 @@ public class LogicManager : MonoBehaviour
             && Has("IronBoots")
             && CanBreakWoodenDoor()
             && (Has("GMSmallKey", 2) || SettingsStatus["SmallKeysKeysy"])
-            && ((Has("Bow")
-                    && (Has("WaterBombs")
-                        || (SettingsStatus["IgnoreWaterBombLogic"] && Has("Bombs"))))
+            && ((Has("Bow") && HasWaterBombs())
                 || Has("Sword"));
     }
 
@@ -3635,7 +3978,7 @@ public class LogicManager : MonoBehaviour
                 && (Has("LTSmallKey", 2) || SettingsStatus["SmallKeysKeysy"])
                 && Has("ZoraArmor") 
                 && Has("IronBoots") 
-                && CanUseWBombs() 
+                && HasWaterBombs() 
                 && Has("Clawshot")) 
             || ((Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]) 
                 && (CanLaunchBombs() || (Has("Clawshot") && CanSmash()))));
@@ -3664,7 +4007,7 @@ public class LogicManager : MonoBehaviour
             && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
             && Has("IronBoots")
             && CanDefeatDekuToad()
-            && CanUseWBombs();
+            && HasWaterBombs();
     }
 
     public bool LakebedTempleChandelierChest()
@@ -3757,7 +4100,7 @@ public class LogicManager : MonoBehaviour
             && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
             && Has("IronBoots")
             && Has("Clawshot")
-            && CanUseWBombs();
+            && HasWaterBombs();
     }
 
     public bool LakebedTempleUnderwaterMazeSmallChest()
@@ -4076,7 +4419,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessSR()
             && CanDefeatIceKeese()
             && (Has("B&C")
-                || (Has("Bombs")
+                || (HasBombs()
                     && (Has("Pumpkin")
                         || (Has("Cheese") && Has("SRSmallKey", 2))
                         || SettingsStatus["SmallKeysKeysy"])));
@@ -4087,7 +4430,7 @@ public class LogicManager : MonoBehaviour
         return CanAccessSR()
             && CanDefeatIceKeese()
             && (Has("B&C")
-                || (Has("Bombs")
+                || (HasBombs()
                     && (Has("Pumpkin")
                         || (Has("Cheese") && Has("SRSmallKey", 2))
                         || SettingsStatus["SmallKeysKeysy"])));
@@ -4101,7 +4444,7 @@ public class LogicManager : MonoBehaviour
                 || (Has("Cheese") && Has("SRSmallKey", 2))
                 || SettingsStatus["SmallKeysKeysy"])
             && (Has("B&C")
-                || (Has("Bombs")
+                || (HasBombs()
                     && (Has("SRSmallKey", 2) || Has("Cheese") || SettingsStatus["SmallKeysKeysy"])));
     }
 
@@ -4114,7 +4457,7 @@ public class LogicManager : MonoBehaviour
                 || (Has("Cheese") && Has("SRSmallKey", 2))
                 || SettingsStatus["SmallKeysKeysy"])
             && (Has("B&C")
-                || (Has("Bombs")
+                || (HasBombs()
                     && (Has("Cheese")
                         || Has("SRSmallKey", 2)
                         || SettingsStatus["SmallKeysKeysy"])));
@@ -4168,7 +4511,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessSR()
             && (Has("B&C")
-                || (Has("Bombs")
+                || (HasBombs()
                     && (Has("Pumpkin")
                         || (Has("Cheese") && Has("SRSmallKey", 2))
                         || SettingsStatus["SmallKeysKeysy"])));
@@ -4178,7 +4521,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessSR()
             && Has("B&C")
-            && Has("Bombs")
+            && HasBombs()
             && ((Has("Cheese") && Has("SRSmallKey", 4))
                 || SettingsStatus["SmallKeysKeysy"]);
     }
@@ -4187,7 +4530,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessSR()
             && Has("B&C")
-            && Has("Bombs")
+            && HasBombs()
             && ((Has("Cheese") && Has("SRSmallKey", 4)) || SettingsStatus["SmallKeysKeysy"])
             && (Has("SRBigKey") || SettingsStatus["BigKeysKeysy"]);
     }
@@ -4196,7 +4539,7 @@ public class LogicManager : MonoBehaviour
     {
         return CanAccessSR()
             && Has("B&C")
-            && Has("Bombs")
+            && HasBombs()
             && ((Has("Cheese") && Has("SRSmallKey", 4)) || SettingsStatus["SmallKeysKeysy"])
             && (Has("SRBigKey") || SettingsStatus["BigKeysKeysy"]);
     }
