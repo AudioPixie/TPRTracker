@@ -22,9 +22,12 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private string nameCount; // Link to LogicManager ItemCounts dictionary
+    [SerializeField]
+    private bool isBoss;
 
     private Color opaque = Color.white;
     private Color faded = new Vector4(1, 1, 1, 0.45f);
+    private Color bossFaded = new Vector4(1, 1, 1, 0.25f);
 
     private void Start()
     {
@@ -55,9 +58,14 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
 
     public void ItemOpacity()
     {
-        if (currentItemCount == 0 && (nameCount != "WalletCount")) // && not wallet - to do
+        if (currentItemCount == 0 && (nameCount != "WalletCount") && isBoss == false) // && not wallet - to do
         {
             buttonImage.color = faded;
+            buttonText.text = "";
+        }
+        else if (currentItemCount == 0 && isBoss == true) // && not wallet - to do
+        {
+            buttonImage.color = bossFaded;
             buttonText.text = "";
         }
         else

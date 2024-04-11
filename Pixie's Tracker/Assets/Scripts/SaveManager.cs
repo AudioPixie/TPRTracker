@@ -122,6 +122,8 @@ public class SaveManager : MonoBehaviour
         {
             if (child.GetComponent<Toggle>() != null)
                 PlayerPrefs.SetInt(child.name, child.GetComponent<Toggle>().isOn ? 1 : 0);
+            if (child.GetComponent<TMP_Dropdown>() != null)
+                PlayerPrefs.SetInt(child.name, child.GetComponent<TMP_Dropdown>().value);
         }
 
         // Seed Settings
@@ -227,6 +229,8 @@ public class SaveManager : MonoBehaviour
         {
             if (child.GetComponent<Toggle>() != null)
                 child.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child.name) != 0;
+            if (child.GetComponent<TMP_Dropdown>() != null)
+                child.GetComponent<TMP_Dropdown>().value = PlayerPrefs.GetInt(child.name);
         }
 
         // Seed Settings

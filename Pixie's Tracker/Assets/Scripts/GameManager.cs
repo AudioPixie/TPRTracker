@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
     public GameObject GoMode;
     public bool GoModeUsed;
 
+    [Header("VSync")]
+    public int vSync;
+
     private void Awake()
     {
         // Ensure only one instance exists, even if multiple scripts try to create it.
@@ -77,6 +80,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        QualitySettings.vSyncCount = 2;
+        Application.runInBackground = false;
+
         // number of checks and text initialization
         checkCountTotal = 0;
 
@@ -194,6 +200,9 @@ public class GameManager : MonoBehaviour
             GoMode.SetActive(true);
             GoModeUsed = true;
         }
+
+        Debug.Log(QualitySettings.vSyncCount);
+        Debug.Log(Application.runInBackground);
     }
 
     public void RefreshSelective(GameObject Parent) // can selectively refresh just overworld, poes, or bugs

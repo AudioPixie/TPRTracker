@@ -258,4 +258,14 @@ public class SettingsManager : MonoBehaviour
     {
         LogicManager.Instance.SettingsStatus["IgnoreScentLogic"] = isOn;
     }
+
+    public void SetVSync(int index)
+    {
+        QualitySettings.vSyncCount = index;
+    }
+
+    public void SetRunInBackground(bool isOn)
+    {
+        Application.runInBackground = isOn;
+    }
 }

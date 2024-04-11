@@ -4017,7 +4017,8 @@ public class LogicManager : MonoBehaviour
         return CanAccessAG()
             && (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
             && CanSmash()
-            && Has("ShadowCrystal");
+            && Has("ShadowCrystal")
+            && Has("Lantern");
     }
 
 /* ------------------------------
