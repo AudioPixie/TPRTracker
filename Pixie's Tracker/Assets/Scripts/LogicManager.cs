@@ -682,9 +682,11 @@ public class LogicManager : MonoBehaviour
             && (CanDefeatSkullKid() || SettingsStatus["ToTOpen"] || SettingsStatus["ToTOpenGrove"]);
     }
 
-    public bool CanAccessKakariko() // used for gorge and village since requirements are the same
+    public bool CanAccessKakariko() // used for gorge and village since requirements are the same //done
     {
-        return CanClearForest() || (EldinTwilightCleared() && SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal"));
+        return CanClearForest() 
+            || (SettingsStatus["GlitchedLogic"] && CanClearForestGlitched()) 
+            || (EldinTwilightCleared() && SettingsStatus["UnlockMapRegions"] && Has("ShadowCrystal"));
     }
 
     public bool CanAccessDeathMountain()
@@ -1794,24 +1796,24 @@ public class LogicManager : MonoBehaviour
 
     // Ordon Province
    
-    public bool OrdonRanchGrottoLanternChest()
+    public bool OrdonRanchGrottoLanternChest() //done
     {
         return CanCompletePrologue() && Has("ShadowCrystal") && Has("Lantern");
     }
 
-    public bool HerdingGoatsReward()
+    public bool HerdingGoatsReward() //done
     {
         return CanCompletePrologue();
     }
 
-    public bool OrdonSpringGoldenWolf()
+    public bool OrdonSpringGoldenWolf() //done
     {
         return Has("ShadowCrystal") && CanAccessKakariko();
     }
 
     // Faron Woods
 
-    public bool CoroBottle()
+    public bool CoroBottle() //done
     {
         return CanCompletePrologue();
     }
@@ -1819,15 +1821,21 @@ public class LogicManager : MonoBehaviour
     public bool FaronMistCaveLanternChest()
     {
         return ((Has("Sword") && Has("Slingshot")) || SettingsStatus["SkipPrologue"])
-            && (CanBurnWebs() || Has("ShadowCrystal") || SettingsStatus["SkipPrologue"])
+            && (CanBurnWebs() || Has("ShadowCrystal") || SettingsStatus["SkipPrologue"]
+                || (SettingsStatus["GlitchedLogic"] && 
+                    ((CanDoBSMoonBoots() && HasBombs() && CanDoLJA())
+                        || CanDoMapGlitch())))
             && Has("Lantern");
     }
 
     public bool FaronMistCaveOpenChest()
     {
         return ((Has("Sword") && Has("Slingshot")) || SettingsStatus["SkipPrologue"])
-            && (CanBurnWebs() || Has("ShadowCrystal") || SettingsStatus["SkipPrologue"])
-            && Has("Lantern");
+            && (CanBurnWebs() || Has("ShadowCrystal") || SettingsStatus["SkipPrologue"]
+                || (SettingsStatus["GlitchedLogic"] && 
+                    ((CanDoBSMoonBoots() && HasBombs() && CanDoLJA())
+                        || CanDoMapGlitch())))
+            && (Has("Lantern") || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
     }
 
     public bool FaronMistNorthChest()
