@@ -662,6 +662,7 @@ public class SpoilerManager : MonoBehaviour
     public Toggle WalletIncrease;
     public Toggle OpenDoorofTime;
     public Toggle UnlockMapRegions;
+    public Toggle UnrequiredDungeonsAreBarren;
     public Toggle BonksDoDamage;
     public Toggle TransformAnywhere;
     public TMP_Dropdown SmallKeys;
@@ -824,7 +825,7 @@ public class SpoilerManager : MonoBehaviour
             FanadiUsedChecks.Clear();
             FanadiGeneratedHints.Clear();
             currentFanadiIndex = 0;
-            FanadiText.text = "Fortunes, prophecies, divination.You want it? It's yours my friend! As long as you have enough <color=#00ff00>rupees...</color>";
+            FanadiText.text = "Fortunes, prophecies, divination. You want it? It's yours my friend! As long as you have enough <color=#00ff00>rupees...</color>";
             ArrowInteractivity();
             IndexCounterUpdate();
 
@@ -915,6 +916,9 @@ public class SpoilerManager : MonoBehaviour
                 if (spoilerLog.settings.openMap == true)
                     UnlockMapRegions.isOn = true;
 
+                if (spoilerLog.settings.barrenDungeons == true)
+                    UnrequiredDungeonsAreBarren.isOn = true;
+
                 if (spoilerLog.settings.bonksDoDamage == "True")
                     BonksDoDamage.isOn = true;
 
@@ -951,7 +955,10 @@ public class SpoilerManager : MonoBehaviour
                 MainTab.isOn = true;
 
                 if (spoilerLog.settings.shufflePoes == "Vanilla")
+                {
                     PoesTab.isOn = false;
+                    PoesTab.GetComponent<SettingsBehaviour>().OnToggleValueChanged(PoesTab.isOn); // fixed issue where dungeon poes were still visible after importing
+                }
                 else
                     PoesTab.isOn = true;
 

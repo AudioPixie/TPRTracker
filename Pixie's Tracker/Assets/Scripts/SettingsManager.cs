@@ -174,6 +174,11 @@ public class SettingsManager : MonoBehaviour
         LogicManager.Instance.SettingsStatus["UnlockMapRegions"] = isOn;
     }
 
+    public void SetUnrequiredDungeonsAreBarren(bool isOn)
+    {
+        LogicManager.Instance.SettingsStatus["UnrequiredDungeonsAreBarren"] = isOn;
+    }
+
     public void SetBonksDoDamage(bool isOn)
     {
         LogicManager.Instance.SettingsStatus["BonksDoDamage"] = isOn;
@@ -262,5 +267,15 @@ public class SettingsManager : MonoBehaviour
     public void SetIgnoreScent(bool isOn)
     {
         LogicManager.Instance.SettingsStatus["IgnoreScentLogic"] = isOn;
+    }
+
+    public void SetVSync(int index)
+    {
+        QualitySettings.vSyncCount = index;
+    }
+
+    public void SetRunInBackground(bool isOn)
+    {
+        Application.runInBackground = isOn;
     }
 }

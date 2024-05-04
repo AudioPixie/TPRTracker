@@ -145,6 +145,7 @@ public class LogicManager : MonoBehaviour
         {"WalletIncrease", false },
         {"OpenDoorOfTime", false },
         {"UnlockMapRegions", false },
+        {"UnrequiredDungeonsAreBarren", false },
         {"BonksDoDamage", false },
         {"TransformAnywhere", false },
 
@@ -1950,7 +1951,7 @@ public class LogicManager : MonoBehaviour
 
     public bool DeathMountainAlcoveChest()
     {
-        return Has("Boss2") || 
+        return (Has("Boss2") && SettingsStatus["UnrequiredDungeonsAreBarren"]) || 
             (
                 Has("Clawshot") 
                     && (Has("IronBoots") || Has("ShadowCrystal"))
@@ -4599,7 +4600,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool OrdonProvince(string neighbour)
+    public bool OrdonProvince(string neighbour) // done
     {
         if (neighbour == "OrdonRanchGrotto")
         {
@@ -4618,7 +4619,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool OrdonRanchGrotto(string neighbour)
+    public bool OrdonRanchGrotto(string neighbour) // done
     {
         if (neighbour == "OrdonProvince")
         {
@@ -4640,7 +4641,7 @@ public class LogicManager : MonoBehaviour
 
 // Faron Woods
 
-    public bool FaronMistArea(string neighbour)
+    public bool FaronMistArea(string neighbour) // done
     {
         if (neighbour == "SouthFaronWoodsCave")
         {
@@ -4649,12 +4650,19 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "FaronMistCave")
         {
-            return Has("Lantern");
+            return Has("Lantern")
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "NorthFaronWoods")
         {
-            return CanCompletePrologue() && (Has("ShadowCrystal") || Has("Lantern"));
+            return CanCompletePrologue() && (Has("ShadowCrystal") || Has("Lantern"))
+                || (SettingsStatus["GlitchedLogic"] &&
+                    ((CanDoMapGlitch()
+                    || (Has("FaronKeys") || SettingsStatus["SmallKeysKeysy"])
+                    || (Has("ShadowCrystal") && SettingsStatus["SkipFaronTwilight"])
+                    || SettingsStatus["SkipPrologue"])
+                        && (Has("ShadowCrystal") || Has("Lantern"))));
         }
 
         else
@@ -4664,7 +4672,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool FaronMistCave(string neighbour)
+    public bool FaronMistCave(string neighbour) // done
     {
         if (neighbour == "FaronMistArea")
         {
@@ -4678,7 +4686,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool NorthFaronWoods(string neighbour)
+    public bool NorthFaronWoods(string neighbour) // done
     {
         if (neighbour == "FaronMistArea")
         {
@@ -4702,7 +4710,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SouthFaronWoodsCave(string neighbour)
+    public bool SouthFaronWoodsCave(string neighbour) // done
     {
         if (neighbour == "SouthFaronWoods")
         {
@@ -4721,7 +4729,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SouthFaronWoods(string neighbour)
+    public bool SouthFaronWoods(string neighbour) // done
     {
         if (neighbour == "OrdonProvince")
         {
@@ -4730,7 +4738,8 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "FaronField")
         {
-            return CanClearForest();
+            return CanClearForest()
+                || (SettingsStatus["GlitchedLogic"] && CanClearForestGlitched());
         }
 
         else if (neighbour == "SouthFaronWoodsCave")
@@ -4740,7 +4749,11 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "FaronMistArea")
         {
-            return CanSmash() && Has("DominionRod", 2) && Has("ShadowCrystal") && CanClearForest();
+            return CanSmash() && Has("DominionRod", 2) && Has("ShadowCrystal") && CanClearForest()
+                || (SettingsStatus["GlitchedLogic"] &&
+                    ((CanSmash() && Has("DominionRod", 2) && Has("ShadowCrystal"))
+                    || (CanDoBSMoonBoots() && HasBombs() && CanDoLJA())
+                    || CanDoMapGlitch()));
         }
 
         else
@@ -4752,7 +4765,7 @@ public class LogicManager : MonoBehaviour
 
 // Hyrule Field
 
-    public bool FaronFieldCornerGrotto(string neighbour)
+    public bool FaronFieldCornerGrotto(string neighbour) // done
     {
         if (neighbour == "FaronField")
         {
@@ -4766,7 +4779,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool FaronField(string neighbour)
+    public bool FaronField(string neighbour) // done
     {
         if (neighbour == "SouthFaronWoods")
         {
@@ -4775,12 +4788,13 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "OutsideCastleTownSouth")
         {
-            return (
+            return ((
                     (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]) 
                     && (Has("ShadowCrystal") || SettingsStatus["SkipLanayruTwilight"]) 
                     || CanSmash()
                 ) 
-                && Has("Bottle");
+                && Has("Bottle"))
+                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
         }
 
         else if (neighbour == "KakarikoGorge")
@@ -4790,9 +4804,10 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "LakeHyliaBridge")
         {
-            return (Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]) 
+            return ((Has("GateKeys") || SettingsStatus["SmallKeysKeysy"]) 
                     && (Has("ShadowCrystal") || SettingsStatus["SkipLanayruTwilight"]) 
-                    || CanSmash();
+                    || CanSmash())
+                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
         }
 
         else if (neighbour == "FaronFieldCornerGrotto")
@@ -4809,7 +4824,7 @@ public class LogicManager : MonoBehaviour
 
 // Sacred Grove
 
-    public bool LostWoods(string neighbour)
+    public bool LostWoods(string neighbour) // done
     {
         if (neighbour == "NorthFaronWoods")
         {
@@ -4820,7 +4835,8 @@ public class LogicManager : MonoBehaviour
         {
             return (CanDefeatSkullKid() && Has("ShadowCrystal")) 
                 || SettingsStatus["ToTOpen"] 
-                || SettingsStatus["ToTOpenGrove"];
+                || SettingsStatus["ToTOpenGrove"]
+                || (SettingsStatus["GlitchedLogic"] && CanDoLJA());
         }
 
         else
@@ -4830,7 +4846,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SacredGroveBabaSerpentGrotto(string neighbour)
+    public bool SacredGroveBabaSerpentGrotto(string neighbour) // done
     {
         if (neighbour == "SacredGroveMasterSword")
         {
@@ -4844,7 +4860,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SacredGroveMasterSword(string neighbour)
+    public bool SacredGroveMasterSword(string neighbour) // done
     {
         if (neighbour == "LostWoods")
         {
@@ -4870,7 +4886,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SacredGroveTempleofTime(string neighbour)
+    public bool SacredGroveTempleofTime(string neighbour) // done
     {
         if (neighbour == "SacredGroveMasterSword")
         {
@@ -4895,7 +4911,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool DeathMountainInteriors(string neighbour)
+    public bool DeathMountainInteriors(string neighbour) // done
     {
         if (neighbour == "DeathMountainVolcano")
         {
@@ -4904,7 +4920,9 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "GoronMinesEntrance")
         {
-            return Has("IronBoots") || !SettingsStatus["MinesClosed"];
+            return Has("IronBoots") 
+                || !SettingsStatus["MinesClosed"]
+                || (SettingsStatus["GlitchedLogic"] && Has("Spinner"));
         }
 
         else
@@ -4914,7 +4932,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool DeathMountainTrail(string neighbour)
+    public bool DeathMountainTrail(string neighbour) // done
     {
         if (neighbour == "KakarikoVillage")
         {
@@ -4923,7 +4941,7 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "DeathMountainVolcano")
         {
-            return Has("IronBoots") || Has("ShadowCrystal");
+            return Has("IronBoots") || Has("ShadowCrystal") || SettingsStatus["GlitchedLogic"];
         }
 
         else
@@ -4933,7 +4951,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool DeathMountainVolcano(string neighbour)
+    public bool DeathMountainVolcano(string neighbour) // done
     {
         if (neighbour == "DeathMountainTrail")
         {
@@ -4942,7 +4960,8 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "DeathMountainInteriors")
         {
-            return Has("IronBoots") && (CanDefeatGoron() || SettingsStatus["MinesOpen"]);
+            return (Has("IronBoots") && (CanDefeatGoron() || SettingsStatus["MinesOpen"]))
+                || SettingsStatus["GlitchedLogic"];
         }
 
         else
@@ -4952,7 +4971,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool KakarikoVillage(string neighbour)
+    public bool KakarikoVillage(string neighbour) // done
     {
         if (neighbour == "KakarikoGorge")
         {
@@ -4971,7 +4990,21 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "LakeHylia")
         {
-            return Has("GateKeys") && Has("IronBoots") && HasWaterBombs();
+            return (Has("GateKeys") && Has("IronBoots") && HasWaterBombs())
+                || (SettingsStatus["GlitchedLogic"] && 
+                    (
+                        (HasHeavyMod() && HasWaterBombs() && Has("GateKeys"))
+                        || 
+                        (
+                            (HasHeavyMod() || Has("ZoraArmor"))
+                            && 
+                            (
+                                (HasBombs() && (Has("Sword") || Has("Spinner")))
+                                || CanDoLJA()
+                                || CanDoMoonBoots()
+                            )
+                        )
+                    ));
         }
 
         else
@@ -4983,7 +5016,7 @@ public class LogicManager : MonoBehaviour
 
 // Hidden Village
 
-    public bool HiddenVillage(string neighbour)
+    public bool HiddenVillage(string neighbour) // done
     {
         if (neighbour == "LanayruField")
         {
@@ -4999,7 +5032,7 @@ public class LogicManager : MonoBehaviour
 
 // Hyrule Field
 
-    public bool EldinFieldBombskitGrotto(string neighbour)
+    public bool EldinFieldBombskitGrotto(string neighbour) // done
     {
         if (neighbour == "EldinField")
         {
@@ -5013,7 +5046,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool EldinFieldStalfosGrotto(string neighbour)
+    public bool EldinFieldStalfosGrotto(string neighbour) // done
     {
         if (neighbour == "LanayruField")
         {
@@ -5027,7 +5060,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool EldinFieldWaterBombFishGrotto(string neighbour)
+    public bool EldinFieldWaterBombFishGrotto(string neighbour) // done
     {
         if (neighbour == "EldinField")
         {
@@ -5041,7 +5074,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool EldinField(string neighbour)
+    public bool EldinField(string neighbour) // done
     {
         if (neighbour == "KakarikoGorge")
         {
@@ -5055,7 +5088,8 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "GoronStockcave")
         {
-            return Has("Clawshot");
+            return Has("Clawshot")
+                || (SettingsStatus["GlitchedLogic"] && (CanDoMapGlitch() || CanDoLJA()));
         }
 
         else if (neighbour == "CastleTown")
@@ -5084,7 +5118,11 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "EldinFieldStalfosGrotto")
         {
-            return Has("ShadowCrystal") && Has("Spinner") && 
+            return (
+                    (Has("ShadowCrystal") && Has("Spinner")) 
+                    || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch())
+                ) 
+                && 
                 (
                     CanSmash() || 
                         (
@@ -5102,7 +5140,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool EldinLongCave(string neighbour)
+    public bool EldinLongCave(string neighbour) // done
     {
         if (neighbour == "KakarikoGorge")
         {
@@ -5116,7 +5154,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GoronStockcave(string neighbour)
+    public bool GoronStockcave(string neighbour) // done
     {
         if (neighbour == "EldinField")
         {
@@ -5130,7 +5168,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool KakarikoGorge(string neighbour)
+    public bool KakarikoGorge(string neighbour) // done
     {
         if (neighbour == "EldinField")
         {
@@ -5167,7 +5205,7 @@ public class LogicManager : MonoBehaviour
 
 // Castle Town
 
-    public bool CastleTown(string neighbour)
+    public bool CastleTown(string neighbour) // done
     {
         if (neighbour == "OutsideCastleTownWest")
         {
@@ -5202,7 +5240,7 @@ public class LogicManager : MonoBehaviour
 
 // Hyrule Field
 
-    public bool LakeHyliaBridgeBubbleGrotto(string neighbour)
+    public bool LakeHyliaBridgeBubbleGrotto(string neighbour) // done
     {
         if (neighbour == "LakeHyliaBridge")
         {
@@ -5216,11 +5254,13 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakeHyliaBridge(string neighbour)
+    public bool LakeHyliaBridge(string neighbour) // done
     {
         if (neighbour == "FaronField")
         {
-            return Has("GateKeys") || SettingsStatus["SmallKeysKeysy"];
+            return Has("GateKeys") 
+                || SettingsStatus["SmallKeysKeysy"]
+                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
         }
 
         else if (neighbour == "LakeHylia")
@@ -5230,7 +5270,7 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "LanayruField")
         {
-            return CanSmash();
+            return CanSmash() || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "OutsideCastleTownWest")
@@ -5250,7 +5290,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LanayruFieldPoeGrotto(string neighbour)
+    public bool LanayruFieldPoeGrotto(string neighbour) // done
     {
         if (neighbour == "LanayruField")
         {
@@ -5264,7 +5304,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LanayruFieldSkulltulaGrotto(string neighbour)
+    public bool LanayruFieldSkulltulaGrotto(string neighbour) // done
     {
         if (neighbour == "LanayruField")
         {
@@ -5278,16 +5318,16 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LanayruField(string neighbour)
+    public bool LanayruField(string neighbour) // done
     {
         if (neighbour == "EldinField")
         {
-            return CanSmash();
+            return CanSmash() || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "ZorasDomain")
         {
-            return CanSmash();
+            return CanSmash() || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "OutsideCastleTownWest")
@@ -5302,7 +5342,7 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "LakeHyliaBridge")
         {
-            return CanSmash();
+            return CanSmash()|| (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "HiddenVillage")
@@ -5327,7 +5367,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LanayruIcePuzzleCave(string neighbour)
+    public bool LanayruIcePuzzleCave(string neighbour) // done
     {
         if (neighbour == "LanayruField")
         {
@@ -5341,7 +5381,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool OutsideCastleTownSouth(string neighbour)
+    public bool OutsideCastleTownSouth(string neighbour) // done
     {
         if (neighbour == "CastleTown")
         {
@@ -5370,7 +5410,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool OutsideCastleTownWest(string neighbour)
+    public bool OutsideCastleTownWest(string neighbour) // done
     {
         if (neighbour == "LakeHyliaBridge")
         {
@@ -5389,7 +5429,9 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "WestHyruleFieldHelmasaurGrotto")
         {
-            return Has("ShadowCrystal") && Has("Clawshot");
+            return Has("ShadowCrystal") 
+                && (Has("Clawshot") 
+                    || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
         }
 
         else
@@ -5399,7 +5441,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool OutsideSouthCastleTownTektiteGrotto(string neighbour)
+    public bool OutsideSouthCastleTownTektiteGrotto(string neighbour) // done
     {
         if (neighbour == "OutsideCastleTownSouth")
         {
@@ -5413,7 +5455,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool WestHyruleFieldHelmasaurGrotto(string neighbour)
+    public bool WestHyruleFieldHelmasaurGrotto(string neighbour) // done
     {
         if (neighbour == "OutsideCastleTownWest")
         {
@@ -5429,7 +5471,7 @@ public class LogicManager : MonoBehaviour
 
 // Lake Hylia
 
-    public bool LakeHyliaLongCave(string neighbour)
+    public bool LakeHyliaLongCave(string neighbour) // done
     {
         if (neighbour == "LakeHylia")
         {
@@ -5443,7 +5485,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakeHyliaShellBladeGrotto(string neighbour)
+    public bool LakeHyliaShellBladeGrotto(string neighbour) // done
     {
         if (neighbour == "LakeHylia")
         {
@@ -5457,7 +5499,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakeHyliaWaterToadpoliGrotto(string neighbour)
+    public bool LakeHyliaWaterToadpoliGrotto(string neighbour) // done
     {
         if (neighbour == "LakeHylia")
         {
@@ -5471,7 +5513,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakeHylia(string neighbour)
+    public bool LakeHylia(string neighbour) // done
     {
         if (neighbour == "GerudoDesert")
         {
@@ -5495,9 +5537,11 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "LakebedTempleEntrance")
         {
-            return Has("ZoraArmor")
-            && (SettingsStatus["EarlyLakebed"]
-                || (Has("IronBoots") && HasWaterBombs()));
+            return (Has("ZoraArmor")
+                && (SettingsStatus["EarlyLakebed"]
+                    || (Has("IronBoots") && HasWaterBombs())))
+                || (SettingsStatus["GlitchedLogic"] 
+                    && (Has("ZoraArmor") || CanDoAirRefill()));
         }
 
         else if (neighbour == "CityinTheSkyEntrance")
@@ -5525,7 +5569,7 @@ public class LogicManager : MonoBehaviour
 
 // Zora's Domain
 
-    public bool ZorasDomain(string neighbour)
+    public bool ZorasDomain(string neighbour) // done
     {
         if (neighbour == "LanayruField")
         {
@@ -5550,7 +5594,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool BulblinCamp(string neighbour)
+    public bool BulblinCamp(string neighbour) // done
     {
         if (neighbour == "GerudoDesert")
         {
@@ -5560,7 +5604,8 @@ public class LogicManager : MonoBehaviour
         else if (neighbour == "OutsideArbitersGrounds")
         {
             return ((Has("DesertKeys") || SettingsStatus["SmallKeysKeysy"]) && CanDefeatKingBulblinDesert())
-                || SettingsStatus["EarlyArbiters"];
+                || SettingsStatus["EarlyArbiters"]
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch() && Has("Sword"));
         }
 
         else
@@ -5570,7 +5615,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GerudoDesertRockGrotto(string neighbour)
+    public bool GerudoDesertRockGrotto(string neighbour) // done
     {
         if (neighbour == "GerudoDesert")
         {
@@ -5584,7 +5629,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GerudoDesertSkulltulaGrotto(string neighbour)
+    public bool GerudoDesertSkulltulaGrotto(string neighbour) // done
     {
         if (neighbour == "GerudoDesert")
         {
@@ -5598,7 +5643,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GerudoDesert(string neighbour)
+    public bool GerudoDesert(string neighbour) // done
     {
         if (neighbour == "CaveofOrdealsFloors111")
         {
@@ -5627,7 +5672,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool MirrorChamber(string neighbour)
+    public bool MirrorChamber(string neighbour) // done
     {
         if (neighbour == "ArbitersGroundsBossRoom")
         {
@@ -5650,7 +5695,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool OutsideArbitersGrounds(string neighbour)
+    public bool OutsideArbitersGrounds(string neighbour) // done
     {
         if (neighbour == "BulblinCamp")
         {
@@ -5671,7 +5716,7 @@ public class LogicManager : MonoBehaviour
 
 // Cave of Ordeals
 
-    public bool CaveofOrdealsFloors111(string neighbour)
+    public bool CaveofOrdealsFloors111(string neighbour) // done
     {
         if (neighbour == "GerudoDesert")
         {
@@ -5690,7 +5735,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CaveofOrdealsFloors1221(string neighbour)
+    public bool CaveofOrdealsFloors1221(string neighbour) // done
     {
         if (neighbour == "OrdonProvince")
         {
@@ -5709,7 +5754,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CaveofOrdealsFloors2231(string neighbour)
+    public bool CaveofOrdealsFloors2231(string neighbour) // done
     {
         if (neighbour == "SouthFaronWoods")
         {
@@ -5728,7 +5773,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CaveofOrdealsFloors3241(string neighbour)
+    public bool CaveofOrdealsFloors3241(string neighbour) // done
     {
         if (neighbour == "KakarikoVillage")
         {
@@ -5750,7 +5795,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CaveofOrdealsFloors4250(string neighbour)
+    public bool CaveofOrdealsFloors4250(string neighbour) // done
     {
         if (neighbour == "LakeHylia")
         {
@@ -5773,7 +5818,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool SnowpeakClimb(string neighbour)
+    public bool SnowpeakClimb(string neighbour) // done
     {
         if (neighbour == "ZorasDomain")
         {
@@ -5784,7 +5829,8 @@ public class LogicManager : MonoBehaviour
         {
             return (Has("ReekfishScent")
                 || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                || SettingsStatus["EarlySnowpeak"])
+                || SettingsStatus["EarlySnowpeak"]
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()))
             && Has("ShadowCrystal");
         }
 
@@ -5792,7 +5838,8 @@ public class LogicManager : MonoBehaviour
         {
             return (Has("ReekfishScent")
                 || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                || SettingsStatus["EarlySnowpeak"])
+                || SettingsStatus["EarlySnowpeak"]
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()))
             && Has("ShadowCrystal");
         }
 
@@ -5803,7 +5850,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakFreezardGrotto(string neighbour)
+    public bool SnowpeakFreezardGrotto(string neighbour) // done
     {
         if (neighbour == "SnowpeakClimb")
         {
@@ -5817,7 +5864,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakSummit(string neighbour)
+    public bool SnowpeakSummit(string neighbour) // done
     {
         if (neighbour == "SnowpeakClimb")
         {
@@ -5845,7 +5892,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool ForestTempleBossRoom(string neighbour)
+    public bool ForestTempleBossRoom(string neighbour) // done
     {
         if (neighbour == "SouthFaronWoods")
         {
@@ -5859,7 +5906,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ForestTempleEastWing(string neighbour)
+    public bool ForestTempleEastWing(string neighbour) // done
     {
         if (neighbour == "ForestTempleLobby")
         {
@@ -5878,7 +5925,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ForestTempleEntrance(string neighbour)
+    public bool ForestTempleEntrance(string neighbour) // done
     {
         if (neighbour == "NorthFaronWoods")
         {
@@ -5897,7 +5944,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ForestTempleLobby(string neighbour)
+    public bool ForestTempleLobby(string neighbour) // done
     {
         if (neighbour == "ForestTempleEntrance")
         {
@@ -5914,16 +5961,18 @@ public class LogicManager : MonoBehaviour
             return CanBurnWebs() 
                 && (((Has("FTSmallKey", 2) || SettingsStatus["SmallKeysKeysy"]) 
                     && CanDefeatBokoblin()) 
-                        || Has("Clawshot", 1));
+                        || Has("Clawshot")
+                        || (SettingsStatus["GlitchedLogic"] && CanDoLJA()));
         }
 
         else if (neighbour == "Ook")
         {
-            return Has("Lantern")
+            return (Has("Lantern")
                 && CanDefeatWalltula()
                 && CanDefeatBokoblin()
                 && CanBreakMonkeyCage()
-                && (Has("FTSmallKey", 4) || SettingsStatus["SmallKeysKeysy"]) ;
+                && (Has("FTSmallKey", 4) || SettingsStatus["SmallKeysKeysy"]))
+                    || (SettingsStatus["GlitchedLogic"] && CanDoLJA() && CanBurnWebs());
         }
 
         else
@@ -5933,7 +5982,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ForestTempleNorthWing(string neighbour)
+    public bool ForestTempleNorthWing(string neighbour) // done
     {
         if (neighbour == "ForestTempleEastWing")
         {
@@ -5943,8 +5992,12 @@ public class LogicManager : MonoBehaviour
         else if (neighbour == "ForestTempleBossRoom")
         {
             return (Has("FTBigKey") || SettingsStatus["BigKeysKeysy"])
-                && Has("Boomerang")
-                && (CanFreeAllMonkeys() || Has("Clawshot"));
+                && (
+                        (Has("Boomerang")
+                            && (CanFreeAllMonkeys() || Has("Clawshot"))
+                        )
+                        || (SettingsStatus["GlitchedLogic"] && CanDoLJA())
+                    );
         }
 
         else
@@ -5954,7 +6007,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ForestTempleWestWing(string neighbour)
+    public bool ForestTempleWestWing(string neighbour) // done
     {
         if (neighbour == "ForestTempleLobby")
         {
@@ -5963,7 +6016,9 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "Ook")
         {
-            return Has("Boomerang");
+            return Has("Boomerang")
+                || (SettingsStatus["GlitchedLogic"] && 
+                    (Has("ShadowCrystal") || Has("Sword") || HasBombs()));
         }
 
         else
@@ -5973,7 +6028,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool Ook(string neighbour)
+    public bool Ook(string neighbour) // done
     {
         if (neighbour == "ForestTempleWestWing")
         {
@@ -5993,7 +6048,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool GoronMinesBossRoom(string neighbour)
+    public bool GoronMinesBossRoom(string neighbour) // done
     {
         if (neighbour == "KakarikoVillage")
         {
@@ -6007,7 +6062,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GoronMinesCrystalSwitchRoom(string neighbour)
+    public bool GoronMinesCrystalSwitchRoom(string neighbour) // done
     {
         if (neighbour == "GoronMinesMagnetRoom")
         {
@@ -6016,7 +6071,14 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "GoronMinesNorthWing")
         {
-            return ((Has("IronBoots") && Has("Sword")) || Has("Bow")) 
+            return (
+                (Has("IronBoots") && Has("Sword")) 
+                || Has("Bow")
+                || (SettingsStatus["GlitchedLogic"] 
+                    && (CanDoLJA() || (Has("Sword") && HasBombs()))
+                    && (Has("Clawshot") || Has("B&C") || HasBombs())
+                    )
+                ) 
                 && (Has("GMSmallKey", 2) || SettingsStatus["SmallKeysKeysy"]);
         }
 
@@ -6027,7 +6089,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GoronMinesEntrance(string neighbour)
+    public bool GoronMinesEntrance(string neighbour) // done
     {
         if (neighbour == "DeathMountainInteriors")
         {
@@ -6036,7 +6098,9 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "GoronMinesMagnetRoom")
         {
-            return Has("IronBoots") && CanBreakWoodenDoor();
+            return Has("IronBoots") 
+                && (CanBreakWoodenDoor() 
+                    || (SettingsStatus["GlitchedLogic"] && CanDoBSMoonBoots()));
         }
 
         else
@@ -6046,7 +6110,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GoronMinesLowerWestWing(string neighbour)
+    public bool GoronMinesLowerWestWing(string neighbour) // done
     {
         if (neighbour == "GoronMinesMagnetRoom")
         {
@@ -6060,7 +6124,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GoronMinesMagnetRoom(string neighbour)
+    public bool GoronMinesMagnetRoom(string neighbour) // done
     {
         if (neighbour == "GoronMinesEntrance")
         {
@@ -6084,7 +6148,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GoronMinesNorthWing(string neighbour)
+    public bool GoronMinesNorthWing(string neighbour) // done
     {
         if (neighbour == "GoronMinesCrystalSwitchRoom")
         {
@@ -6098,10 +6162,10 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "GoronMinesBossRoom")
         {
-            return (Has("GMBigKey", 3) || SettingsStatus["BigKeysKeysy"]) 
-                && Has("IronBoots")
+            return (Has("GMBigKey", 3) || SettingsStatus["BigKeysKeysy"])
                 && Has("Bow")
-                && CanDefeatBulblin();
+                && ((Has("IronBoots") && CanDefeatBulblin()) 
+                    || (SettingsStatus["GlitchedLogic"] && (Has("Clawshot") || CanDoLJA())));
         }
 
         else
@@ -6111,11 +6175,13 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool GoronMinesUpperEastWing(string neighbour)
+    public bool GoronMinesUpperEastWing(string neighbour) // done
     {
         if (neighbour == "GoronMinesMagnetRoom")
         {
-            return Has("IronBoots") && CanDefeatDangoro() && Has("Bow");
+            return Has("IronBoots") 
+                && CanDefeatDangoro() 
+                && (Has("Bow") || (SettingsStatus["GlitchedLogic"] && CanDefeatBeamos()));
         }
 
         else
@@ -6131,7 +6197,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool LakebedTempleBossRoom(string neighbour)
+    public bool LakebedTempleBossRoom(string neighbour) // done
     {
         if (neighbour == "LakeHylia")
         {
@@ -6145,7 +6211,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakebedTempleCentralRoom(string neighbour)
+    public bool LakebedTempleCentralRoom(string neighbour) // done
     {
         if (neighbour == "LakebedTempleEntrance")
         {
@@ -6184,7 +6250,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakebedTempleEastWingFirstFloor(string neighbour)
+    public bool LakebedTempleEastWingFirstFloor(string neighbour) // done
     {
         if (neighbour == "LakebedTempleCentralRoom")
         {
@@ -6198,7 +6264,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakebedTempleEastWingSecondFloor(string neighbour)
+    public bool LakebedTempleEastWingSecondFloor(string neighbour) // done
     {
         if (neighbour == "LakebedTempleCentralRoom")
         {
@@ -6217,7 +6283,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakebedTempleEntrance(string neighbour)
+    public bool LakebedTempleEntrance(string neighbour) // done
     {
         if (neighbour == "LakeHylia")
         {
@@ -6226,7 +6292,9 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "LakebedTempleCentralRoom")
         {
-            return CanLaunchBombs();
+            return CanLaunchBombs()
+                || (SettingsStatus["GlitchedLogic"] 
+                    && (CanDoLJA() || CanDoJSMoonBoots()));
         }
 
         else
@@ -6236,7 +6304,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool LakebedTempleWestWing(string neighbour)
+    public bool LakebedTempleWestWing(string neighbour) // done
     {
         if (neighbour == "LakebedTempleCentralRoom")
         {
@@ -6256,7 +6324,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool ArbitersGroundsAfterPoeGate(string neighbour)
+    public bool ArbitersGroundsAfterPoeGate(string neighbour) // done
     {
         if (neighbour == "ArbitersGroundsLobby")
         {
@@ -6275,7 +6343,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ArbitersGroundsBossRoom(string neighbour)
+    public bool ArbitersGroundsBossRoom(string neighbour) // done
     {
         if (neighbour == "MirrorChamber")
         {
@@ -6289,7 +6357,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ArbitersGroundsEastWing(string neighbour)
+    public bool ArbitersGroundsEastWing(string neighbour) // done
     {
         if (neighbour == "ArbitersGroundsLobby")
         {
@@ -6303,7 +6371,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ArbitersGroundsEntrance(string neighbour)
+    public bool ArbitersGroundsEntrance(string neighbour) // done
     {
         if (neighbour == "OutsideArbitersGrounds")
         {
@@ -6322,7 +6390,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ArbitersGroundsLobby(string neighbour)
+    public bool ArbitersGroundsLobby(string neighbour) // done
     {
         if (neighbour == "ArbitersGroundsEntrance")
         {
@@ -6354,7 +6422,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool ArbitersGroundsWestWing(string neighbour)
+    public bool ArbitersGroundsWestWing(string neighbour) // done
     {
         if (neighbour == "ArbitersGroundsLobby")
         {
@@ -6374,7 +6442,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool SnowpeakRuinsBossRoom(string neighbour)
+    public bool SnowpeakRuinsBossRoom(string neighbour) // done
     {
         if (neighbour == "SnowpeakSummit")
         {
@@ -6388,7 +6456,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsCagedFreezardRoom(string neighbour)
+    public bool SnowpeakRuinsCagedFreezardRoom(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsYetoandYeta")
         {
@@ -6417,7 +6485,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsChapel(string neighbour)
+    public bool SnowpeakRuinsChapel(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsWestCourtyard")
         {
@@ -6431,7 +6499,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsDarkhammerRoom(string neighbour)
+    public bool SnowpeakRuinsDarkhammerRoom(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsWestCourtyard")
         {
@@ -6445,7 +6513,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsEastCourtyard(string neighbour)
+    public bool SnowpeakRuinsEastCourtyard(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsYetoandYeta")
         {
@@ -6477,7 +6545,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsEntrance(string neighbour)
+    public bool SnowpeakRuinsEntrance(string neighbour) // done
     {
         if (neighbour == "SnowpeakSummit")
         {
@@ -6496,7 +6564,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsNortheastChilfosRoomFirstFloor(string neighbour)
+    public bool SnowpeakRuinsNortheastChilfosRoomFirstFloor(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsEastCourtyard")
         {
@@ -6515,7 +6583,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsNortheastChilfosRoomSecondFloor(string neighbour)
+    public bool SnowpeakRuinsNortheastChilfosRoomSecondFloor(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsNortheastChilfosRoomFirstFloor")
         {
@@ -6534,7 +6602,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsSecondFloorMiniFreezardRoom(string neighbour)
+    public bool SnowpeakRuinsSecondFloorMiniFreezardRoom(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsEntrance")
         {
@@ -6563,7 +6631,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsWestCannonRoom(string neighbour)
+    public bool SnowpeakRuinsWestCannonRoom(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsWestCourtyard")
         {
@@ -6582,7 +6650,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsWestCourtyard(string neighbour)
+    public bool SnowpeakRuinsWestCourtyard(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsYetoandYeta")
         {
@@ -6613,7 +6681,9 @@ public class LogicManager : MonoBehaviour
         {
             return Has("B&C") || 
                 (
-                    (Has("SRSmallKey", 2) || Has("Cheese") || SettingsStatus["SmallKeysKeysy"]) 
+                    (Has("SRSmallKey", 2) 
+                        || (Has("Cheese") && !SettingsStatus["GlitchedLogic"])
+                        || SettingsStatus["SmallKeysKeysy"]) 
                     && HasBombs()
                 );
         }
@@ -6633,7 +6703,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsWoodenBeamRoom(string neighbour)
+    public bool SnowpeakRuinsWoodenBeamRoom(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsWestCannonRoom")
         {
@@ -6647,7 +6717,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool SnowpeakRuinsYetoandYeta(string neighbour)
+    public bool SnowpeakRuinsYetoandYeta(string neighbour) // done
     {
         if (neighbour == "SnowpeakRuinsEntrance")
         {
@@ -6682,7 +6752,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool TempleofTimeArmosAntechamber(string neighbour)
+    public bool TempleofTimeArmosAntechamber(string neighbour) // done
     {
         if (neighbour == "TempleofTimeCentralMechanicalPlatform")
         {
@@ -6696,7 +6766,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeBossRoom(string neighbour)
+    public bool TempleofTimeBossRoom(string neighbour) // done
     {
         if (neighbour == "SacredGroveTempleofTime")
         {
@@ -6710,7 +6780,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeCentralMechanicalPlatform(string neighbour)
+    public bool TempleofTimeCentralMechanicalPlatform(string neighbour) // done
     {
         if (neighbour == "TempleofTimeConnectingCorridors")
         {
@@ -6734,7 +6804,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeConnectingCorridors(string neighbour)
+    public bool TempleofTimeConnectingCorridors(string neighbour) // done
     {
         if (neighbour == "TempleofTimeEntrance")
         {
@@ -6753,7 +6823,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeCrumblingCorridor(string neighbour)
+    public bool TempleofTimeCrumblingCorridor(string neighbour) // done
     {
         if (neighbour == "TempleofTimeEntrance")
         {
@@ -6772,7 +6842,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeDarknutArena(string neighbour)
+    public bool TempleofTimeDarknutArena(string neighbour) // done
     {
         if (neighbour == "TempleofTimeUpperSpikeTrapCorridor")
         {
@@ -6786,7 +6856,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeEntrance(string neighbour)
+    public bool TempleofTimeEntrance(string neighbour) // done
     {
         if (neighbour == "SacredGroveTempleofTime")
         {
@@ -6818,7 +6888,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeFloorSwitchPuzzleRoom(string neighbour)
+    public bool TempleofTimeFloorSwitchPuzzleRoom(string neighbour) // done
     {
         if (neighbour == "TempleofTimeScalesofTime")
         {
@@ -6832,7 +6902,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeMovingWallHallways(string neighbour)
+    public bool TempleofTimeMovingWallHallways(string neighbour) // done
     {
         if (neighbour == "TempleofTimeCentralMechanicalPlatform")
         {
@@ -6851,7 +6921,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool TempleofTimeScalesofTime(string neighbour)
+    public bool TempleofTimeScalesofTime(string neighbour) // done
     {
         if (neighbour == "TempleofTimeMovingWallHallways")
         {
@@ -6875,7 +6945,7 @@ public class LogicManager : MonoBehaviour
         }
     }
     
-    public bool TempleofTimeUpperSpikeTrapCorridor(string neighbour)
+    public bool TempleofTimeUpperSpikeTrapCorridor(string neighbour) // done
     {
         if (neighbour == "TempleofTimeDarknutArena")
         {
@@ -6899,7 +6969,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool CityinTheSkyBossRoom(string neighbour)
+    public bool CityinTheSkyBossRoom(string neighbour) // done
     {
         if (neighbour == "CityinTheSkyEntrance")
         {
@@ -6913,7 +6983,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CityinTheSkyCentralTowerSecondFloor(string neighbour)
+    public bool CityinTheSkyCentralTowerSecondFloor(string neighbour) // done
     {
         if (neighbour == "CityinTheSkyWestWing")
         {
@@ -6932,7 +7002,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CityinTheSkyEastWing(string neighbour)
+    public bool CityinTheSkyEastWing(string neighbour) // done
     {
         if (neighbour == "CityinTheSkyLobby")
         {
@@ -6946,7 +7016,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CityinTheSkyEntrance(string neighbour)
+    public bool CityinTheSkyEntrance(string neighbour) // done
     {
         if (neighbour == "LakeHylia")
         {
@@ -6965,7 +7035,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CityinTheSkyLobby(string neighbour)
+    public bool CityinTheSkyLobby(string neighbour) // done
     {
         if (neighbour == "CityinTheSkyEntrance")
         {
@@ -6985,10 +7055,23 @@ public class LogicManager : MonoBehaviour
         else if (neighbour == "CityinTheSkyNorthWing")
         {
             return Has("Clawshot", 2)
-                && CanDefeatBabaSerpent()
-                && CanDefeatKargorok()
-                && Has("ShadowCrystal")
-                && Has("IronBoots");
+                && (
+                        (
+                            CanDefeatBabaSerpent()
+                            && CanDefeatKargorok()
+                            && Has("ShadowCrystal")
+                            && Has("IronBoots")
+                        )
+                    || (
+                        SettingsStatus["GlitchedLogic"] 
+                        && ((Has("ShadowCrystal") && Has("IronBoots")) || CanDoLJA())
+                        )
+                    );
+        }
+
+        else if (neighbour == "CityinTheSkyCentralTowerSecondFloor")
+        {
+            return SettingsStatus["GlitchedLogic"] && Has("Clawshot") && Has("ShadowCrystal");
         }
 
         else
@@ -6998,7 +7081,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CityinTheSkyNorthWing(string neighbour)
+    public bool CityinTheSkyNorthWing(string neighbour) // done
     {
         if (neighbour == "CityinTheSkyLobby")
         {
@@ -7019,7 +7102,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool CityinTheSkyWestWing(string neighbour)
+    public bool CityinTheSkyWestWing(string neighbour) // done
     {
         if (neighbour == "CityinTheSkyLobby")
         {
@@ -7044,7 +7127,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool PalaceofTwilightBossRoom(string neighbour)
+    public bool PalaceofTwilightBossRoom(string neighbour) // done
     {
         if (neighbour == "PalaceofTwilightEntrance")
         {
@@ -7058,7 +7141,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool PalaceofTwilightEastWing(string neighbour)
+    public bool PalaceofTwilightEastWing(string neighbour) // done
     {
         if (neighbour == "PalaceofTwilightEntrance")
         {
@@ -7072,7 +7155,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool PalaceofTwilightEntrance(string neighbour)
+    public bool PalaceofTwilightEntrance(string neighbour) // done
     {
         if (neighbour == "MirrorChamber")
         {
@@ -7109,7 +7192,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool PalaceofTwilightNorthTower(string neighbour)
+    public bool PalaceofTwilightNorthTower(string neighbour) // done
     {
         if (neighbour == "PalaceofTwilightEntrance")
         {
@@ -7132,7 +7215,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool PalaceofTwilightWestWing(string neighbour)
+    public bool PalaceofTwilightWestWing(string neighbour) // done
     {
         if (neighbour == "PalaceofTwilightEntrance")
         {
@@ -7152,7 +7235,7 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool GanondorfCastle(string neighbour)
+    public bool GanondorfCastle(string neighbour) // done
     {
         if (neighbour == "HyruleCastleTowerClimb")
         {
@@ -7166,7 +7249,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleEntrance(string neighbour)
+    public bool HyruleCastleEntrance(string neighbour) // done
     {
         if (neighbour == "CastleTown")
         {
@@ -7195,7 +7278,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleGraveyard(string neighbour)
+    public bool HyruleCastleGraveyard(string neighbour) // done
     {
         if (neighbour == "HyruleCastleOutsideEastWing")
         {
@@ -7209,7 +7292,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleInsideEastWing(string neighbour)
+    public bool HyruleCastleInsideEastWing(string neighbour) // done
     {
         if (neighbour == "HyruleCastleMainHall")
         {
@@ -7228,7 +7311,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleInsideWestWing(string neighbour)
+    public bool HyruleCastleInsideWestWing(string neighbour) // done
     {
         if (neighbour == "HyruleCastleMainHall")
         {
@@ -7247,7 +7330,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleMainHall(string neighbour)
+    public bool HyruleCastleMainHall(string neighbour) // done
     {
         if (neighbour == "HyruleCastleEntrance")
         {
@@ -7258,7 +7341,7 @@ public class LogicManager : MonoBehaviour
         {
             return CanDefeatBokoblin()
                 && CanDefeatLizalfos()
-                && Has("Clawshot", 2)
+                && (Has("Clawshot", 2) || (SettingsStatus["GlitchedLogic"] && Has("Clawshot")))
                 && CanDefeatDarknut()
                 && Has("Boomerang");
         }
@@ -7267,7 +7350,7 @@ public class LogicManager : MonoBehaviour
         {
             return CanDefeatBokoblin()
                 && CanDefeatLizalfos()
-                && Has("Clawshot", 2)
+                && (Has("Clawshot", 2) || (SettingsStatus["GlitchedLogic"] && Has("Clawshot")))
                 && CanDefeatDarknut()
                 && Has("Boomerang");
         }
@@ -7279,7 +7362,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleOutsideEastWing(string neighbour)
+    public bool HyruleCastleOutsideEastWing(string neighbour) // done
     {
         if (neighbour == "HyruleCastleEntrance")
         {
@@ -7298,7 +7381,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleOutsideWestWing(string neighbour)
+    public bool HyruleCastleOutsideWestWing(string neighbour) // done
     {
         if (neighbour == "HyruleCastleEntrance")
         {
@@ -7312,7 +7395,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleThirdFloorBalcony(string neighbour)
+    public bool HyruleCastleThirdFloorBalcony(string neighbour) // done
     {
         if (neighbour == "HyruleCastleInsideWestWing")
         {
@@ -7336,7 +7419,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleTowerClimb(string neighbour)
+    public bool HyruleCastleTowerClimb(string neighbour) // done
     {
         if (neighbour == "HyruleCastleThirdFloorBalcony")
         {
@@ -7346,16 +7429,16 @@ public class LogicManager : MonoBehaviour
         else if (neighbour == "HyruleCastleTreasureRoom")
         {
             return (Has("HCSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
-                && Has("Spinner")
-                && Has("Clawshot", 2)
+                && (Has("Spinner") || (SettingsStatus["GlitchedLogic"] && CanDoJSLJA()))
+                && (Has("Clawshot", 2) || (SettingsStatus["GlitchedLogic"] && Has("Clawshot")))
                 && CanDefeatDarknut()
                 && CanDefeatLizalfos();
         }
 
         else if (neighbour == "GanondorfCastle")
         {
-            return Has("Spinner")
-                && Has("Clawshot", 2)
+            return (Has("Spinner") || (SettingsStatus["GlitchedLogic"] && CanDoJSLJA()))
+                && (Has("Clawshot", 2) || (SettingsStatus["GlitchedLogic"] && Has("Clawshot")))
                 && CanDefeatDarknut()
                 && CanDefeatLizalfos()
                 && (Has("HCBigKey") || SettingsStatus["BigKeysKeysy"])
@@ -7369,7 +7452,7 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool HyruleCastleTreasureRoom(string neighbour)
+    public bool HyruleCastleTreasureRoom(string neighbour) // done
     {
         if (neighbour == "HyruleCastleTowerClimb")
         {
