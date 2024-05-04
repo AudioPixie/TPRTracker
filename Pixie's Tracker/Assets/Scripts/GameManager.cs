@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,13 +30,31 @@ public class GameManager : MonoBehaviour
     public GameObject PoeChecks; 
     public GameObject BugChecks;
 
-    [Header("Parents Objects")]
+    [Header("Parent Objects")]
     public GameObject Map;
     public GameObject Viewport; // contains all dungeon checks
     public GameObject Dungeons;
 
     public GameObject LayerTabs;
     public GameObject OverlayInfo;
+
+    [Header("Rooms")]
+    public GameObject Rooms;
+    public List<GameObject> RoomsToCheck = new List<GameObject>();
+    public List<GameObject> RoomsDiscovered = new List<GameObject>();
+
+    [Header("Warp Locations")]
+    public GameObject OrdonProvince;
+    public GameObject SouthFaronWoods;
+    public GameObject NorthFaronWoods;
+    public GameObject SacredGroveMasterSword;
+    public GameObject KakarikoGorge;
+    public GameObject KakarikoVillage;
+    public GameObject DeathMountainVolcano;
+    public GameObject OutsideCastleTownWest;
+    public GameObject LakeHylia;
+    public GameObject ZorasDomain;
+    public GameObject SnowpeakSummit;
 
     [Header("Check Colors")]
     public Color OverworldColor;
@@ -156,6 +176,8 @@ public class GameManager : MonoBehaviour
     {
         int tempAvailCount = 0;
 
+        FloodRooms();
+
         foreach (Transform child1 in Map.transform)
         {
             foreach (Transform child2 in child1.transform)
@@ -237,6 +259,110 @@ public class GameManager : MonoBehaviour
         }
 
         TextManager.Instance.SetWalletText();
+    }
+
+    public void FloodRooms()
+    {
+        Debug.Log("<size=25><color=cyan>GRAPH START</color></size>");
+        RoomsToCheck.Clear();
+        foreach (Transform child1 in Rooms.transform)
+        {
+            foreach(Transform child2 in child1.transform)
+            {
+                child2.GetComponent<RoomBehaviour>().isAccessible = false;
+                //Debug.Log("<color=red>FALSE</color> Initialize: " + child2.name);
+            }
+        }
+
+        OrdonProvince.GetComponent<RoomBehaviour>().isAccessible = true;
+        RoomsToCheck.Add(OrdonProvince);
+        Debug.Log("<color=lime>ORDON</color>: True");
+
+        if (LogicManager.Instance.SettingsStatus["UnlockMapRegions"] && LogicManager.Instance.Has("ShadowCrystal"))
+        {
+            if (LogicManager.Instance.SettingsStatus["SkipFaronTwilight"])
+            {
+                SouthFaronWoods.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(SouthFaronWoods);
+                Debug.Log("<color=magenta>WARP</color> TRUE: SouthFaronWoods");
+                NorthFaronWoods.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(NorthFaronWoods);
+                Debug.Log("<color=magenta>WARP</color> TRUE: NorthFaronWoods");
+            }
+
+            if (LogicManager.Instance.SettingsStatus["SkipEldinTwilight"])
+            {
+                KakarikoGorge.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(KakarikoGorge);
+                Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoGorge");
+                KakarikoVillage.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(KakarikoVillage);
+                Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoVillage");
+                DeathMountainVolcano.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(DeathMountainVolcano);
+                Debug.Log("<color=magenta>WARP</color> TRUE: DeathMountainVolcano");
+            }
+
+            if (LogicManager.Instance.SettingsStatus["SkipLanayruTwilight"])
+            {
+                LakeHylia.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(LakeHylia);
+                Debug.Log("<color=magenta>WARP</color> TRUE: LakeHylia");
+                OutsideCastleTownWest.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(OutsideCastleTownWest);
+                Debug.Log("<color=magenta>WARP</color> TRUE: OutsideCastleTownWest");
+                ZorasDomain.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(ZorasDomain);
+                Debug.Log("<color=magenta>WARP</color> TRUE: ZorasDomain");
+            }
+
+            if (LogicManager.Instance.SettingsStatus["EarlySnowpeak"])
+            {
+                SnowpeakSummit.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(SnowpeakSummit);
+                Debug.Log("<color=magenta>WARP</color> TRUE: SnowpeakSummit");
+            }
+
+            if (!LogicManager.Instance.SettingsStatus["ToTClosed"])
+            {
+                SacredGroveMasterSword.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(SacredGroveMasterSword);
+                Debug.Log("<color=magenta>WARP</color> TRUE: SacredGroveMasterSword");
+            }
+        }
+
+        while (RoomsToCheck.Count > 0)
+        {
+        Debug.Log("<size=25><color=orange>START OF BATCH</color></size>");
+            RoomsDiscovered.Clear();
+ 
+            foreach (GameObject room in RoomsToCheck)
+            {
+                Debug.Log("<color=yellow>CHECKING ROOM</color>: " + room.name);
+                foreach (GameObject neighbour in room.GetComponent<RoomBehaviour>().neighboursList)
+                {
+                    if (neighbour.GetComponent<RoomBehaviour>().isAccessible == false)
+                    {
+                        bool pathReturn = room.GetComponent<RoomBehaviour>().checkNeighbour(neighbour.name);
+                        neighbour.GetComponent<RoomBehaviour>().isAccessible = pathReturn;
+                        if (pathReturn == true)
+                            RoomsDiscovered.Add(neighbour);
+                        Debug.Log("Path: " + neighbour.name + " = " + pathReturn);
+                    }
+                }
+            }
+
+            RoomsToCheck.Clear();
+            foreach (GameObject discoveredRoom in RoomsDiscovered)
+            {
+                RoomsToCheck.Add(discoveredRoom);
+                Debug.Log("<color=lightblue>ADDING</color> to next batch: " + discoveredRoom.name);
+            }
+
+        }
+
+        Debug.Log("<size=25><color=green>GRAPH SUCCESS</color></size>");
+
     }
 
 }
