@@ -8,6 +8,7 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
 
     [Header("Fill in")]
     public GameObject DungeonBox; // linked dungeon box on map
+    public GameObject room;
     [SerializeField]
     public bool isPoe;
     public bool isDungeon;
@@ -35,33 +36,38 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
 
     public void DCheckRefresh()
     {
-        MethodInfo methodInfo = typeof(LogicManager).GetMethod(this.gameObject.name); // check gameobject names match logicmanager and spoiler log names perfectly
-
-        // Checks Logic Manager for availibility and sets checkAvailibility
-        if (methodInfo != null)
+        if (room.GetComponent<RoomBehaviour>().isAccessible == true)
         {
-            object returnValue = methodInfo.Invoke(LogicManager.Instance, null);
+            MethodInfo methodInfo = typeof(LogicManager).GetMethod(this.gameObject.name); // check gameobject names match logicmanager and spoiler log names perfectly
 
-            if (returnValue is bool)
+            // Checks Logic Manager for availibility and sets checkAvailibility
+            if (methodInfo != null)
             {
-                bool result = (bool)returnValue;
+                object returnValue = methodInfo.Invoke(LogicManager.Instance, null);
 
-                if (result)
-                    checkAvailibility = true;
+                if (returnValue is bool)
+                {
+                    bool result = (bool)returnValue;
+
+                    if (result)
+                        checkAvailibility = true;
+                    else
+                        checkAvailibility = false;
+                }
                 else
-                    checkAvailibility = false;
+                {
+                    // If didn't return bool
+                    Debug.LogError("Method did not return a boolean: " + this.gameObject.name);
+                }
             }
             else
             {
-                // If didn't return bool
-                Debug.LogError("Method did not return a boolean: " + this.gameObject.name);
+                // If method name does not exist
+                Debug.LogError("Method not found: " + this.gameObject.name);
             }
         }
         else
-        {
-            // If method name does not exist
-            Debug.LogError("Method not found: " + this.gameObject.name);
-        }
+            checkAvailibility = false;
 
         if (toggle.isOn == true)
             checkCompletion = false;

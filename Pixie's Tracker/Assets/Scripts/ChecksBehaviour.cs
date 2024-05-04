@@ -7,6 +7,7 @@ public class ChecksBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     [Header("Fill in")]
     public string tooltipName; // display name for tooltip hover
+    public GameObject room;
     public int checksWorth; // so flight by fowl can be worth 5 checks in the counters
     public int rupeesWorth; // for hint rupee mode
 
@@ -30,33 +31,38 @@ public class ChecksBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void CheckRefresh()
     {
-        MethodInfo methodInfo = typeof(LogicManager).GetMethod(this.gameObject.name); // check gameobject names match logicmanager and spoiler log names perfectly
-
-        // Checks Logic Manager for availibility and sets checkAvailibility
-        if (methodInfo != null)
+        if (room.GetComponent<RoomBehaviour>().isAccessible == true)
         {
-            object returnValue = methodInfo.Invoke(LogicManager.Instance, null);
+            MethodInfo methodInfo = typeof(LogicManager).GetMethod(this.gameObject.name); // check gameobject names match logicmanager and spoiler log names perfectly
 
-            if (returnValue is bool)
+            // Checks Logic Manager for availibility and sets checkAvailibility
+            if (methodInfo != null)
             {
-                bool result = (bool)returnValue;
+                object returnValue = methodInfo.Invoke(LogicManager.Instance, null);
 
-                if (result)
-                    checkAvailibility = true;
+                if (returnValue is bool)
+                {
+                    bool result = (bool)returnValue;
+
+                    if (result)
+                        checkAvailibility = true;
+                    else
+                        checkAvailibility = false;
+                }
                 else
-                    checkAvailibility = false;
+                {
+                    // If didn't return bool
+                    Debug.LogError("Method did not return a boolean: " + this.gameObject.name);
+                }
             }
             else
             {
-                // If didn't return bool
-                Debug.LogError("Method did not return a boolean: " + this.gameObject.name);
+                // If method name does not exist
+                Debug.LogError("Method not found: " + this.gameObject.name);
             }
         }
         else
-        {
-            // If method name does not exist
-            Debug.LogError("Method not found: " + this.gameObject.name);
-        }
+            checkAvailibility = false;
 
         // Changes colour
         if (checkImportance == 0)
