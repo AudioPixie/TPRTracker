@@ -21,10 +21,12 @@ public class SettingsBehaviour : MonoBehaviour
         if (gameObject.name == "Main")
         {
             toggle.isOn = true;
+            OnToggleValueChanged(toggle.isOn);
         }
         else
         {
             toggle.isOn = false;
+            OnToggleValueChanged(toggle.isOn);
         }
     }
 
