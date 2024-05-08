@@ -2099,7 +2099,7 @@ public class LogicManager : MonoBehaviour
 
     public bool WestHyruleFieldGoldenWolf() // done
     {
-        return CanAccessZorasDomain() && RoomZorasDomain.GetComponent<RoomBehaviour>().isAccessible;
+        return Has("ShadowCrystal") && RoomZorasDomain.GetComponent<RoomBehaviour>().isAccessible;
     }
 
     public bool WestHyruleFieldHelmasaurGrottoChest() // done
