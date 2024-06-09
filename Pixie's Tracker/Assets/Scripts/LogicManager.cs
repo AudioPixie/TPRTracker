@@ -1928,6 +1928,16 @@ public class LogicManager : MonoBehaviour
             || (SettingsStatus["GlitchedLogic"] && CanDoLJA());
     }
 
+    public bool SacredGrovePedestalMasterSword()
+    {
+        return true;
+    }
+
+    public bool SacredGrovePedestalShadowCrystal()
+    {
+        return true;
+    }
+
     // Faron Field
 
     public bool FaronFieldBridgeChest() // done
@@ -2915,6 +2925,16 @@ public class LogicManager : MonoBehaviour
     public bool KakarikoVillageMaloMartHawkeye() // done
     {
         return Has("Bow") && Has("Boss2");
+    }
+
+    public bool KakarikoVillageMaloMartRedPotion() // done
+    {
+        return true;
+    }
+
+    public bool KakarikoVillageMaloMartWoodenShield() // done
+    {
+        return true;
     }
 
     public bool RutelasBlessing() // done
@@ -4180,6 +4200,11 @@ public class LogicManager : MonoBehaviour
             && Has("Clawshot")
             && Has("Spinner")
             && CanSmash();
+    }
+
+    public bool ArbitersGroundsDungeonReward()
+    {
+        return CanDefeatStallord();
     }
 
     public bool ArbitersGroundsStallordHeartContainer() // done
