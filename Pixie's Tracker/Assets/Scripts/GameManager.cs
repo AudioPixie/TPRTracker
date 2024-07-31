@@ -222,9 +222,6 @@ public class GameManager : MonoBehaviour
             GoMode.SetActive(true);
             GoModeUsed = true;
         }
-
-        Debug.Log(QualitySettings.vSyncCount);
-        Debug.Log(Application.runInBackground);
     }
 
     public void RefreshSelective(GameObject Parent) // can selectively refresh just overworld, poes, or bugs

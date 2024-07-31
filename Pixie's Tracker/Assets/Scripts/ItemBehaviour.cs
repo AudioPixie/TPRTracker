@@ -46,6 +46,16 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
 
     }
 
+    public void ItemIncrementNoRefresh()
+    {
+        if (currentItemCount < maxItemCount)
+        {
+            currentItemCount += 1;
+
+            ItemRefreshNoGameManager();
+        }
+    }
+
     public void ItemDecrement()
     {
         if (currentItemCount > 0)
@@ -90,6 +100,22 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
         LogicManager.Instance.ItemCounts[nameCount] = currentItemCount;
 
         GameManager.Instance.Refresh();
+
+        if (isSpriteSwap == true)
+        {
+            buttonImage.sprite = images[currentItemCount];
+        }
+        else
+        {
+            buttonText.text = currentItemCount.ToString();
+        }
+
+        ItemOpacity();
+    }
+
+    public void ItemRefreshNoGameManager()
+    {
+        LogicManager.Instance.ItemCounts[nameCount] = currentItemCount;
 
         if (isSpriteSwap == true)
         {

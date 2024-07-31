@@ -1167,337 +1167,338 @@ public class SpoilerManager : MonoBehaviour
                     if (item == "Ordon_Shield" || item == "Hylian_Shield")
                     {
                         Debug.Log("Shields");
-                        ShieldButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        ShieldButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Magic_Armor")//new
                     {
                         Debug.Log("Magic Armor");
-                        MagicArmorButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        MagicArmorButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Zora_Armor")
                     {
                         Debug.Log("ZoraArmor");
-                        ZoraArmorButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        ZoraArmorButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Shadow_Crystal")
                     {
                         Debug.Log("SC");
-                        ShadowCrystalButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        ShadowCrystalButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Hawkeye")//new
                     {
                         Debug.Log("Hawkeye");
-                        HawkeyeButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        HawkeyeButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Progressive_Sword")
                     {
                         Debug.Log("Sword");
-                        SwordButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SwordButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Boomerang")
                     {
                         Debug.Log("Boomerang");
-                        BoomerangButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        BoomerangButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Spinner")
                     {
                         Debug.Log("Spinner");
-                        SpinnerButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SpinnerButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Ball_and_Chain")
                     {
                         Debug.Log("B&C");
-                        BCButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        BCButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Progressive_Bow")
                     {
                         Debug.Log("Bow");
-                        BowButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        BowButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Progressive_Clawshot")
                     {
                         Debug.Log("Claw");
-                        ClawshotButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        ClawshotButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Iron_Boots")
                     {
                         Debug.Log("Boots");
-                        IronBootsButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        IronBootsButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Progressive_Dominion_Rod")
                     {
                         Debug.Log("DR");
-                        DominionRodButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        DominionRodButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Lantern")
                     {
                         Debug.Log("Lantern");
-                        LanternButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        LanternButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Progressive_Fishing_Rod")
                     {
                         Debug.Log("FR");
-                        FishingRodButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        FishingRodButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Slingshot")
                     {
                         Debug.Log("Slingshot");
-                        SlingshotButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SlingshotButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Giant_Bomb_Bag")
                     {
                         Debug.Log("Giant Bombs");
-                        GiantBombBagButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        GiantBombBagButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Filled_Bomb_Bag")
                     {
                         Debug.Log("Bombs");
-                        BombBagButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        BombBagButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Empty_Bottle")
                     {
                         Debug.Log("Bottle");
-                        BottleButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        BottleButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Horse_Call")
                     {
                         Debug.Log("Horse Call");
-                        HorseCallButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        HorseCallButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Forest_Temple_Small_Key")
                     {
                         Debug.Log("FT Small");
-                        FTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        FTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Goron_Mines_Small_Key")
                     {
                         Debug.Log("GM Small");
-                        GMSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        GMSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Lakebed_Temple_Small_Key")
                     {
                         Debug.Log("LT Small");
-                        LTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        LTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Arbiters_Grounds_Small_Key")
                     {
                         Debug.Log("AG Small");
-                        AGSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        AGSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Snowpeak_Ruins_Small_Key")
                     {
                         Debug.Log("SR Small");
-                        SRSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SRSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Temple_of_Time_Small_Key")
                     {
                         Debug.Log("ToT Small");
-                        ToTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        ToTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "City_in_The_Sky_Small_Key")
                     {
                         Debug.Log("CitS Small");
-                        CitSSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        CitSSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Palace_ot_Twilight_Small_Key")
                     {
                         Debug.Log("PoT Small");
-                        PoTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        PoTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Hyrule_Castle_Small_Key")
                     {
                         Debug.Log("HC Small");
-                        HCSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        HCSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Aurus_Memo")
                     {
                         Debug.Log("Auru");
-                        AuruButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        AuruButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Asheis_Sketch")
                     {
                         Debug.Log("Ashei");
-                        AsheiButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        AsheiButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Forest_Temple_Big_Key")
                     {
                         Debug.Log("FT Big");
-                        FTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        FTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Lakebed_Temple_Big_Key")
                     {
                         Debug.Log("LT Big");
-                        LTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        LTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Arbiters_Grounds_Big_Key")
                     {
                         Debug.Log("AG Big");
-                        AGBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        AGBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Temple_of_Time_Big_Key")
                     {
                         Debug.Log("ToT Big");
-                        ToTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        ToTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "City_in_The_Sky_Big_Key")
                     {
                         Debug.Log("CitS Big");
-                        CitSBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        CitSBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Palace_of_Twilight_Big_Key")
                     {
                         Debug.Log("PoT Big");
-                        PoTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        PoTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Hyrule_Castle_Big_Key")
                     {
                         Debug.Log("HC Big");
-                        HCBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        HCBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Poe_Soul")
                     {
                         Debug.Log("Poe");
-                        PoeSoulButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        PoeSoulButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
-                    if (item == "Progressive_Hidden_Skill")//new
+                    if (item == "Progressive_Hidden_Skill")
                     {
                         Debug.Log("Hidden Skill");
-                        HiddenSkillButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        HiddenSkillButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Progressive_Sky_Book")
                     {
                         Debug.Log("Skybook");
-                        SkyBookButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SkyBookButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Gate_Keys")
                     {
                         Debug.Log("Gate Keys");
-                        GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Snowpeak_Ruins_Ordon_Pumpkin")
                     {
                         Debug.Log("Pumpkin");
-                        SROrdonPumpkinButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SROrdonPumpkinButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Snowpeak_Ruins_Ordon_Goat_Cheese")
                     {
                         Debug.Log("Cheese");
-                        SROrdonGoatCheeseButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SROrdonGoatCheeseButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Snowpeak_Ruins_Bedroom_Key")
                     {
                         Debug.Log("Bedroom Key");
-                        SRBedroomKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        SRBedroomKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
 
                     if (item == "Goron_Mines_Key_Shard")
                     {
                         Debug.Log("GM Big");
-                        GMKeyShardButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                        GMKeyShardButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
                         continue;
                     }
                 }
 
                 Debug.Log("Camp Key");
                 if (spoilerLog.settings.skipArbitersEntrance == true)
-                    BulblinCampKeyButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                    BulblinCampKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
 
                 Debug.Log("GateKeyKeysy");
                 if (spoilerLog.settings.smallKeySettings == "Keysy")
-                    GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrement();
+                    GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
             }
 
             loadPage.SetActive(false);
             hintPage.SetActive(true);
+            GameManager.Instance.Refresh();
         }
         else
         {

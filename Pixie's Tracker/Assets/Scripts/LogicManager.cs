@@ -252,6 +252,7 @@ public class LogicManager : MonoBehaviour
     public GameObject RoomGoronMinesUpperEastWing;
     public GameObject RoomLakebedTempleEastWingSecondFloor;
     public GameObject RoomLakebedTempleWestWing;
+    public GameObject RoomKakarikoGorge;
 
 /* ------------------------------
 
@@ -434,6 +435,11 @@ public class LogicManager : MonoBehaviour
         return Has("ShadowCrystal") || Has("Sword") || CanSmash() || CanUseBacksliceAsSword();
     }
 
+    public bool CanChangeTime()
+    {
+        return true; // not bothering with this
+    }
+
 // Glitched Functions
 
     public bool HasSwordorBS()
@@ -473,7 +479,7 @@ public class LogicManager : MonoBehaviour
 
     public bool CanDoMapGlitch()
     {
-        return Has("ShadowCrystal") && CanAccessKakariko();
+        return Has("ShadowCrystal") && RoomKakarikoGorge.GetComponent<RoomBehaviour>().isAccessible;
     }
 
     public bool CanDoStorage()
@@ -4959,16 +4965,21 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public bool OrdonProvince(string neighbour) // done
+    public bool OutsideLinksHouse(string neighbour)
     {
-        if (neighbour == "OrdonRanchGrotto")
+        if (neighbour == "OrdonVillage")
         {
-            return CanCompletePrologue() && Has("ShadowCrystal");
+            return true;
         }
 
-        else if (neighbour == "SouthFaronWoods")
+        else if (neighbour == "OrdonSpring")
         {
-            return (Has("Sword") && Has("Slingshot")) || SettingsStatus["SkipPrologue"];
+            return true;
+        }
+
+        else if (neighbour == "OrdonLinksHouse")
+        {
+            return true;
         }
 
         else
@@ -4978,9 +4989,67 @@ public class LogicManager : MonoBehaviour
         }
     }
 
-    public bool OrdonRanchGrotto(string neighbour) // done
+    public bool OrdonLinksHouse(string neighbour)
     {
-        if (neighbour == "OrdonProvince")
+        if (neighbour == "OutsideLinksHouse")
+        {
+            return true;
+        }
+
+        else
+        {
+            Debug.Log("Could not find neighbor: " + neighbour);
+            return false;
+        }
+    }
+
+    public bool OdronVillage(string neighbour)
+    {
+        if (neighbour == "OutsideLinksHouse")
+        {
+            return true;
+        }
+
+        else if (neighbour == "OrdonRanchEntrance")
+        {
+            return true;
+        }
+
+        else if (neighbour == "OrdonSerasShop")
+        {
+            return CanChangeTime();
+        }
+
+        else if (neighbour == "OrdonShieldHouse")
+        {
+            return CanChangeTime();
+        }
+
+        else if (neighbour == "OrdonSwordHouse")
+        {
+            return CanChangeTime();
+        }
+
+        else if (neighbour == "OrdonBosHouseLeftDoor")
+        {
+            return true;
+        }
+
+        else if (neighbour == "OrdonBosHouseRightDoor")
+        {
+            return true;
+        }
+
+        else
+        {
+            Debug.Log("Could not find neighbor: " + neighbour);
+            return false;
+        }
+    }
+
+    public bool OrdonSerasShop(string neighbour)
+    {
+        if (neighbour == "OrdonVillage")
         {
             return true;
         }
