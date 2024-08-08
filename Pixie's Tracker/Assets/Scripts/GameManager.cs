@@ -43,18 +43,18 @@ public class GameManager : MonoBehaviour
     public List<GameObject> RoomsToCheck = new List<GameObject>();
     public List<GameObject> RoomsDiscovered = new List<GameObject>();
 
-    [Header("Warp Locations")]
-    public GameObject OrdonProvince;
+    [Header("Warp/Starting Locations")]
+    public GameObject OutsideLinksHouse;
     public GameObject SouthFaronWoods;
     public GameObject NorthFaronWoods;
-    public GameObject SacredGroveMasterSword;
+    public GameObject SacredGroveLower;
     public GameObject KakarikoGorge;
-    public GameObject KakarikoVillage;
+    public GameObject LowerKakarikoVillage;
     public GameObject DeathMountainVolcano;
     public GameObject OutsideCastleTownWest;
     public GameObject LakeHylia;
-    public GameObject ZorasDomain;
-    public GameObject SnowpeakSummit;
+    public GameObject ZorasThroneRoom;
+    public GameObject SnowpeakSummitUpper;
 
     [Header("Check Colors")]
     public Color OverworldColor;
@@ -280,8 +280,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        OrdonProvince.GetComponent<RoomBehaviour>().isAccessible = true;
-        RoomsToCheck.Add(OrdonProvince);
+        OutsideLinksHouse.GetComponent<RoomBehaviour>().isAccessible = true;
+        RoomsToCheck.Add(OutsideLinksHouse);
         Debug.Log("<color=lime>ORDON</color>: True");
 
         if (LogicManager.Instance.SettingsStatus["UnlockMapRegions"] && LogicManager.Instance.Has("ShadowCrystal"))
@@ -301,8 +301,8 @@ public class GameManager : MonoBehaviour
                 KakarikoGorge.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(KakarikoGorge);
                 Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoGorge");
-                KakarikoVillage.GetComponent<RoomBehaviour>().isAccessible = true;
-                RoomsToCheck.Add(KakarikoVillage);
+                LowerKakarikoVillage.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(LowerKakarikoVillage);
                 Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoVillage");
                 DeathMountainVolcano.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(DeathMountainVolcano);
@@ -317,22 +317,22 @@ public class GameManager : MonoBehaviour
                 OutsideCastleTownWest.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(OutsideCastleTownWest);
                 Debug.Log("<color=magenta>WARP</color> TRUE: OutsideCastleTownWest");
-                ZorasDomain.GetComponent<RoomBehaviour>().isAccessible = true;
-                RoomsToCheck.Add(ZorasDomain);
+                ZorasThroneRoom.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(ZorasThroneRoom);
                 Debug.Log("<color=magenta>WARP</color> TRUE: ZorasDomain");
             }
 
             if (LogicManager.Instance.SettingsStatus["EarlySnowpeak"])
             {
-                SnowpeakSummit.GetComponent<RoomBehaviour>().isAccessible = true;
-                RoomsToCheck.Add(SnowpeakSummit);
+                SnowpeakSummitUpper.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(SnowpeakSummitUpper);
                 Debug.Log("<color=magenta>WARP</color> TRUE: SnowpeakSummit");
             }
 
             if (!LogicManager.Instance.SettingsStatus["ToTClosed"])
             {
-                SacredGroveMasterSword.GetComponent<RoomBehaviour>().isAccessible = true;
-                RoomsToCheck.Add(SacredGroveMasterSword);
+                SacredGroveLower.GetComponent<RoomBehaviour>().isAccessible = true;
+                RoomsToCheck.Add(SacredGroveLower);
                 Debug.Log("<color=magenta>WARP</color> TRUE: SacredGroveMasterSword");
             }
         }
