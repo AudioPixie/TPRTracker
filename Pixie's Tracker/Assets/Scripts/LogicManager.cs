@@ -242,13 +242,16 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public GameObject RoomHyruleCastleEntrance;
+    public GameObject RoomHyruleCastleEntrance; // for Go mode
 
+    // all for checks, not rooms
     public GameObject RoomLakebedTempleEastWingSecondFloor;
     public GameObject RoomLakebedTempleWestWing;
     public GameObject RoomGoronMinesUpperEastWing;
     public GameObject RoomForestTempleWestWing;
-    public GameObject RoomDeathMountainTrail;
+
+    // i think these are all golden wolves
+    public GameObject RoomDeathMountainTrail; // good
     public GameObject RoomZorasDomain;
     public GameObject RoomHiddenVillage;
     public GameObject RoomSnowpeakClimb;
@@ -279,12 +282,15 @@ public class LogicManager : MonoBehaviour
 
     public bool HasBombs()
     {
-        return Has("Bombs");
+        return Has("Bombs") 
+            && (CanAccessEldin() || CanAccessLanayru());
     }
 
     public bool HasWaterBombs()
     {
-        return Has("Bombs") && (Has("WaterBombs") || SettingsStatus["IgnoreWaterBombLogic"]);
+        return Has("Bombs") 
+            && (Has("WaterBombs") || SettingsStatus["IgnoreWaterBombLogic"])
+            && (CanAccessEldin() || CanAccessLanayru());
     }
 
     public bool CanSmash()
@@ -306,14 +312,14 @@ public class LogicManager : MonoBehaviour
             || Has("Boomerang");
     }
 
-    public bool CanUseBottledFairy() // && can access lake hylia
+    public bool CanUseBottledFairy()
     {
-        return Has("Bottle");
+        return Has("Bottle") && CanAccessLanayru();
     }
 
     public bool CanUseBottledFairies()
     {
-        return Has("Bottle", 2);
+        return Has("Bottle", 2) && CanAccessLanayru();
     }
 
     public bool CanLaunchBombs()
@@ -326,12 +332,12 @@ public class LogicManager : MonoBehaviour
         return Has("Bow") && HasBombs();
     }
 
-    public bool CanCutHangingWeb() // bow && can get arrows
+    public bool CanCutHangingWeb()
     {
         return Has("Clawshot")
             || Has("Boomerang")
             || Has("B&C")
-            || Has("Bow");
+            || (Has("Bow") && CanGetArrows());
     }
 
     public int GetPlayerHealth()
@@ -362,7 +368,7 @@ public class LogicManager : MonoBehaviour
         );
     }
 
-    public bool CanBreakMonkeyCage() // bow && can get arrows
+    public bool CanBreakMonkeyCage()
     {
         return Has("Sword")
             || Has("B&C")
@@ -371,7 +377,7 @@ public class LogicManager : MonoBehaviour
             || Has("Clawshot")
             || Has("ShadowCrystal")
             || Has("Spinner")
-            || Has("Bow")
+            || (Has("Bow") && CanGetArrows())
             || (CanDoNicheStuff() && Has("HiddenSkill", 2));
     }
 
@@ -446,9 +452,9 @@ public class LogicManager : MonoBehaviour
         return Has("Sword") && Has("Boomerang") && Has("HiddenSkill", 6);
     }
 
-    public bool CanDoMapGlitch() // && can access kak gorge
+    public bool CanDoMapGlitch()
     {
-        return Has("ShadowCrystal");
+        return Has("ShadowCrystal") && CanAccessEldin();
     }
 
     public bool CanDoStorage()
@@ -681,6 +687,56 @@ public class LogicManager : MonoBehaviour
             && Has("Boss8");
     }
 
+    public bool CanGetArrows() // used for closed faron woods mainly - CanClearForest or can access lost woods
+    {
+        return CanClearForest()
+            || Has("ShadowCrystal")
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("Lantern")
+                && Has("Bombs")
+                && CanDoLJA()
+            );
+    }
+
+    public bool CanAccessEldin() // used for map glitch - if you can warp to any of these places in glitched, you can access kak gorge
+    {
+        return CanClearForest()
+            || (
+                Has("ShadowCrystal")
+                && SettingsStatus["UnlockMapRegions"]
+                && (
+                    SettingsStatus["SkipEldinTwilight"]
+                    || SettingsStatus["SkipLanayruTwilight"]
+                    || SettingsStatus["EarlySnowpeak"]
+                )
+            );
+    }
+
+    public bool CanAccessLanayru() // for fairies - can warp to lanayru/snowpeak, or can warp to eldin and break out
+    {
+        return (
+                Has("ShadowCrystal")
+                && SettingsStatus["UnlockMapRegions"]
+                && (SettingsStatus["SkipLanayruTwilight"] || SettingsStatus["EarlySnowpeak"])
+            )
+            || (
+                (
+                    CanClearForest() 
+                    || (Has("ShadowCrystal")
+                        && SettingsStatus["UnlockMapRegions"]
+                        && SettingsStatus["SkipEldinTwilight"]
+                    )
+                )
+                && (
+                    CanSmash()
+                    || Has("GateKeys")
+                    || SettingsStatus["SmallKeysKeysy"]
+                    || SettingsStatus["GlitchedLogic"]
+                )
+            );
+    }
+
 /* ------------------------------
 
             Enemies
@@ -746,11 +802,11 @@ public class LogicManager : MonoBehaviour
         return Has("B&C") || Has("Bow") || HasBombs();
     }
 
-    public bool CanDefeatBigBaba() // bow && can get arrows
+    public bool CanDefeatBigBaba()
     {
         return Has("Sword")
             || Has("B&C")
-            || Has("Bow")
+            || (Has("Bow") && CanGetArrows())
             || (CanDoNicheStuff() && Has("IronBoots"))
             || Has("ShadowCrystal")
             || Has("Spinner")
@@ -758,11 +814,11 @@ public class LogicManager : MonoBehaviour
             || CanUseBacksliceAsSword();
     }
 
-    public bool CanDefeatBokoblin() // bow && can get arrows
+    public bool CanDefeatBokoblin()
     {
         return Has("Sword")
             || Has("B&C")
-            || Has("Bow")
+            || (Has("Bow") && CanGetArrows())
             || (CanDoNicheStuff() && Has("IronBoots"))
             || Has("Spinner")
             || Has("Slingshot")
@@ -771,11 +827,11 @@ public class LogicManager : MonoBehaviour
             || CanUseBacksliceAsSword();
     }
 
-    public bool CanDefeatBokoblinRed() // bow && can get arrows
+    public bool CanDefeatBokoblinRed()
     {
         return Has("Sword")
             || Has("B&C")
-            || Has("Bow")
+            || (Has("Bow") && CanGetArrows())
             || Has("ShadowCrystal")
             || HasBombs()
             || CanUseBacksliceAsSword();
@@ -794,11 +850,11 @@ public class LogicManager : MonoBehaviour
             );
     }
 
-    public bool CanDefeatBombling() // bow && can get arrows
+    public bool CanDefeatBombling()
     {
         return Has("Sword")
             || Has("B&C")
-            || Has("Bow")
+            || (Has("Bow") && CanGetArrows())
             || (CanDoNicheStuff() && Has("IronBoots"))
             || Has("Spinner")
             || Has("ShadowCrystal")
@@ -1338,11 +1394,11 @@ public class LogicManager : MonoBehaviour
             || HasBombs();
     }
 
-    public bool CanDefeatWalltula() // bow && can get arrows
+    public bool CanDefeatWalltula()
     {
         return Has("B&C")
             || Has("Slingshot")
-            || Has("Bow")
+            || (Has("Bow") && CanGetArrows())
             || Has("Boomerang")
             || Has("Clawshot");
     }
@@ -1374,11 +1430,11 @@ public class LogicManager : MonoBehaviour
         return Has("ShadowCrystal") || Has("Sword") || CanUseBacksliceAsSword();
     }
 
-    public bool CanDefeatOok() // bow && can get arrows
+    public bool CanDefeatOok()
     {
         return Has("Sword")
             || Has("B&C")
-            || Has("Bow")
+            || (Has("Bow") && CanGetArrows())
             || (CanDoNicheStuff() && Has("IronBoots"))
             || Has("ShadowCrystal")
             || HasBombs()
@@ -1627,18 +1683,28 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronWoodsOwlStatueChest()
     {
-        return (CanSmash()
-            && Has("DominionRod", 2)
-            && CanClearForest()
-            && Has("ShadowCrystal"))
-                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
+        return (
+                SettingsStatus["GlitchedLogic"]
+                && (
+                    (
+                        CanSmash()
+                        && Has("DominionRod", 2)
+                        && CanClearForest()
+                        && Has("ShadowCrystal")
+                    )
+                    || CanDoMapGlitch()
+                )
+            )
+            || !SettingsStatus["GlitchedLogic"];
     }
 
     public bool FaronWoodsOwlStatueSkyCharacter()
     {
         return Has("DominionRod", 2)
-            && ((CanClearForest() && CanSmash())
-                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
+            && (
+                CanClearForest()
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch())
+            );
     }
 
     public bool NorthFaronWoodsDekuBabaChest()
@@ -1750,11 +1816,19 @@ public class LogicManager : MonoBehaviour
 
     public bool DeathMountainAlcoveChest()
     {
-        return (Has("Boss2") && SettingsStatus["UnrequiredDungeonsAreBarren"]) || 
+        return (
+                Has("Boss2") 
+                && !SettingsStatus["UnrequiredDungeonsAreBarren"]
+            ) || 
             (
-                (Has("Clawshot") 
-                    && (Has("IronBoots") || Has("ShadowCrystal")))
-                || (SettingsStatus["GlitchedLogic"] && (Has("Clawshot") || CanDoLJA()))
+                (
+                    Has("Clawshot") 
+                    && (Has("IronBoots") || Has("ShadowCrystal"))
+                )
+                || (
+                    SettingsStatus["GlitchedLogic"] 
+                    && (Has("Clawshot") || CanDoLJA())
+                )
             );
     }
 
@@ -1844,7 +1918,7 @@ public class LogicManager : MonoBehaviour
         return Has("B&C");
     }
 
-    // West Hyrule Field
+    // West Hyrule Field - pick up here
 
     public bool HyruleFieldAmphitheaterOwlStatueChest()
     {
