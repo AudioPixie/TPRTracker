@@ -118,7 +118,6 @@ public class ChecksBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (toggle.isOn == true)
         {
             GameManager.Instance.checkCountRemaining += checksWorth;
-            GameManager.Instance.checkCountCompleted -= checksWorth;
             TextManager.Instance.SetRemainingText();
 
             if (GameManager.Instance.RupeeMode.isOn == true)
@@ -139,7 +138,6 @@ public class ChecksBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExit
         else
         {
             GameManager.Instance.checkCountRemaining -= checksWorth;
-            GameManager.Instance.checkCountCompleted += checksWorth;
             TextManager.Instance.SetRemainingText();
 
             GameManager.Instance.walletCount += rupeesWorth;

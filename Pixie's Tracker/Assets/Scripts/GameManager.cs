@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 //using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -66,7 +67,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Counters")]
     public int checkCountTotal;
-    public int checkCountCompleted;
     public int checkCountRemaining;
     public int checkCountAvailable;
 
@@ -105,24 +105,6 @@ public class GameManager : MonoBehaviour
     {
         QualitySettings.vSyncCount = 2;
         Application.runInBackground = false;
-
-        // number of checks and text initialization
-        checkCountTotal = 0;
-
-        foreach (Transform child1 in Map.transform)
-            foreach (Transform child2 in child1.transform)
-                checkCountTotal += child2.GetComponent<ChecksBehaviour>().checksWorth;
-
-        foreach (Transform child1 in Viewport.transform)
-            foreach (Transform child2 in child1.transform)
-                checkCountTotal += 1;
-
-        TextManager.Instance.SetTotalText();
-
-        checkCountCompleted = 0;
-        checkCountRemaining = checkCountTotal;
-
-        TextManager.Instance.SetRemainingText();
 
         walletCount = 0;
 
@@ -184,6 +166,8 @@ public class GameManager : MonoBehaviour
     public void Refresh()
     {
         int tempAvailCount = 0;
+        int tempRemainCount = 0;
+        int tempTotalCount = 0;
 
         FloodRooms();
 
@@ -192,9 +176,19 @@ public class GameManager : MonoBehaviour
             foreach (Transform child2 in child1.transform)
             {
                 child2.GetComponent<ChecksBehaviour>().CheckRefresh();
-                if (child2.GetComponent<ChecksBehaviour>().checkAvailibility == true &&
-                    child2.GetComponent<ChecksBehaviour>().checkCompletion == false)
-                    tempAvailCount += child2.GetComponent<ChecksBehaviour>().checksWorth;
+
+                if (child1.gameObject.activeSelf)
+                {
+                    tempTotalCount += child2.GetComponent<ChecksBehaviour>().checksWorth;
+
+                    if (child2.GetComponent<ChecksBehaviour>().checkCompletion == false)
+                    {
+                        tempRemainCount += child2.GetComponent<ChecksBehaviour>().checksWorth;
+
+                        if (child2.GetComponent<ChecksBehaviour>().checkAvailibility == true)
+                            tempAvailCount += child2.GetComponent<ChecksBehaviour>().checksWorth;
+                    }
+                }
             }
         }
 
@@ -203,9 +197,20 @@ public class GameManager : MonoBehaviour
             foreach (Transform child2 in child1.transform)
             {
                 child2.GetComponent<ListChecksBehaviour>().DCheckRefresh();
-                if (child2.GetComponent<ListChecksBehaviour>().checkAvailibility == true &&
-                    child2.GetComponent<ListChecksBehaviour>().checkCompletion == false)
-                    tempAvailCount += 1;
+
+                if ((child2.GetComponent<ListChecksBehaviour>().isPoe == false && OVChecks.activeSelf)
+                    || (child2.GetComponent<ListChecksBehaviour>().isPoe == true && PoeChecks.activeSelf))
+                {
+                    tempTotalCount += 1;
+
+                    if (child2.GetComponent<ListChecksBehaviour>().checkCompletion == false)
+                    {
+                        tempRemainCount += 1;
+
+                        if (child2.GetComponent<ListChecksBehaviour>().checkAvailibility == true)
+                            tempAvailCount += 1;
+                    }
+                }
             }
         }
 
@@ -218,8 +223,13 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        checkCountRemaining = tempRemainCount;
         checkCountAvailable = tempAvailCount;
+        checkCountTotal = tempTotalCount;
+        TextManager.Instance.SetRemainingText();
         TextManager.Instance.SetAvailableText();
+        TextManager.Instance.SetTotalText();
+
         if (LogicManager.Instance.GoMode() && GoModeUsed == false)
         {
             GoMode.SetActive(true);

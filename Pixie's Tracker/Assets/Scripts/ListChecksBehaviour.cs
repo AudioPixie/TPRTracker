@@ -115,7 +115,6 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
         if (toggle.isOn == true)
         {
             GameManager.Instance.checkCountRemaining += 1;
-            GameManager.Instance.checkCountCompleted -= 1;
             TextManager.Instance.SetRemainingText();
             checkCompletion = false;
 
@@ -135,7 +134,6 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
         else
         {
             GameManager.Instance.checkCountRemaining -= 1;
-            GameManager.Instance.checkCountCompleted += 1;
             TextManager.Instance.SetRemainingText();
             checkCompletion = true;
 
