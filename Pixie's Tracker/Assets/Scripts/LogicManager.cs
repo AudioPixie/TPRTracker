@@ -242,21 +242,22 @@ public class LogicManager : MonoBehaviour
 
 ------------------------------ */
 
-    public GameObject RoomHyruleCastleEntrance; // for Go mode
+    public GameObject RoomHyruleCastleEntrance; // Go Mode
 
-    // all for checks, not rooms
+    // Golden Wolves
+    public GameObject RoomDeathMountainTrail;
+    public GameObject RoomUpperZorasRiver;
+    public GameObject RoomHiddenVillage;
+    public GameObject RoomNorthFaronWoods;
+    public GameObject RoomLakeHylia;
+    public GameObject RoomSnowpeakClimbUpper;
+
+    // Misc checks
+    public GameObject RoomLowerKakarikoVillage;
     public GameObject RoomLakebedTempleEastWingSecondFloor;
     public GameObject RoomLakebedTempleWestWing;
     public GameObject RoomGoronMinesUpperEastWing;
     public GameObject RoomForestTempleWestWing;
-
-    // i think these are all golden wolves
-    public GameObject RoomDeathMountainTrail; // good
-    public GameObject RoomZorasDomain;
-    public GameObject RoomHiddenVillage;
-    public GameObject RoomSnowpeakClimb;
-    public GameObject RoomNorthFaronWoods;
-    public GameObject RoomLakeHylia;
 
 /* ------------------------------
 
@@ -661,16 +662,23 @@ public class LogicManager : MonoBehaviour
         return Has("LanayruVessel") || SettingsStatus["SkipLanayruTwilight"];
     }
 
-    public bool GoMode() // need to make sure this is processed last
+    public bool AllTwilightCleared()
+    {
+        return FaronTwilightCleared()
+            && EldinTwilightCleared()
+            && LanayruTwilightCleared();
+    }
+
+    public bool GoMode()
     {
         return RoomHyruleCastleEntrance.GetComponent<RoomBehaviour>().isAccessible
-            && (Has("HCSmallKey", 2) || SettingsStatus["SmallKeysKeysy"])
-            && (Has("HCBigKey") || SettingsStatus["BigKeysKeysy"])
+            && (Has("HCSmallKey", 2) || SettingsStatus["SmallKeysKeysy"] || SettingsStatus["SmallKeysOwnDungeon"])
+            && (Has("HCBigKey") || SettingsStatus["BigKeysKeysy"] || SettingsStatus["BigKeysOwnDungeon"])
             && CanDefeatLizalfos()
-            && Has("Clawshot", 2)
+            && (Has("Clawshot", 2) || (SettingsStatus["GlitchedLogic"] && Has("Clawshot")))
             && CanDefeatDarknut()
             && Has("Boomerang")
-            && Has("Spinner")
+            && (Has("Spinner") || (SettingsStatus["GlitchedLogic"] && CanDoJSLJA()))
             && ((Has("Lantern") && CanDefeatDinalfos()) || CanKnockDownHCPainting())
             && CanDefeatGanondorf();
     }
@@ -1918,7 +1926,7 @@ public class LogicManager : MonoBehaviour
         return Has("B&C");
     }
 
-    // West Hyrule Field - pick up here
+    // West Hyrule Field
 
     public bool HyruleFieldAmphitheaterOwlStatueChest()
     {
@@ -1937,7 +1945,7 @@ public class LogicManager : MonoBehaviour
 
     public bool WestHyruleFieldGoldenWolf()
     {
-        return Has("ShadowCrystal") && RoomZorasDomain.GetComponent<RoomBehaviour>().isAccessible;
+        return Has("ShadowCrystal") && RoomUpperZorasRiver.GetComponent<RoomBehaviour>().isAccessible;
     }
 
     public bool WestHyruleFieldHelmasaurGrottoChest()
@@ -2059,7 +2067,7 @@ public class LogicManager : MonoBehaviour
 
     public bool LakeHyliaBridgeCliffChest()
     {
-        return CanLaunchBombs() && Has("Clawshot");
+        return (CanLaunchBombs() && Has("Clawshot")) || !SettingsStatus["GlitchedLogic"];
     }
 
     public bool LakeHyliaBridgeOwlStatueChest()
@@ -2070,8 +2078,9 @@ public class LogicManager : MonoBehaviour
 
     public bool LakeHyliaBridgeOwlStatueSkyCharacter()
     {
-        return Has("Clawshot") && Has("DominionRod", 2)
-            || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
+        return Has("DominionRod", 2) 
+            && (Has("Clawshot") 
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
     }
 
     public bool LakeHyliaBridgeVinesChest()
@@ -2093,16 +2102,12 @@ public class LogicManager : MonoBehaviour
 
     public bool IzaHelpingHand()
     {
-        return RoomZorasDomain.GetComponent<RoomBehaviour>().isAccessible
-            && (Has("Sword") || (CanDefeatShadowBeast() && SettingsStatus["TransformAnywhere"]))
-            && Has("Bow");
+        return Has("Bow");
     }
 
     public bool IzaRagingRapidsMinigame()
     {
-        return RoomZorasDomain.GetComponent<RoomBehaviour>().isAccessible
-            && (Has("Sword") || (CanDefeatShadowBeast() && SettingsStatus["TransformAnywhere"]))
-            && Has("Bow");
+        return Has("Bow");
     }
 
     // Zora's Domain
@@ -2187,7 +2192,7 @@ public class LogicManager : MonoBehaviour
 
     public bool GerudoDesertNorthSmallChestBeforeBulblinCamp()
     {
-        return CanDefeatBulblin();
+        return CanDefeatBulblin() || !SettingsStatus["GlitchedLogic"];
     }
 
     public bool GerudoDesertOwlStatueChest()
@@ -2258,7 +2263,7 @@ public class LogicManager : MonoBehaviour
             && Has("Clawshot")
             && Has("FetchQuest", 4)
             && (Has("Bow") || (SettingsStatus["GlitchedLogic"] && CanDoHiddenVillageGlitched()))
-            && Has("DominionRod");
+            && (Has("DominionRod") || !SettingsStatus["GlitchedLogic"]);
     }
 
     public bool IliaCharm()
@@ -2269,8 +2274,7 @@ public class LogicManager : MonoBehaviour
 
     public bool SkybookFromImpaz()
     {
-        return (Has("Bow") || (SettingsStatus["GlitchedLogic"] && CanDoHiddenVillageGlitched())) 
-            && Has("DominionRod");
+        return true;
     }
 
 /* ------------------------------
@@ -2317,14 +2321,14 @@ public class LogicManager : MonoBehaviour
 
     public bool FaronFieldPoe()
     {
-        return CanCompleteMDH() && Has("ShadowCrystal");
+        return CanCompleteMDH() && Has("ShadowCrystal") && AllTwilightCleared();
     }
 
     // Kakariko Gorge
 
     public bool KakarikoGorgePoe()
     {
-        return CanCompleteMDH() && Has("ShadowCrystal");
+        return CanCompleteMDH() && Has("ShadowCrystal") && AllTwilightCleared();
     }
 
     // Death Mountain
@@ -2338,7 +2342,7 @@ public class LogicManager : MonoBehaviour
 
     public bool LanayruFieldBridgePoe()
     {
-        return CanCompleteMDH() && Has("ShadowCrystal");
+        return CanCompleteMDH() && Has("ShadowCrystal") && AllTwilightCleared();
     }
 
     public bool LanayruFieldPoeGrottoLeftPoe()
@@ -2404,8 +2408,7 @@ public class LogicManager : MonoBehaviour
     public bool LakeHyliaBridgeCliffPoe()
     {
         return Has("ShadowCrystal")
-            && CanLaunchBombs()
-            && Has("Clawshot")
+            && AllTwilightCleared()
             && CanCompleteMDH();
     }
 
@@ -2432,7 +2435,7 @@ public class LogicManager : MonoBehaviour
 
     public bool GerudoDesertNorthPeahatPoe()
     {
-        return Has("Clawshot") && Has("ShadowCrystal");
+        return Has("ShadowCrystal");
     }
 
     public bool GerudoDesertEastPoe()
@@ -2442,7 +2445,7 @@ public class LogicManager : MonoBehaviour
 
     public bool GerudoDesertPoeAboveCaveofOrdeals()
     {
-        return Has("Clawshot") && Has("ShadowCrystal");
+        return Has("ShadowCrystal");
     }
 
     public bool GerudoDesertRockGrottoFirstPoe()
@@ -2465,28 +2468,31 @@ public class LogicManager : MonoBehaviour
     public bool SnowpeakAboveFreezardGrottoPoe()
     {
         return Has("ShadowCrystal")
-            && (SettingsStatus["EarlySnowpeak"]
+            && (!SettingsStatus["GlitchedLogic"]
+                || SettingsStatus["EarlySnowpeak"]
                 || Has("ReekfishScent") 
                 || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
+                || CanDoMapGlitch());
     }
 
     public bool SnowpeakBlizzardPoe()
     {
         return Has("ShadowCrystal")
-            && (SettingsStatus["EarlySnowpeak"]
+            && (!SettingsStatus["GlitchedLogic"]
+                || SettingsStatus["EarlySnowpeak"]
                 || Has("ReekfishScent") 
                 || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
+                || CanDoMapGlitch());
     }
 
     public bool SnowpeakPoeAmongTrees()
     {
         return Has("ShadowCrystal")
-            && (SettingsStatus["EarlySnowpeak"]
+            && (!SettingsStatus["GlitchedLogic"]
+                || SettingsStatus["EarlySnowpeak"]
                 || Has("ReekfishScent") 
                 || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
+                || CanDoMapGlitch());
     }
 
     public bool SnowpeakCaveIcePoe()
@@ -2496,10 +2502,7 @@ public class LogicManager : MonoBehaviour
 
     public bool SnowpeakIcySummitPoe()
     {
-        return Has("ShadowCrystal")
-            && (!SettingsStatus["BonksDoDamage"]
-            || (SettingsStatus["BonksDoDamage"]
-                && (!SettingsStatus["DamageOHKO"] || CanUseBottledFairy())));;
+        return Has("ShadowCrystal");
     }
 
     // Hidden Village
@@ -2509,7 +2512,7 @@ public class LogicManager : MonoBehaviour
         return Has("FetchQuest", 4)
             && ((Has("Clawshot") && Has("Bow"))
                 || (SettingsStatus["GlitchedLogic"] && CanDoHiddenVillageGlitched()))
-            && Has("DominionRod")
+            && (Has("DominionRod") || !SettingsStatus["GlitchedLogic"])
             && Has("ShadowCrystal");
     }
 
@@ -2779,11 +2782,7 @@ public class LogicManager : MonoBehaviour
     public bool KakarikoGraveyardGoldenWolf()
     {
         return Has("ShadowCrystal")
-            && RoomSnowpeakClimb.GetComponent<RoomBehaviour>().isAccessible
-            && (Has("ReekfishScent") 
-                || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                || SettingsStatus["EarlySnowpeak"]
-                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch()));
+            && RoomSnowpeakClimbUpper.GetComponent<RoomBehaviour>().isAccessible;
     }
 
     public bool RenadosLetter()
@@ -2854,21 +2853,23 @@ public class LogicManager : MonoBehaviour
 
     public bool EldinStockcaveUpperChest()
     {
-        return Has("IronBoots")
+        return (Has("IronBoots") && !SettingsStatus["GlitchedLogic"])
             || (SettingsStatus["GlitchedLogic"] && Has("Clawshot"));
     }
 
     public bool EldinStockcaveLanternChest()
     {
-        return (Has("IronBoots") 
-            || (SettingsStatus["GlitchedLogic"] && (CanDoLJA() || Has("Clawshot"))))
-            && Has("Lantern");
+        return Has("Lantern") 
+            && (!SettingsStatus["GlitchedLogic"] 
+            || CanDoLJA() 
+            || Has("Clawshot"));
     }
 
     public bool EldinStockcaveLowestChest()
     {
-        return Has("IronBoots")
-            || (SettingsStatus["GlitchedLogic"] && (CanDoLJA() || Has("Clawshot")));
+        return !SettingsStatus["GlitchedLogic"] 
+            || CanDoLJA() 
+            || Has("Clawshot");
     }
 
 /* ------------------------------
@@ -3195,9 +3196,10 @@ public class LogicManager : MonoBehaviour
 
     public bool CastleTownMaloMartMagicArmor()
     {
-        return Has("Wallet", 1)
+        return RoomLowerKakarikoVillage.GetComponent<RoomBehaviour>().isAccessible
+            && (Has("Wallet", 1)
                 || SettingsStatus["WalletIncrease"]
-                || SettingsStatus["IgnoreWalletLogic"];
+                || SettingsStatus["IgnoreWalletLogic"]);
     }
 
     public bool CharloDonationBlessing()
@@ -3217,16 +3219,12 @@ public class LogicManager : MonoBehaviour
 
     public bool Jovani20PoeSoulReward()
     {
-        return Has("PoeSoul", 20)
-            && Has("ShadowCrystal")
-            && (SettingsStatus["SkipMDH"] || Has("Boss3"));
+        return Has("PoeSoul", 20);
     }
 
     public bool Jovani60PoeSoulReward()
     {
-        return Has("PoeSoul", 60)
-            && Has("ShadowCrystal")
-            && (SettingsStatus["SkipMDH"] || Has("Boss3"));
+        return Has("PoeSoul", 60);
     }
 
     public bool TelmaInvoice()
@@ -3281,26 +3279,12 @@ public class LogicManager : MonoBehaviour
 
     public bool BulblinCampPoe()
     {
-        return (
-            Has("ShadowCrystal")
-            && 
-                (Has("DesertKeys") 
+        return  Has("ShadowCrystal")
+            && (
+                Has("DesertKeys") 
                 || SettingsStatus["SmallKeysKeysy"] 
                 || SettingsStatus["EarlyArbiters"]
-                )
-            )
-            || (SettingsStatus["GlitchedLogic"] 
-            && 
-            (
-                (Has("ShadowCrystal") 
-                && (Has("DesertKeys") 
-                        || (
-                            (CanDoMapGlitch() && Has("Sword")) 
-                                || SettingsStatus["SmallKeysKeysy"]
-                            )
-                    )
-                ) || SettingsStatus["EarlyArbiters"]
-            )
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch() && Has("Sword"))
             );
     }
 
@@ -3317,8 +3301,7 @@ public class LogicManager : MonoBehaviour
 
     public bool CaveofOrdealsGreatFairyReward()
     {
-        return Has("Clawshot", 2)
-            && CanDefeatPoe()
+        return CanDefeatPoe()
             && CanDefeatFreezard()
             && CanDefeatDarknut();
     }
@@ -3367,9 +3350,9 @@ public class LogicManager : MonoBehaviour
     public bool ForestTempleCentralChestBehindStairs()
     {
         return Has("Boomerang")
-            || (SettingsStatus["GlitchedLogic"] 
-                && Has("Boomerang") 
-                && (CanDefeatBombling() || CanSmash()));
+            && (!SettingsStatus["GlitchedLogic"] 
+                || CanDefeatBombling() 
+                || CanSmash());
     }
 
     public bool ForestTempleCentralNorthChest()
@@ -3418,9 +3401,9 @@ public class LogicManager : MonoBehaviour
     public bool ForestTempleWestTileWormChestBehindStairs()
     {
         return Has("Boomerang")
-            || (SettingsStatus["GlitchedLogic"] 
-                && Has("Boomerang") 
-                && (CanDefeatBombling() || CanSmash()));
+            && (!SettingsStatus["GlitchedLogic"] 
+                || CanDefeatBombling() 
+                || CanSmash());
     }
 
     public bool ForestTempleCentralChestHangingFromWeb()
@@ -3634,17 +3617,20 @@ public class LogicManager : MonoBehaviour
 
     public bool LakebedTempleLobbyLeftChest()
     {
-        return Has("ZoraArmor");
+        return Has("ZoraArmor")
+            || (SettingsStatus["GlitchedLogic"] && CanDoAirRefill());
     }
 
     public bool LakebedTempleLobbyRearChest()
     {
-        return Has("ZoraArmor");
+        return Has("ZoraArmor")
+            || (SettingsStatus["GlitchedLogic"] && CanDoAirRefill());
     }
 
     public bool LakebedTempleStalactiteRoomChest()
     {
-        return CanLaunchBombs();
+        return CanLaunchBombs()
+            || (SettingsStatus["GlitchedLogic"] && CanDoLJA());
     }
 
     public bool LakebedTempleCentralRoomSmallChest()
@@ -3677,114 +3663,153 @@ public class LogicManager : MonoBehaviour
     public bool LakebedTempleEastWaterSupplySmallChest()
     {
         return (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
-            && 
-            (
-                (
-                    (CanLaunchBombs() || Has("Clawshot"))
-                    && Has("IronBoots")
-                    && CanSmash()
-                )
-            || SettingsStatus["GlitchedLogic"]
-            );
+            && (
+                !SettingsStatus["GlitchedLogic"]
+                && (CanLaunchBombs() || Has("Clawshot"))
+                && Has("IronBoots")
+                && CanSmash()
+            )
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && (CanLaunchBombs() || (Has("Clawshot") && CanSmash()))
+            )
+            ;
     }
 
     public bool LakebedTempleBeforeDekuToadAlcoveChest()
     {
         return (
-                CanDefeatDekuToad() 
-                && (Has("LTSmallKey", 2) || SettingsStatus["SmallKeysKeysy"])
-                && Has("ZoraArmor") 
-                && Has("IronBoots") 
-                && HasWaterBombs() 
-                && Has("Clawshot")
-            ) || 
-            (
-                (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]) 
-                && (CanLaunchBombs() || (Has("Clawshot") && CanSmash()))
-            ) || 
-            (
-                SettingsStatus["GlitchedLogic"] 
-                && (CanDoLJA() 
-                    || ((Has("LTSmallKey", 2) || SettingsStatus["SmallKeysKeysy"]) 
-                        && (CanLaunchBombs() || Has("Clawshot"))))
+                !SettingsStatus["GlitchedLogic"]
+                && (
+                    (
+                        SettingsStatus["SmallKeysVanilla"] 
+                        && CanDefeatDekuToad() 
+                        && Has("LTSmallKey", 2) 
+                        && Has("ZoraArmor") 
+                        && Has("IronBoots") 
+                        && HasWaterBombs() 
+                        && Has("Clawshot")
+                    ) || 
+                    (
+                        (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]) 
+                        && (
+                            CanLaunchBombs() 
+                            || (Has("Clawshot") && CanSmash())
+                        )
+                    )
+                )
+            )
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && (
+                    CanDoLJA() 
+                    || (
+                        (SettingsStatus["SmallKeysKeysy"] || Has("LTSmallKey", 2)) 
+                        && (CanLaunchBombs() || Has("Clawshot"))
+                    )
+                )
             );
     }
 
     public bool LakebedTempleBeforeDekuToadUnderwaterLeftChest()
     {
-        return ((CanLaunchBombs() || (Has("Clawshot") && CanSmash()))
-            && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
-            && Has("ZoraArmor")
-            && Has("IronBoots"))
-            || (
-                SettingsStatus["GlitchedLogic"] 
-                && 
+        return (
+            !SettingsStatus["GlitchedLogic"]
+            && (
+                Has("ZoraArmor") 
+                && Has("IronBoots") 
+                && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]) 
+                && (
+                    CanLaunchBombs() 
+                    || (Has("Clawshot") && CanSmash())
+                )
+            )
+        )
+        || (
+            SettingsStatus["GlitchedLogic"]
+            && (
                 (
                     (
-                        CanDoLJA() && (CanSkipKeyToDekuToad() || Has("LTSmallKey", 1))
-                    ) 
-                    || 
-                    (
-                        (CanSkipKeyToDekuToad() || Has("LTSmallKey", 3)) 
-                        && Has("Clawshot") 
-                        && CanLaunchBombs()
-                    ) 
-                    && HasHeavyMod() 
-                    && (HasWaterBombs() || Has("ZoraArmor"))
-                )
-            );
+                        CanDoLJA() 
+                        && (CanSkipKeyToDekuToad() || Has("LTSmallKey", 1))
+                    )
+                ) || 
+                (
+                    (CanSkipKeyToDekuToad() || Has("LTSmallKey", 3)) 
+                    && Has("Clawshot") 
+                    && CanLaunchBombs()
+                ) 
+                && HasHeavyMod()
+            )
+        );
     }
 
     public bool LakebedTempleBeforeDekuToadUnderwaterRightChest()
     {
-        return ((CanLaunchBombs() || (Has("Clawshot") && CanSmash()))
-            && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
-            && Has("ZoraArmor")
-            && Has("IronBoots"))
-            || (
-                SettingsStatus["GlitchedLogic"] 
-                && 
+        return (
+            !SettingsStatus["GlitchedLogic"]
+            && (
+                Has("ZoraArmor") 
+                && Has("IronBoots") 
+                && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]) 
+                && (
+                    CanLaunchBombs() 
+                    || (Has("Clawshot") && CanSmash())
+                )
+            )
+        )
+        || (
+            SettingsStatus["GlitchedLogic"]
+            && (
                 (
                     (
-                        CanDoLJA() && (CanSkipKeyToDekuToad() || Has("LTSmallKey", 1))
-                    ) 
-                    || 
-                    (
-                        (CanSkipKeyToDekuToad() || Has("LTSmallKey", 3)) 
-                        && Has("Clawshot") 
-                        && CanLaunchBombs()
-                    ) 
-                    && HasHeavyMod() 
-                    && (HasWaterBombs() || Has("ZoraArmor"))
-                )
-            );
+                        CanDoLJA() 
+                        && (CanSkipKeyToDekuToad() || Has("LTSmallKey", 1))
+                    )
+                ) || 
+                (
+                    (CanSkipKeyToDekuToad() || Has("LTSmallKey", 3)) 
+                    && Has("Clawshot") 
+                    && CanLaunchBombs()
+                ) 
+                && HasHeavyMod()
+            )
+        );
     }
 
     public bool LakebedTempleDekuToadChest()
     {
         return CanDefeatDekuToad()
-            && 
-            (
-                (CanLaunchBombs() || (Has("Clawshot") && CanSmash()))
-                && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
-                && Has("ZoraArmor")
-                && Has("IronBoots")
-                && HasWaterBombs())
-            || (
-                SettingsStatus["GlitchedLogic"] 
-                && 
+            && (
                 (
-                    (
-                        CanDoLJA() && (CanSkipKeyToDekuToad() || Has("LTSmallKey", 1))
-                    ) 
-                    || 
-                    (
-                        (CanSkipKeyToDekuToad() || Has("LTSmallKey", 3)) 
-                        && Has("Clawshot") 
-                        && CanLaunchBombs()
-                    ) 
-                    && HasHeavyMod() 
-                    && (HasWaterBombs() || Has("ZoraArmor"))
+                    !SettingsStatus["GlitchedLogic"] 
+                    && (
+                        (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]) 
+                        && Has("ZoraArmor") 
+                        && Has("IronBoots") 
+                        && HasWaterBombs() 
+                        && (
+                            CanLaunchBombs() 
+                            || (Has("Clawshot") && CanSmash())
+                        )
+                    )
+                )
+                || (
+                    SettingsStatus["GlitchedLogic"] 
+                    && (
+                        (
+                            (
+                                CanDoLJA() 
+                                && (CanSkipKeyToDekuToad() || Has("LTSmallKey", 1))
+                            ) || 
+                            (
+                                (CanSkipKeyToDekuToad() || Has("LTSmallKey", 3)) 
+                                && Has("Clawshot") 
+                                && CanLaunchBombs())) 
+                                && HasHeavyMod() 
+                                && (HasWaterBombs() || Has("ZoraArmor")
+                        )
+                    )
                 )
             );
     }
@@ -3796,8 +3821,15 @@ public class LogicManager : MonoBehaviour
 
     public bool LakebedTempleCentralRoomSpireChest()
     {
-        return CanLaunchBombs()
-            && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
+        return (
+                (
+                    CanLaunchBombs()
+                    && (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
+                ) || 
+                (
+                    SettingsStatus["GlitchedLogic"] && Has("Clawshot") && Has("Sword")
+                )
+            )
             && Has("IronBoots");
     }
 
@@ -3805,16 +3837,14 @@ public class LogicManager : MonoBehaviour
     {
         return (Has("LTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"])
             && Has("Clawshot")
-            && (
-                (Has("IronBoots") && CanSmash())
-                || 
-                (SettingsStatus["GlitchedLogic"] && CanLaunchBombs())
-            );
+            && CanSmash()
+            && (Has("IronBoots")||  SettingsStatus["GlitchedLogic"]);
     }
 
     public bool LakebedTempleWestLowerSmallChest()
     {
-        return Has("Clawshot");
+        return Has("Clawshot")
+            || (SettingsStatus["GlitchedLogic"] && CanDoLJA());
     }
 
     public bool LakebedTempleWestWaterSupplySmallChest()
@@ -3853,16 +3883,18 @@ public class LogicManager : MonoBehaviour
 
     public bool LakebedTempleBigKeyChest()
     {
-        return Has("ZoraArmor")
+        return (Has("ZoraArmor") || (CanDoLJA() && SettingsStatus["GlitchedLogic"]))
             && CanLaunchBombs()
             && (Has("IronBoots") || SettingsStatus["GlitchedLogic"])
             && Has("Clawshot")
-            && HasWaterBombs();
+            && (HasWaterBombs() || SettingsStatus["GlitchedLogic"]);
     }
 
     public bool LakebedTempleUnderwaterMazeSmallChest()
     {
-        return Has("ZoraArmor") && CanLaunchBombs() && Has("Clawshot");
+        return (Has("ZoraArmor") || (SettingsStatus["GlitchedLogic"] && CanDoLJA()))
+            && CanLaunchBombs() 
+            && Has("Clawshot");
     }
 
     public bool LakebedTempleEastLowerWaterwheelBridgeChest()
@@ -3951,22 +3983,39 @@ public class LogicManager : MonoBehaviour
 
     public bool ArbitersGroundsWestChandelierChest()
     {
-        return (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
-            && Has("ShadowCrystal");
+        return (
+            (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
+            && Has("ShadowCrystal")
+        )
+        || (SettingsStatus["GlitchedLogic"] && CanDoLJA());
     }
 
     public bool ArbitersGroundsWestStalfosWestChest()
     {
         return CanBreakWoodenDoor()
-            && (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
-            && CanDefeatGhoulRat();
+        && (
+            (
+                (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
+                && CanDefeatGhoulRat()
+            )
+            || (
+                SettingsStatus["GlitchedLogic"] && CanDoLJA()
+            )
+        );
     }
 
     public bool ArbitersGroundsWestStalfosNortheastChest()
     {
         return CanBreakWoodenDoor()
-            && (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
-            && CanDefeatGhoulRat();
+        && (
+            (
+                (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
+                && CanDefeatGhoulRat()
+            )
+            || (
+                SettingsStatus["GlitchedLogic"] && CanDoLJA()
+            )
+        );
     }
 
     public bool ArbitersGroundsNorthTurningRoomChest()
@@ -3976,58 +4025,114 @@ public class LogicManager : MonoBehaviour
 
     public bool ArbitersGroundsDeathSwordChest()
     {
-        return (Has("AGSmallKey", 5) || SettingsStatus["SmallKeysKeysy"])
-            && Has("Clawshot")
-            && CanDefeatStalfos()
-            && CanDefeatDeathSword();
+        return (
+            Has("AGSmallKey", 5) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("AGSmallKey, 4") 
+                && Has("ShadowCrystal")
+            )
+        )
+        && Has("Clawshot")
+        && CanDefeatStalfos()
+        && CanDefeatDeathSword();
     }
 
     public bool ArbitersGroundsSpinnerRoomFirstSmallChest()
     {
-        return (Has("AGSmallKey", 5) || SettingsStatus["SmallKeysKeysy"])
-            && Has("Clawshot")
-            && CanDefeatStalfos()
-            && Has("Spinner");
+        return (
+            Has("AGSmallKey", 5) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("AGSmallKey, 4") 
+                && Has("ShadowCrystal")
+            )
+        )
+        && Has("Clawshot")
+        && CanDefeatStalfos()
+        && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomSecondSmallChest()
     {
-        return (Has("AGSmallKey", 5) || SettingsStatus["SmallKeysKeysy"])
-            && Has("Clawshot")
-            && CanDefeatStalfos()
-            && Has("Spinner");
+        return (
+            Has("AGSmallKey", 5) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("AGSmallKey, 4") 
+                && Has("ShadowCrystal")
+            )
+        )
+        && Has("Clawshot")
+        && CanDefeatStalfos()
+        && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomLowerCentralSmallChest()
     {
-        return (Has("AGSmallKey", 5) || SettingsStatus["SmallKeysKeysy"])
-            && Has("Clawshot")
-            && CanDefeatStalfos()
-            && Has("Spinner");
+        return (
+            Has("AGSmallKey", 5) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("AGSmallKey, 4") 
+                && Has("ShadowCrystal")
+            )
+        )
+        && Has("Clawshot")
+        && CanDefeatStalfos()
+        && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomStalfosAlcoveChest()
     {
-        return (Has("AGSmallKey", 5) || SettingsStatus["SmallKeysKeysy"])
-            && Has("Clawshot")
-            && CanDefeatStalfos()
-            && Has("Spinner");
+        return (
+            Has("AGSmallKey", 5) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("AGSmallKey, 4") 
+                && Has("ShadowCrystal")
+            )
+        )
+        && Has("Clawshot")
+        && CanDefeatStalfos()
+        && Has("Spinner");
     }
 
     public bool ArbitersGroundsSpinnerRoomLowerNorthChest()
     {
-        return (Has("AGSmallKey", 5) || SettingsStatus["SmallKeysKeysy"])
-            && Has("Clawshot")
-            && CanDefeatStalfos()
-            && Has("Spinner");
+        return (
+            Has("AGSmallKey", 5) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("AGSmallKey, 4") 
+                && Has("ShadowCrystal")
+            )
+        )
+        && Has("Clawshot")
+        && CanDefeatStalfos()
+        && Has("Spinner");
     }
 
     public bool ArbitersGroundsBigKeyChest()
     {
-        return (Has("AGSmallKey", 5) || SettingsStatus["SmallKeysKeysy"])
-            && Has("Clawshot")
-            && Has("Spinner")
-            && CanSmash();
+        return (
+            Has("AGSmallKey", 5) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("AGSmallKey, 4") 
+                && Has("ShadowCrystal")
+            )
+        )
+        && Has("Clawshot")
+        && Has("Spinner")
+        && CanSmash();
     }
 
     public bool ArbitersGroundsDungeonReward()
@@ -4061,9 +4166,13 @@ public class LogicManager : MonoBehaviour
 
     public bool ArbitersGroundsWestPoe()
     {
-        return (Has("AGSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
-            && CanSmash()
-            && Has("ShadowCrystal");
+        return (
+            Has("AGSmallKey", 4) 
+            || SettingsStatus["SmallKeysKeysy"]
+            || (SettingsStatus["GlitchedLogic"] && CanDoLJA())
+        )
+        && CanSmash()
+        && Has("ShadowCrystal");
     }
 
 /* ------------------------------
@@ -4145,15 +4254,27 @@ public class LogicManager : MonoBehaviour
 
     public bool SnowpeakRuinsWoodenBeamChandelierChest()
     {
-        return Has("B&C")
-            && (Has("Cheese") || SettingsStatus["SmallKeysKeysy"]);
+        return (
+            Has("B&C") 
+            || (SettingsStatus["GlitchedLogic"] && CanDoLJA())
+        )
+        && (Has("Cheese") || SettingsStatus["SmallKeysKeysy"]);
     }
 
     public bool SnowpeakRuinsLobbyChandelierChest()
     {
-        return Has("B&C")
-            && ((Has("Cheese") && Has("SRSmallKey", 3))
-                || SettingsStatus["SmallKeysKeysy"]);
+        return (
+            Has("B&C")
+            && (
+                (Has("Cheese") && Has("SRSmallKey", 3))
+                || SettingsStatus["SmallKeysKeysy"]
+            )
+        )
+        || (
+            SettingsStatus["GlitchedLogic"]
+            && Has("ShadowCrystal")
+            && CanDoLJA()
+        );
     }
 
     public bool SnowpeakRuinsNortheastChandelierChest()
@@ -4281,12 +4402,21 @@ public class LogicManager : MonoBehaviour
 
     public bool TempleofTimeMovingWallDinalfosRoomChest()
     {
-        return CanDefeatDinalfos() && Has("DominionRod") && Has("Bow");
+        return CanDefeatDinalfos() 
+        && (
+            Has("DominionRod") 
+            || (
+                SettingsStatus["GlitchedLogic"] 
+                && Has("Spinner") 
+                && HasBombs()
+            )
+        )
+        && Has("Bow");
     }
 
     public bool TempleofTimeArmosAntechamberStatueChest()
     {
-        return Has("DominionRod");
+        return Has("DominionRod") || SettingsStatus["GlitchedLogic"];
     }
 
     public bool TempleofTimeArmogohmaHeartContainer()
@@ -4303,7 +4433,14 @@ public class LogicManager : MonoBehaviour
 
     public bool TempleofTimePoeBehindGate()
     {
-        return Has("ShadowCrystal") && Has("DominionRod");
+        return Has("ShadowCrystal") 
+        && (
+            Has("DominionRod")
+            || (
+                SettingsStatus["GlitchedLogic"] 
+                && (Has("B&C") || CanDoHSMoonBoots())
+            )
+        );
     }
 
     public bool TempleofTimePoeAboveScales()
@@ -4334,22 +4471,32 @@ public class LogicManager : MonoBehaviour
 
     public bool CityinTheSkyEastFirstWingChestAfterFans()
     {
-        return Has("Clawshot");
+        return Has("Clawshot")
+        || (SettingsStatus["GlitchedLogic"] && CanDoLJA());
     }
 
     public bool CityinTheSkyEastTileWormSmallChest()
     {
-        return Has("Clawshot");
+        return Has("Clawshot")
+        || (SettingsStatus["GlitchedLogic"] && CanDoLJA());
     }
 
     public bool CityinTheSkyEastWingAfterDinalfosLedgeChest()
     {
-        return Has("Clawshot") && CanDefeatTileWorm() && CanDefeatDinalfos();
+        return Has("Clawshot") 
+        && (
+            (CanDefeatTileWorm() && CanDefeatDinalfos())
+            || (SettingsStatus["GlitchedLogic"] && Has("IronBoots"))
+        );
     }
 
     public bool CityinTheSkyEastWingAfterDinalfosAlcoveChest()
     {
-        return Has("Clawshot") && CanDefeatTileWorm() && CanDefeatDinalfos();
+        return Has("Clawshot") 
+        && (
+            (CanDefeatTileWorm() && CanDefeatDinalfos())
+            || (SettingsStatus["GlitchedLogic"] && Has("IronBoots"))
+        );
     }
 
     public bool CityinTheSkyAeralfosChest()
@@ -4420,28 +4567,48 @@ public class LogicManager : MonoBehaviour
 
     public bool CityinTheSkyCentralOutsideLedgeChest()
     {
-        return CanDefeatDinalfos()
+        return (
+            CanDefeatDinalfos()
             && CanDefeatWalltula()
             && CanDefeatKargorok()
-            && Has("ShadowCrystal");
+            && Has("ShadowCrystal")
+        ) ||
+        (
+            SettingsStatus["GlitchedLogic"] && Has("Clawshot")
+        );
     }
 
     public bool CityinTheSkyCentralOutsidePoeIslandChest()
     {
-        return CanDefeatDinalfos()
-            && CanDefeatWalltula()
-            && CanDefeatKargorok()
-            && Has("ShadowCrystal");
+        return Has("ShadowCrystal")
+        && (
+            (
+                CanDefeatDinalfos()
+                && CanDefeatWalltula()
+                && CanDefeatKargorok()
+            )
+            || (
+                SettingsStatus["GlitchedLogic"]
+                && Has("Clawshot")
+            )
+        );
     }
 
     public bool CityinTheSkyBigKeyChest()
     {
-        return Has("Clawshot")
-            && CanDefeatDinalfos()
-            && CanDefeatWalltula()
-            && CanDefeatKargorok()
-            && Has("IronBoots")
-            && Has("ShadowCrystal");
+        return (
+            (Has("Clawshot") && Has("IronBoots"))
+            || SettingsStatus["GlitchedLogic"]
+        )
+        && (
+            (
+                CanDefeatDinalfos()
+                && CanDefeatWalltula()
+                && CanDefeatKargorok()
+                && Has("ShadowCrystal")
+            )
+            || (SettingsStatus["GlitchedLogic"] && Has("Clawshot"))
+        );
     }
 
     public bool CityinTheSkyChestBelowBigKeyChest()
@@ -4451,7 +4618,8 @@ public class LogicManager : MonoBehaviour
 
     public bool CityinTheSkyChestBehindNorthFan()
     {
-        return Has("Clawshot", 2);
+        return Has("Clawshot", 2)
+        || (SettingsStatus["GlitchedLogic"] && Has("Clawshot"));
     }
 
     public bool CityinTheSkyArgorokHeartContainer()
@@ -4494,23 +4662,41 @@ public class LogicManager : MonoBehaviour
 
     public bool PalaceofTwilightWestWingSecondRoomCentralChest()
     {
-        return Has("Clawshot")
-            && CanDefeatZantHead()
-            && (Has("PoTSmallKey", 1) || SettingsStatus["SmallKeysKeysy"]);
+        return (
+            (
+                Has("PoTSmallKey", 6) 
+                || (SettingsStatus["SmallKeysVanilla"] && Has("PoTSmallKey", 3))
+            ) 
+            || SettingsStatus["SmallKeysKeysy"]
+        )
+        && CanDefeatZantHead() 
+        && Has("Clawshot");
     }
 
     public bool PalaceofTwilightWestWingSecondRoomLowerSouthChest()
     {
-        return Has("Clawshot")
-            && CanDefeatZantHead()
-            && (Has("PoTSmallKey", 1) || SettingsStatus["SmallKeysKeysy"]);
+        return (
+            (
+                Has("PoTSmallKey", 6) 
+                || (SettingsStatus["SmallKeysVanilla"] && Has("PoTSmallKey", 3))
+            ) 
+            || SettingsStatus["SmallKeysKeysy"]
+        )
+        && CanDefeatZantHead() 
+        && Has("Clawshot");
     }
 
     public bool PalaceofTwilightWestWingSecondRoomSoutheastChest()
     {
-        return Has("Clawshot", 2)
-            && CanDefeatZantHead()
-            && (Has("PoTSmallKey", 1) || SettingsStatus["SmallKeysKeysy"]);
+        return (
+            (
+                Has("PoTSmallKey", 6) 
+                || (SettingsStatus["SmallKeysVanilla"] && Has("PoTSmallKey", 3))
+            ) 
+            || SettingsStatus["SmallKeysKeysy"]
+        )
+        && CanDefeatZantHead() 
+        && Has("Clawshot", 2);
     }
 
     public bool PalaceofTwilightEastWingFirstRoomZantHeadChest()
@@ -4526,33 +4712,57 @@ public class LogicManager : MonoBehaviour
     public bool PalaceofTwilightEastWingSecondRoomNortheastChest()
     {
         return CanDefeatZantHead()
-            && CanDefeatShadowBeast()
-            && Has("Clawshot", 2)
-            && (Has("PoTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]);
+        && CanDefeatShadowBeast()
+        && Has("Clawshot", 2)
+        && (
+            (
+                Has("PoTSmallKey", 6) 
+                || (SettingsStatus["SmallKeysVanilla"] && Has("PoTSmallKey", 3))
+            ) 
+            || SettingsStatus["SmallKeysKeysy"]
+        );
     }
 
     public bool PalaceofTwilightEastWingSecondRoomNorthwestChest()
     {
         return CanDefeatZantHead()
-            && CanDefeatShadowBeast()
-            && Has("Clawshot")
-            && (Has("PoTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]);
+        && CanDefeatShadowBeast()
+        && Has("Clawshot")
+        && (
+            (
+                Has("PoTSmallKey", 6) 
+                || (SettingsStatus["SmallKeysVanilla"] && Has("PoTSmallKey", 3))
+            ) 
+            || SettingsStatus["SmallKeysKeysy"]
+        );
     }
 
     public bool PalaceofTwilightEastWingSecondRoomSouthwestChest()
     {
         return CanDefeatZantHead()
-            && CanDefeatShadowBeast()
-            && Has("Clawshot", 2)
-            && (Has("PoTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]);
+        && CanDefeatShadowBeast()
+        && Has("Clawshot", 2)
+        && (
+            (
+                Has("PoTSmallKey", 6) 
+                || (SettingsStatus["SmallKeysVanilla"] && Has("PoTSmallKey", 3))
+            ) 
+            || SettingsStatus["SmallKeysKeysy"]
+        );
     }
 
     public bool PalaceofTwilightEastWingSecondRoomSoutheastChest()
     {
         return CanDefeatZantHead()
-            && CanDefeatShadowBeast()
-            && Has("Clawshot", 2)
-            && (Has("PoTSmallKey", 3) || SettingsStatus["SmallKeysKeysy"]);
+        && CanDefeatShadowBeast()
+        && Has("Clawshot", 2)
+        && (
+            (
+                Has("PoTSmallKey", 6) 
+                || (SettingsStatus["SmallKeysVanilla"] && Has("PoTSmallKey", 3))
+            ) 
+            || SettingsStatus["SmallKeysKeysy"]
+        );
     }
 
     public bool PalaceofTwilightEastWingFirstRoomEastAlcove()
@@ -4562,8 +4772,7 @@ public class LogicManager : MonoBehaviour
             && CanDefeatPhantomZant()
             && CanDefeatZantHead()
             && CanDefeatShadowBeast()
-            && (Has("PoTSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
-            && !SettingsStatus["GlitchedLogic"]);
+            && (Has("PoTSmallKey", 6) || SettingsStatus["SmallKeysKeysy"]));
     }
 
     public bool PalaceofTwilightEastWingFirstRoomWestAlcove()
@@ -4573,8 +4782,7 @@ public class LogicManager : MonoBehaviour
             && CanDefeatPhantomZant()
             && CanDefeatZantHead()
             && CanDefeatShadowBeast()
-            && (Has("PoTSmallKey", 4) || SettingsStatus["SmallKeysKeysy"])
-            && !SettingsStatus["GlitchedLogic"]);
+            && (Has("PoTSmallKey", 4) || SettingsStatus["SmallKeysKeysy"]));
     }
 
     public bool PalaceofTwilightCollectBothSols()
@@ -4583,7 +4791,7 @@ public class LogicManager : MonoBehaviour
             && CanDefeatPhantomZant()
             && CanDefeatZantHead()
             && CanDefeatShadowBeast()
-            && (Has("PoTSmallKey", 4) || SettingsStatus["SmallKeysKeysy"]);
+            && (Has("PoTSmallKey", 7) || SettingsStatus["SmallKeysKeysy"]);
     }
 
     public bool PalaceofTwilightCentralFirstRoomChest()
@@ -4595,23 +4803,19 @@ public class LogicManager : MonoBehaviour
     {
         return CanDefeatZantHead()
             && Has("Clawshot", 2)
-            && Has("Sword", 4)
-            && (Has("PoTSmallKey", 5) || SettingsStatus["SmallKeysKeysy"]);
+            && Has("Sword", 4);
     }
 
     public bool PalaceofTwilightCentralOutdoorChest()
     {
-        return CanDefeatZantHead()
-            && Has("Sword", 4)
-            && (Has("PoTSmallKey", 5) || SettingsStatus["SmallKeysKeysy"]);
+        return CanDefeatZantHead();
     }
 
     public bool PalaceofTwilightCentralTowerChest()
     {
         return CanDefeatZantHead()
             && Has("Clawshot")
-            && Has("Sword", 4)
-            && (Has("PoTSmallKey", 6) || SettingsStatus["SmallKeysKeysy"]);
+            && Has("Sword", 4);
     }
 
     public bool PalaceofTwilightZantHeartContainer()
@@ -4684,20 +4888,32 @@ public class LogicManager : MonoBehaviour
 
     public bool HyruleCastleMainHallSouthwestChest()
     {
-        return CanDefeatDarknut()
-            && Has("Clawshot", 2)
+        return (
+            CanDefeatDarknut()
+            && (
+                (Has("Clawshot", 2) && !SettingsStatus["GlitchedLogic"])
+                || (Has("Clawshot") && SettingsStatus["GlitchedLogic"])
+            )
             && CanKnockDownHCPainting()
             && Has("Boomerang")
-            && Has("Lantern");
+            && Has("Lantern")
+        )
+        || (SettingsStatus["GlitchedLogic"] && Has("Clawshot", 2));
     }
 
     public bool HyruleCastleMainHallNorthwestChest()
     {
-        return CanDefeatDarknut()
-            && Has("Clawshot", 2)
+        return (
+            CanDefeatDarknut()
+            && (
+                (Has("Clawshot", 2) && !SettingsStatus["GlitchedLogic"])
+                || (Has("Clawshot") && SettingsStatus["GlitchedLogic"])
+            )
             && CanKnockDownHCPainting()
             && Has("Boomerang")
-            && Has("Lantern");
+            && Has("Lantern")
+        )
+        || (SettingsStatus["GlitchedLogic"] && Has("Clawshot", 2));
     }
 
     public bool HyruleCastleSoutheastBalconyTowerChest()
