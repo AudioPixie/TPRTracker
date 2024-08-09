@@ -4,12 +4,14 @@
 
 ### Head over to [releases](https://github.com/AudioPixie/TPRTracker/releases) to download the latest build
 
+**Attention Racers:** automatic race options are based off of Season 1 Tournament ruleset as of: **August 9th, 2024**. If you wish to use a different ruleset, see instructions [below](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings).
+
 **Attention Mac users:** if you are blocked from opening the application, right click the icon and select "Open", then select "Open" again in the pop-up dialog.
  
 **Attention Windows users:** you can safely disregard/delete the _MACOSX folder, this is a fun result of zipping a folder on Mac that I will figure out how to get rid of at some point...
 
 Current releases include MacOS and Windows x64 builds. Feel free to request additional versions.
- 
+
 ## Application Overview
 
 **Includes:**  
@@ -35,6 +37,12 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- Import your [spoiler log](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#spoiler-log-integration) to automatically populate settings, layout, etc.
 	- 2 hint systems ([see below](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#hints))
 	- Hints are saved with your save file
+
+- Automatic Race Settings
+	- Automatically sets up tracker for races
+  	- Race item layout preset
+	- Will reflect most current/used race ruleset (see details [here](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings))
+ 	- Ruleset can be changed (see details [here](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings))
 
 - Check marking
 	- Checks can be right clicked to mark them as a **junk item** (orange) or a **key item** (blue)
@@ -67,7 +75,7 @@ The SpoilerLog folder is created the first time you run the app, so if you updat
 ### Import settings
 
 - Autofill settings: automatically populates settings in the General and Seed tabs.
-- Generate Item Layout: automatically generates an item layout based on your settings. This includes required dungeons.
+- Generate Item Layout: automatically generates an item layout based on your settings.
 - Autofill Required Dungeons: automatically sets your required dungeons in the item layout.
 - Autofill Starting Items: automatically marks your starting inventory items.
 - Remove Barren Checks: automatically marks excluded checks as completed and clears unrequired dungeons if "Unrequired Dungeons are Barren" is checked. This does not affect rupee count.
@@ -155,12 +163,58 @@ Junk items for the 5 rupee tier are quite restricted, so don't worry about there
 - Arrows
 - Seeds
 
+## Automatic Race Settings
+
+There are built-in options for races so players without spoiler logs don't have to manually input their settings.
+
+### One-click* Race Settings
+
+Click **Apply Race Settings** in the General Settings Tab to reset the tracker and apply race settings. This will:
+
+- Fully reset the tracker
+- Apply all settings in the Seed Settings tab.
+- Mark off all checks in the excluded checks list of the settings string. This does not include barren dungeons, individual dungeons can be cleared using the pop-out menu on the right side of the check list box.
+- Gives the player all items found in the starting items list of the settings string. Also includes Gate Keys and Bulblin Camp Key.
+- Turns off Poe and Bug tab visibility.
+- Applies the race item layout preset. This will set your 3 dungeons to Forest Temple, Goron Mines, and Lakebed Temple. Dungeons can be changed in the visual settings tab.
+
+### Race item layout preset
+
+Click **Race** under Preset Layouts in the Visual Settings tab. This layout is designed as a somewhat compact option to remove items that are unnecessary for race tracking. You will still need to set your required dungeons manually.
+
+### Changing the ruleset
+
+**The current race settings are based off of the [Season 1 Tournament ruleset](https://docs.google.com/document/d/13IgxOZ_TnBN73RjJvDCzAemOYV2K9HRfY6dHwJPTk_I/edit?usp=sharing) as of: August 9th, 2024.** 
+- Settings String:
+	- ```5sQ3g2kPC_-CfeJ8HaX7cJny-NoYqQZKQc7IwNIwNIwN0u70u70u70u70u70u70u71_qwFLTZK61gbCq2Z80-pphmuHTHbBB1BaDknYf_AxydhLmPgSZZbUoyNT5KTnKnI8b6WSbx66LYROE-5GjUYcccP9CNGx20M_b6WAXskPHcrbw8PUjs-vEAKmKvfKLWdIa4eJUDhKdJMGx1QMhM69tq6YE6yvHGff3dsMtKCbWX_m```
+
+If you would like to change the ruleset, generate a spoiler log with your desired settings and replace the spoiler log found at:
+
+- Windows: ```.\Pixie's TPR Tracker\Pixie's TPR Tracker_Data\RaceSettingsLog```  
+- Mac: ```.\Pixie's TPR Tracker\Content\RaceSettingsLog```
+
+**Note that there should only be one file in this folder at a time**
+
+The replaced file **will**:
+- Apply all settings in the Seed Settings tab
+- Mark all checks in the Excluded Checks list
+- Give you all items in the Starting Item list
+- Give you the Gate Keys and Bulblin Camp Key based on your settings.
+
+The replaced file **will not**:
+- Show Poe and Bug tabs automatically even if your settings include them
+- Apply required dungeons (always will show FT, GM, and LT)
+- Affect the automatic item layout (will always be the **Race** preset from the Visual Settings tab)
+- Affect the **Race** preset layout in any way
+
+Feel free to reach out to me concerning rule changes for race settings so I can update the pack-in spoiler log.
+
 ## Current goals and community contribution
 
 Feedback, testing, ideas, and development contributions are extremely welcome and are more than appreciated! Feel free to hit me up in the [TPR Discord](https://discord.gg/tprandomizer) if you want to chat about the tracker. Feel free to take a look at the [issues page](https://github.com/AudioPixie/TPRTracker/issues) for current bugs, future ideas, and what is currently being worked on. As of now these are the mains things I'm focusing on:
 
 - Keeping up-to-date with randomizer releases
-- Getting glitched logic implemented
+- 1.2 hint system parity
 - Bug fixes for critical issues
 
 Thanks for reading this far and happy tracking!
