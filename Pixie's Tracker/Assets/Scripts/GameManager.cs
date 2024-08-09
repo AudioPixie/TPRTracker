@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
     [Header("VSync")]
     public int vSync;
 
+    [Header("Default List Box")]
+    public GameObject OrdonVillageBox;
+
     private void Awake()
     {
         // Ensure only one instance exists, even if multiple scripts try to create it.
@@ -170,7 +173,7 @@ public class GameManager : MonoBehaviour
         ScrollManager.Instance.ScrollInitialize();
 
         // Sets Ordon as default dungeon
-        GameObject.Find("OrdonVillage").GetComponent<DungeonBehaviour>().OnDungeonClick();
+        OrdonVillageBox.GetComponent<DungeonBehaviour>().OnDungeonClick();
 
         OverlayInfo.SetActive(true); // boot up page
 
@@ -303,7 +306,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoGorge");
                 LowerKakarikoVillage.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(LowerKakarikoVillage);
-                Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoVillage");
+                Debug.Log("<color=magenta>WARP</color> TRUE: LowerKakarikoVillage");
                 DeathMountainVolcano.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(DeathMountainVolcano);
                 Debug.Log("<color=magenta>WARP</color> TRUE: DeathMountainVolcano");
@@ -326,14 +329,14 @@ public class GameManager : MonoBehaviour
             {
                 SnowpeakSummitUpper.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(SnowpeakSummitUpper);
-                Debug.Log("<color=magenta>WARP</color> TRUE: SnowpeakSummit");
+                Debug.Log("<color=magenta>WARP</color> TRUE: SnowpeakSummitUpper");
             }
 
             if (!LogicManager.Instance.SettingsStatus["ToTClosed"])
             {
                 SacredGroveLower.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(SacredGroveLower);
-                Debug.Log("<color=magenta>WARP</color> TRUE: SacredGroveMasterSword");
+                Debug.Log("<color=magenta>WARP</color> TRUE: SacredGroveLower");
             }
         }
 

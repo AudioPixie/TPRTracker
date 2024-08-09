@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Reflection;
+using Unity.VisualScripting;
 // using UnityEngine.UIElements;
 
 /*---------------------------------
@@ -749,6 +750,9 @@ public class SpoilerManager : MonoBehaviour
     public GameObject BulblinCampKeyButton;
     public GameObject ForestKeyButton;
 
+    [Header("For Auto Settings")]
+    public GameObject CastleTownChecks;
+
     private void Awake()
     {
         // Ensure only one instance exists, even if multiple scripts try to create it.
@@ -871,630 +875,22 @@ public class SpoilerManager : MonoBehaviour
             // auto import settings
 
             if (AutoReset.isOn)
-            {
-                Debug.Log("Reset Start");
-                ButtonYesReset.GetComponent<ResetBehaviour>().SetInput("Tracker");
-                ButtonYesReset.GetComponent<ResetBehaviour>().OnClick();
-                Debug.Log("Reset Done");
-            }
+                ApplyAutoReset();
 
             if (AutoSettings.isOn)
-            {
-                Debug.Log("Settings Start");
-                Debug.Log("Settings Reset Start");
-                ButtonYesReset.GetComponent<ResetBehaviour>().SetInput("Settings");
-                ButtonYesReset.GetComponent<ResetBehaviour>().OnClick();
-                Debug.Log("Settings Reset Done");
-
-                Debug.Log("Glitched");
-                if (spoilerLog.settings.logicRules == "Glitched")
-                    GlitchedLogic.isOn = true;
-
-                Debug.Log("HC");
-                if (spoilerLog.settings.castleRequirements == "All_Dungeons")
-                    HyruleCastleRequirements.value = 1;
-                else if (spoilerLog.settings.castleRequirements == "Mirror_Shards")
-                    HyruleCastleRequirements.value = 2;
-                else if (spoilerLog.settings.castleRequirements == "Fused_Shadows")
-                    HyruleCastleRequirements.value = 3;
-                else if (spoilerLog.settings.castleRequirements == "Open")
-                    HyruleCastleRequirements.value = 4;
-
-                Debug.Log("PoT");
-                if (spoilerLog.settings.palaceRequirements == "Mirror_Shards")
-                    PalaceOfTwilightRequirements.value = 1;
-                else if (spoilerLog.settings.palaceRequirements == "Fused_Shadows")
-                    PalaceOfTwilightRequirements.value = 2;
-                else if (spoilerLog.settings.palaceRequirements == "Open")
-                    PalaceOfTwilightRequirements.value = 3;
-
-                Debug.Log("Faron Woods");
-                if (spoilerLog.settings.faronWoodsLogic == "Closed")
-                    FaronWoodsLogic.value = 1;
-
-                Debug.Log("Prologue");
-                if (spoilerLog.settings.skipPrologue == true)
-                    SkipPrologue.isOn = true;
-
-                Debug.Log("Faron Twilight");
-                if (spoilerLog.settings.faronTwilightCleared == true)
-                    FaronTwilightCleared.isOn = true;
-
-                Debug.Log("Eldin Twilight");
-                if (spoilerLog.settings.eldinTwilightCleared == true)
-                    EldinTwilightCleared.isOn = true;
-
-                Debug.Log("Lanayru Twilight");
-                if (spoilerLog.settings.lanayruTwilightCleared == true)
-                    LanayruTwilightCleared.isOn = true;
-
-                Debug.Log("MDH");
-                if (spoilerLog.settings.skipMdh == true)
-                    SkipMDH.isOn = true;
-
-                Debug.Log("LT");
-                if (spoilerLog.settings.skipLakebedEntrance == true)
-                    EarlyLakebed.isOn = true;
-
-                Debug.Log("AG");
-                if (spoilerLog.settings.skipArbitersEntrance == true)
-                    EarlyArbiters.isOn = true;
-
-                Debug.Log("SR");
-                if (spoilerLog.settings.skipSnowpeakEntrance == true)
-                    EarlySnowpeak.isOn = true;
-
-                Debug.Log("CitS");
-                if (spoilerLog.settings.skipCityEntrance == true)
-                    EarlyCitS.isOn = true;
-
-                Debug.Log("GM");
-                if (spoilerLog.settings.goronMinesEntrance == "NoWrestling")
-                    MinesEntrance.value = 1;
-                else if (spoilerLog.settings.goronMinesEntrance == "Open")
-                    MinesEntrance.value = 2;
-
-                Debug.Log("ToT");
-                if (spoilerLog.settings.totEntrance == "OpenGrove")
-                    ToTEntrance.value = 1;
-                else if (spoilerLog.settings.totEntrance == "Open")
-                    ToTEntrance.value = 2;
-
-                Debug.Log("DoT");
-                if (spoilerLog.settings.openDot == true)
-                    OpenDoorofTime.isOn = true;
-
-                Debug.Log("Wallet");
-                if (spoilerLog.settings.increaseWallet == true)
-                    WalletIncrease.isOn = true;
-
-                Debug.Log("OpenMap");
-                if (spoilerLog.settings.openMap == true)
-                    UnlockMapRegions.isOn = true;
-
-                Debug.Log("Barren Dungeons");
-                if (spoilerLog.settings.barrenDungeons == true)
-                    UnrequiredDungeonsAreBarren.isOn = true;
-
-                Debug.Log("Bonks");
-                if (spoilerLog.settings.bonksDoDamage == "True")
-                    BonksDoDamage.isOn = true;
-
-                Debug.Log("Transform");
-                if (spoilerLog.settings.transformAnywhere == true)
-                    TransformAnywhere.isOn = true;
-
-                Debug.Log("Small Keys");
-                if (spoilerLog.settings.smallKeySettings == "Own_Dungeon")
-                    SmallKeys.value = 1;
-                else if (spoilerLog.settings.smallKeySettings == "Any_Dungeon")
-                    SmallKeys.value = 2;
-                else if (spoilerLog.settings.smallKeySettings == "Anywhere")
-                    SmallKeys.value = 3;
-                else if (spoilerLog.settings.smallKeySettings == "Keysy")
-                    SmallKeys.value = 4;
-
-                Debug.Log("Big Keys");
-                if (spoilerLog.settings.bigKeySettings == "Own_Dungeon")
-                    BigKeys.value = 1;
-                else if (spoilerLog.settings.bigKeySettings == "Any_Dungeon")
-                    BigKeys.value = 2;
-                else if (spoilerLog.settings.bigKeySettings == "Anywhere")
-                    BigKeys.value = 3;
-                else if (spoilerLog.settings.bigKeySettings == "Keysy")
-                    BigKeys.value = 4;
-
-                Debug.Log("Damage");
-                if (spoilerLog.settings.damageMagnification == "Double")
-                    DamageMultiplier.value = 1;
-                else if (spoilerLog.settings.damageMagnification == "Triple")
-                    DamageMultiplier.value = 2;
-                else if (spoilerLog.settings.damageMagnification == "Quadruple")
-                    DamageMultiplier.value = 3;
-                else if (spoilerLog.settings.damageMagnification == "OHKO")
-                    DamageMultiplier.value = 4;
-
-                Debug.Log("Setting Tabs");
-                MainTab.isOn = true;
-
-                if (spoilerLog.settings.shufflePoes == "Vanilla")
-                {
-                    PoesTab.isOn = false;
-                    PoesTab.GetComponent<SettingsBehaviour>().OnToggleValueChanged(PoesTab.isOn); // fixed issue where dungeon poes were still visible after importing
-                }
-                else
-                    PoesTab.isOn = true;
-
-                if (spoilerLog.settings.shuffleGoldenBugs == false)
-                    BugsTab.isOn = false;
-                else
-                    BugsTab.isOn = true;
-
-                Debug.Log("Refresh");
-                GameManager.Instance.Refresh();
-            }
+                ApplyAutoSettings();
 
             if (AutoItemLayout.isOn)
-            {
-                PresetMedium.onClick.Invoke();
-
-                if (spoilerLog.requiredDungeons.Length > 4)
-                {
-                    FixedHeight.isOn = true;
-                    ItemColumns.value = 7;
-                }
-
-                if (spoilerLog.settings.shuffleGoldenBugs == false)
-                    ShowBugs.isOn = false;
-
-                if (spoilerLog.settings.shufflePoes == "Vanilla")
-                    ShowPoes.isOn = false;
-
-                ShowFusedShadows.isOn = false;
-                ShowMirrorShards.isOn = false;
-
-                if (spoilerLog.settings.castleRequirements == "Fused_Shadows" || spoilerLog.settings.palaceRequirements == "Fused_Shadows")
-                    ShowFusedShadows.isOn = true;
-
-                if (spoilerLog.settings.castleRequirements == "Mirror_Shards" || spoilerLog.settings.palaceRequirements == "Mirror_Shards")
-                    ShowMirrorShards.isOn = true;
-
-                if (spoilerLog.settings.skipCityEntrance == true)
-                    ShowSkybook.isOn = true;
-
-                if (spoilerLog.settings.faronTwilightCleared == false
-                    || spoilerLog.settings.eldinTwilightCleared == false
-                    || spoilerLog.settings.lanayruTwilightCleared == false)
-                    ShowVesselsOfLight.isOn = true;
-
-                if (spoilerLog.settings.smallKeySettings == "Keysy" && spoilerLog.settings.bigKeySettings == "Keysy")
-                {
-                    FixedHeight.isOn = false;
-                    ShowDungeonKeys.isOn = false;
-                }
-
-                // AutoPopulateDungeons();
-            }
+                ApplyAutoLayout();
 
             if (AutoDungeons.isOn)
-                AutoPopulateDungeons();
+                ApplyAutoDungeons();
 
             if (AutoExcludedChecks.isOn)
-            {
-                int rupees = 0;
-                barrenCheckCount.Clear();
-
-                foreach (string exCheck in spoilerLog.settings.excludedChecks)
-                {
-                    bool breaker = false;
-
-                    foreach (Transform child1 in Map.transform)
-                    {
-                        if (breaker == true)
-                            break;
-
-                        foreach (Transform child2 in child1.transform)
-                        {
-                            string removeUnderscores = exCheck.Replace(" ", "");
-                            if (removeUnderscores.StartsWith(child2.name))
-                            {
-                                if (child2.GetComponent<Toggle>().isOn == true)
-                                {
-                                    child2.GetComponent<Toggle>().isOn = false;
-                                    rupees += child2.GetComponent<ChecksBehaviour>().rupeesWorth;
-                                }
-                                breaker = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    foreach (Transform child1 in Viewport.transform)
-                    {
-                        if (breaker == true)
-                            break;
-
-                        foreach (Transform child2 in child1.transform)
-                        {
-                            string removeUnderscores = exCheck.Replace(" ", "");
-                            if (child2.name == removeUnderscores)
-                            {
-                                if (child2.GetComponent<Toggle>().isOn == true)
-                                {
-                                    child2.GetComponent<Toggle>().isOn = false;
-                                    rupees += child2.GetComponent<ListChecksBehaviour>().rupeesWorth;
-                                }
-                                breaker = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                // removes barren dungeon checks
-                if (spoilerLog.settings.barrenDungeons == true)
-                {
-                    foreach (string dungeonName in allDungeons)
-                    {
-                        if (CheckForDungeon(dungeonName) == false)
-                        {
-                            foreach (Transform dungeonContainer in Viewport.transform)
-                            {
-                                if (dungeonContainer.name.StartsWith(dungeonName))
-                                {
-                                    foreach (Transform check in dungeonContainer.transform)
-                                    {
-                                        if (check.GetComponent<Toggle>().isOn == true)
-                                        {
-                                            check.GetComponent<Toggle>().isOn = false;
-                                            rupees += check.GetComponent<ListChecksBehaviour>().rupeesWorth;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                GameManager.Instance.walletCount -= rupees;
-                GameManager.Instance.HintRefresh();
-            }
+                ApplyAutoExclusions();
 
             if (AutoStartingItems.isOn)
-            {
-                foreach (string item in spoilerLog.settings.startingItems)
-                {
-                    if (item == "Ordon_Shield" || item == "Hylian_Shield")
-                    {
-                        Debug.Log("Shields");
-                        ShieldButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Magic_Armor")//new
-                    {
-                        Debug.Log("Magic Armor");
-                        MagicArmorButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Zora_Armor")
-                    {
-                        Debug.Log("ZoraArmor");
-                        ZoraArmorButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Shadow_Crystal")
-                    {
-                        Debug.Log("SC");
-                        ShadowCrystalButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Hawkeye")//new
-                    {
-                        Debug.Log("Hawkeye");
-                        HawkeyeButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Progressive_Sword")
-                    {
-                        Debug.Log("Sword");
-                        SwordButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Boomerang")
-                    {
-                        Debug.Log("Boomerang");
-                        BoomerangButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Spinner")
-                    {
-                        Debug.Log("Spinner");
-                        SpinnerButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Ball_and_Chain")
-                    {
-                        Debug.Log("B&C");
-                        BCButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Progressive_Bow")
-                    {
-                        Debug.Log("Bow");
-                        BowButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Progressive_Clawshot")
-                    {
-                        Debug.Log("Claw");
-                        ClawshotButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Iron_Boots")
-                    {
-                        Debug.Log("Boots");
-                        IronBootsButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Progressive_Dominion_Rod")
-                    {
-                        Debug.Log("DR");
-                        DominionRodButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Lantern")
-                    {
-                        Debug.Log("Lantern");
-                        LanternButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Progressive_Fishing_Rod")
-                    {
-                        Debug.Log("FR");
-                        FishingRodButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Slingshot")
-                    {
-                        Debug.Log("Slingshot");
-                        SlingshotButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Giant_Bomb_Bag")
-                    {
-                        Debug.Log("Giant Bombs");
-                        GiantBombBagButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Filled_Bomb_Bag")
-                    {
-                        Debug.Log("Bombs");
-                        BombBagButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Empty_Bottle")
-                    {
-                        Debug.Log("Bottle");
-                        BottleButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Horse_Call")
-                    {
-                        Debug.Log("Horse Call");
-                        HorseCallButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Forest_Temple_Small_Key")
-                    {
-                        Debug.Log("FT Small");
-                        FTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Goron_Mines_Small_Key")
-                    {
-                        Debug.Log("GM Small");
-                        GMSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Lakebed_Temple_Small_Key")
-                    {
-                        Debug.Log("LT Small");
-                        LTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Arbiters_Grounds_Small_Key")
-                    {
-                        Debug.Log("AG Small");
-                        AGSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Snowpeak_Ruins_Small_Key")
-                    {
-                        Debug.Log("SR Small");
-                        SRSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Temple_of_Time_Small_Key")
-                    {
-                        Debug.Log("ToT Small");
-                        ToTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "City_in_The_Sky_Small_Key")
-                    {
-                        Debug.Log("CitS Small");
-                        CitSSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Palace_ot_Twilight_Small_Key")
-                    {
-                        Debug.Log("PoT Small");
-                        PoTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Hyrule_Castle_Small_Key")
-                    {
-                        Debug.Log("HC Small");
-                        HCSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Aurus_Memo")
-                    {
-                        Debug.Log("Auru");
-                        AuruButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Asheis_Sketch")
-                    {
-                        Debug.Log("Ashei");
-                        AsheiButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Forest_Temple_Big_Key")
-                    {
-                        Debug.Log("FT Big");
-                        FTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Lakebed_Temple_Big_Key")
-                    {
-                        Debug.Log("LT Big");
-                        LTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Arbiters_Grounds_Big_Key")
-                    {
-                        Debug.Log("AG Big");
-                        AGBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Temple_of_Time_Big_Key")
-                    {
-                        Debug.Log("ToT Big");
-                        ToTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "City_in_The_Sky_Big_Key")
-                    {
-                        Debug.Log("CitS Big");
-                        CitSBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Palace_of_Twilight_Big_Key")
-                    {
-                        Debug.Log("PoT Big");
-                        PoTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Hyrule_Castle_Big_Key")
-                    {
-                        Debug.Log("HC Big");
-                        HCBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Poe_Soul")
-                    {
-                        Debug.Log("Poe");
-                        PoeSoulButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Progressive_Hidden_Skill")
-                    {
-                        Debug.Log("Hidden Skill");
-                        HiddenSkillButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Progressive_Sky_Book")
-                    {
-                        Debug.Log("Skybook");
-                        SkyBookButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Gate_Keys")
-                    {
-                        Debug.Log("Gate Keys");
-                        GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Snowpeak_Ruins_Ordon_Pumpkin")
-                    {
-                        Debug.Log("Pumpkin");
-                        SROrdonPumpkinButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Snowpeak_Ruins_Ordon_Goat_Cheese")
-                    {
-                        Debug.Log("Cheese");
-                        SROrdonGoatCheeseButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Snowpeak_Ruins_Bedroom_Key")
-                    {
-                        Debug.Log("Bedroom Key");
-                        SRBedroomKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-
-                    if (item == "Goron_Mines_Key_Shard")
-                    {
-                        Debug.Log("GM Big");
-                        GMKeyShardButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-                        continue;
-                    }
-                }
-
-                Debug.Log("Camp Key");
-                if (spoilerLog.settings.skipArbitersEntrance == true)
-                    BulblinCampKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-
-                Debug.Log("GateKeyKeysy");
-                if (spoilerLog.settings.smallKeySettings == "Keysy")
-                    GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
-            }
+                ApplyAutoStartingItems();
 
             loadPage.SetActive(false);
             hintPage.SetActive(true);
@@ -2489,7 +1885,213 @@ public class SpoilerManager : MonoBehaviour
             DialogIndexText.text = "";
     }
 
-    public void AutoPopulateDungeons()
+    public void ApplyAutoReset()
+    {
+        Debug.Log("Reset Start");
+        ButtonYesReset.GetComponent<ResetBehaviour>().SetInput("Tracker");
+        ButtonYesReset.GetComponent<ResetBehaviour>().OnClick();
+        Debug.Log("Reset Done");
+    }
+
+    public void ApplyAutoSettings()
+    {
+        Debug.Log("Settings Start");
+        Debug.Log("Settings Reset Start");
+        ButtonYesReset.GetComponent<ResetBehaviour>().SetInput("Settings");
+        ButtonYesReset.GetComponent<ResetBehaviour>().OnClick();
+        Debug.Log("Settings Reset Done");
+
+        Debug.Log("Glitched");
+        if (spoilerLog.settings.logicRules == "Glitched")
+            GlitchedLogic.isOn = true;
+
+        Debug.Log("HC");
+        if (spoilerLog.settings.castleRequirements == "All_Dungeons")
+            HyruleCastleRequirements.value = 1;
+        else if (spoilerLog.settings.castleRequirements == "Mirror_Shards")
+            HyruleCastleRequirements.value = 2;
+        else if (spoilerLog.settings.castleRequirements == "Fused_Shadows")
+            HyruleCastleRequirements.value = 3;
+        else if (spoilerLog.settings.castleRequirements == "Open")
+            HyruleCastleRequirements.value = 4;
+
+        Debug.Log("PoT");
+        if (spoilerLog.settings.palaceRequirements == "Mirror_Shards")
+            PalaceOfTwilightRequirements.value = 1;
+        else if (spoilerLog.settings.palaceRequirements == "Fused_Shadows")
+            PalaceOfTwilightRequirements.value = 2;
+        else if (spoilerLog.settings.palaceRequirements == "Open")
+            PalaceOfTwilightRequirements.value = 3;
+
+        Debug.Log("Faron Woods");
+        if (spoilerLog.settings.faronWoodsLogic == "Closed")
+            FaronWoodsLogic.value = 1;
+
+        Debug.Log("Prologue");
+        if (spoilerLog.settings.skipPrologue == true)
+            SkipPrologue.isOn = true;
+
+        Debug.Log("Faron Twilight");
+        if (spoilerLog.settings.faronTwilightCleared == true)
+            FaronTwilightCleared.isOn = true;
+
+        Debug.Log("Eldin Twilight");
+        if (spoilerLog.settings.eldinTwilightCleared == true)
+            EldinTwilightCleared.isOn = true;
+
+        Debug.Log("Lanayru Twilight");
+        if (spoilerLog.settings.lanayruTwilightCleared == true)
+            LanayruTwilightCleared.isOn = true;
+
+        Debug.Log("MDH");
+        if (spoilerLog.settings.skipMdh == true)
+            SkipMDH.isOn = true;
+
+        Debug.Log("LT");
+        if (spoilerLog.settings.skipLakebedEntrance == true)
+            EarlyLakebed.isOn = true;
+
+        Debug.Log("AG");
+        if (spoilerLog.settings.skipArbitersEntrance == true)
+            EarlyArbiters.isOn = true;
+
+        Debug.Log("SR");
+        if (spoilerLog.settings.skipSnowpeakEntrance == true)
+            EarlySnowpeak.isOn = true;
+
+        Debug.Log("CitS");
+        if (spoilerLog.settings.skipCityEntrance == true)
+            EarlyCitS.isOn = true;
+
+        Debug.Log("GM");
+        if (spoilerLog.settings.goronMinesEntrance == "NoWrestling")
+            MinesEntrance.value = 1;
+        else if (spoilerLog.settings.goronMinesEntrance == "Open")
+            MinesEntrance.value = 2;
+
+        Debug.Log("ToT");
+        if (spoilerLog.settings.totEntrance == "OpenGrove")
+            ToTEntrance.value = 1;
+        else if (spoilerLog.settings.totEntrance == "Open")
+            ToTEntrance.value = 2;
+
+        Debug.Log("DoT");
+        if (spoilerLog.settings.openDot == true)
+            OpenDoorofTime.isOn = true;
+
+        Debug.Log("Wallet");
+        if (spoilerLog.settings.increaseWallet == true)
+            WalletIncrease.isOn = true;
+
+        Debug.Log("OpenMap");
+        if (spoilerLog.settings.openMap == true)
+            UnlockMapRegions.isOn = true;
+
+        Debug.Log("Barren Dungeons");
+        if (spoilerLog.settings.barrenDungeons == true)
+            UnrequiredDungeonsAreBarren.isOn = true;
+
+        Debug.Log("Bonks");
+        if (spoilerLog.settings.bonksDoDamage == "True")
+            BonksDoDamage.isOn = true;
+
+        Debug.Log("Transform");
+        if (spoilerLog.settings.transformAnywhere == true)
+            TransformAnywhere.isOn = true;
+
+        Debug.Log("Small Keys");
+        if (spoilerLog.settings.smallKeySettings == "Own_Dungeon")
+            SmallKeys.value = 1;
+        else if (spoilerLog.settings.smallKeySettings == "Any_Dungeon")
+            SmallKeys.value = 2;
+        else if (spoilerLog.settings.smallKeySettings == "Anywhere")
+            SmallKeys.value = 3;
+        else if (spoilerLog.settings.smallKeySettings == "Keysy")
+            SmallKeys.value = 4;
+
+        Debug.Log("Big Keys");
+        if (spoilerLog.settings.bigKeySettings == "Own_Dungeon")
+            BigKeys.value = 1;
+        else if (spoilerLog.settings.bigKeySettings == "Any_Dungeon")
+            BigKeys.value = 2;
+        else if (spoilerLog.settings.bigKeySettings == "Anywhere")
+            BigKeys.value = 3;
+        else if (spoilerLog.settings.bigKeySettings == "Keysy")
+            BigKeys.value = 4;
+
+        Debug.Log("Damage");
+        if (spoilerLog.settings.damageMagnification == "Double")
+            DamageMultiplier.value = 1;
+        else if (spoilerLog.settings.damageMagnification == "Triple")
+            DamageMultiplier.value = 2;
+        else if (spoilerLog.settings.damageMagnification == "Quadruple")
+            DamageMultiplier.value = 3;
+        else if (spoilerLog.settings.damageMagnification == "OHKO")
+            DamageMultiplier.value = 4;
+
+        Debug.Log("Setting Tabs");
+        MainTab.isOn = true;
+
+        if (spoilerLog.settings.shufflePoes == "Vanilla")
+        {
+            PoesTab.isOn = false;
+            PoesTab.GetComponent<SettingsBehaviour>().OnToggleValueChanged(PoesTab.isOn); // fixed issue where dungeon poes were still visible after importing
+        }
+        else
+            PoesTab.isOn = true;
+
+        if (spoilerLog.settings.shuffleGoldenBugs == false)
+            BugsTab.isOn = false;
+        else
+            BugsTab.isOn = true;
+
+        Debug.Log("Refresh");
+        GameManager.Instance.Refresh();
+    }
+
+    public void ApplyAutoLayout()
+    {
+        PresetMedium.onClick.Invoke();
+
+        if (spoilerLog.requiredDungeons.Length > 4)
+        {
+            FixedHeight.isOn = true;
+            ItemColumns.value = 7;
+        }
+
+        if (spoilerLog.settings.shuffleGoldenBugs == false)
+            ShowBugs.isOn = false;
+
+        if (spoilerLog.settings.shufflePoes == "Vanilla")
+            ShowPoes.isOn = false;
+
+        ShowFusedShadows.isOn = false;
+        ShowMirrorShards.isOn = false;
+
+        if (spoilerLog.settings.castleRequirements == "Fused_Shadows" || spoilerLog.settings.palaceRequirements == "Fused_Shadows")
+            ShowFusedShadows.isOn = true;
+
+        if (spoilerLog.settings.castleRequirements == "Mirror_Shards" || spoilerLog.settings.palaceRequirements == "Mirror_Shards")
+            ShowMirrorShards.isOn = true;
+
+        if (spoilerLog.settings.skipCityEntrance == true)
+            ShowSkybook.isOn = false;
+
+        if (spoilerLog.settings.faronTwilightCleared == false
+            || spoilerLog.settings.eldinTwilightCleared == false
+            || spoilerLog.settings.lanayruTwilightCleared == false)
+            ShowVesselsOfLight.isOn = true;
+
+        if (spoilerLog.settings.smallKeySettings == "Keysy" && spoilerLog.settings.bigKeySettings == "Keysy")
+        {
+            FixedHeight.isOn = false;
+            ShowDungeonKeys.isOn = false;
+        }
+
+        // AutoPopulateDungeons();
+    }
+
+    public void ApplyAutoDungeons()
     {
         foreach (Transform dungeonToggle in ShowDungeons.transform)
         {
@@ -2546,5 +2148,452 @@ public class SpoilerManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ApplyAutoExclusions()
+    {
+        barrenCheckCount.Clear();
+
+        ExcludeManual();
+        ExcludeBarrenDungeons();
+
+        GameManager.Instance.HintRefresh();
+    }
+
+    public void ExcludeManual()
+    {
+        int rupees = 0;
+        int agithaExCount = 0;
+
+        foreach (string exCheck in spoilerLog.settings.excludedChecks)
+        {
+            if (exCheck.StartsWith("Agitha"))
+            {
+                agithaExCount++;
+            }
+            else {
+                bool breaker = false;
+
+                foreach (Transform child1 in Map.transform)
+                {
+                    if (breaker == true)
+                        break;
+
+                    foreach (Transform child2 in child1.transform)
+                    {
+                        string removeUnderscores = exCheck.Replace(" ", "");
+                        if (removeUnderscores.StartsWith(child2.name))
+                        {
+                            if (child2.GetComponent<Toggle>().isOn == true)
+                            {
+                                child2.GetComponent<Toggle>().isOn = false;
+                                rupees += child2.GetComponent<ChecksBehaviour>().rupeesWorth;
+                            }
+                            breaker = true;
+                            break;
+                        }
+                    }
+                }
+
+                foreach (Transform child1 in Viewport.transform)
+                {
+                    if (breaker == true)
+                        break;
+
+                    foreach (Transform child2 in child1.transform)
+                    {
+                        string removeUnderscores = exCheck.Replace(" ", "");
+                        if (child2.name == removeUnderscores)
+                        {
+                            if (child2.GetComponent<Toggle>().isOn == true)
+                            {
+                                child2.GetComponent<Toggle>().isOn = false;
+                                rupees += child2.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                            }
+                            breaker = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        int agithaRemainder = 24 - agithaExCount;
+        for (int i = agithaRemainder; i < 24; i++)
+        {
+            Transform child = CastleTownChecks.transform.GetChild(i);
+            child.GetComponent<Toggle>().isOn = false;
+            rupees += child.GetComponent<ListChecksBehaviour>().rupeesWorth;
+        }
+
+        GameManager.Instance.walletCount -= rupees;
+    }
+
+    public void ExcludeBarrenDungeons() // should add post-dungeon checks
+    {
+        int rupees = 0;
+
+        // removes barren dungeon checks
+        if (spoilerLog.settings.barrenDungeons == true)
+        {
+            foreach (string dungeonName in allDungeons)
+            {
+                if (CheckForDungeon(dungeonName) == false)
+                {
+                    foreach (Transform dungeonContainer in Viewport.transform)
+                    {
+                        if (dungeonContainer.name.StartsWith(dungeonName))
+                        {
+                            foreach (Transform check in dungeonContainer.transform)
+                            {
+                                if (check.GetComponent<Toggle>().isOn == true)
+                                {
+                                    check.GetComponent<Toggle>().isOn = false;
+                                    rupees += check.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        GameManager.Instance.walletCount -= rupees;
+    }
+
+    public void ApplyAutoStartingItems()
+    {
+        foreach (string item in spoilerLog.settings.startingItems)
+        {
+            if (item == "Ordon_Shield" || item == "Hylian_Shield")
+            {
+                Debug.Log("Shields");
+                ShieldButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Magic_Armor")//new
+            {
+                Debug.Log("Magic Armor");
+                MagicArmorButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Zora_Armor")
+            {
+                Debug.Log("ZoraArmor");
+                ZoraArmorButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Shadow_Crystal")
+            {
+                Debug.Log("SC");
+                ShadowCrystalButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Hawkeye")//new
+            {
+                Debug.Log("Hawkeye");
+                HawkeyeButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Progressive_Sword")
+            {
+                Debug.Log("Sword");
+                SwordButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Boomerang")
+            {
+                Debug.Log("Boomerang");
+                BoomerangButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Spinner")
+            {
+                Debug.Log("Spinner");
+                SpinnerButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Ball_and_Chain")
+            {
+                Debug.Log("B&C");
+                BCButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Progressive_Bow")
+            {
+                Debug.Log("Bow");
+                BowButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Progressive_Clawshot")
+            {
+                Debug.Log("Claw");
+                ClawshotButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Iron_Boots")
+            {
+                Debug.Log("Boots");
+                IronBootsButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Progressive_Dominion_Rod")
+            {
+                Debug.Log("DR");
+                DominionRodButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Lantern")
+            {
+                Debug.Log("Lantern");
+                LanternButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Progressive_Fishing_Rod")
+            {
+                Debug.Log("FR");
+                FishingRodButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Slingshot")
+            {
+                Debug.Log("Slingshot");
+                SlingshotButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Giant_Bomb_Bag")
+            {
+                Debug.Log("Giant Bombs");
+                GiantBombBagButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Filled_Bomb_Bag")
+            {
+                Debug.Log("Bombs");
+                BombBagButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Empty_Bottle")
+            {
+                Debug.Log("Bottle");
+                BottleButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Horse_Call")
+            {
+                Debug.Log("Horse Call");
+                HorseCallButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Forest_Temple_Small_Key")
+            {
+                Debug.Log("FT Small");
+                FTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Goron_Mines_Small_Key")
+            {
+                Debug.Log("GM Small");
+                GMSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Lakebed_Temple_Small_Key")
+            {
+                Debug.Log("LT Small");
+                LTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Arbiters_Grounds_Small_Key")
+            {
+                Debug.Log("AG Small");
+                AGSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Snowpeak_Ruins_Small_Key")
+            {
+                Debug.Log("SR Small");
+                SRSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Temple_of_Time_Small_Key")
+            {
+                Debug.Log("ToT Small");
+                ToTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "City_in_The_Sky_Small_Key")
+            {
+                Debug.Log("CitS Small");
+                CitSSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Palace_ot_Twilight_Small_Key")
+            {
+                Debug.Log("PoT Small");
+                PoTSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Hyrule_Castle_Small_Key")
+            {
+                Debug.Log("HC Small");
+                HCSmallKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Aurus_Memo")
+            {
+                Debug.Log("Auru");
+                AuruButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Asheis_Sketch")
+            {
+                Debug.Log("Ashei");
+                AsheiButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Forest_Temple_Big_Key")
+            {
+                Debug.Log("FT Big");
+                FTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Lakebed_Temple_Big_Key")
+            {
+                Debug.Log("LT Big");
+                LTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Arbiters_Grounds_Big_Key")
+            {
+                Debug.Log("AG Big");
+                AGBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Temple_of_Time_Big_Key")
+            {
+                Debug.Log("ToT Big");
+                ToTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "City_in_The_Sky_Big_Key")
+            {
+                Debug.Log("CitS Big");
+                CitSBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Palace_of_Twilight_Big_Key")
+            {
+                Debug.Log("PoT Big");
+                PoTBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Hyrule_Castle_Big_Key")
+            {
+                Debug.Log("HC Big");
+                HCBigKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Poe_Soul")
+            {
+                Debug.Log("Poe");
+                PoeSoulButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Progressive_Hidden_Skill")
+            {
+                Debug.Log("Hidden Skill");
+                HiddenSkillButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Progressive_Sky_Book")
+            {
+                Debug.Log("Skybook");
+                SkyBookButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Gate_Keys")
+            {
+                Debug.Log("Gate Keys");
+                GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Snowpeak_Ruins_Ordon_Pumpkin")
+            {
+                Debug.Log("Pumpkin");
+                SROrdonPumpkinButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Snowpeak_Ruins_Ordon_Goat_Cheese")
+            {
+                Debug.Log("Cheese");
+                SROrdonGoatCheeseButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Snowpeak_Ruins_Bedroom_Key")
+            {
+                Debug.Log("Bedroom Key");
+                SRBedroomKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+
+            if (item == "Goron_Mines_Key_Shard")
+            {
+                Debug.Log("GM Big");
+                GMKeyShardButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+                continue;
+            }
+        }
+
+        Debug.Log("Camp Key");
+        if (spoilerLog.settings.skipArbitersEntrance == true)
+            BulblinCampKeyButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
+
+        Debug.Log("GateKeyKeysy");
+        if (spoilerLog.settings.smallKeySettings == "Keysy")
+            GateKeysButton.GetComponent<ItemBehaviour>().ItemIncrementNoRefresh();
     }
 }

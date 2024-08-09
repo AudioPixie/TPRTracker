@@ -180,6 +180,11 @@ public class ResetBehaviour : MonoBehaviour
             HintPage.SetActive(false);
         }
 
+        else if (query == "Race")
+        {
+            RaceManager.Instance.ImportRaceSettings();
+        }
+
         else
         {
             Debug.Log("Fallthrough");

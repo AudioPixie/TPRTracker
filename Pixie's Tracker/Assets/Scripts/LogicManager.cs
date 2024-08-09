@@ -7466,11 +7466,13 @@ public class LogicManager : MonoBehaviour
             || (
                 SettingsStatus["GlitchedLogic"]
                 && (
-                    Has("ReekfishScent")
-                    || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                    || SettingsStatus["EarlySnowpeak"]
+                    (
+                        Has("ReekfishScent")
+                        || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
+                        || SettingsStatus["EarlySnowpeak"]
+                    )
+                    || Has("ShadowCrystal")
                 )
-                || Has("ShadowCrystal")
             );
         }
 
@@ -7501,11 +7503,13 @@ public class LogicManager : MonoBehaviour
             || (
                 SettingsStatus["GlitchedLogic"]
                 && (
-                    Has("ReekfishScent")
-                    || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
-                    || SettingsStatus["EarlySnowpeak"]
+                    (
+                        Has("ReekfishScent")
+                        || (SettingsStatus["IgnoreScentLogic"] && Has("FishingRod", 2))
+                        || SettingsStatus["EarlySnowpeak"]
+                    )
+                    || Has("ShadowCrystal")
                 )
-                || Has("ShadowCrystal")
             );
         }
 

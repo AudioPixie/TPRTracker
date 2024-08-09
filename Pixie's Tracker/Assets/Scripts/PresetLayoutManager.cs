@@ -44,12 +44,19 @@ public class PresetLayoutManager : MonoBehaviour
             showLightVessels.isOn = false;
         }
 
+        if (size == "Race")
+        {
+            itemColumns.value = 6;
+            fixedHeight.isOn = false;
+            showLightVessels.isOn = false;
+        }
+
         for (int i = 0; i < requiredDungeons.transform.childCount; i++) // sets dungeons
         {
             Transform child = requiredDungeons.transform.GetChild(i);
             child.GetComponent<Toggle>().isOn = true;
 
-            if (i > 2 && (size == "Medium" || size == "Small"))
+            if (i > 2 && (size == "Medium" || size == "Small" || size == "Race"))
                 child.GetComponent<Toggle>().isOn = false;
         }
 
@@ -77,6 +84,22 @@ public class PresetLayoutManager : MonoBehaviour
                     || i == 25
                     || i == 27
                     || (i >= 30 && i <= 34)
+                    || i == 38)
+                {
+                    child.GetComponent<Toggle>().isOn = false;
+                }
+            }
+
+            if (size == "Race")
+            {
+                if (i == 18
+                    || i == 25
+                    || i == 30
+                    || i == 31
+                    || i == 32
+                    || i == 34
+                    || i == 35
+                    || i == 36
                     || i == 38)
                 {
                     child.GetComponent<Toggle>().isOn = false;
