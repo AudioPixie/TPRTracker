@@ -110,6 +110,7 @@ public class RaceManager : MonoBehaviour
         SpoilerManager.Instance.BugsTab.isOn = false;
         PresetRace.onClick.Invoke();
         SpoilerManager.Instance.ExcludeManual();
+        TextManager.Instance.SetWalletText();
         SpoilerManager.Instance.ApplyAutoStartingItems();
 
         GameManager.Instance.Refresh();
