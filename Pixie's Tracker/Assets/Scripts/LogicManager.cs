@@ -4782,7 +4782,7 @@ public class LogicManager : MonoBehaviour
             && CanDefeatPhantomZant()
             && CanDefeatZantHead()
             && CanDefeatShadowBeast()
-            && (Has("PoTSmallKey", 4) || SettingsStatus["SmallKeysKeysy"]));
+            && (Has("PoTSmallKey", 6) || SettingsStatus["SmallKeysKeysy"]));
     }
 
     public bool PalaceofTwilightCollectBothSols()
