@@ -5302,7 +5302,7 @@ public class LogicManager : MonoBehaviour
         else if (neighbour == "MistAreaInsideMist")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else
@@ -5317,25 +5317,25 @@ public class LogicManager : MonoBehaviour
         if (neighbour == "MistAreaNearNorthFaronWoods")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "MistAreaNearFaronWoodsCave")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "MistAreaUnderOwlStatueChest")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "MistAreaFaronMistCave")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else
@@ -5350,7 +5350,7 @@ public class LogicManager : MonoBehaviour
         if (neighbour == "MistAreaInsideMist")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "MistAreaCenterStump")
@@ -5389,7 +5389,7 @@ public class LogicManager : MonoBehaviour
         if (neighbour == "MistAreaInsideMist")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "MistAreaNearNorthFaronWoods")
@@ -5409,7 +5409,7 @@ public class LogicManager : MonoBehaviour
         if (neighbour == "MistAreaInsideMist")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else if (neighbour == "MistAreaNearNorthFaronWoodsCave")
@@ -5436,7 +5436,7 @@ public class LogicManager : MonoBehaviour
         if (neighbour == "MistAreaInsideMist")
         {
             return Has("Lantern") 
-                || (SettingsStatus["GlitchedLogic"] && Has("ShadowCrystal"));
+                || (SettingsStatus["GlitchedLogic"] && CanDoMapGlitch());
         }
 
         else
