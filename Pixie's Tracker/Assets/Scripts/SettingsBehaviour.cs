@@ -38,7 +38,7 @@ public class SettingsBehaviour : MonoBehaviour
             {
                 foreach (Transform child2 in child1.transform)
                 {
-                    if (child2.GetComponent<ListChecksBehaviour>().isPoe == false)
+                    if (child2.GetComponent<ListChecksBehaviour>().checkType == "Overworld")
                     {
                         child2.gameObject.SetActive(isOn);
                     }
@@ -52,7 +52,35 @@ public class SettingsBehaviour : MonoBehaviour
             {
                 foreach (Transform child2 in child1.transform)
                 {
-                    if (child2.GetComponent<ListChecksBehaviour>().isPoe == true)
+                    if (child2.GetComponent<ListChecksBehaviour>().checkType == "Poe")
+                    {
+                        child2.gameObject.SetActive(isOn);
+                    }
+                }
+            }
+        }
+
+        if (gameObject.name == "Bugs")
+        {
+            foreach (Transform child1 in Viewport.transform)
+            {
+                foreach (Transform child2 in child1.transform)
+                {
+                    if (child2.GetComponent<ListChecksBehaviour>().checkType == "Bug")
+                    {
+                        child2.gameObject.SetActive(isOn);
+                    }
+                }
+            }
+        }
+
+        if (gameObject.name == "Hints")
+        {
+            foreach (Transform child1 in Viewport.transform)
+            {
+                foreach (Transform child2 in child1.transform)
+                {
+                    if (child2.GetComponent<ListChecksBehaviour>().checkType == "Hint")
                     {
                         child2.gameObject.SetActive(isOn);
                     }

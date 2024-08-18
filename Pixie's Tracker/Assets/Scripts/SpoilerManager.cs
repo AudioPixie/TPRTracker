@@ -686,6 +686,9 @@ public class SpoilerManager : MonoBehaviour
     public Toggle MainTab;
     public Toggle PoesTab;
     public Toggle BugsTab;
+    public Toggle HintsTab;
+    public Toggle NotepadTab;
+    public Toggle TrackHowlingStones;
 
     [Header("For Auto Item Layout")]
     public GameObject ShowDungeons;
@@ -1015,6 +1018,7 @@ public class SpoilerManager : MonoBehaviour
     {
         foreach (Transform child1 in Map.transform)
         {
+            if (child1.name != "HintChecks" && child1.name != "HowlingStoneChecks")
             foreach (Transform child2 in child1.transform)
             {
                 string checkName = child2.gameObject.name;
@@ -1045,18 +1049,21 @@ public class SpoilerManager : MonoBehaviour
         {
             foreach (Transform child2 in child1.transform)
             {
-                string checkName = child2.gameObject.name;
-                Type type = spoilerLogItems.GetType();
-                FieldInfo field = type.GetField(checkName, BindingFlags.Public | BindingFlags.Instance);
+                if (child2.GetComponent<ListChecksBehaviour>().checkType != "Hint")
+                {
+                    string checkName = child2.gameObject.name;
+                    Type type = spoilerLogItems.GetType();
+                    FieldInfo field = type.GetField(checkName, BindingFlags.Public | BindingFlags.Instance);
 
-                if (field != null)
-                {
-                    object locationObj = field.GetValue(spoilerLogItems);
-                    child2.GetComponent<ListChecksBehaviour>().checkContents = locationObj.ToString();
-                }
-                else
-                {
-                    Debug.LogError("Variable not found: " + checkName);
+                    if (field != null)
+                    {
+                        object locationObj = field.GetValue(spoilerLogItems);
+                        child2.GetComponent<ListChecksBehaviour>().checkContents = locationObj.ToString();
+                    }
+                    else
+                    {
+                        Debug.LogError("Variable not found: " + checkName);
+                    }
                 }
             }
         }
@@ -1489,7 +1496,9 @@ public class SpoilerManager : MonoBehaviour
             foreach (Transform child2 in child1.transform)
             {
                 if (child2.GetComponent<ChecksBehaviour>().checkAvailibility == true
-                    && child2.GetComponent<ChecksBehaviour>().checkCompletion == false)
+                    && child2.GetComponent<ChecksBehaviour>().checkCompletion == false
+                    && child2.GetComponent<ChecksBehaviour>().checkType != "Hint"
+                    && child2.GetComponent<ChecksBehaviour>().checkType != "HowlingStone")
                     availableChecks.Add(child2.gameObject);
             }
         }
@@ -1500,7 +1509,8 @@ public class SpoilerManager : MonoBehaviour
             {
                 if (child2.GetComponent<ListChecksBehaviour>().checkAvailibility == true
                     && child2.GetComponent<ListChecksBehaviour>().checkCompletion == false
-                    && !child2.name.StartsWith("Agitha"))
+                    && !child2.name.StartsWith("Agitha")
+                    && child2.GetComponent<ListChecksBehaviour>().checkType != "Hint")
                     availableChecks.Add(child2.gameObject);
             }
         }
@@ -1530,7 +1540,9 @@ public class SpoilerManager : MonoBehaviour
             foreach (Transform child2 in child1.transform)
             {
                 if (child2.GetComponent<ChecksBehaviour>().checkAvailibility == true
-                    && child2.GetComponent<ChecksBehaviour>().checkCompletion == false)
+                    && child2.GetComponent<ChecksBehaviour>().checkCompletion == false
+                    && child2.GetComponent<ChecksBehaviour>().checkType != "Hint"
+                    && child2.GetComponent<ChecksBehaviour>().checkType != "HowlingStone")
                     availableChecks.Add(child2.gameObject);
             }
         }
@@ -1541,7 +1553,8 @@ public class SpoilerManager : MonoBehaviour
             {
                 if (child2.GetComponent<ListChecksBehaviour>().checkAvailibility == true
                     && child2.GetComponent<ListChecksBehaviour>().checkCompletion == false
-                    && !child2.name.StartsWith("Agitha"))
+                    && !child2.name.StartsWith("Agitha")
+                    && child2.GetComponent<ListChecksBehaviour>().checkType != "Hint")
                     availableChecks.Add(child2.gameObject);
             }
         }
@@ -2045,6 +2058,33 @@ public class SpoilerManager : MonoBehaviour
         else
             BugsTab.isOn = true;
 
+        if (spoilerLog.settings.hintDistribution == "None")
+        {
+            HintsTab.isOn = false;
+            NotepadTab.isOn = false;
+        }
+        else
+        {
+            HintsTab.isOn = true;
+            NotepadTab.isOn = true;
+        }
+
+        Debug.Log("Howling Stones");
+        if (spoilerLog.settings.shuffleHiddenSkills == true)
+        {
+            int excludedWolves = 0;
+            foreach (string exCheck in spoilerLog.settings.excludedChecks)
+            {
+                if (exCheck.EndsWith("Wolf") && exCheck != "Faron Woods Golden Wolf")
+                    excludedWolves++;
+            }
+            if (excludedWolves == 6)
+                TrackHowlingStones.isOn = false;
+
+        }
+        else
+            TrackHowlingStones.isOn = true;
+        
         Debug.Log("Refresh");
         GameManager.Instance.Refresh();
     }
@@ -2254,6 +2294,15 @@ public class SpoilerManager : MonoBehaviour
                             }
                         }
                     }
+
+                    // if (dungeonName == "GoronMines")
+                    // {
+                    //     if (TaloSharpshooting.GetComponent<Toggle>().isOn = true)
+                    //     {
+                    //         TaloSharpshooting.GetComponent<Toggle>().isOn = false;
+                    //         rupees += TaloSharpshooting.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                    //     }
+                    // }
                 }
             }
         }

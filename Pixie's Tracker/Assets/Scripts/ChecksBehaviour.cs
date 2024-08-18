@@ -84,6 +84,16 @@ public class ChecksBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExit
                     toggle.graphic.color = GameManager.Instance.BugColor;
                 }
 
+                if (checkType == "Hint" && gameObject.activeInHierarchy == true)
+                {
+                    toggle.graphic.color = GameManager.Instance.HintColor;
+                }
+
+                if (checkType == "HowlingStone" && gameObject.activeInHierarchy == true)
+                {
+                    toggle.graphic.color = GameManager.Instance.HowlingStoneColor;
+                }
+
             }
             else
             {
@@ -115,44 +125,62 @@ public class ChecksBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExit
     // OnClick, updates counters and wallet
     public void UpdateCount()
     {
-        if (toggle.isOn == true)
+        if ((checkType != "Hint") && (checkType != "HowlingStone"))
         {
-            GameManager.Instance.checkCountRemaining += checksWorth;
-            TextManager.Instance.SetRemainingText();
-
-            if (GameManager.Instance.RupeeMode.isOn == true)
+            if (toggle.isOn == true)
             {
-                GameManager.Instance.walletCount -= rupeesWorth;
-                if (GameManager.Instance.walletCount < 0)
-                    GameManager.Instance.walletCount = 0;
+                GameManager.Instance.checkCountRemaining += checksWorth;
+                TextManager.Instance.SetRemainingText();
+
+                if (GameManager.Instance.RupeeMode.isOn == true)
+                {
+                    GameManager.Instance.walletCount -= rupeesWorth;
+                    if (GameManager.Instance.walletCount < 0)
+                        GameManager.Instance.walletCount = 0;
+                }
+
+                checkCompletion = false;
+
+                if (checkAvailibility == true)
+                {
+                    GameManager.Instance.checkCountAvailable += checksWorth;
+                    TextManager.Instance.SetAvailableText();
+                }
+            }
+            else
+            {
+                GameManager.Instance.checkCountRemaining -= checksWorth;
+                TextManager.Instance.SetRemainingText();
+
+                GameManager.Instance.walletCount += rupeesWorth;
+
+                checkCompletion = true;
+
+                if (checkAvailibility == true)
+                {
+                    GameManager.Instance.checkCountAvailable -= checksWorth;
+                    TextManager.Instance.SetAvailableText();
+                }
             }
 
-            checkCompletion = false;
-
-            if (checkAvailibility == true)
-            {
-                GameManager.Instance.checkCountAvailable += checksWorth;
-                TextManager.Instance.SetAvailableText();
-            }
+            TextManager.Instance.SetWalletText();
+            GameManager.Instance.HintRefresh();
         }
-        else
+        else if (checkType == "Hint")
         {
-            GameManager.Instance.checkCountRemaining -= checksWorth;
-            TextManager.Instance.SetRemainingText();
-
-            GameManager.Instance.walletCount += rupeesWorth;
-
-            checkCompletion = true;
-
-            if (checkAvailibility == true)
-            {
-                GameManager.Instance.checkCountAvailable -= checksWorth;
-                TextManager.Instance.SetAvailableText();
-            }
+            if (toggle.isOn == true)
+                checkCompletion = false;
+            else 
+                checkCompletion = true;
         }
-
-        TextManager.Instance.SetWalletText();
-        GameManager.Instance.HintRefresh();
+        else if (checkType == "HowlingStone")
+        {
+            if (toggle.isOn == true)
+                checkCompletion = false;
+            else 
+                checkCompletion = true;
+            GameManager.Instance.Refresh();
+        }
     }
 
     // Right-clicking for star and junk items

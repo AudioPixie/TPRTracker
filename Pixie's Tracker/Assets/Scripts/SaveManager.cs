@@ -25,6 +25,11 @@ public class SaveManager : MonoBehaviour
     public Toggle MainTab;
     public Toggle PoesTab;
     public Toggle BugsTab;
+    public Toggle HintsTab;
+    public Toggle NotepadTab;
+
+    [Header("Text")]
+    public TMP_InputField InputField;
 
     private static SaveManager instance;
 
@@ -159,6 +164,13 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("MainTab", MainTab.isOn ? 1 : 0);
         PlayerPrefs.SetInt("PoesTab", PoesTab.isOn ? 1 : 0);
         PlayerPrefs.SetInt("BugsTab", BugsTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("HintsTab", HintsTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("NotepadTab", NotepadTab.isOn ? 1 : 0);
+
+        // Notes
+        PlayerPrefs.SetString("Notes", InputField.text);
+
+        Debug.Log("Notes:" + PlayerPrefs.GetString("Notes"));
     }
 
     public void LoadData()
@@ -267,6 +279,11 @@ public class SaveManager : MonoBehaviour
         MainTab.isOn = PlayerPrefs.GetInt("MainTab") != 0;
         PoesTab.isOn = PlayerPrefs.GetInt("PoesTab") != 0;
         BugsTab.isOn = PlayerPrefs.GetInt("BugsTab") != 0;
+        HintsTab.isOn = PlayerPrefs.GetInt("HintsTab") != 0;
+        NotepadTab.isOn = PlayerPrefs.GetInt("NotepadTab") != 0;
+
+        // Notes
+        InputField.text = PlayerPrefs.GetString("Notes");
 
         GameManager.Instance.Refresh();
 
@@ -274,6 +291,18 @@ public class SaveManager : MonoBehaviour
 
     public void DeleteData()
     {
+        string temp = PlayerPrefs.GetString("NoteTemplate");
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetString("NoteTemplate", temp);
+    }
+
+    public void SaveNoteTemplate()
+    {
+        PlayerPrefs.SetString("NoteTemplate", InputField.text);
+    }
+
+    public void LoadNoteTemplate()
+    {
+       InputField.text = PlayerPrefs.GetString("NoteTemplate");
     }
 }

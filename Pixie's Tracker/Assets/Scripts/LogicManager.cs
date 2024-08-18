@@ -167,7 +167,8 @@ public class LogicManager : MonoBehaviour
         {"DamageQuadruple", false },
         {"DamageOHKO", false },
 
-        {"IgnoreKeyLogic", false },
+        {"TrackHowlingStones", true },
+
         {"IgnoreWalletLogic", false },
         {"IgnoreLanternLogic", false },
         {"IgnoreWaterBombLogic", false },
@@ -258,6 +259,19 @@ public class LogicManager : MonoBehaviour
     public GameObject RoomLakebedTempleWestWing;
     public GameObject RoomGoronMinesUpperEastWing;
     public GameObject RoomForestTempleWestWing;
+
+/* ------------------------------
+
+        Howling Stones
+
+------------------------------ */
+
+    public GameObject HSDeathMountain;
+    public GameObject HSUpperZorasRiver;
+    public GameObject HSLakeHylia;
+    public GameObject HSSnowpeak;
+    public GameObject HSNorthFaronWoods;
+    public GameObject HSHiddenVillage;
 
 /* ------------------------------
 
@@ -1646,7 +1660,8 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonSpringGoldenWolf()
     {
-        return Has("ShadowCrystal") && RoomDeathMountainTrail.GetComponent<RoomBehaviour>().isAccessible;
+        return (Has("ShadowCrystal") && RoomDeathMountainTrail.GetComponent<RoomBehaviour>().isAccessible && !SettingsStatus["TrackHowlingStones"])
+            || (HSDeathMountain.GetComponent<ChecksBehaviour>().checkCompletion && SettingsStatus["TrackHowlingStones"]);
     }
 
     // Faron Woods
@@ -1945,7 +1960,8 @@ public class LogicManager : MonoBehaviour
 
     public bool WestHyruleFieldGoldenWolf()
     {
-        return Has("ShadowCrystal") && RoomUpperZorasRiver.GetComponent<RoomBehaviour>().isAccessible;
+        return (Has("ShadowCrystal") && RoomUpperZorasRiver.GetComponent<RoomBehaviour>().isAccessible && !SettingsStatus["TrackHowlingStones"])
+            || (HSUpperZorasRiver.GetComponent<ChecksBehaviour>().checkCompletion && SettingsStatus["TrackHowlingStones"]);
     }
 
     public bool WestHyruleFieldHelmasaurGrottoChest()
@@ -1957,9 +1973,13 @@ public class LogicManager : MonoBehaviour
 
     public bool NorthCastleTownGoldenWolf()
     {
-        return RoomHiddenVillage.GetComponent<RoomBehaviour>().isAccessible 
-            && Has("ShadowCrystal") 
-            && CanCompleteMDH();
+        return (
+        RoomHiddenVillage.GetComponent<RoomBehaviour>().isAccessible 
+        && Has("ShadowCrystal") 
+        && CanCompleteMDH()
+        && !SettingsStatus["TrackHowlingStones"]
+        )
+        || (HSHiddenVillage.GetComponent<ChecksBehaviour>().checkCompletion && SettingsStatus["TrackHowlingStones"]);
     }
 
     // Outside South Castle Town
@@ -1998,7 +2018,8 @@ public class LogicManager : MonoBehaviour
 
     public bool OutsideSouthCastleTownGoldenWolf()
     {
-        return RoomNorthFaronWoods.GetComponent<RoomBehaviour>().isAccessible && Has("ShadowCrystal");
+        return (RoomNorthFaronWoods.GetComponent<RoomBehaviour>().isAccessible && Has("ShadowCrystal") && !SettingsStatus["TrackHowlingStones"])
+        || (HSNorthFaronWoods.GetComponent<ChecksBehaviour>().checkCompletion && SettingsStatus["TrackHowlingStones"]);
     }
 
     public bool OutsideSouthCastleTownTektiteGrottoChest()
@@ -2172,7 +2193,8 @@ public class LogicManager : MonoBehaviour
 
     public bool GerudoDesertGoldenWolf()
     {
-        return Has("ShadowCrystal") && RoomLakeHylia.GetComponent<RoomBehaviour>().isAccessible;
+        return (Has("ShadowCrystal") && RoomLakeHylia.GetComponent<RoomBehaviour>().isAccessible && !SettingsStatus["TrackHowlingStones"])
+        || (HSLakeHylia.GetComponent<ChecksBehaviour>().checkCompletion && SettingsStatus["TrackHowlingStones"]);
     }
 
     public bool GerudoDesertLoneSmallChest()
@@ -2781,8 +2803,10 @@ public class LogicManager : MonoBehaviour
 
     public bool KakarikoGraveyardGoldenWolf()
     {
-        return Has("ShadowCrystal")
-            && RoomSnowpeakClimbUpper.GetComponent<RoomBehaviour>().isAccessible;
+        return (Has("ShadowCrystal")
+            && RoomSnowpeakClimbUpper.GetComponent<RoomBehaviour>().isAccessible
+            && !SettingsStatus["TrackHowlingStones"])
+            || (HSSnowpeak.GetComponent<ChecksBehaviour>().checkCompletion && SettingsStatus["TrackHowlingStones"]);
     }
 
     public bool RenadosLetter()
@@ -6907,7 +6931,7 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "LakeHyliaShellBladeGrotto")
         {
-            return true;
+            return Has("ShadowCrystal");
         }
 
         else if (neighbour == "LakeHyliaWaterToadpoliGrotto")
@@ -9381,4 +9405,222 @@ public class LogicManager : MonoBehaviour
             return false;
         }
     }
+
+/* ------------------------------
+
+        Signs - all true for now
+
+------------------------------ */
+
+    public bool OrdonSign()
+    {
+        return true;
+    }
+
+    public bool FaronWoodsSign()
+    {
+        return true;
+    }
+
+    public bool FaronFieldSign()
+    {
+        return true;
+    }
+
+    public bool SacredGroveSign()
+    {
+        return true;
+    }
+
+    public bool KakarikoGorgeSign()
+    {
+        return true;
+    }
+
+    public bool KakarikoVillageSign()
+    {
+        return true;
+    }
+
+    public bool KakarikoGraveyardSign()
+    {
+        return Has("GateKeys") || SettingsStatus["SmallKeysKeysy"];
+    }
+
+    public bool DeathMountainSign()
+    {
+        return true;
+    }
+
+    public bool EldinFieldSign()
+    {
+        return true;
+    }
+
+    public bool NorthEldinSign()
+    {
+        return true;
+    }
+
+    public bool HiddenVillageSign()
+    {
+        return true;
+    }
+
+    public bool LanayruFieldSign()
+    {
+        return true;
+    }
+
+    public bool BesideCastleTownSign()
+    {
+        return LanayruTwilightCleared() || Has("ShadowCrystal");
+    }
+
+    public bool CastleTownSign()
+    {
+        return true;
+    }
+
+    public bool SouthofCastleTownSign()
+    {
+        return true;
+    }
+
+    public bool GreatBridgeofHyliaSign()
+    {
+        return Has("Clawshot");
+    }
+
+    public bool LakeHyliaSign()
+    {
+        return true;
+    }
+
+    public bool LanayruSpringSign()
+    {
+        return Has("IronBoots") || Has("ZoraArmor") || (SettingsStatus["GlitchedLogic"] && HasHeavyMod());
+    }
+
+    public bool LakeLanternCaveSign()
+    {
+        return CanSmash();
+    }
+
+    public bool ZorasDomainSign() // glitched logic fall? for now just made it part of west ledge
+    {
+        return true;
+    }
+
+    public bool UpperZorasRiverSign()
+    {
+        return true;
+    }
+
+    public bool GerudoDesertSign()
+    {
+        return true;
+    }
+
+    public bool BulblinCampSign()
+    {
+        return true;
+    }
+
+    public bool CaveofOrdealsSign()
+    {
+        return true;
+    }
+
+    public bool SnowpeakSign()
+    {
+        return true;
+    }
+
+    public bool ForestTempleSign()
+    {
+        return ((Has("FTSmallKey", 2) || SettingsStatus["SmallKeysKeysy"]) && CanDefeatBokoblin()) || Has("Clawshot");
+    }
+
+    public bool GoronMinesSign()
+    {
+        return true;
+    }
+
+    public bool LakebedTempleSign()
+    {
+        return true;
+    }
+
+    public bool ArbitersGroundsSign()
+    {
+        return true;
+    }
+
+    public bool SnowpeakRuinsSign()
+    {
+        return true;
+    }
+
+    public bool TempleofTimeSign()
+    {
+        return true;
+    }
+
+    public bool TempleofTimeBeyondPointSign()
+    {
+        return Has("Bow");
+    }
+
+    public bool CityintheSkySign()
+    {
+        return true;
+    }
+
+    public bool PalaceofTwilightSign()
+    {
+        return true;
+    }
+
+    public bool HyruleCastleSign()
+    {
+        return true;
+    }
+
+/* ------------------------------
+
+       Howling Stones
+
+------------------------------ */
+
+    public bool DeathMountainHowlingStone()
+    {
+        return Has("ShadowCrystal");
+    }
+    
+    public bool UpperZorasRiverHowlingStone()
+    {
+        return Has("ShadowCrystal");
+    }
+
+    public bool LakeHyliaHowlingStone()
+    {
+        return Has("ShadowCrystal");
+    }
+
+    public bool SnowpeakHowlingStone()
+    {
+        return Has("ShadowCrystal");
+    }
+
+    public bool NorthFaronWoodsHowlingStone()
+    {
+        return Has("ShadowCrystal");
+    }
+
+    public bool HiddenVillageHowlingStone()
+    {
+        return Has("ShadowCrystal");
+    }
+
 }

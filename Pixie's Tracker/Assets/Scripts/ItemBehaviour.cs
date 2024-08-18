@@ -68,18 +68,16 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
 
     public void ItemOpacity()
     {
-        if (currentItemCount == 0 && (nameCount != "WalletCount") && isBoss == false) // && not wallet - to do
+        if (currentItemCount == 0 && (nameCount != "Wallet") && isBoss == false)
         {
             buttonImage.color = faded;
             buttonText.text = "";
         }
-
-        else if (currentItemCount == 0 && isBoss == true) // && not wallet - to do
+        else if (currentItemCount == 0 && isBoss == true)
         {
             buttonImage.color = bossFaded;
             buttonText.text = "";
         }
-        
         else
         {
             buttonImage.color = opaque;

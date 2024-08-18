@@ -92,7 +92,7 @@ public class ScrollManager : MonoBehaviour
             foreach (Transform child2 in child1.transform)
             {
                 if (child2.GetComponent<Toggle>().isOn == true
-                    && child2.GetComponent<ListChecksBehaviour>().isPoe == true
+                    && child2.GetComponent<ListChecksBehaviour>().checkType == "Poe"
                     && child2.GetComponent<ListChecksBehaviour>().isDungeon == false)
                 {
                     child2.GetComponent<Toggle>().isOn = false;
@@ -114,7 +114,7 @@ public class ScrollManager : MonoBehaviour
             foreach (Transform child2 in child1.transform)
             {
                 if (child2.GetComponent<Toggle>().isOn == true
-                    && child2.GetComponent<ListChecksBehaviour>().isPoe == true
+                    && child2.GetComponent<ListChecksBehaviour>().checkType == "Poe"
                     && child2.GetComponent<ListChecksBehaviour>().isDungeon == true)
                 {
                     child2.GetComponent<Toggle>().isOn = false;

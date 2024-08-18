@@ -10,7 +10,7 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
     public GameObject DungeonBox; // linked dungeon box on map
     public GameObject room;
     [SerializeField]
-    public bool isPoe;
+    public string checkType;
     public bool isDungeon;
     public int rupeesWorth; // for hint rupee mode
 
@@ -81,10 +81,14 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
             {
                 if (checkAvailibility == true)
                 {
-                    if (isPoe == false)
+                    if (checkType == "Overworld")
                         toggleText.color = GameManager.Instance.OverworldColor;
-                    else
+                    else if (checkType == "Poe")
                         toggleText.color = GameManager.Instance.PoeColor;
+                    else if (checkType == "Bug")
+                        toggleText.color = GameManager.Instance.BugColor;
+                    else 
+                        toggleText.color = GameManager.Instance.HintColor;
                 }
                 else
                 {
@@ -112,44 +116,47 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
     // OnClick, updates counters and wallet
     public void DUpdateCount()
     {
-        if (toggle.isOn == true)
+        if (checkType != "Hint")
         {
-            GameManager.Instance.checkCountRemaining += 1;
-            TextManager.Instance.SetRemainingText();
-            checkCompletion = false;
-
-            if (GameManager.Instance.RupeeMode.isOn == true)
+            if (toggle.isOn == true)
             {
-                GameManager.Instance.walletCount -= rupeesWorth;
-                if (GameManager.Instance.walletCount < 0)
-                    GameManager.Instance.walletCount = 0;
+                GameManager.Instance.checkCountRemaining += 1;
+                TextManager.Instance.SetRemainingText();
+                checkCompletion = false;
+
+                if (GameManager.Instance.RupeeMode.isOn == true)
+                {
+                    GameManager.Instance.walletCount -= rupeesWorth;
+                    if (GameManager.Instance.walletCount < 0)
+                        GameManager.Instance.walletCount = 0;
+                }
+
+                if (checkAvailibility == true)
+                {
+                    GameManager.Instance.checkCountAvailable += 1;
+                    TextManager.Instance.SetAvailableText();
+                }
+            }
+            else
+            {
+                GameManager.Instance.checkCountRemaining -= 1;
+                TextManager.Instance.SetRemainingText();
+                checkCompletion = true;
+
+                GameManager.Instance.walletCount += rupeesWorth;
+
+                if (checkAvailibility == true)
+                {
+                    GameManager.Instance.checkCountAvailable -= 1;
+                    TextManager.Instance.SetAvailableText();
+                }
             }
 
-            if (checkAvailibility == true)
-            {
-                GameManager.Instance.checkCountAvailable += 1;
-                TextManager.Instance.SetAvailableText();
-            }
+            TextManager.Instance.SetWalletText();
+            GameManager.Instance.HintRefresh();
+
+            DungeonBox.GetComponent<DungeonBehaviour>().UpdateDCheckCount();
         }
-        else
-        {
-            GameManager.Instance.checkCountRemaining -= 1;
-            TextManager.Instance.SetRemainingText();
-            checkCompletion = true;
-
-            GameManager.Instance.walletCount += rupeesWorth;
-
-            if (checkAvailibility == true)
-            {
-                GameManager.Instance.checkCountAvailable -= 1;
-                TextManager.Instance.SetAvailableText();
-            }
-        }
-
-        TextManager.Instance.SetWalletText();
-        GameManager.Instance.HintRefresh();
-
-        DungeonBox.GetComponent<DungeonBehaviour>().UpdateDCheckCount();
     }
 
     // Right-clicking for star and junk items

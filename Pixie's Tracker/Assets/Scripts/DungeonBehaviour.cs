@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -12,8 +13,6 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private string headerName;
     [SerializeField]
     private string tooltipName;
-    [SerializeField]
-    private bool isPoe;
 
     private int totalDCheckCount;
     private int availableDCheckCount;
@@ -40,7 +39,9 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         foreach (Transform child in DungeonContainer.transform)
         {
-            if (child.gameObject.activeSelf == true)
+            if (child.gameObject.activeSelf == true 
+                && child.GetComponent<ListChecksBehaviour>().checkType != "Hint"
+                && child.GetComponent<ListChecksBehaviour>().checkType != "HowlingStone")
                 totalDCheckCount += 1;
         }
 
@@ -48,7 +49,9 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             if (child.GetComponent<ListChecksBehaviour>().checkAvailibility == true
                 && child.GetComponent<ListChecksBehaviour>().checkCompletion == false
-                && child.gameObject.activeSelf == true)
+                && child.gameObject.activeSelf == true
+                && child.GetComponent<ListChecksBehaviour>().checkType != "Hint"
+                && child.GetComponent<ListChecksBehaviour>().checkType != "HowlingStone")
             {
                 availableDCheckCount += 1;
             }
@@ -66,7 +69,9 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
         foreach (Transform child in DungeonContainer.transform)
         {
             if (child.GetComponent<ListChecksBehaviour>().checkCompletion == true
-                && child.gameObject.activeSelf == true)
+                && child.gameObject.activeSelf == true
+                && child.GetComponent<ListChecksBehaviour>().checkType != "Hint"
+                && child.GetComponent<ListChecksBehaviour>().checkType != "HowlingStone")
             {
                 completedDCheckCount += 1;
             }
@@ -113,7 +118,7 @@ public class DungeonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExi
         // blue - just in case something escapes previous logic
         else
         {
-            GetComponent<Image>().color = Color.blue;
+            GetComponent<Image>().color = Color.white;
 
             if (DungeonContainer.activeInHierarchy == true)
                 ScrollManager.Instance.Header.color = Color.blue;

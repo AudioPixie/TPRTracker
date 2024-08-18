@@ -249,6 +249,11 @@ public class SettingsManager : MonoBehaviour
             LogicManager.Instance.SettingsStatus["DamageOHKO"] = true;
     }
 
+    public void SetTrackHowlingStones(bool isOn)
+    {
+        LogicManager.Instance.SettingsStatus["TrackHowlingStones"] = isOn;
+    }
+
     public void SetIgnoreWallet(bool isOn)
     {
         LogicManager.Instance.SettingsStatus["IgnoreWalletLogic"] = isOn;

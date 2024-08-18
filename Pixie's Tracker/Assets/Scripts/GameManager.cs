@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 //using UnityEditor.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject OVChecks;
     public GameObject PoeChecks; 
     public GameObject BugChecks;
+    public GameObject HintChecks;
+    public GameObject HowlingStoneChecks;
 
     [Header("Parent Objects")]
     public GameObject Map;
@@ -65,10 +68,14 @@ public class GameManager : MonoBehaviour
     public Color StarColor;
     public Color JunkColor;
 
+    public Color HintColor;
+    public Color HowlingStoneColor;
+
     [Header("Counters")]
     public int checkCountTotal;
     public int checkCountRemaining;
     public int checkCountAvailable;
+    public int checkCountCompleted;
 
     [Header("Hints")]
     public Button SmallHint;
@@ -126,6 +133,14 @@ public class GameManager : MonoBehaviour
             child.GetComponent<ChecksBehaviour>().CheckInitialize();
         }
         foreach (Transform child in BugChecks.transform)
+        {
+            child.GetComponent<ChecksBehaviour>().CheckInitialize();
+        }
+        foreach (Transform child in HintChecks.transform)
+        {
+            child.GetComponent<ChecksBehaviour>().CheckInitialize();
+        }
+        foreach (Transform child in HowlingStoneChecks.transform)
         {
             child.GetComponent<ChecksBehaviour>().CheckInitialize();
         }
@@ -198,8 +213,9 @@ public class GameManager : MonoBehaviour
             {
                 child2.GetComponent<ListChecksBehaviour>().DCheckRefresh();
 
-                if ((child2.GetComponent<ListChecksBehaviour>().isPoe == false && OVChecks.activeSelf)
-                    || (child2.GetComponent<ListChecksBehaviour>().isPoe == true && PoeChecks.activeSelf))
+                if ((child2.GetComponent<ListChecksBehaviour>().checkType == "Overworld" && OVChecks.activeSelf)
+                    || (child2.GetComponent<ListChecksBehaviour>().checkType == "Poe" && PoeChecks.activeSelf)
+                    || (child2.GetComponent<ListChecksBehaviour>().checkType == "Bug" && BugChecks.activeSelf))
                 {
                     tempTotalCount += 1;
 
@@ -237,7 +253,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RefreshSelective(GameObject Parent) // can selectively refresh just overworld, poes, or bugs
+    public void RefreshSelective(GameObject Parent) // can selectively refresh just overworld, poes, bugs, etc.
     {
         foreach (Transform child in Parent.transform)
         {
@@ -282,7 +298,7 @@ public class GameManager : MonoBehaviour
 
     public void FloodRooms()
     {
-        Debug.Log("<size=25><color=cyan>GRAPH START</color></size>");
+        //Debug.Log("<size=25><color=cyan>GRAPH START</color></size>");
         RoomsToCheck.Clear();
         foreach (Transform child1 in Rooms.transform)
         {
@@ -295,7 +311,7 @@ public class GameManager : MonoBehaviour
 
         OutsideLinksHouse.GetComponent<RoomBehaviour>().isAccessible = true;
         RoomsToCheck.Add(OutsideLinksHouse);
-        Debug.Log("<color=lime>ORDON</color>: True");
+        //Debug.Log("<color=lime>ORDON</color>: True");
 
         if (LogicManager.Instance.SettingsStatus["UnlockMapRegions"] && LogicManager.Instance.Has("ShadowCrystal"))
         {
@@ -303,61 +319,61 @@ public class GameManager : MonoBehaviour
             {
                 SouthFaronWoods.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(SouthFaronWoods);
-                Debug.Log("<color=magenta>WARP</color> TRUE: SouthFaronWoods");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: SouthFaronWoods");
                 NorthFaronWoods.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(NorthFaronWoods);
-                Debug.Log("<color=magenta>WARP</color> TRUE: NorthFaronWoods");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: NorthFaronWoods");
             }
 
             if (LogicManager.Instance.SettingsStatus["SkipEldinTwilight"])
             {
                 KakarikoGorge.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(KakarikoGorge);
-                Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoGorge");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: KakarikoGorge");
                 LowerKakarikoVillage.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(LowerKakarikoVillage);
-                Debug.Log("<color=magenta>WARP</color> TRUE: LowerKakarikoVillage");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: LowerKakarikoVillage");
                 DeathMountainVolcano.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(DeathMountainVolcano);
-                Debug.Log("<color=magenta>WARP</color> TRUE: DeathMountainVolcano");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: DeathMountainVolcano");
             }
 
             if (LogicManager.Instance.SettingsStatus["SkipLanayruTwilight"])
             {
                 LakeHylia.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(LakeHylia);
-                Debug.Log("<color=magenta>WARP</color> TRUE: LakeHylia");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: LakeHylia");
                 OutsideCastleTownWest.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(OutsideCastleTownWest);
-                Debug.Log("<color=magenta>WARP</color> TRUE: OutsideCastleTownWest");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: OutsideCastleTownWest");
                 ZorasThroneRoom.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(ZorasThroneRoom);
-                Debug.Log("<color=magenta>WARP</color> TRUE: ZorasDomain");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: ZorasDomain");
             }
 
             if (LogicManager.Instance.SettingsStatus["EarlySnowpeak"])
             {
                 SnowpeakSummitUpper.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(SnowpeakSummitUpper);
-                Debug.Log("<color=magenta>WARP</color> TRUE: SnowpeakSummitUpper");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: SnowpeakSummitUpper");
             }
 
             if (!LogicManager.Instance.SettingsStatus["ToTClosed"])
             {
                 SacredGroveLower.GetComponent<RoomBehaviour>().isAccessible = true;
                 RoomsToCheck.Add(SacredGroveLower);
-                Debug.Log("<color=magenta>WARP</color> TRUE: SacredGroveLower");
+                //Debug.Log("<color=magenta>WARP</color> TRUE: SacredGroveLower");
             }
         }
 
         while (RoomsToCheck.Count > 0)
         {
-        Debug.Log("<size=25><color=orange>START OF BATCH</color></size>");
+        //Debug.Log("<size=25><color=orange>START OF BATCH</color></size>");
             RoomsDiscovered.Clear();
  
             foreach (GameObject room in RoomsToCheck)
             {
-                Debug.Log("<color=yellow>CHECKING ROOM</color>: " + room.name);
+                //Debug.Log("<color=yellow>CHECKING ROOM</color>: " + room.name);
                 foreach (GameObject neighbour in room.GetComponent<RoomBehaviour>().neighboursList)
                 {
                     if (neighbour.GetComponent<RoomBehaviour>().isAccessible == false)
@@ -366,7 +382,7 @@ public class GameManager : MonoBehaviour
                         neighbour.GetComponent<RoomBehaviour>().isAccessible = pathReturn;
                         if (pathReturn == true)
                             RoomsDiscovered.Add(neighbour);
-                        Debug.Log("Path: " + neighbour.name + " = " + pathReturn);
+                        //Debug.Log("Path: " + neighbour.name + " = " + pathReturn);
                     }
                 }
             }
@@ -375,7 +391,7 @@ public class GameManager : MonoBehaviour
             foreach (GameObject discoveredRoom in RoomsDiscovered)
             {
                 RoomsToCheck.Add(discoveredRoom);
-                Debug.Log("<color=lightblue>ADDING</color> to next batch: " + discoveredRoom.name);
+                //Debug.Log("<color=lightblue>ADDING</color> to next batch: " + discoveredRoom.name);
             }
 
         }

@@ -140,7 +140,7 @@ public class ResetBehaviour : MonoBehaviour
                 if (child.GetComponent<Toggle>() != null)
                     child.GetComponent<Toggle>().isOn = false;
 
-                if (child.name == "RupeeMode")
+                if (child.name == "RupeeMode" || child.name == "TrackHowlingStones")
                     child.GetComponent<Toggle>().isOn = true;
             }
 
@@ -185,9 +185,19 @@ public class ResetBehaviour : MonoBehaviour
             RaceManager.Instance.ImportRaceSettings();
         }
 
+        else if (query == "SaveNoteTemplate")
+        {
+            SaveManager.Instance.SaveNoteTemplate();
+        }
+
+        else if (query == "LoadNoteTemplate")
+        {
+            SaveManager.Instance.LoadNoteTemplate();
+        }
+
         else
         {
-            Debug.Log("Fallthrough");
+            Debug.LogWarning("Fallthrough");
         }
 
         Prompt.SetActive(true);
