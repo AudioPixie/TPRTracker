@@ -2075,8 +2075,10 @@ public class SpoilerManager : MonoBehaviour
             int excludedWolves = 0;
             foreach (string exCheck in spoilerLog.settings.excludedChecks)
             {
-                if (exCheck.EndsWith("Wolf") && exCheck != "Faron Woods Golden Wolf")
+                if (exCheck.EndsWith("Wolf") && exCheck != "FaronWoodsGoldenWolf")
+                {
                     excludedWolves++;
+                }
             }
             if (excludedWolves == 6)
                 TrackHowlingStones.isOn = false;
