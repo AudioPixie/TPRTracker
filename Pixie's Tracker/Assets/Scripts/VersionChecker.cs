@@ -1,53 +1,74 @@
-using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class VersionChecker : MonoBehaviour
 {
-    // URL to your version file on GitHub
-    private string versionUrl = "https://raw.githubusercontent.com/AudioPixie/TPRTracker/tree/logic-fix/version.txt";
-    private string currentVersion;
+    public string remoteVersionUrl = "https://raw.githubusercontent.com/AudioPixie/TPRTracker/logic-fix/version.txt";
+    public string localVersion;
+    public string docsURL = "https://github.com/AudioPixie/TPRTracker?tab=readme-ov-file#tprtracker";
+    public string latestReleaseURL = "https://github.com/AudioPixie/TPRTracker/releases";
+
+    public Button UpdateResult;
 
     void Start()
     {
-        StartCoroutine(CheckForUpdates());
+        UpdateResult.interactable = false;
+        CheckForUpdate();
     }
 
-    IEnumerator CheckForUpdates()
+    public void CheckForUpdate()
     {
-        currentVersion = Application.version; // Get version from Player Settings
-        using (UnityWebRequest request = UnityWebRequest.Get(versionUrl))
-        {
-            yield return request.SendWebRequest();
+        UpdateResult.interactable = false;
+        UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#C900CA>Loading...</color>";
+        StartCoroutine(CheckVersionCoroutine());
+    }
 
-            if (request.result == UnityWebRequest.Result.Success)
+    private IEnumerator CheckVersionCoroutine()
+    {
+        localVersion = Application.version;
+
+        // Fetch remote version
+        using (UnityWebRequest www = UnityWebRequest.Get(remoteVersionUrl))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
             {
-                string latestVersion = request.downloadHandler.text.Trim();
-                if (IsNewVersion(latestVersion))
-                {
-                    NotifyUser(latestVersion);
-                }
+                string remoteVersion = www.downloadHandler.text.Trim();
+                CompareVersions(localVersion, remoteVersion);
             }
             else
             {
-                Debug.LogError("Failed to check for updates: " + request.error);
+                UpdateResult.interactable = false;
+                UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#FF4400>Connection failed, please try again.</color>";
             }
         }
     }
 
-    bool IsNewVersion(string latestVersion)
+    private void CompareVersions(string localVersion, string remoteVersion)
     {
-        // Simple version comparison, assuming versions are in "major.minor.patch" format
-        var current = new Version(currentVersion);
-        var latest = new Version(latestVersion);
-        return latest.CompareTo(current) > 0;
+        if (localVersion == remoteVersion)
+        {
+            UpdateResult.interactable = false;
+            UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#00BF00>Version is up to date</color>";
+        }
+        else
+        {
+            UpdateResult.interactable = true;
+            UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#CFA700>Version " + remoteVersion + " available <u>here</u></color>";
+        }
     }
 
-    void NotifyUser(string newVersion)
+    public void OpenDocs()
     {
-        // Notify the user about the update
-        Debug.Log($"A new version ({newVersion}) is available!");
-        // You can implement your notification system here
+        Application.OpenURL(docsURL);
+    }
+
+    public void OpenLatestVersion()
+    {
+        Application.OpenURL(latestReleaseURL);
     }
 }
