@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class VersionChecker : MonoBehaviour
 {
-    public string remoteVersionUrl = "https://raw.githubusercontent.com/AudioPixie/TPRTracker/logic-fix/version.txt";
+    public string remoteVersionUrl = "https://raw.githubusercontent.com/AudioPixie/TPRTracker/main/version.txt";
     public string localVersion;
     public string docsURL = "https://github.com/AudioPixie/TPRTracker?tab=readme-ov-file#tprtracker";
     public string latestReleaseURL = "https://github.com/AudioPixie/TPRTracker/releases";
