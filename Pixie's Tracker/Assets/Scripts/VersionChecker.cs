@@ -26,7 +26,7 @@ public class VersionChecker : MonoBehaviour
         }
     }
 
-    public string remoteVersionUrl = "https://raw.githubusercontent.com/AudioPixie/TPRTracker/main/version.txt";
+    public string remoteVersionUrl;
     public string localVersion;
     public string docsURL = "https://github.com/AudioPixie/TPRTracker?tab=readme-ov-file#tprtracker";
     public string latestReleaseURL = "https://github.com/AudioPixie/TPRTracker/releases";
@@ -49,8 +49,10 @@ public class VersionChecker : MonoBehaviour
 
     void Start()
     {
+        remoteVersionUrl = "https://raw.githubusercontent.com/AudioPixie/TPRTracker/main/version.txt";
         localVersion = Application.version;
         UpdateResult.interactable = false;
+        Debug.LogWarning(remoteVersionUrl);
         CheckForUpdate();
     }
 
@@ -58,14 +60,17 @@ public class VersionChecker : MonoBehaviour
     {
         UpdateResult.interactable = false;
         UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#C900CA>Loading...</color>";
+        Debug.LogWarning(remoteVersionUrl);
         StartCoroutine(CheckVersionCoroutine(remoteVersionUrl));
     }
 
     IEnumerator CheckVersionCoroutine(string url)
     {
+        Debug.LogWarning(url);
         // Fetch remote version
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
+            Debug.LogWarning(url);
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
