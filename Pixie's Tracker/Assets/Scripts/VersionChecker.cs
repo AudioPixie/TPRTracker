@@ -29,14 +29,16 @@ public class VersionChecker : MonoBehaviour
 
     private IEnumerator CheckVersionCoroutine()
     {
-
-
+        string urlWithCacheBuster = $"{remoteVersionUrl}?cache_buster={System.DateTime.UtcNow.Ticks}";
         // Fetch remote version
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(remoteVersionUrl))
+        using (UnityWebRequest webRequest = new UnityWebRequest(urlWithCacheBuster, "GET"))
         {
-            yield return webRequest.SendWebRequest();
+            // Set cache control header to prevent caching
+            webRequest.SetRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+            webRequest.SetRequestHeader("Pragma", "no-cache"); // HTTP 1.0
+            webRequest.SetRequestHeader("Expires", "0"); // Proxies
 
-            
+            yield return webRequest.SendWebRequest();
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
             {
