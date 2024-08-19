@@ -1842,16 +1842,15 @@ public class LogicManager : MonoBehaviour
         return (
                 Has("Boss2") 
                 && !SettingsStatus["UnrequiredDungeonsAreBarren"]
-            ) || 
-            (
-                (
-                    Has("Clawshot") 
-                    && (Has("IronBoots") || Has("ShadowCrystal"))
-                )
-                || (
-                    SettingsStatus["GlitchedLogic"] 
-                    && (Has("Clawshot") || CanDoLJA())
-                )
+            ) 
+            || (
+                !SettingsStatus["GlitchedLogic"] 
+                && Has("Clawshot") 
+                && (Has("IronBoots") || Has("ShadowCrystal"))
+            )
+            || (
+                SettingsStatus["GlitchedLogic"] 
+                && (Has("Clawshot") || CanDoLJA())
             );
     }
 
@@ -5941,7 +5940,7 @@ public class LogicManager : MonoBehaviour
 
         else if (neighbour == "EldinField")
         {
-            return Has("GateKeys") || SettingsStatus["SmallKeysKeysy"];
+            return true;
         }
 
         else if (neighbour == "DeathMountainTrail")

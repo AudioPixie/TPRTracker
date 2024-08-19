@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,12 +7,45 @@ using UnityEngine.UI;
 
 public class VersionChecker : MonoBehaviour
 {
+    private static VersionChecker instance;
+
+    public static VersionChecker Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<VersionChecker>();
+                if (instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(VersionChecker).Name);
+                    instance = singletonObject.AddComponent<VersionChecker>();
+                }
+            }
+            return instance;
+        }
+    }
+
     public string remoteVersionUrl = "https://raw.githubusercontent.com/AudioPixie/TPRTracker/main/version.txt";
     public string localVersion;
     public string docsURL = "https://github.com/AudioPixie/TPRTracker?tab=readme-ov-file#tprtracker";
     public string latestReleaseURL = "https://github.com/AudioPixie/TPRTracker/releases";
 
     public Button UpdateResult;
+
+    private void Awake()
+    {
+        // Ensure only one instance exists, even if multiple scripts try to create it.
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -24,20 +58,14 @@ public class VersionChecker : MonoBehaviour
     {
         UpdateResult.interactable = false;
         UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#C900CA>Loading...</color>";
-        StartCoroutine(CheckVersionCoroutine());
+        StartCoroutine(CheckVersionCoroutine(remoteVersionUrl));
     }
 
-    private IEnumerator CheckVersionCoroutine()
+    IEnumerator CheckVersionCoroutine(string url)
     {
-        string urlWithCacheBuster = $"{remoteVersionUrl}?cache_buster={System.DateTime.UtcNow.Ticks}";
         // Fetch remote version
-        using (UnityWebRequest webRequest = new UnityWebRequest(urlWithCacheBuster, "GET"))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
-            // Set cache control header to prevent caching
-            webRequest.SetRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
-            webRequest.SetRequestHeader("Pragma", "no-cache"); // HTTP 1.0
-            webRequest.SetRequestHeader("Expires", "0"); // Proxies
-
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
