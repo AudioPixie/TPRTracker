@@ -1871,8 +1871,8 @@ public class LogicManager : MonoBehaviour
     {
         return CanSmash()
             || (SettingsStatus["GlitchedLogic"] 
-                && CanDoMapGlitch() 
-                    || (CanDoEBMoonBoots() && CanDoLJA()));
+                && (CanDoMapGlitch() 
+                    || (CanDoEBMoonBoots() && CanDoLJA())));
     }
 
     public bool EldinFieldBomskitGrottoLanternChest()
