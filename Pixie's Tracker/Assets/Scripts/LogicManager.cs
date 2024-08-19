@@ -2700,8 +2700,8 @@ public class LogicManager : MonoBehaviour
 
     public bool OrdonShield()
     {
-        return (CanCompletePrologue() && !FaronTwilightCleared())
-        || (FaronTwilightCleared() && Has("ShadowCrystal"))
+        return (CanCompletePrologue() && !SettingsStatus["SkipFaronTwilight"])
+        || (SettingsStatus["SkipFaronTwilight"] && Has("ShadowCrystal"))
         && (!SettingsStatus["BonksDoDamage"]
             || (SettingsStatus["BonksDoDamage"]
                 && (!SettingsStatus["DamageOHKO"] || CanUseBottledFairies())));
