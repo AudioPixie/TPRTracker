@@ -15,6 +15,7 @@ public class VersionChecker : MonoBehaviour
 
     void Start()
     {
+        localVersion = Application.version;
         UpdateResult.interactable = false;
         CheckForUpdate();
     }
@@ -28,22 +29,27 @@ public class VersionChecker : MonoBehaviour
 
     private IEnumerator CheckVersionCoroutine()
     {
-        localVersion = Application.version;
+
 
         // Fetch remote version
-        using (UnityWebRequest www = UnityWebRequest.Get(remoteVersionUrl))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(remoteVersionUrl))
         {
-            yield return www.SendWebRequest();
+            yield return webRequest.SendWebRequest();
 
-            if (www.result == UnityWebRequest.Result.Success)
-            {
-                string remoteVersion = www.downloadHandler.text.Trim();
-                CompareVersions(localVersion, remoteVersion);
-            }
-            else
+            
+
+            if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
             {
                 UpdateResult.interactable = false;
                 UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#FF4400>Connection failed, please try again.</color>";
+                Debug.LogWarning(webRequest.result);
+            }
+            else
+            {
+                Debug.LogWarning(webRequest.result);
+                string remoteVersion = webRequest.downloadHandler.text.Trim();
+                Debug.LogWarning(remoteVersion);
+                CompareVersions(localVersion, remoteVersion);
             }
         }
     }
@@ -53,7 +59,7 @@ public class VersionChecker : MonoBehaviour
         if (localVersion == remoteVersion)
         {
             UpdateResult.interactable = false;
-            UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#00BF00>Version is up to date</color>";
+            UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#00BF00>Version is up to date: </color>" + localVersion + ", " + remoteVersion;
         }
         else
         {
