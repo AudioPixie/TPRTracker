@@ -93,7 +93,7 @@ public class VersionChecker : MonoBehaviour
         if (localVersion == remoteVersion)
         {
             UpdateResult.interactable = false;
-            UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#00BF00>Version is up to date: </color>" + localVersion + ", " + remoteVersion;
+            UpdateResult.GetComponentInChildren<TMP_Text>().text = "<color=#00BF00>Version is up to date</color>";
         }
         else
         {
