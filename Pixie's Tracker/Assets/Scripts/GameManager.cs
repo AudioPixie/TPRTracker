@@ -68,6 +68,14 @@ public class GameManager : MonoBehaviour
     public Color HintColor;
     public Color HowlingStoneColor;
 
+    [Header("Item Transparency")]
+    public bool ItemTransparency;
+    public bool KeyTransparency;
+
+    public GameObject RegularItemsContainer;
+    public GameObject LongItemsContainer;
+    public GameObject KeyItemsContainer;
+
     [Header("Counters")]
     public int checkCountTotal;
     public int checkCountRemaining;
@@ -165,6 +173,8 @@ public class GameManager : MonoBehaviour
         }
 
         ScrollManager.Instance.ScrollInitialize();
+
+        BackgroundManager.Instance.ApplyColorFromHex("#000000");
 
         // Sets Ordon as default dungeon
         OrdonVillageBox.GetComponent<DungeonBehaviour>().OnDungeonClick();
@@ -393,8 +403,40 @@ public class GameManager : MonoBehaviour
 
         }
 
-        Debug.Log("<size=25><color=green>GRAPH SUCCESS</color></size>");
+        //Debug.Log("<size=25><color=green>GRAPH SUCCESS</color></size>");
 
+    }
+
+    public void UpdateItemTransparency(bool isOn)
+    {
+        ItemTransparency = isOn;
+        foreach (Transform child1 in RegularItemsContainer.transform)
+        {
+            Transform child2 = child1.GetChild(1);
+            child2.GetComponent<ItemBehaviour>().ItemOpacity();
+        }
+        foreach (Transform child1 in LongItemsContainer.transform)
+            {
+                Transform child2 = child1.GetChild(1);
+                foreach (Transform child3 in child2)
+                {
+                    child3.GetComponent<ItemBehaviour>().ItemOpacity();
+                }
+            }
+    }
+
+    public void UpdateKeyTransparency(bool isOn)
+    {
+        KeyTransparency = isOn;
+        for (int i = 0; i < KeyItemsContainer.transform.childCount; i++)
+        {
+            Transform child = KeyItemsContainer.transform.GetChild(i);
+
+            if (i % 3 != 0)
+            {
+                child.GetComponent<ItemBehaviour>().ItemOpacity();
+            }
+        }
     }
 
 }

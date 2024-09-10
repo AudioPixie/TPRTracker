@@ -28,6 +28,8 @@ public class ScrollManager : MonoBehaviour
     public GameObject PoeChecks;
     public GameObject Viewport;
     public TMP_Text Header;
+    public Slider DungeonSlider;
+    public GameObject BossesParent;
 
     private void Awake()
     {
@@ -105,7 +107,7 @@ public class ScrollManager : MonoBehaviour
         GameManager.Instance.HintRefresh();
     }
 
-        public void ClearDungeonPoes()
+    public void ClearDungeonPoes()
     {
         int tempRupees = 0;
 
@@ -125,6 +127,43 @@ public class ScrollManager : MonoBehaviour
 
         GameManager.Instance.walletCount -= tempRupees;
         GameManager.Instance.HintRefresh();
+    }
+
+    public void ClearUnrequiredDungeons()
+    {
+        int tempRupees = 0;
+
+        for (int i = 0; i < 8; i++)
+        {
+            int matchCount = 0;
+            for (int j = 0; j < DungeonSlider.value; j++)
+            {
+                Transform boss = BossesParent.transform.GetChild(j);
+                if (boss.GetComponentInChildren<ItemBehaviour>().currentBossIndex == i)
+                {
+                    matchCount++;
+                    break;
+                }
+            }
+
+            if (matchCount == 0)
+            {
+                foreach (Transform child in Viewport.transform.GetChild(i))
+                {
+                    if(child.GetComponent<Toggle>().isOn == true)
+                    {
+                        child.GetComponent<Toggle>().isOn = false;
+                        tempRupees += child.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                    }
+                }
+            }
+        }
+
+        GameManager.Instance.walletCount -= tempRupees;
+
+        GameManager.Instance.Refresh();
+        GameManager.Instance.HintRefresh();
+
     }
 
 }

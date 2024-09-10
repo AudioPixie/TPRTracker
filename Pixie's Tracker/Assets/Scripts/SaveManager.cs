@@ -64,14 +64,14 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void SaveData()
+    public void SaveData(string file)
     {
         // Regular Items
         foreach (Transform child1 in RegularItemsContainer.transform)
         {
             Transform child2 = child1.GetChild(1);
 
-            PlayerPrefs.SetInt(child1.name, child2.GetComponent<ItemBehaviour>().currentItemCount);
+            PlayerPrefs.SetInt(child1.name + file, child2.GetComponent<ItemBehaviour>().currentItemCount);
         }
 
         // Boss Items
@@ -79,7 +79,8 @@ public class SaveManager : MonoBehaviour
         {
             Transform child2 = child1.GetChild(1);
 
-            PlayerPrefs.SetInt(child1.name, child2.GetComponent<ItemBehaviour>().currentItemCount);
+            PlayerPrefs.SetInt(child1.name + "_count" + file, child2.GetComponent<ItemBehaviour>().currentItemCount);
+            PlayerPrefs.SetInt(child1.name + "_bossIndex" + file, child2.GetComponent<ItemBehaviour>().currentBossIndex);
         }
 
         // Long Items
@@ -89,7 +90,7 @@ public class SaveManager : MonoBehaviour
 
             foreach (Transform child3 in child2)
             {
-                PlayerPrefs.SetInt(child3.name, child3.GetComponent<ItemBehaviour>().currentItemCount);
+                PlayerPrefs.SetInt(child3.name + file, child3.GetComponent<ItemBehaviour>().currentItemCount);
             }
         }
 
@@ -99,7 +100,7 @@ public class SaveManager : MonoBehaviour
             Transform child = KeyItemsContainer.transform.GetChild(i);
 
             if (i % 3 != 0)
-                PlayerPrefs.SetInt(child.name, child.GetComponent<ItemBehaviour>().currentItemCount);
+                PlayerPrefs.SetInt(child.name + file, child.GetComponent<ItemBehaviour>().currentItemCount);
         }
 
         // Overworld Checks
@@ -107,8 +108,8 @@ public class SaveManager : MonoBehaviour
         {
             foreach (Transform child2 in child1)
             {
-                PlayerPrefs.SetInt(child2.name, child2.GetComponent<Toggle>().isOn ? 1 : 0);
-                PlayerPrefs.SetInt(child2.name + "_mark", child2.GetComponent<ChecksBehaviour>().checkImportance);
+                PlayerPrefs.SetInt(child2.name + file, child2.GetComponent<Toggle>().isOn ? 1 : 0);
+                PlayerPrefs.SetInt(child2.name + "_mark" + file, child2.GetComponent<ChecksBehaviour>().checkImportance);
             }
         }
 
@@ -117,8 +118,8 @@ public class SaveManager : MonoBehaviour
         {
             foreach (Transform child2 in child1)
             {
-                PlayerPrefs.SetInt(child2.name, child2.GetComponent<Toggle>().isOn ? 1 : 0);
-                PlayerPrefs.SetInt(child2.name + "_mark", child2.GetComponent<ListChecksBehaviour>().checkImportance);
+                PlayerPrefs.SetInt(child2.name + file, child2.GetComponent<Toggle>().isOn ? 1 : 0);
+                PlayerPrefs.SetInt(child2.name + "_mark" + file, child2.GetComponent<ListChecksBehaviour>().checkImportance);
             }
         }
 
@@ -126,60 +127,62 @@ public class SaveManager : MonoBehaviour
         foreach (Transform child in GeneralBG.transform)
         {
             if (child.GetComponent<Toggle>() != null)
-                PlayerPrefs.SetInt(child.name, child.GetComponent<Toggle>().isOn ? 1 : 0);
+                PlayerPrefs.SetInt(child.name + file, child.GetComponent<Toggle>().isOn ? 1 : 0);
             if (child.GetComponent<TMP_Dropdown>() != null)
-                PlayerPrefs.SetInt(child.name, child.GetComponent<TMP_Dropdown>().value);
+                PlayerPrefs.SetInt(child.name + file, child.GetComponent<TMP_Dropdown>().value);
         }
 
         // Seed Settings
         foreach (Transform child in SeedBG.transform)
         {
             if (child.GetComponent<Toggle>() != null)
-                PlayerPrefs.SetInt(child.name, child.GetComponent<Toggle>().isOn ? 1 : 0);
+                PlayerPrefs.SetInt(child.name + file, child.GetComponent<Toggle>().isOn ? 1 : 0);
             if (child.GetComponent<TMP_Dropdown>() != null)
-                PlayerPrefs.SetInt(child.name, child.GetComponent<TMP_Dropdown>().value);
+                PlayerPrefs.SetInt(child.name + file, child.GetComponent<TMP_Dropdown>().value);
         }
 
         // Visual Settings
         foreach (Transform child1 in VisualBG.transform)
         {
             if (child1.GetComponent<Toggle>() != null)
-                PlayerPrefs.SetInt(child1.name, child1.GetComponent<Toggle>().isOn ? 1 : 0);
+                PlayerPrefs.SetInt(child1.name + file, child1.GetComponent<Toggle>().isOn ? 1 : 0);
             if (child1.GetComponent<Slider>() != null)
-                PlayerPrefs.SetFloat(child1.name, child1.GetComponent<Slider>().value);
-            if (child1.name == "ShowRegularItems" || child1.name == "ShowDungeons")
+                PlayerPrefs.SetFloat(child1.name + file, child1.GetComponent<Slider>().value);
+            if (child1.name == "ShowRegularItems")
             {
                 foreach (Transform child2 in child1)
-                    PlayerPrefs.SetInt(child2.name, child2.GetComponent<Toggle>().isOn ? 1 : 0);
+                    PlayerPrefs.SetInt(child2.name + file, child2.GetComponent<Toggle>().isOn ? 1 : 0);
+            }
+            if (child1.name == "BGColor")
+            {
+                PlayerPrefs.SetString(child1.name + file, child1.GetComponentInChildren<TMP_InputField>().text);
             }
         }
 
         // Rupees
-        PlayerPrefs.SetInt("rupees", GameManager.Instance.walletCount);
+        PlayerPrefs.SetInt("Rupees" + file, GameManager.Instance.walletCount);
 
         // Spoiler Log
-        SpoilerManager.Instance.SaveSpoilerLog();
+        SpoilerManager.Instance.SaveSpoilerLog(file);
 
         // Tabs
-        PlayerPrefs.SetInt("MainTab", MainTab.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("PoesTab", PoesTab.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("BugsTab", BugsTab.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("HintsTab", HintsTab.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("NotepadTab", NotepadTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("MainTab" + file, MainTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("PoesTab" + file, PoesTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("BugsTab" + file, BugsTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("HintsTab" + file, HintsTab.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("NotepadTab" + file, NotepadTab.isOn ? 1 : 0);
 
         // Notes
-        PlayerPrefs.SetString("Notes", InputField.text);
-
-        Debug.Log("Notes:" + PlayerPrefs.GetString("Notes"));
+        PlayerPrefs.SetString("Notes" + file, InputField.text);
     }
 
-    public void LoadData()
+    public void LoadData(string file)
     {
         // Regular Items
         foreach (Transform child1 in RegularItemsContainer.transform)
         {
             Transform child2 = child1.GetChild(1);
-            child2.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child1.name);
+            child2.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child1.name + file);
             child2.GetComponent<ItemBehaviour>().ItemRefresh();
         }
 
@@ -188,8 +191,9 @@ public class SaveManager : MonoBehaviour
         {
             Transform child2 = child1.GetChild(1);
 
-            child2.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child1.name);
-            child2.GetComponent<ItemBehaviour>().ItemRefresh();
+            child2.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child1.name + "_count" + file);
+            child2.GetComponent<ItemBehaviour>().currentBossIndex = PlayerPrefs.GetInt(child1.name + "_bossIndex" + file);
+            child2.GetComponent<ItemBehaviour>().BossItemRefresh();
         }
 
         // Long Items
@@ -199,7 +203,7 @@ public class SaveManager : MonoBehaviour
 
             foreach (Transform child3 in child2)
             {
-                child3.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child3.name);
+                child3.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child3.name + file);
                 child3.GetComponent<ItemBehaviour>().ItemRefresh();
             }
         }
@@ -211,7 +215,7 @@ public class SaveManager : MonoBehaviour
 
             if (i % 3 != 0)
             {
-                child.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child.name);
+                child.GetComponent<ItemBehaviour>().currentItemCount = PlayerPrefs.GetInt(child.name + file);
                 child.GetComponent<ItemBehaviour>().ItemRefresh();
             }
         }
@@ -221,8 +225,8 @@ public class SaveManager : MonoBehaviour
         {
             foreach (Transform child2 in child1)
             {
-                child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name) != 0;
-                child2.GetComponent<ChecksBehaviour>().checkImportance = PlayerPrefs.GetInt(child2.name + "_mark");
+                child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name + file) != 0;
+                child2.GetComponent<ChecksBehaviour>().checkImportance = PlayerPrefs.GetInt(child2.name + "_mark" + file);
             }
         }
 
@@ -231,8 +235,8 @@ public class SaveManager : MonoBehaviour
         {
             foreach (Transform child2 in child1)
             {
-                child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name) != 0;
-                child2.GetComponent<ListChecksBehaviour>().checkImportance = PlayerPrefs.GetInt(child2.name + "_mark");
+                child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name + file) != 0;
+                child2.GetComponent<ListChecksBehaviour>().checkImportance = PlayerPrefs.GetInt(child2.name + "_mark" + file);
             }
         }
 
@@ -240,50 +244,54 @@ public class SaveManager : MonoBehaviour
         foreach (Transform child in GeneralBG.transform)
         {
             if (child.GetComponent<Toggle>() != null)
-                child.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child.name) != 0;
+                child.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child.name + file) != 0;
             if (child.GetComponent<TMP_Dropdown>() != null)
-                child.GetComponent<TMP_Dropdown>().value = PlayerPrefs.GetInt(child.name);
+                child.GetComponent<TMP_Dropdown>().value = PlayerPrefs.GetInt(child.name + file);
         }
 
         // Seed Settings
         foreach (Transform child in SeedBG.transform)
         {
             if (child.GetComponent<Toggle>() != null)
-                child.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child.name) != 0;
+                child.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child.name + file) != 0;
             if (child.GetComponent<TMP_Dropdown>() != null)
-                child.GetComponent<TMP_Dropdown>().value = PlayerPrefs.GetInt(child.name);
+                child.GetComponent<TMP_Dropdown>().value = PlayerPrefs.GetInt(child.name + file);
         }
 
         // Visual Settings
         foreach (Transform child1 in VisualBG.transform)
         {
             if (child1.GetComponent<Toggle>() != null)
-                child1.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child1.name) != 0;
+                child1.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child1.name + file) != 0;
             if (child1.GetComponent<Slider>() != null)
-                child1.GetComponent<Slider>().value = PlayerPrefs.GetFloat(child1.name);
-            if (child1.name == "ShowRegularItems" || child1.name == "ShowDungeons")
+                child1.GetComponent<Slider>().value = PlayerPrefs.GetFloat(child1.name + file);
+            if (child1.name == "ShowRegularItems")
             {
                 foreach (Transform child2 in child1)
-                    child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name) != 0;
+                    child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name + file) != 0;
+            }
+            if (child1.name == "BGColor")
+            {
+                child1.GetComponentInChildren<TMP_InputField>().text = PlayerPrefs.GetString(child1.name + file);
             }
         }
 
         // Rupees
-        GameManager.Instance.walletCount = PlayerPrefs.GetInt("rupees");
+        GameManager.Instance.walletCount = PlayerPrefs.GetInt("Rupees" + file);
         TextManager.Instance.SetWalletText();
 
         // Spoiler Log
-        SpoilerManager.Instance.LoadSavedSpoilerLog(PlayerPrefs.GetString("currentSpoilerLog"));
+        SpoilerManager.Instance.LoadSavedSpoilerLog(PlayerPrefs.GetString("currentSpoilerLog" + file), file);
 
         // Tabs
-        MainTab.isOn = PlayerPrefs.GetInt("MainTab") != 0;
-        PoesTab.isOn = PlayerPrefs.GetInt("PoesTab") != 0;
-        BugsTab.isOn = PlayerPrefs.GetInt("BugsTab") != 0;
-        HintsTab.isOn = PlayerPrefs.GetInt("HintsTab") != 0;
-        NotepadTab.isOn = PlayerPrefs.GetInt("NotepadTab") != 0;
+        MainTab.isOn = PlayerPrefs.GetInt("MainTab" + file) != 0;
+        PoesTab.isOn = PlayerPrefs.GetInt("PoesTab" + file) != 0;
+        BugsTab.isOn = PlayerPrefs.GetInt("BugsTab" + file) != 0;
+        HintsTab.isOn = PlayerPrefs.GetInt("HintsTab" + file) != 0;
+        NotepadTab.isOn = PlayerPrefs.GetInt("NotepadTab" + file) != 0;
 
         // Notes
-        InputField.text = PlayerPrefs.GetString("Notes");
+        InputField.text = PlayerPrefs.GetString("Notes" + file);
 
         GameManager.Instance.Refresh();
 
@@ -291,9 +299,7 @@ public class SaveManager : MonoBehaviour
 
     public void DeleteData()
     {
-        string temp = PlayerPrefs.GetString("NoteTemplate");
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetString("NoteTemplate", temp);
     }
 
     public void SaveNoteTemplate()
@@ -304,5 +310,67 @@ public class SaveManager : MonoBehaviour
     public void LoadNoteTemplate()
     {
        InputField.text = PlayerPrefs.GetString("NoteTemplate");
+    }
+
+    public void SaveUserLayout()
+    {
+        foreach (Transform child1 in VisualBG.transform)
+        {
+            if (child1.GetComponent<Toggle>() != null)
+                PlayerPrefs.SetInt(child1.name + "userLayout", child1.GetComponent<Toggle>().isOn ? 1 : 0);
+            if (child1.GetComponent<Slider>() != null)
+                PlayerPrefs.SetFloat(child1.name + "userLayout", child1.GetComponent<Slider>().value);
+            if (child1.name == "ShowRegularItems")
+            {
+                foreach (Transform child2 in child1)
+                    PlayerPrefs.SetInt(child2.name + "userLayout", child2.GetComponent<Toggle>().isOn ? 1 : 0);
+            }
+            if (child1.name == "BGColor")
+            {
+                PlayerPrefs.SetString(child1.name + "userLayout", child1.GetComponentInChildren<TMP_InputField>().text);
+            }
+        }
+    }
+
+    public void LoadUserLayout()
+    {
+        foreach (Transform child1 in VisualBG.transform)
+        {
+            if (child1.GetComponent<Toggle>() != null)
+                child1.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child1.name + "userLayout") != 0;
+            if (child1.GetComponent<Slider>() != null)
+                child1.GetComponent<Slider>().value = PlayerPrefs.GetFloat(child1.name + "userLayout");
+            if (child1.name == "ShowRegularItems")
+            {
+                foreach (Transform child2 in child1)
+                    child2.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt(child2.name + "userLayout") != 0;
+            }
+            if (child1.name == "BGColor")
+            {
+                child1.GetComponentInChildren<TMP_InputField>().text = PlayerPrefs.GetString(child1.name + "userLayout");
+            }
+        }
+    }
+
+    public void SaveUserBGColor()
+    {
+        foreach (Transform child1 in VisualBG.transform)
+        {
+            if (child1.name == "BGColor")
+            {
+                PlayerPrefs.SetString(child1.name + "userBGColor", child1.GetComponentInChildren<TMP_InputField>().text);
+            }
+        }
+    }
+
+    public void LoadUserBGColor()
+    {
+        foreach (Transform child1 in VisualBG.transform)
+        {
+            if (child1.name == "BGColor")
+            {
+                child1.GetComponentInChildren<TMP_InputField>().text = PlayerPrefs.GetString(child1.name + "userBGColor");
+            }
+        }
     }
 }

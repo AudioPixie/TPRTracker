@@ -9,10 +9,11 @@ public class PresetLayoutManager : MonoBehaviour
 {
     [Header("Parent objects")]
     public GameObject regularItems; // parent of individual item toggles
-    public GameObject requiredDungeons; // parent of dungeon toggles
+    public GameObject bossesParent; // parent of dungeon toggles
 
     [Header("Settings links")]
     public Slider itemColumns;
+    public Slider dungeonCount;
     public Toggle fixedHeight;
     public Toggle showLightVessels;
     public Toggle showOverworldKeys;
@@ -23,11 +24,14 @@ public class PresetLayoutManager : MonoBehaviour
         showOverworldKeys.isOn = true;
         showDungeonKeys.isOn = true;
 
+        ResetDungeons();
+
         if (size == "Large")
         {
             itemColumns.value = 7;
             fixedHeight.isOn = true;
             showLightVessels.isOn = true;
+            dungeonCount.value = 8;
         }
 
         if (size == "Medium")
@@ -35,6 +39,7 @@ public class PresetLayoutManager : MonoBehaviour
             itemColumns.value = 6;
             fixedHeight.isOn = false;
             showLightVessels.isOn = false;
+            dungeonCount.value = 3;
         }
 
         if (size == "Small")
@@ -42,6 +47,7 @@ public class PresetLayoutManager : MonoBehaviour
             itemColumns.value = 5;
             fixedHeight.isOn = false;
             showLightVessels.isOn = false;
+            dungeonCount.value = 3;
         }
 
         if (size == "Race")
@@ -49,15 +55,7 @@ public class PresetLayoutManager : MonoBehaviour
             itemColumns.value = 6;
             fixedHeight.isOn = false;
             showLightVessels.isOn = false;
-        }
-
-        for (int i = 0; i < requiredDungeons.transform.childCount; i++) // sets dungeons
-        {
-            Transform child = requiredDungeons.transform.GetChild(i);
-            child.GetComponent<Toggle>().isOn = true;
-
-            if (i > 2 && (size == "Medium" || size == "Small" || size == "Race"))
-                child.GetComponent<Toggle>().isOn = false;
+            dungeonCount.value = 3;
         }
 
         for (int i = 0; i < regularItems.transform.childCount; i++) // sets regular items
@@ -105,6 +103,18 @@ public class PresetLayoutManager : MonoBehaviour
                     child.GetComponent<Toggle>().isOn = false;
                 }
             }
+        }
+    }
+
+    public void ResetDungeons()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            Transform child1 = bossesParent.transform.GetChild(i);
+            Transform child2 = child1.GetChild(1);
+            child2.GetComponent<ItemBehaviour>().currentItemCount = 0;
+            child2.GetComponent<ItemBehaviour>().currentBossIndex = i;
+            child2.GetComponent<ItemBehaviour>().BossItemRefresh();
         }
     }
 }

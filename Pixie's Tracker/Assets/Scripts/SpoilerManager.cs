@@ -691,7 +691,8 @@ public class SpoilerManager : MonoBehaviour
     public Toggle TrackHowlingStones;
 
     [Header("For Auto Item Layout")]
-    public GameObject ShowDungeons;
+    public GameObject BossesParent;
+    public Slider DungeonCountSlider;
     public Button PresetMedium;
     public Toggle FixedHeight;
     public Slider ItemColumns;
@@ -905,48 +906,48 @@ public class SpoilerManager : MonoBehaviour
         }
     }
 
-    public void SaveSpoilerLog()
+    public void SaveSpoilerLog(string file)
     {
-        PlayerPrefs.SetString("currentSpoilerLog", JsonUtility.ToJson(spoilerLog));
+        PlayerPrefs.SetString("currentSpoilerLog" + file, JsonUtility.ToJson(spoilerLog));
 
-        PlayerPrefs.SetString("OrdonaText", OrdonaText.text);
-        PlayerPrefs.SetString("FaronText", FaronText.text);
-        PlayerPrefs.SetString("EldinText", EldinText.text);
-        PlayerPrefs.SetString("LanayruText", LanayruText.text);
+        PlayerPrefs.SetString("OrdonaText" + file, OrdonaText.text);
+        PlayerPrefs.SetString("FaronText" + file, FaronText.text);
+        PlayerPrefs.SetString("EldinText" + file, EldinText.text);
+        PlayerPrefs.SetString("LanayruText" + file, LanayruText.text);
 
-        PlayerPrefs.SetInt("OrdonaOn", OrdonaToggle.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("FaronOn", FaronToggle.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("EldinOn", EldinToggle.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("LanayruOn", LanayruToggle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("OrdonaOn" + file, OrdonaToggle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("FaronOn" + file, FaronToggle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("EldinOn" + file, EldinToggle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("LanayruOn" + file, LanayruToggle.isOn ? 1 : 0);
 
         int keyItemsCounter = 0;
         for (int i = 0; i < keyItems.Count; i++)
         {
-            PlayerPrefs.SetString("keyItems" + i, keyItems[i]);
+            PlayerPrefs.SetString("keyItems" + i + file, keyItems[i]);
             keyItemsCounter++;
         }
-        PlayerPrefs.SetInt("KeyItemsCounter", keyItemsCounter);
+        PlayerPrefs.SetInt("KeyItemsCounter" + file, keyItemsCounter);
 
         int FanadiUsedChecksCounter = 0;
         for (int i = 0; i < FanadiUsedChecks.Count; i++)
         {
-            PlayerPrefs.SetString("FanadiUsedChecks" + i, FanadiUsedChecks[i]);
+            PlayerPrefs.SetString("FanadiUsedChecks" + i + file, FanadiUsedChecks[i]);
             FanadiUsedChecksCounter++;
         }
-        PlayerPrefs.SetInt("FanadiUsedChecksCounter", FanadiUsedChecksCounter);
+        PlayerPrefs.SetInt("FanadiUsedChecksCounter" + file, FanadiUsedChecksCounter);
 
         int FanadiGeneratedHintsCounter = 0;
         for (int i = 0; i < FanadiGeneratedHints.Count; i++)
         {
-            PlayerPrefs.SetString("FanadiGeneratedHints" + i, FanadiGeneratedHints[i]);
+            PlayerPrefs.SetString("FanadiGeneratedHints" + i + file, FanadiGeneratedHints[i]);
             FanadiGeneratedHintsCounter++;
         }
-        PlayerPrefs.SetInt("FanadiGeneratedHintsCounter", FanadiGeneratedHintsCounter);
+        PlayerPrefs.SetInt("FanadiGeneratedHintsCounter" + file, FanadiGeneratedHintsCounter);
 
-        PlayerPrefs.SetInt("currentFanadiIndex", currentFanadiIndex);
+        PlayerPrefs.SetInt("currentFanadiIndex" + file, currentFanadiIndex);
     }
 
-    public void LoadSavedSpoilerLog(string savedLog)
+    public void LoadSavedSpoilerLog(string savedLog, string file)
     {
         spoilerLog = JsonUtility.FromJson<SpoilerLog>(savedLog);
         spoilerLogItems = spoilerLog.itemPlacements;
@@ -956,35 +957,35 @@ public class SpoilerManager : MonoBehaviour
 
         PopulateCheckContents();
 
-        OrdonaText.text = PlayerPrefs.GetString("OrdonaText");
-        FaronText.text = PlayerPrefs.GetString("FaronText");
-        EldinText.text = PlayerPrefs.GetString("EldinText");
-        LanayruText.text = PlayerPrefs.GetString("LanayruText");
+        OrdonaText.text = PlayerPrefs.GetString("OrdonaText" + file);
+        FaronText.text = PlayerPrefs.GetString("FaronText" + file);
+        EldinText.text = PlayerPrefs.GetString("EldinText" + file);
+        LanayruText.text = PlayerPrefs.GetString("LanayruText" + file);
 
-        OrdonaToggle.isOn = PlayerPrefs.GetInt("OrdonaOn") != 0;
-        FaronToggle.isOn = PlayerPrefs.GetInt("FaronOn") != 0;
-        EldinToggle.isOn = PlayerPrefs.GetInt("EldinOn") != 0;
-        LanayruToggle.isOn = PlayerPrefs.GetInt("LanayruOn") != 0;
+        OrdonaToggle.isOn = PlayerPrefs.GetInt("OrdonaOn" + file) != 0;
+        FaronToggle.isOn = PlayerPrefs.GetInt("FaronOn" + file) != 0;
+        EldinToggle.isOn = PlayerPrefs.GetInt("EldinOn" + file) != 0;
+        LanayruToggle.isOn = PlayerPrefs.GetInt("LanayruOn" + file) != 0;
 
         keyItems.Clear();
 
-        for (int i = 0; i < PlayerPrefs.GetInt("KeyItemsCounter"); i++)
+        for (int i = 0; i < PlayerPrefs.GetInt("KeyItemsCounter" + file); i++)
         {
-            keyItems.Add(PlayerPrefs.GetString("keyItems" + i));
+            keyItems.Add(PlayerPrefs.GetString("keyItems" + i + file));
         }
 
         FanadiUsedChecks.Clear();
 
-        for (int i = 0; i < PlayerPrefs.GetInt("FanadiUsedChecksCounter"); i++)
+        for (int i = 0; i < PlayerPrefs.GetInt("FanadiUsedChecksCounter" + file); i++)
         {
-            FanadiUsedChecks.Add(PlayerPrefs.GetString("FanadiUsedChecks" + i));
+            FanadiUsedChecks.Add(PlayerPrefs.GetString("FanadiUsedChecks" + i + file));
         }
 
         FanadiGeneratedHints.Clear();
 
-        for (int i = 0; i < PlayerPrefs.GetInt("FanadiGeneratedHintsCounter"); i++)
+        for (int i = 0; i < PlayerPrefs.GetInt("FanadiGeneratedHintsCounter" + file); i++)
         {
-            FanadiGeneratedHints.Add(PlayerPrefs.GetString("FanadiGeneratedHints" + i));
+            FanadiGeneratedHints.Add(PlayerPrefs.GetString("FanadiGeneratedHints" + i + file));
         }
 
         if (FanadiGeneratedHints.Count == 0)
@@ -992,7 +993,7 @@ public class SpoilerManager : MonoBehaviour
             FanadiText.text = "Fortunes, prophecies, divination. You want it? It's yours my friend! As long as you have enough <color=#00ff00>rupees...</color>";
         }
 
-        currentFanadiIndex = PlayerPrefs.GetInt("currentFanadiIndex");
+        currentFanadiIndex = PlayerPrefs.GetInt("currentFanadiIndex" + file);
         if (FanadiGeneratedHints.Count > 0)
             FanadiText.text = FanadiGeneratedHints[currentFanadiIndex];
 
@@ -2135,59 +2136,68 @@ public class SpoilerManager : MonoBehaviour
 
     public void ApplyAutoDungeons()
     {
-        foreach (Transform dungeonToggle in ShowDungeons.transform)
+        PresetMedium.GetComponent<PresetLayoutManager>().ResetDungeons();
+        DungeonCountSlider.value = spoilerLog.requiredDungeons.Length;
+
+        for (int i = 0; i < spoilerLog.requiredDungeons.Length; i++)
         {
-            dungeonToggle.GetComponent<Toggle>().isOn = false;
+            Transform child1 = BossesParent.transform.GetChild(i);
+            Transform child2 = child1.GetChild(1);
 
-            foreach (string requiredDungeon in spoilerLog.requiredDungeons)
+            if (spoilerLog.requiredDungeons[i] == "ForestTemple")
             {
-                if (requiredDungeon == "ForestTemple" && dungeonToggle.name == "ShowForestTemple")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 0;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
+            }
 
-                if (requiredDungeon == "GoronMines" && dungeonToggle.name == "ShowGoronMines")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+            if (spoilerLog.requiredDungeons[i] == "GoronMines")
+            {
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 1;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
+            }
 
-                if (requiredDungeon == "LakebedTemple" && dungeonToggle.name == "ShowLakebedTemple")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+            if (spoilerLog.requiredDungeons[i] == "LakebedTemple")
+            {
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 2;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
+            }
 
-                if (requiredDungeon == "ArbitersGrounds" && dungeonToggle.name == "ShowArbitersGrounds")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+            if (spoilerLog.requiredDungeons[i] == "ArbitersGrounds")
+            {
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 3;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
+            }
 
-                if (requiredDungeon == "SnowpeakRuins" && dungeonToggle.name == "ShowSnowpeakRuins")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+            if (spoilerLog.requiredDungeons[i] == "SnowpeakRuins")
+            {
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 4;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
+            }
 
-                if (requiredDungeon == "TempleOfTime" && dungeonToggle.name == "ShowTempleOfTime")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+            if (spoilerLog.requiredDungeons[i] == "TempleOfTime")
+            {
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 5;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
+            }
 
-                if (requiredDungeon == "CityInTheSky" && dungeonToggle.name == "ShowCityInTheSky")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+            if (spoilerLog.requiredDungeons[i] == "CityInTheSky")
+            {
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 6;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
+            }
 
-                if (requiredDungeon == "PalaceOfTwilight" && dungeonToggle.name == "ShowPalaceOfTwilight")
-                {
-                    dungeonToggle.GetComponent<Toggle>().isOn = true;
-                    break;
-                }
+            if (spoilerLog.requiredDungeons[i] == "PalaceOfTwilight")
+            {
+                child2.GetComponent<ItemBehaviour>().currentBossIndex = 7;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
+                continue;
             }
         }
     }

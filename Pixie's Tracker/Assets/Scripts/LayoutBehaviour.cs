@@ -1,33 +1,40 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class LayoutBehaviour : MonoBehaviour
 {
     // Used on ItemColumns, ItemFixedHeight, and ShowBoxes in the Visual Panel
 
-    [Header("Width Slider")]
+    [Header("Slider")]
     public Slider slider;
     public TMP_Text Label;
+    public string labelText;
 
-    [Header("Fixed height and box toggles")]
+    [Header("Toggle")]
     public Toggle toggle;
+
+    [Header("Long Boxes")]
+    public GameObject Twilight;
+    public GameObject OverworldKeys;
 
     [Header("Parent links")]
     public GameObject LongBoxes;
     public GridLayoutGroup regularItemsGrid; // parent of just regular items
     public VerticalLayoutGroup fullItemsGrid; // parent of all items (includes dungeons, long boxes, keys)
+    public Transform bossesParent;
 
     public void Start()
     {
         if (Label != null)
-            Label.text = "Item Columns: " + slider.value;
+            Label.text = labelText + slider.value;
     }
 
     public void OnValueChangedColumn()
     {
         regularItemsGrid.constraintCount = (int)slider.value;
-        Label.text = "Item Columns: " + slider.value;
+        Label.text = labelText + slider.value;
     }
 
     public void OnValueChangedSpacing()
@@ -39,7 +46,7 @@ public class LayoutBehaviour : MonoBehaviour
         }
         else
         {
-            fullItemsGrid.spacing = 30;
+            fullItemsGrid.spacing = 20;
             fullItemsGrid.childForceExpandHeight = false;
         }
     }
@@ -73,6 +80,23 @@ public class LayoutBehaviour : MonoBehaviour
                 Transform child2 = child1.GetChild(0);
                 child2.gameObject.SetActive(false);
             }
+        }
+    }
+
+    public void OnValueChangedDungeons()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            bossesParent.GetChild(i).gameObject.SetActive(i < (int)slider.value);
+        }
+        Label.text = labelText + slider.value;
+    }
+
+    public void OnValueChangedLongBox()
+    {
+        if ((Twilight.activeInHierarchy == false) && (OverworldKeys.activeInHierarchy == false))
+        {
+            LongBoxes.SetActive(false);
         }
     }
 }

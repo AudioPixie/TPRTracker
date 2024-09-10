@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using JetBrains.Annotations;
 
 public class RaceManager : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class RaceManager : MonoBehaviour
     public List<string> raceJsonFiles = new List<string>();
 
     public Button PresetRace;
+
+    public SpoilerLog tempSpoilerLog;
 
     private void Awake()
     {
@@ -102,6 +105,9 @@ public class RaceManager : MonoBehaviour
         string raceLogString = File.ReadAllText(raceLogJson);
         // remove spaces
         string raceModifiedString = raceLogString.Replace(" ", "");
+
+        tempSpoilerLog = SpoilerManager.Instance.spoilerLog;
+
         // Parse the JSON data
         SpoilerManager.Instance.spoilerLog = JsonUtility.FromJson<SpoilerLog>(raceModifiedString);
 
@@ -116,6 +122,9 @@ public class RaceManager : MonoBehaviour
         TextManager.Instance.SetWalletText();
         SpoilerManager.Instance.ApplyAutoStartingItems();
 
+        SpoilerManager.Instance.spoilerLog = tempSpoilerLog;
+
         GameManager.Instance.Refresh();
+        GameManager.Instance.HintRefresh();
     }
 }

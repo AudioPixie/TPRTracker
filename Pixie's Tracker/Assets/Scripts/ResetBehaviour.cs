@@ -154,16 +154,46 @@ public class ResetBehaviour : MonoBehaviour
             }
         }
 
-        else if (query == "Save")
+        else if (query == "Save1")
         {
-            SaveManager.Instance.SaveData();
+            SaveManager.Instance.SaveData("_1");
         }
 
-        else if (query == "Load")
+        else if (query == "Load1")
         {
-            if (PlayerPrefs.HasKey("AGBigKey"))
+            if (PlayerPrefs.HasKey("AGBigKey_1"))
             {
-                SaveManager.Instance.LoadData();
+                SaveManager.Instance.LoadData("_1");
+            }
+            else
+                NoSave.SetActive(true);
+        }
+
+        else if (query == "Save2")
+        {
+            SaveManager.Instance.SaveData("_2");
+        }
+
+        else if (query == "Load2")
+        {
+            if (PlayerPrefs.HasKey("AGBigKey_2"))
+            {
+                SaveManager.Instance.LoadData("_2");
+            }
+            else
+                NoSave.SetActive(true);
+        }
+
+        else if (query == "Save3")
+        {
+            SaveManager.Instance.SaveData("_3");
+        }
+
+        else if (query == "Load3")
+        {
+            if (PlayerPrefs.HasKey("AGBigKey_3"))
+            {
+                SaveManager.Instance.LoadData("_3");
             }
             else
                 NoSave.SetActive(true);
@@ -193,6 +223,11 @@ public class ResetBehaviour : MonoBehaviour
         else if (query == "LoadNoteTemplate")
         {
             SaveManager.Instance.LoadNoteTemplate();
+        }
+
+        else if (query == "UserLayoutSave")
+        {
+            SaveManager.Instance.SaveUserLayout();
         }
 
         else
