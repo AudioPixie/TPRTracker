@@ -127,7 +127,8 @@ public class ResetBehaviour : MonoBehaviour
                 }
             }
 
-            GoModeIcon.SetActive(false);
+            if (GameManager.Instance.GoModeToggle.isOn == true)
+                GameManager.Instance.GoModeToggle.isOn = false;
             GameManager.Instance.ReactivateGoMode();
             GameManager.Instance.walletCount = 0;
         }
