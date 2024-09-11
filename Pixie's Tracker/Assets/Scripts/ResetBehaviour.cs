@@ -69,10 +69,8 @@ public class ResetBehaviour : MonoBehaviour
             {
                 Transform child2 = child1.GetChild(1);
 
-                while (child2.GetComponent<ItemBehaviour>().currentItemCount > 0)
-                {
-                    child2.GetComponent<ItemBehaviour>().ItemDecrement();
-                }
+                child2.GetComponent<ItemBehaviour>().currentItemCount = 0;
+                child2.GetComponent<ItemBehaviour>().BossItemRefresh();
             }
 
             // Resets Long Items

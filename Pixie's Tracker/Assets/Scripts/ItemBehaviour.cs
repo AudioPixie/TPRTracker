@@ -80,12 +80,12 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
     {
         if (currentItemCount == 0 && (nameCount != "Wallet"))
         {
-            if ((GameManager.Instance.ItemTransparency == true && isDungeonKey == false) || (GameManager.Instance.KeyTransparency == true && isDungeonKey == true))
+            if (((GameManager.Instance.ItemTransparency == true && isDungeonKey == false) || (GameManager.Instance.KeyTransparency == true && isDungeonKey == true)) && isBoss == false)
             {
                 buttonImage.color = fadedAlpha;
                 buttonText.text = "";
             }
-            else if ((GameManager.Instance.ItemTransparency == false && isDungeonKey == false) || (GameManager.Instance.KeyTransparency == false && isDungeonKey == true))
+            else if (((GameManager.Instance.ItemTransparency == false && isDungeonKey == false) || (GameManager.Instance.KeyTransparency == false && isDungeonKey == true)) && isBoss == false)
             {
                 buttonImage.color = fadedBlack;
                 buttonText.text = "";
