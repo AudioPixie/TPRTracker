@@ -30,6 +30,10 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- Hint Signs
 	- Howling Stones
 
+- Notepad
+	- For notes/in-game hints
+	- Supports a custom template save/load
+
 - Settings 
 	- General settings for tracker behavior, saving, and reseting
 	- Seed settings to match your generator settings
@@ -236,7 +240,7 @@ Feel free to reach out to me concerning rule changes for race settings so I can 
 Feedback, testing, ideas, and development contributions are extremely welcome and are more than appreciated! Feel free to hit me up in the [TPR Discord](https://discord.gg/tprandomizer) if you want to chat about the tracker. Feel free to take a look at the [issues page](https://github.com/AudioPixie/TPRTracker/issues) for current bugs, future ideas, and what is currently being worked on. As of now these are the mains things I'm focusing on:
 
 - Keeping up-to-date with randomizer releases
-- 1.2 hint system parity
+- Autotracking
 - Bug fixes for critical issues
 
 Thanks for reading this far and happy tracking!
