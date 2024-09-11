@@ -4,7 +4,7 @@
 
 ### Head over to [releases](https://github.com/AudioPixie/TPRTracker/releases) to download the latest build
 
-**Attention Racers:** automatic race options are based off of Season 1 Tournament ruleset as of: **August 10th, 2024**. If you wish to use a different ruleset, see instructions [below](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings).
+**Attention Racers:** automatic race options are based off of Season 1 Tournament ruleset as of: **September 11th, 2024**. If you wish to use a different ruleset, see instructions [below](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings).
 
 **Attention Mac users:** if you are blocked from opening the application, right click the icon and select "Open", then select "Open" again in the pop-up dialog.
  
@@ -18,7 +18,7 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 
 - Item tracking
 	- Regular items
-	- Dungeons
+	- Dungeons (can be cycled with right-click)
 	- Overworld keys and vessels of light
 	- Dungeon keys
 
@@ -27,6 +27,8 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- Dungeon checks
 	- Poes
 	- Bugs
+	- Hint Signs
+	- Howling Stones
 
 - Settings 
 	- General settings for tracker behavior, saving, and reseting
@@ -53,13 +55,33 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 - Automatic Go Mode
 	- The Go Mode graphic appears when you have everything needed to defeat Ganondorf
 	- Click on it to make it disappear
-	- If you click on it and want it back, head to General Settings to re-enable it 
+	- If you click on it and want it back, head to General Settings to re-enable it
+	- The crest button in the top left of the map can be used to manually enable go mode at any time
 
 - Check Clearing
 	- A dungeon or area (e.g. Kakariko Village) can be cleared (all checks marked as completed) from the pop-out menu on the right side of the check list box
-	- This clears both regular and poe checks for the respective dungeon/area
+	- This clears hints, regular, poe, and bug checks for the respective dungeon/area
  	- All poes can be cleared in the same menu (overworld or dungeon separately)
+	- Unrequired dungeons can be cleared (based off of the currently selected dungeons in your layout)
 	- This does not affect rupee count
+
+- Hint Zones Overlay
+	- Enabled with the information button in the top right of the map
+	- Displays an overlay detailing in-game hint zone regions
+	- Note that all areas that appear in the list box (Dungeons, Ordon, Kakariko Village, etc.) are unique zones
+
+- Flexible Layout and Streaming Compatibility
+	- All layout options can be found in the visual settings tab
+	- Custom background colors for keying (accepts all hex code configurations and HTML color names)
+		- `#rgb`
+ 		- `#rgba`
+		- `#rrggbb`
+		- `#rrggbbaa`
+		- `lightblue`
+	- Compatibility with OBS Game Capture transparency (Windows only, enable "Allow Transparency" in OBS Game Capture and set background color to `#0000`)
+	- Items and dungeon keys can be set between transparent or darkened when not yet obtained (visible with custom background colors)
+	- Item background box can be enabled/disabled. When enabled, window can be resized to support an item-only view
+	- Custom Layout Save
 
 ## Spoiler Log integration
 
@@ -184,7 +206,7 @@ Click **Race** under Preset Layouts in the Visual Settings tab. This layout is d
 
 ### Changing the ruleset
 
-**The current race settings are based off of the [Season 1 Tournament ruleset](https://docs.google.com/document/d/13IgxOZ_TnBN73RjJvDCzAemOYV2K9HRfY6dHwJPTk_I/edit?usp=sharing) as of: August 10th, 2024.** 
+**The current race settings are based off of the [Season 1 Tournament ruleset](https://docs.google.com/document/d/13IgxOZ_TnBN73RjJvDCzAemOYV2K9HRfY6dHwJPTk_I/edit?usp=sharing) as of: September 11th, 2024.** 
 - Settings String:
 	- ```5sQ3g2kPC_-CfeJ8HaX7cJny-NoYqQZKQc7IwNIwNIwN0u70u70u70u70u70u70u71_qwFLTZK61gbCq2Z80-pphmuHTHbBB1BaDknYf_AxydhLmPgSZZbUoyNT5KTnKnI8b6WSbx66LYROE-5GjUYcccP9CNGx20M_b6WAXskPHcrbw8PUjs-vEAKmKvfKLWdIa4eJUDhKdJMGx1QMhM69tq6YE6yvHGff3dsMtKCbWX_m```
 
