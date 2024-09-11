@@ -755,7 +755,7 @@ public class SpoilerManager : MonoBehaviour
     public GameObject ForestKeyButton;
 
     [Header("For Auto Settings")]
-    public GameObject CastleTownChecks;
+    public GameObject AgithasCastleChecks;
 
     private void Awake()
     {
@@ -2273,7 +2273,7 @@ public class SpoilerManager : MonoBehaviour
         int agithaRemainder = 24 - agithaExCount;
         for (int i = agithaRemainder; i < 24; i++)
         {
-            Transform child = CastleTownChecks.transform.GetChild(i);
+            Transform child = AgithasCastleChecks.transform.GetChild(i);
             child.GetComponent<Toggle>().isOn = false;
             rupees += child.GetComponent<ListChecksBehaviour>().rupeesWorth;
         }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -84,20 +85,28 @@ public class GameManager : MonoBehaviour
 
     [Header("Hints")]
     public Button SmallHint;
+    public TMP_Text SmallHintText;
+    public Image SmallHintRupee;
     public Button MediumHint;
+    public TMP_Text MediumHintText;
+    public Image MediumHintRupee;
     public Button LargeHint;
+    public TMP_Text LargeHintText;
+    public Image LargeHintRupee;
     public int walletCount;
     public Toggle RupeeMode;
+    public Color fadedColor;
+    public Color opaqueColor;
 
     [Header("Go Mode")]
-    public GameObject GoMode;
     public bool GoModeUsed;
+    public Toggle GoModeToggle;
 
     [Header("VSync")]
     public int vSync;
 
     [Header("Default List Box")]
-    public GameObject OrdonVillageBox;
+    public GameObject OrdonBox;
 
     private void Awake()
     {
@@ -177,7 +186,7 @@ public class GameManager : MonoBehaviour
         BackgroundManager.Instance.ApplyColorFromHex("#000000");
 
         // Sets Ordon as default dungeon
-        OrdonVillageBox.GetComponent<DungeonBehaviour>().OnDungeonClick();
+        OrdonBox.GetComponent<DungeonBehaviour>().OnDungeonClick();
 
         OverlayInfo.SetActive(true); // boot up page
 
@@ -253,9 +262,9 @@ public class GameManager : MonoBehaviour
         TextManager.Instance.SetAvailableText();
         TextManager.Instance.SetTotalText();
 
-        if (LogicManager.Instance.GoMode() && GoModeUsed == false)
+        if (LogicManager.Instance.GoMode() && GoModeToggle.isOn == false && GoModeUsed == false)
         {
-            GoMode.SetActive(true);
+            GoModeToggle.isOn = true;
             GoModeUsed = true;
         }
     }
@@ -279,25 +288,55 @@ public class GameManager : MonoBehaviour
         if (RupeeMode.isOn) // toggles hint tier interactivity based on rupee count
         {
             if (walletCount >= 5)
+            {
                 SmallHint.interactable = true;
+                SmallHintText.color = opaqueColor;
+                SmallHintRupee.color = opaqueColor;
+            }
             else
+            {
                 SmallHint.interactable = false;
+                SmallHintText.color = fadedColor;
+                SmallHintRupee.color = fadedColor;
+            }
 
             if (walletCount >= 20)
+            {
                 MediumHint.interactable = true;
+                MediumHintText.color = opaqueColor;
+                MediumHintRupee.color = opaqueColor;
+            }
             else
+            {
                 MediumHint.interactable = false;
+                MediumHintText.color = fadedColor;
+                MediumHintRupee.color = fadedColor;
+            }
 
             if (walletCount >= 50)
+            {
                 LargeHint.interactable = true;
+                LargeHintText.color = opaqueColor;
+                LargeHintRupee.color = opaqueColor;
+            }
             else
+            {
                 LargeHint.interactable = false;
+                LargeHintText.color = fadedColor;
+                LargeHintRupee.color = fadedColor;
+            }
         }
         else // all are on if rupee mode is disabled
         {
             SmallHint.interactable = true;
+            SmallHintText.color = opaqueColor;
+            SmallHintRupee.color = opaqueColor;
             MediumHint.interactable = true;
+            MediumHintText.color = opaqueColor;
+            MediumHintRupee.color = opaqueColor;
             LargeHint.interactable = true;
+            LargeHintText.color = opaqueColor;
+            LargeHintRupee.color = opaqueColor;
         }
 
         TextManager.Instance.SetWalletText();
