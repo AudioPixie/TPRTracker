@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Reflection;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
 {
@@ -25,12 +26,12 @@ public class ListChecksBehaviour : MonoBehaviour, IPointerClickHandler
 
     // self
     private Toggle toggle;
-    private Text toggleText;
+    private TMP_Text toggleText;
 
     public void DCheckInitialize()
     {
         toggle = GetComponent<Toggle>();
-        toggleText = GetComponentInChildren<Text>();
+        toggleText = GetComponent<TMP_Text>();
         checkImportance = 0;
     }
 

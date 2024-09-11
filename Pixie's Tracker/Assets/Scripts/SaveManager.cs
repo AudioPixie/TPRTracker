@@ -31,6 +31,9 @@ public class SaveManager : MonoBehaviour
     [Header("Text")]
     public TMP_InputField InputField;
 
+    [Header("Hint Overlay")]
+    public Toggle HintOverlayToggle;
+
     private static SaveManager instance;
 
     public static SaveManager Instance
@@ -174,6 +177,13 @@ public class SaveManager : MonoBehaviour
 
         // Notes
         PlayerPrefs.SetString("Notes" + file, InputField.text);
+
+        // Go Mode
+        PlayerPrefs.SetInt("GoModeToggle" + file, GameManager.Instance.GoModeToggle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("GoModeUsed" + file, GameManager.Instance.GoModeUsed ? 1 : 0);
+
+        // Hint Overlay
+        PlayerPrefs.SetInt("HintOverlayToggle" + file, HintOverlayToggle.isOn ? 1 : 0);
     }
 
     public void LoadData(string file)
@@ -292,6 +302,13 @@ public class SaveManager : MonoBehaviour
 
         // Notes
         InputField.text = PlayerPrefs.GetString("Notes" + file);
+
+        // Go Mode
+        GameManager.Instance.GoModeToggle.isOn = PlayerPrefs.GetInt("GoModeToggle" + file) != 0;
+        GameManager.Instance.GoModeUsed = PlayerPrefs.GetInt("GoModeUsed" + file) != 0;
+
+        // Hint Overlay
+        HintOverlayToggle.isOn = PlayerPrefs.GetInt("HintOverlayToggle" + file) != 0;
 
         GameManager.Instance.Refresh();
 

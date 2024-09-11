@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using TMPro;
-using UnityEditor.Animations;
 
 public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
 {
@@ -240,16 +239,13 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
     {
         for (int i = 0; i < 8; i++)
         {
-            Debug.Log("Checking for dungeon at index: " + i);
             int dungeonMatch = 0;
             foreach (Transform child1 in bossesParent.transform)
             {
                 Transform child2 = child1.GetChild(1);
-                Debug.Log("Checking for match: " + child2.GetComponent<ItemBehaviour>().bossTitle.text);
 
                 if (child2.GetComponent<ItemBehaviour>().currentBossIndex == i)
                 {
-                    Debug.Log("Found Match");
                     dungeonMatch++;
                     break;
                 }
@@ -257,7 +253,6 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
 
             if (dungeonMatch == 0)
             {
-                Debug.Log("Found No Matches");
                 string tempNameCount = bossNameCount[i];
                 LogicManager.Instance.ItemCounts[tempNameCount] = 0;
             }

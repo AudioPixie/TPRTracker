@@ -85,6 +85,11 @@ public class LayoutBehaviour : MonoBehaviour
 
     public void OnValueChangedDungeons()
     {
+        if ((int)slider.value == 0)
+            bossesParent.gameObject.SetActive(false);
+        else
+            bossesParent.gameObject.SetActive(true);
+
         for (int i = 0; i < 8; i++)
         {
             bossesParent.GetChild(i).gameObject.SetActive(i < (int)slider.value);

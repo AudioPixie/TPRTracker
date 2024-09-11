@@ -161,8 +161,8 @@ public class ScrollManager : MonoBehaviour
 
         GameManager.Instance.walletCount -= tempRupees;
 
-        GameManager.Instance.Refresh();
         GameManager.Instance.HintRefresh();
+        GameManager.Instance.Refresh();
 
     }
 

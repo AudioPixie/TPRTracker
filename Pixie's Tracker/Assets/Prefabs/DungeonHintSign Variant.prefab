@@ -7,40 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8094379728798674014, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_AnchorMax.y
+    - target: {fileID: 4625098061905163176, guid: 511c5138604504767b8753d031c784b5, type: 3}
+      propertyPath: m_fontColor.b
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674014, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
+    - target: {fileID: 4625098061905163176, guid: 511c5138604504767b8753d031c784b5, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5019608
       objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674014, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674014, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 111
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674014, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -11.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674015, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_Text
-      value: "\u25CF Hint Sign"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674015, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674015, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379728798674015, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_Color.r
+    - target: {fileID: 4625098061905163176, guid: 511c5138604504767b8753d031c784b5, type: 3}
+      propertyPath: m_fontColor.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8094379729279375329, guid: 511c5138604504767b8753d031c784b5, type: 3}
@@ -48,32 +24,8 @@ PrefabInstance:
       value: DungeonHintSign Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8094379729279375354, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: room
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375354, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: isHint
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375354, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: region
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375354, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: DungeonBox
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375354, guid: 511c5138604504767b8753d031c784b5, type: 3}
       propertyPath: rupeesWorth
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
       propertyPath: m_RootOrder
@@ -108,10 +60,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
@@ -128,12 +76,8 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 111
-      objectReference: {fileID: 0}
-    - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.5
+      value: -76.89
       objectReference: {fileID: 0}
     - target: {fileID: 8094379729279375358, guid: 511c5138604504767b8753d031c784b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
