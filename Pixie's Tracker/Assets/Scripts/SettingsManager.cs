@@ -50,15 +50,15 @@ public class SettingsManager : MonoBehaviour
         LogicManager.Instance.SettingsStatus["HCOpen"] = false;
 
         if (index == 0)
-            LogicManager.Instance.SettingsStatus["HCVanilla"] = true;
+            LogicManager.Instance.SettingsStatus["HCOpen"] = true;
         else if (index == 1)
-            LogicManager.Instance.SettingsStatus["HCAllDungeons"] = true;
+            LogicManager.Instance.SettingsStatus["HCFusedShadows"] = true;
         else if (index == 2)
             LogicManager.Instance.SettingsStatus["HCMirrorShards"] = true;
         else if (index == 3)
-            LogicManager.Instance.SettingsStatus["HCFusedShadows"] = true;
+            LogicManager.Instance.SettingsStatus["HCAllDungeons"] = true;
         else
-            LogicManager.Instance.SettingsStatus["HCOpen"] = true;
+            LogicManager.Instance.SettingsStatus["HCVanilla"] = true;
     }
 
     public void SetPoTRequirements(int index)
@@ -69,13 +69,13 @@ public class SettingsManager : MonoBehaviour
         LogicManager.Instance.SettingsStatus["PoTOpen"] = false;
 
         if (index == 0)
-            LogicManager.Instance.SettingsStatus["PoTVanilla"] = true;
-        else if (index == 1)
-            LogicManager.Instance.SettingsStatus["PoTMirrorShards"] = true;
-        else if (index == 2)
-            LogicManager.Instance.SettingsStatus["PoTFusedShadows"] = true;
-        else
             LogicManager.Instance.SettingsStatus["PoTOpen"] = true;
+        else if (index == 1)
+            LogicManager.Instance.SettingsStatus["PoTFusedShadows"] = true;
+        else if (index == 2)
+            LogicManager.Instance.SettingsStatus["PoTMirrorShards"] = true;
+        else
+            LogicManager.Instance.SettingsStatus["PoTVanilla"] = true;
     }
 
     public void SetFaronEscape(int index)

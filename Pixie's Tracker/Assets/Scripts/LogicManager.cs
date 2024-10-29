@@ -115,7 +115,7 @@ public class LogicManager : MonoBehaviour
     {
         {"GlitchedLogic", false },
 
-        {"FaronEscape", true },
+        {"FaronEscape", false },
         {"SkipPrologue", false },
         {"SkipMDH", false },
         {"SkipFaronTwilight", false },

@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using TMPro;
 
-public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
+public class ItemBehaviour : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
     public UnityEvent onLeftClick;
@@ -34,6 +34,14 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
     private bool isBoss;
     [SerializeField]
     private bool isDungeonKey;
+
+    [Header("Tooltips")]
+    [SerializeField]
+    private string tooltipName;
+    [SerializeField]
+    private string[] bossTooltipNames;
+    [SerializeField]
+    private Toggle ItemTooltipToggle;
 
     private Color opaque = Color.white;
     private Color fadedAlpha = new Vector4(1, 1, 1, 0.40f);
@@ -123,7 +131,15 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            buttonText.text = currentItemCount.ToString();
+            if (nameCount != "Skybook")
+                buttonText.text = currentItemCount.ToString();
+            else
+            {
+                if (currentItemCount == 1)
+                    buttonText.text = "B";
+                else
+                    buttonText.text = (currentItemCount - 1).ToString();
+            }
         }
 
         ItemOpacity();
@@ -139,7 +155,15 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            buttonText.text = currentItemCount.ToString();
+            if (nameCount != "Skybook")
+                buttonText.text = currentItemCount.ToString();
+            else
+            {
+                if (currentItemCount == 1)
+                    buttonText.text = "B";
+                else
+                    buttonText.text = (currentItemCount - 1).ToString();
+            }
         }
 
         ItemOpacity();
@@ -206,6 +230,8 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
         else
             currentBossIndex = 0;
 
+        ShowTooltip();
+
         int noMatchCount = 0;
 
         foreach (Transform child1 in bossesParent.transform)
@@ -256,6 +282,28 @@ public class ItemBehaviour : MonoBehaviour, IPointerClickHandler
                 string tempNameCount = bossNameCount[i];
                 LogicManager.Instance.ItemCounts[tempNameCount] = 0;
             }
+        }
+    }
+
+    // Tooltip hover
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ShowTooltip();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        TooltipManager.Instance.Hide();
+    }
+
+    public void ShowTooltip()
+    {
+        if (ItemTooltipToggle.isOn)
+        {
+            if (isBoss == false)
+                TooltipManager.Instance.Show(tooltipName, transform.position);
+            else
+                TooltipManager.Instance.Show(bossTooltipNames[currentBossIndex], transform.position);
         }
     }
 

@@ -34,8 +34,11 @@ public class RaceManager : MonoBehaviour
     public List<string> raceJsonFiles = new List<string>();
 
     public Button PresetRace;
+    public Toggle ShowItemTooltips;
 
     public SpoilerLog tempSpoilerLog;
+
+    public GameObject DMHintSign;
 
     private void Awake()
     {
@@ -116,9 +119,12 @@ public class RaceManager : MonoBehaviour
         SpoilerManager.Instance.BugsTab.isOn = false;
         SpoilerManager.Instance.HintsTab.isOn = true;
         SpoilerManager.Instance.NotepadTab.isOn = true;
+        ShowItemTooltips.isOn = false;
         SaveManager.Instance.LoadNoteTemplate();
         PresetRace.onClick.Invoke();
         SpoilerManager.Instance.ExcludeManual();
+        ExcludeRacePostDungeonChecks();
+        DMHintSign.GetComponent<Toggle>().isOn = false;
         TextManager.Instance.SetWalletText();
         SpoilerManager.Instance.ApplyAutoStartingItems();
 
@@ -126,5 +132,51 @@ public class RaceManager : MonoBehaviour
 
         GameManager.Instance.Refresh();
         GameManager.Instance.HintRefresh();
+    }
+
+    private void ExcludeRacePostDungeonChecks()
+    {
+        int rupees = 0;
+
+        foreach (GameObject postDungeonCheck in SpoilerManager.Instance.GMPostDungeonChecks)
+        {
+            if (postDungeonCheck.GetComponent<Toggle>().isOn == true)
+            {
+                postDungeonCheck.GetComponent<Toggle>().isOn = false;
+
+                if (postDungeonCheck.GetComponent<ListChecksBehaviour>() != null)
+                    rupees += postDungeonCheck.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                else
+                    rupees += postDungeonCheck.GetComponent<ChecksBehaviour>().rupeesWorth;
+            }
+        }
+
+        foreach (GameObject postDungeonCheck in SpoilerManager.Instance.SRPostDungeonChecks)
+        {
+            if (postDungeonCheck.GetComponent<Toggle>().isOn == true)
+            {
+                postDungeonCheck.GetComponent<Toggle>().isOn = false;
+
+                if (postDungeonCheck.GetComponent<ListChecksBehaviour>() != null)
+                    rupees += postDungeonCheck.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                else
+                    rupees += postDungeonCheck.GetComponent<ChecksBehaviour>().rupeesWorth;
+            }
+        }
+
+        foreach (GameObject postDungeonCheck in SpoilerManager.Instance.ToTPostDungeonChecks)
+        {
+            if (postDungeonCheck.GetComponent<Toggle>().isOn == true)
+            {
+                postDungeonCheck.GetComponent<Toggle>().isOn = false;
+
+                if (postDungeonCheck.GetComponent<ListChecksBehaviour>() != null)
+                    rupees += postDungeonCheck.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                else
+                    rupees += postDungeonCheck.GetComponent<ChecksBehaviour>().rupeesWorth;
+            }
+        }
+
+        GameManager.Instance.walletCount -= rupees;
     }
 }

@@ -453,6 +453,16 @@ MonoBehaviour:
   - Boss8
   isBoss: 0
   isDungeonKey: 0
+  tooltipName: 
+  bossTooltipNames:
+  - Forest Temple Completed
+  - Goron Mines Completed
+  - Lakebed Temple Completed
+  - Arbiter's Grounds Completed
+  - Snowpeak Ruins Completed
+  - Temple of Time Completed
+  - City in The Sky Completed
+  - Palace of Twilight Completed
 --- !u!1 &7885238296840320986
 GameObject:
   m_ObjectHideFlags: 0

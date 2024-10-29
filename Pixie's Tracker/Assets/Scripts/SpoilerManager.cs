@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 // using UnityEngine.UIElements;
 
@@ -757,6 +758,11 @@ public class SpoilerManager : MonoBehaviour
     [Header("For Auto Settings")]
     public GameObject AgithasCastleChecks;
 
+    [Header("For Auto Post-Dungeon Exclusions")]
+    public GameObject[] GMPostDungeonChecks;
+    public GameObject[] SRPostDungeonChecks;
+    public GameObject[] ToTPostDungeonChecks;
+
     private void Awake()
     {
         // Ensure only one instance exists, even if multiple scripts try to create it.
@@ -830,9 +836,11 @@ public class SpoilerManager : MonoBehaviour
             for (int i = 0; i < jsonFilesForDisplay.Count; i++)
             {
                 string noExtFile = Path.GetFileNameWithoutExtension(jsonFilesForDisplay[i]);
-                string[] playthroughName = noExtFile.Split("--");
-                jsonFilesForDisplay[i] = playthroughName[1];
-
+                string playthroughName = ExtractPlaythroughName(noExtFile);
+                jsonFilesForDisplay[i] = playthroughName;
+                // string noExtFile = Path.GetFileNameWithoutExtension(jsonFilesForDisplay[i]);
+                // string[] playthroughName = noExtFile.Split("--");
+                // jsonFilesForDisplay[i] = playthroughName[1];
             }
 
             // add simplified file names to dropdown
@@ -904,6 +912,17 @@ public class SpoilerManager : MonoBehaviour
         {
             noSelection.SetActive(true); // if no json file
         }
+    }
+
+    public string ExtractPlaythroughName(string fileName)
+    {
+        string pattern = @"(?<=Tpr--)(.*?)(?=--SpoilerLog)";
+        
+        // Use Regex.Match to find the match
+        Match match = Regex.Match(fileName, pattern);
+        
+        // Return the matched substring if found; otherwise, return an empty string
+        return match.Success ? match.Value : fileName;
     }
 
     public void SaveSpoilerLog(string file)
@@ -1923,25 +1942,25 @@ public class SpoilerManager : MonoBehaviour
 
         Debug.Log("HC");
         if (spoilerLog.settings.castleRequirements == "All_Dungeons")
-            HyruleCastleRequirements.value = 1;
+            HyruleCastleRequirements.value = 3;
         else if (spoilerLog.settings.castleRequirements == "Mirror_Shards")
             HyruleCastleRequirements.value = 2;
         else if (spoilerLog.settings.castleRequirements == "Fused_Shadows")
-            HyruleCastleRequirements.value = 3;
+            HyruleCastleRequirements.value = 1;
         else if (spoilerLog.settings.castleRequirements == "Open")
-            HyruleCastleRequirements.value = 4;
+            HyruleCastleRequirements.value = 0;
 
         Debug.Log("PoT");
         if (spoilerLog.settings.palaceRequirements == "Mirror_Shards")
-            PalaceOfTwilightRequirements.value = 1;
-        else if (spoilerLog.settings.palaceRequirements == "Fused_Shadows")
             PalaceOfTwilightRequirements.value = 2;
+        else if (spoilerLog.settings.palaceRequirements == "Fused_Shadows")
+            PalaceOfTwilightRequirements.value = 1;
         else if (spoilerLog.settings.palaceRequirements == "Open")
-            PalaceOfTwilightRequirements.value = 3;
+            PalaceOfTwilightRequirements.value = 0;
 
         Debug.Log("Faron Woods");
-        if (spoilerLog.settings.faronWoodsLogic == "Closed")
-            FaronWoodsLogic.value = 1;
+        if (spoilerLog.settings.faronWoodsLogic == "Open")
+            FaronWoodsLogic.value = 0;
 
         Debug.Log("Prologue");
         if (spoilerLog.settings.skipPrologue == true)
@@ -2209,7 +2228,8 @@ public class SpoilerManager : MonoBehaviour
         barrenCheckCount.Clear();
 
         ExcludeManual();
-        ExcludeBarrenDungeons();
+        if (AutoDungeons.isOn)
+            ExcludeBarrenDungeons();
 
         GameManager.Instance.HintRefresh();
     }
@@ -2309,14 +2329,53 @@ public class SpoilerManager : MonoBehaviour
                         }
                     }
 
-                    // if (dungeonName == "GoronMines")
-                    // {
-                    //     if (TaloSharpshooting.GetComponent<Toggle>().isOn = true)
-                    //     {
-                    //         TaloSharpshooting.GetComponent<Toggle>().isOn = false;
-                    //         rupees += TaloSharpshooting.GetComponent<ListChecksBehaviour>().rupeesWorth;
-                    //     }
-                    // }
+                    if (dungeonName == "GoronMines")
+                    {
+                        foreach (GameObject postDungeonCheck in GMPostDungeonChecks)
+                        {
+                            if (postDungeonCheck.GetComponent<Toggle>().isOn == true)
+                            {
+                                postDungeonCheck.GetComponent<Toggle>().isOn = false;
+
+                                if (postDungeonCheck.GetComponent<ListChecksBehaviour>() != null)
+                                    rupees += postDungeonCheck.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                                else
+                                    rupees += postDungeonCheck.GetComponent<ChecksBehaviour>().rupeesWorth;
+                            }
+                        }
+                    }
+
+                    if (dungeonName == "SnowpeakRuins")
+                    {
+                        foreach (GameObject postDungeonCheck in SRPostDungeonChecks)
+                        {
+                            if (postDungeonCheck.GetComponent<Toggle>().isOn == true)
+                            {
+                                postDungeonCheck.GetComponent<Toggle>().isOn = false;
+                                
+                                if (postDungeonCheck.GetComponent<ListChecksBehaviour>() != null)
+                                    rupees += postDungeonCheck.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                                else
+                                    rupees += postDungeonCheck.GetComponent<ChecksBehaviour>().rupeesWorth;
+                            }
+                        }
+                    }
+
+                    if (dungeonName == "TempleOfTime")
+                    {
+                        foreach (GameObject postDungeonCheck in ToTPostDungeonChecks)
+                        {
+                            if (postDungeonCheck.GetComponent<Toggle>().isOn == true)
+                            {    
+                                postDungeonCheck.GetComponent<Toggle>().isOn = false;
+                            
+                                if (postDungeonCheck.GetComponent<ListChecksBehaviour>() != null)
+                                    rupees += postDungeonCheck.GetComponent<ListChecksBehaviour>().rupeesWorth;
+                                else
+                                    rupees += postDungeonCheck.GetComponent<ChecksBehaviour>().rupeesWorth;
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -149,7 +149,17 @@ public class ResetBehaviour : MonoBehaviour
                 if (child.GetComponent<Toggle>() != null)
                     child.GetComponent<Toggle>().isOn = false;
                 if (child.GetComponent<TMP_Dropdown>() != null)
-                    child.GetComponent<TMP_Dropdown>().value = 0;
+                {
+                    if (child.name == "HyruleCastleRequirements")
+                        child.GetComponent<TMP_Dropdown>().value = 4;
+                    else if (child.name == "PalaceOfTwilightRequirements")
+                        child.GetComponent<TMP_Dropdown>().value = 3;
+                    else if (child.name == "FaronWoodsLogic")
+                        child.GetComponent<TMP_Dropdown>().value = 1;
+                    else
+                        child.GetComponent<TMP_Dropdown>().value = 0;
+                }
+
             }
         }
 
