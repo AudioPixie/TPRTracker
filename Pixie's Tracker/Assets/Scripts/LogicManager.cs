@@ -4053,7 +4053,7 @@ public class LogicManager : MonoBehaviour
             || SettingsStatus["SmallKeysKeysy"]
             || (
                 SettingsStatus["GlitchedLogic"]
-                && Has("AGSmallKey, 4") 
+                && Has("AGSmallKey", 4) 
                 && Has("ShadowCrystal")
             )
         )
@@ -4069,7 +4069,7 @@ public class LogicManager : MonoBehaviour
             || SettingsStatus["SmallKeysKeysy"]
             || (
                 SettingsStatus["GlitchedLogic"]
-                && Has("AGSmallKey, 4") 
+                && Has("AGSmallKey", 4) 
                 && Has("ShadowCrystal")
             )
         )
@@ -4085,7 +4085,7 @@ public class LogicManager : MonoBehaviour
             || SettingsStatus["SmallKeysKeysy"]
             || (
                 SettingsStatus["GlitchedLogic"]
-                && Has("AGSmallKey, 4") 
+                && Has("AGSmallKey", 4) 
                 && Has("ShadowCrystal")
             )
         )
@@ -4101,7 +4101,7 @@ public class LogicManager : MonoBehaviour
             || SettingsStatus["SmallKeysKeysy"]
             || (
                 SettingsStatus["GlitchedLogic"]
-                && Has("AGSmallKey, 4") 
+                && Has("AGSmallKey", 4) 
                 && Has("ShadowCrystal")
             )
         )
@@ -4117,7 +4117,7 @@ public class LogicManager : MonoBehaviour
             || SettingsStatus["SmallKeysKeysy"]
             || (
                 SettingsStatus["GlitchedLogic"]
-                && Has("AGSmallKey, 4") 
+                && Has("AGSmallKey", 4) 
                 && Has("ShadowCrystal")
             )
         )
@@ -4133,7 +4133,7 @@ public class LogicManager : MonoBehaviour
             || SettingsStatus["SmallKeysKeysy"]
             || (
                 SettingsStatus["GlitchedLogic"]
-                && Has("AGSmallKey, 4") 
+                && Has("AGSmallKey", 4) 
                 && Has("ShadowCrystal")
             )
         )
@@ -4149,7 +4149,7 @@ public class LogicManager : MonoBehaviour
             || SettingsStatus["SmallKeysKeysy"]
             || (
                 SettingsStatus["GlitchedLogic"]
-                && Has("AGSmallKey, 4") 
+                && Has("AGSmallKey", 4) 
                 && Has("ShadowCrystal")
             )
         )
