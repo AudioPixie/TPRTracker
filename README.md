@@ -4,7 +4,7 @@
 
 ### Head over to [releases](https://github.com/AudioPixie/TPRTracker/releases) to download the latest build
 
-**Attention Racers:** automatic race options are based off of Season 1 Tournament ruleset as of: **September 11th, 2024**. If you wish to use a different ruleset, see instructions [below](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings).
+**Attention Racers:** automatic race options are based off of Season 1 Tournament ruleset as of: **October 29th, 2024**. Please reach out for changes.
 
 **Attention Mac users:** if you are blocked from opening the application, right click the icon and select "Open", then select "Open" again in the pop-up dialog.
  
@@ -48,7 +48,6 @@ Current releases include MacOS and Windows x64 builds. Feel free to request addi
 	- Automatically sets up tracker for races
   	- Race item layout preset
 	- Will reflect most current/used race ruleset (see details [here](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings))
- 	- Ruleset can be changed (see details [here](https://github.com/AudioPixie/TPRTracker/tree/main?tab=readme-ov-file#automatic-race-settings))
 
 - Check marking
 	- Checks can be right clicked to mark them as a **junk item** (orange) or a **key item** (blue)
@@ -104,7 +103,7 @@ The SpoilerLog folder is created the first time you run the app, so if you updat
 - Generate Item Layout: automatically generates an item layout based on your settings.
 - Autofill Required Dungeons: automatically sets your required dungeons in the item layout.
 - Autofill Starting Items: automatically marks your starting inventory items.
-- Remove Barren Checks: automatically marks excluded checks as completed and clears unrequired dungeons if "Unrequired Dungeons are Barren" is checked. This does not affect rupee count.
+- Remove Barren Checks: automatically marks excluded checks as completed. Clears unrequired dungeons/post dungeon checks if "Autofill Required Dungeons" is checked and unrequired dungeons are barren. This does not affect rupee count.
 - Reset Tracker on Import: Resets the tracker before importing. This does not include a settings reset.
 
 ### Saving and deleting your spoiler log
@@ -199,39 +198,22 @@ Click **Apply Race Settings** in the General Settings Tab to reset the tracker a
 
 - Fully reset the tracker
 - Apply all settings in the Seed Settings tab.
-- Mark off all checks in the excluded checks list of the settings string. This does not include barren dungeons, individual dungeons can be cleared using the pop-out menu on the right side of the check list box.
-- Gives the player all items found in the starting items list of the settings string. Also includes Gate Keys and Bulblin Camp Key.
-- Turns off Poe and Bug tab visibility.
-- Applies the race item layout preset. This will set your 3 dungeons to Forest Temple, Goron Mines, and Lakebed Temple. Dungeons can be changed in the visual settings tab.
+- Mark off all checks in the excluded checks list of the settings string. This does not include barren dungeons, once required dungeons are selected use "Clear Unrequired Dungeons" in the pop-out menu on the right side of the check list box.
+- Mark off all post-dungeon checks (notably Ilia Memory Quest/Hidden Village checks that are not on the excluded checks list)
+- Give the player all items found in the starting items list of the settings string. Also includes Gate Keys and Bulblin Camp Key.
+- Turn off Poe checks, Bug checks, and Howling Stones visibility
+- Apply the race item layout preset. This will set your 3 dungeons to Forest Temple, Goron Mines, and Lakebed Temple. Dungeons can be changed by right-clicking them.
+- Turn off item name tooltips
 
 ### Race item layout preset
 
 Click **Race** under Preset Layouts in the Visual Settings tab. This layout is designed as a somewhat compact option to remove items that are unnecessary for race tracking. You will still need to set your required dungeons manually.
 
-### Changing the ruleset
+### Current race ruleset
 
-**The current race settings are based off of the [Season 1 Tournament ruleset](https://docs.google.com/document/d/13IgxOZ_TnBN73RjJvDCzAemOYV2K9HRfY6dHwJPTk_I/edit?usp=sharing) as of: September 11th, 2024.** 
+**The current race settings are based off of the [Season 1 Tournament ruleset](https://docs.google.com/document/d/13IgxOZ_TnBN73RjJvDCzAemOYV2K9HRfY6dHwJPTk_I/edit?usp=sharing) as of: October 29th, 2024.** 
 - Settings String:
 	- ```5sQ3g2kPC_-CfeJ8HaX7cJny-NoYqQZKQc7IwNIwNIwN0u70u70u70u70u70u70u71_qwFLTZK61gbCq2Z80-pphmuHTHbBB1BaDknYf_AxydhLmPgSZZbUoyNT5KTnKnI8b6WSbx66LYROE-5GjUYcccP9CNGx20M_b6WAXskPHcrbw8PUjs-vEAKmKvfKLWdIa4eJUDhKdJMGx1QMhM69tq6YE6yvHGff3dsMtKCbWX_m```
-
-If you would like to change the ruleset, generate a spoiler log with your desired settings and replace the spoiler log found at:
-
-- Windows: ```.\Pixie's TPR Tracker\Pixie's TPR Tracker_Data\RaceSettingsLog```  
-- Mac: ```.\Pixie's TPR Tracker\Content\RaceSettingsLog```
-
-**Note that there should only be one file in this folder at a time**
-
-The replaced file **will**:
-- Apply all settings in the Seed Settings tab
-- Mark all checks in the Excluded Checks list
-- Give you all items in the Starting Item list
-- Give you the Gate Keys and Bulblin Camp Key based on your settings.
-
-The replaced file **will not**:
-- Show Poe and Bug tabs automatically even if your settings include them
-- Apply required dungeons (always will show FT, GM, and LT)
-- Affect the automatic item layout (will always be the **Race** preset from the Visual Settings tab)
-- Affect the **Race** preset layout in any way
 
 Feel free to reach out to me concerning rule changes for race settings so I can update the pack-in spoiler log.
 
@@ -244,6 +226,5 @@ Feedback, testing, ideas, and development contributions are extremely welcome an
 - Bug fixes for critical issues
 
 Thanks for reading this far and happy tracking!
-
 
 > Fun fact: this project does not contain a single ```Update()``` method
