@@ -144,7 +144,7 @@ public class SettingsManager : MonoBehaviour
     {
         LogicManager.Instance.SettingsStatus["ToTClosed"] = false;
         LogicManager.Instance.SettingsStatus["ToTOpenGrove"] = false;
-        LogicManager.Instance.SettingsStatus["ToTsOpen"] = false;
+        LogicManager.Instance.SettingsStatus["ToTOpen"] = false;
 
         if (index == 0)
             LogicManager.Instance.SettingsStatus["ToTClosed"] = true;

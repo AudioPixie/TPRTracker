@@ -9407,7 +9407,7 @@ public class LogicManager : MonoBehaviour
 
 /* ------------------------------
 
-        Signs - all true for now
+        Signs - very simple logic for now
 
 ------------------------------ */
 
