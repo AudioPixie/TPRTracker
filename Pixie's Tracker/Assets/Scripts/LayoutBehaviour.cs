@@ -22,6 +22,7 @@ public class LayoutBehaviour : MonoBehaviour
     [Header("Parent links")]
     public GameObject LongBoxes;
     public GridLayoutGroup regularItemsGrid; // parent of just regular items
+    public GridLayoutGroup bossesGrid;
     public VerticalLayoutGroup fullItemsGrid; // parent of all items (includes dungeons, long boxes, keys)
     public Transform bossesParent;
 
@@ -35,7 +36,10 @@ public class LayoutBehaviour : MonoBehaviour
     {
         regularItemsGrid.constraintCount = (int)slider.value;
         Label.text = labelText + slider.value;
-    }
+
+        if ((int)slider.value <= 5)
+            formatBossesGrid();
+	}
 
     public void OnValueChangedSpacing()
     {
@@ -90,7 +94,11 @@ public class LayoutBehaviour : MonoBehaviour
         else
             bossesParent.gameObject.SetActive(true);
 
-        for (int i = 0; i < 8; i++)
+        // Checks to see if the Items grid has 4 columns
+        // If it does, set the Bosses grid to have 3 columns.
+        formatBossesGrid();
+
+		for (int i = 0; i < 8; i++)
         {
             bossesParent.GetChild(i).gameObject.SetActive(i < (int)slider.value);
         }
@@ -104,4 +112,14 @@ public class LayoutBehaviour : MonoBehaviour
             LongBoxes.SetActive(false);
         }
     }
+
+	private void formatBossesGrid()
+    {
+		if (regularItemsGrid.constraintCount == 4)
+			bossesGrid.constraintCount = 3;
+		else
+			bossesGrid.constraintCount = 4;
+	}
+
 }
+
