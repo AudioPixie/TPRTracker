@@ -4,7 +4,7 @@
 
 ### Head over to [releases](https://github.com/AudioPixie/TPRTracker/releases) to download the latest build
 
-**Attention Racers:** automatic race options are based off of Season 1 Tournament ruleset as of: **October 29th, 2024**. Please reach out for changes.
+**Attention Racers:** automatic race options are based off of Season 1 Tournament ruleset as of: **September 4th, 2025**. Please reach out for changes.
 
 **Attention Mac users:** if you are blocked from opening the application, right click the icon and select "Open", then select "Open" again in the pop-up dialog.
  
@@ -211,7 +211,7 @@ Click **Race** under Preset Layouts in the Visual Settings tab. This layout is d
 
 ### Current race ruleset
 
-**The current race settings are based off of the [Season 1 Tournament ruleset](https://docs.google.com/document/d/13IgxOZ_TnBN73RjJvDCzAemOYV2K9HRfY6dHwJPTk_I/edit?usp=sharing) as of: October 29th, 2024.** 
+**The current race settings are based off of the [Season 1 Tournament ruleset](https://docs.google.com/document/d/13IgxOZ_TnBN73RjJvDCzAemOYV2K9HRfY6dHwJPTk_I/edit?usp=sharing) as of: September 4th, 2025.** 
 - Settings String:
 	- ```5sQ3g2kPC_-CfeJ8HaX7cJny-NoYqQZKQc7IwNIwNIwN0u70u70u70u70u70u70u71_qwFLTZK61gbCq2Z80-pphmuHTHbBB1BaDknYf_AxydhLmPgSZZbUoyNT5KTnKnI8b6WSbx66LYROE-5GjUYcccP9CNGx20M_b6WAXskPHcrbw8PUjs-vEAKmKvfKLWdIa4eJUDhKdJMGx1QMhM69tq6YE6yvHGff3dsMtKCbWX_m```
 
