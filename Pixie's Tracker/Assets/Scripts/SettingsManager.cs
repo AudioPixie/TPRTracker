@@ -11,7 +11,7 @@ public class SettingsManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<SettingsManager>();
+                instance = FindAnyObjectByType<SettingsManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(SettingsManager).Name);

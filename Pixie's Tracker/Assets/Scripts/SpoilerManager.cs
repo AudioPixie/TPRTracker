@@ -578,7 +578,7 @@ public class SpoilerManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<SpoilerManager>();
+                instance = FindAnyObjectByType<SpoilerManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(SpoilerManager).Name);

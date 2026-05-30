@@ -16,7 +16,7 @@ public class BackgroundManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<BackgroundManager>();
+                instance = FindAnyObjectByType<BackgroundManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(BackgroundManager).Name);

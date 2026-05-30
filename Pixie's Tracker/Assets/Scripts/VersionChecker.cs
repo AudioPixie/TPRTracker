@@ -15,7 +15,7 @@ public class VersionChecker : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<VersionChecker>();
+                instance = FindAnyObjectByType<VersionChecker>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(VersionChecker).Name);

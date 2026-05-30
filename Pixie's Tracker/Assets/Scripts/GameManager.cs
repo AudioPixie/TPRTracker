@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<GameManager>();
+                instance = FindAnyObjectByType<GameManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(GameManager).Name);

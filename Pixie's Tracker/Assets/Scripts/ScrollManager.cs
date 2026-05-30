@@ -12,7 +12,7 @@ public class ScrollManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<ScrollManager>();
+                instance = FindAnyObjectByType<ScrollManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(ScrollManager).Name);

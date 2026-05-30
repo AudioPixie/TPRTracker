@@ -16,7 +16,7 @@ public class RaceManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<RaceManager>();
+                instance = FindAnyObjectByType<RaceManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(SpoilerManager).Name);

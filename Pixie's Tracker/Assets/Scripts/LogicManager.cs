@@ -190,7 +190,7 @@ public class LogicManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<LogicManager>();
+                instance = FindAnyObjectByType<LogicManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(LogicManager).Name);

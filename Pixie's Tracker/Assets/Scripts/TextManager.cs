@@ -12,7 +12,7 @@ public class TextManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<TextManager>();
+                instance = FindAnyObjectByType<TextManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(TextManager).Name);

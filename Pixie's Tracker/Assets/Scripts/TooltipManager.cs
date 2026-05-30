@@ -14,7 +14,7 @@ public class TooltipManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<TooltipManager>();
+                instance = FindAnyObjectByType<TooltipManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(TooltipManager).Name);

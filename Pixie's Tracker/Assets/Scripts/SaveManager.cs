@@ -42,7 +42,7 @@ public class SaveManager : MonoBehaviour
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<SaveManager>();
+                instance = FindAnyObjectByType<SaveManager>();
                 if (instance == null)
                 {
                     GameObject singletonObject = new GameObject(typeof(SaveManager).Name);
